@@ -1,18 +1,18 @@
-import 'package:food_recipe_final/data/class_models/ingredient.dart';
-import 'package:food_recipe_final/data/class_models/recipe.dart';
+import 'package:food_recipe_final/data/class_models/ingredient_model.dart';
+import 'package:food_recipe_final/data/class_models/recipe_model.dart';
 
 abstract class Repository {
-  List<Recipe> findAllRecipes();
-  Recipe findRecipeById(int id);
-  List<Ingredient> findAllIngredients();
-  List<Ingredient> findRecipeIngredients(int recipeId);
+  List<RecipeModel> findAllRecipes();
+  RecipeModel findRecipeById(int id);
+  List<IngredientModel> findAllIngredients();
+  List<IngredientModel> findRecipeIngredients(int recipeId);
 
-  void insertRecipe(Recipe recipe);
-  List<int> insertIngredients(List<Ingredient> ingredients);
+  void insertRecipe(RecipeModel recipe);
+  List<int> insertIngredients(List<IngredientModel> ingredients);
 
-  void deleteRecipe(Recipe recipe);
-  void deleteIngredient(Ingredient ingredient);
-  void deleteIngredients(List<Ingredient> ingredients);
+  void deleteRecipe(RecipeModel recipe);
+  void deleteIngredient(IngredientModel ingredient);
+  void deleteIngredients(List<IngredientModel> ingredients);
   void deleteRecipeIngredients(int recipeId);
 
   // Future init();
