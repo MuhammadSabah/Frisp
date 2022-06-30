@@ -15,7 +15,7 @@ class AppCache {
     await prefs.setBool(kUser, true);
   }
 
-  Future<void> completeOnbaording() async {
+  Future<void> completeOnboarding() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(kOnboarding, true);
   }
@@ -25,7 +25,7 @@ class AppCache {
     return prefs.getBool(kUser) ?? false;
   }
 
-  Future<bool> didCompleteOnbaording() async {
+  Future<bool> didCompleteOnboarding() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(kOnboarding) ?? false;
   }

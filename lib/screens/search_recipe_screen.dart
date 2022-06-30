@@ -1,8 +1,5 @@
-import 'dart:collection';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/components/custom_drop_down.dart';
@@ -100,16 +97,14 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
       child: Column(
         children: [
           _buildSearchCard(),
-          Container(
-            child: TabBar(
-              controller: _tabController,
-              indicatorColor: kOrangeColor,
-              indicatorPadding: const EdgeInsets.symmetric(horizontal: 10),
-              tabs: const [
-                Tab(text: "Search"),
-                Tab(text: "Bookmarks"),
-              ],
-            ),
+          TabBar(
+            controller: _tabController,
+            indicatorColor: kOrangeColor,
+            indicatorPadding: const EdgeInsets.symmetric(horizontal: 10),
+            tabs: const [
+              Tab(text: "Search"),
+              Tab(text: "Bookmarks"),
+            ],
           ),
           Expanded(
             child: Container(
