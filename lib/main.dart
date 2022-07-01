@@ -3,6 +3,7 @@ import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/data/bookmark_manager.dart';
 import 'package:food_recipe_final/models/app_state_manager.dart';
 import 'package:food_recipe_final/screens/discover_screen.dart';
+import 'package:food_recipe_final/screens/recipe_detail_screen.dart';
 import 'package:food_recipe_final/screens/search_recipe_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -21,8 +22,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   static List<Widget> pages = [
-    DiscoverScreen(),
+    // DiscoverScreen(),
     SearchRecipeScreen(),
+    RecipeDetailScreen(),
   ];
   final _appStateManager = AppStateManager();
   final _memoryRepository = BookmarkManager();

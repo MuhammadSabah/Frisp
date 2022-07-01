@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/components/custom_drop_down.dart';
 import 'package:food_recipe_final/components/recipe_card.dart';
-import 'package:food_recipe_final/models/recipe_api_model.dart';
+import 'package:food_recipe_final/models/api/recipe_api_model.dart';
 import 'package:food_recipe_final/screens/tabs/bookmark_tab.dart';
 import 'package:food_recipe_final/service/recipe_service.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -68,7 +68,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
     getPreviousSearches();
     _scrollController.addListener(() {
       final triggerFetchMoreSize =
-          0.9 * _scrollController.position.maxScrollExtent;
+          0.7 * _scrollController.position.maxScrollExtent;
 
       if (_scrollController.position.pixels > triggerFetchMoreSize) {
         if (_hasMore &&

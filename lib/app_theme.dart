@@ -22,7 +22,7 @@ class AppTheme {
       color: Colors.black,
     ),
     headline3: GoogleFonts.poppins(
-      fontSize: 11,
+      fontSize: 12,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
