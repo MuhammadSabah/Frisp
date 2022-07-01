@@ -1,3 +1,5 @@
+import 'package:food_recipe_final/data/class_models/ingredient_model.dart';
+import 'package:food_recipe_final/data/class_models/nutrition_model.dart';
 import 'package:food_recipe_final/mock_data/nutritions.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -30,15 +32,15 @@ class RecipeAPIQuery {
 @JsonSerializable()
 class NutritionsAPI {
   @JsonKey(name: "FAT")
-  Fat? fat;
+  FatAPI? fat;
   @JsonKey(name: "CHOCDF")
-  Carbs? carbs;
+  CarbsAPI? carbs;
   @JsonKey(name: "FIBTG")
-  Fiber? fiber;
+  FiberAPI? fiber;
   @JsonKey(name: "SUGAR")
-  Sugars? sugars;
+  SugarsAPI? sugars;
   @JsonKey(name: "PROCNT")
-  Protein? protein;
+  ProteinAPI? protein;
 
   NutritionsAPI({
     this.fat,
@@ -55,59 +57,62 @@ class NutritionsAPI {
 }
 
 @JsonSerializable()
-class Fat {
+class FatAPI {
   String label;
   double quantity;
 
-  Fat({required this.label, required this.quantity});
-  factory Fat.fromJson(Map<String, dynamic> json) => _$FatFromJson(json);
+  FatAPI({required this.label, required this.quantity});
+  factory FatAPI.fromJson(Map<String, dynamic> json) => _$FatAPIFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FatToJson(this);
+  Map<String, dynamic> toJson() => _$FatAPIToJson(this);
 }
 
 @JsonSerializable()
-class Carbs {
+class CarbsAPI {
   String label;
   double quantity;
 
-  Carbs({required this.label, required this.quantity});
-  factory Carbs.fromJson(Map<String, dynamic> json) => _$CarbsFromJson(json);
+  CarbsAPI({required this.label, required this.quantity});
+  factory CarbsAPI.fromJson(Map<String, dynamic> json) =>
+      _$CarbsAPIFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CarbsToJson(this);
+  Map<String, dynamic> toJson() => _$CarbsAPIToJson(this);
 }
 
 @JsonSerializable()
-class Fiber {
+class FiberAPI {
   String label;
   double quantity;
 
-  Fiber({required this.label, required this.quantity});
-  factory Fiber.fromJson(Map<String, dynamic> json) => _$FiberFromJson(json);
+  FiberAPI({required this.label, required this.quantity});
+  factory FiberAPI.fromJson(Map<String, dynamic> json) =>
+      _$FiberAPIFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FiberToJson(this);
+  Map<String, dynamic> toJson() => _$FiberAPIToJson(this);
 }
 
 @JsonSerializable()
-class Sugars {
+class SugarsAPI {
   String label;
   double quantity;
 
-  Sugars({required this.label, required this.quantity});
-  factory Sugars.fromJson(Map<String, dynamic> json) => _$SugarsFromJson(json);
+  SugarsAPI({required this.label, required this.quantity});
+  factory SugarsAPI.fromJson(Map<String, dynamic> json) =>
+      _$SugarsAPIFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SugarsToJson(this);
+  Map<String, dynamic> toJson() => _$SugarsAPIToJson(this);
 }
 
 @JsonSerializable()
-class Protein {
+class ProteinAPI {
   String label;
   double quantity;
 
-  Protein({required this.label, required this.quantity});
-  factory Protein.fromJson(Map<String, dynamic> json) =>
-      _$ProteinFromJson(json);
+  ProteinAPI({required this.label, required this.quantity});
+  factory ProteinAPI.fromJson(Map<String, dynamic> json) =>
+      _$ProteinAPIFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ProteinToJson(this);
+  Map<String, dynamic> toJson() => _$ProteinAPIToJson(this);
 }
 
 @JsonSerializable()
@@ -188,4 +193,39 @@ class IngredientsAPI {
       _$IngredientsAPIFromJson(json);
 
   Map<String, dynamic> toJson() => _$IngredientsAPIToJson(this);
+}
+
+List<IngredientModel> convertIngredients(List<IngredientsAPI> apiIngredients) {
+  final ingredients = <IngredientModel>[];
+  apiIngredients.forEach((ingredient) {
+    ingredients
+        .add(IngredientModel(name: ingredient.name, weight: ingredient.weight));
+  });
+  return ingredients;
+}
+
+NutritionsModel convertNutritions(NutritionsAPI nutrition) {
+  return NutritionsModel(
+    fat: Fat(
+      label: nutrition.fat!.label,
+      quantity: nutrition.fat!.quantity,
+    ),
+    carbs: Carbs(
+      label: nutrition.carbs!.label,
+      quantity: nutrition.carbs!.quantity,
+    ),
+    //
+    fiber: Fiber(
+      label: nutrition.fiber!.label,
+      quantity: nutrition.fiber!.quantity,
+    ),
+    sugars: Sugars(
+      label: nutrition.sugars!.label,
+      quantity: nutrition.sugars!.quantity,
+    ),
+    protein: Protein(
+      label: nutrition.protein!.label,
+      quantity: nutrition.protein!.quantity,
+    ),
+  );
 }

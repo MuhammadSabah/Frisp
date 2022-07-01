@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:food_recipe_final/data/class_models/ingredient_model.dart';
+import 'package:food_recipe_final/data/class_models/nutrition_model.dart';
 
 class RecipeModel extends Equatable {
   int? id;
@@ -11,6 +12,9 @@ class RecipeModel extends Equatable {
   final double? calories;
   final double? totalWeight;
   final double? totalTime;
+  List<String>? cuisine;
+  List<String>? meal;
+  NutritionsModel? nutritions;
 
   RecipeModel({
     this.id,
@@ -21,6 +25,9 @@ class RecipeModel extends Equatable {
     this.calories,
     this.totalWeight,
     this.totalTime,
+    this.cuisine,
+    this.meal,
+    this.nutritions,
   });
 
   @override

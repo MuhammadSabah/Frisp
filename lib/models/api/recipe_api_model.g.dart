@@ -33,19 +33,19 @@ NutritionsAPI _$NutritionsAPIFromJson(Map<String, dynamic> json) {
   return NutritionsAPI(
     fat: json['FAT'] == null
         ? null
-        : Fat.fromJson(json['FAT'] as Map<String, dynamic>),
+        : FatAPI.fromJson(json['FAT'] as Map<String, dynamic>),
     carbs: json['CHOCDF'] == null
         ? null
-        : Carbs.fromJson(json['CHOCDF'] as Map<String, dynamic>),
+        : CarbsAPI.fromJson(json['CHOCDF'] as Map<String, dynamic>),
     fiber: json['FIBTG'] == null
         ? null
-        : Fiber.fromJson(json['FIBTG'] as Map<String, dynamic>),
+        : FiberAPI.fromJson(json['FIBTG'] as Map<String, dynamic>),
     sugars: json['SUGAR'] == null
         ? null
-        : Sugars.fromJson(json['SUGAR'] as Map<String, dynamic>),
+        : SugarsAPI.fromJson(json['SUGAR'] as Map<String, dynamic>),
     protein: json['PROCNT'] == null
         ? null
-        : Protein.fromJson(json['PROCNT'] as Map<String, dynamic>),
+        : ProteinAPI.fromJson(json['PROCNT'] as Map<String, dynamic>),
   );
 }
 
@@ -58,62 +58,63 @@ Map<String, dynamic> _$NutritionsAPIToJson(NutritionsAPI instance) =>
       'PROCNT': instance.protein,
     };
 
-Fat _$FatFromJson(Map<String, dynamic> json) {
-  return Fat(
+FatAPI _$FatAPIFromJson(Map<String, dynamic> json) {
+  return FatAPI(
     label: json['label'] as String,
     quantity: (json['quantity'] as num).toDouble(),
   );
 }
 
-Map<String, dynamic> _$FatToJson(Fat instance) => <String, dynamic>{
+Map<String, dynamic> _$FatAPIToJson(FatAPI instance) => <String, dynamic>{
       'label': instance.label,
       'quantity': instance.quantity,
     };
 
-Carbs _$CarbsFromJson(Map<String, dynamic> json) {
-  return Carbs(
+CarbsAPI _$CarbsAPIFromJson(Map<String, dynamic> json) {
+  return CarbsAPI(
     label: json['label'] as String,
     quantity: (json['quantity'] as num).toDouble(),
   );
 }
 
-Map<String, dynamic> _$CarbsToJson(Carbs instance) => <String, dynamic>{
+Map<String, dynamic> _$CarbsAPIToJson(CarbsAPI instance) => <String, dynamic>{
       'label': instance.label,
       'quantity': instance.quantity,
     };
 
-Fiber _$FiberFromJson(Map<String, dynamic> json) {
-  return Fiber(
+FiberAPI _$FiberAPIFromJson(Map<String, dynamic> json) {
+  return FiberAPI(
     label: json['label'] as String,
     quantity: (json['quantity'] as num).toDouble(),
   );
 }
 
-Map<String, dynamic> _$FiberToJson(Fiber instance) => <String, dynamic>{
+Map<String, dynamic> _$FiberAPIToJson(FiberAPI instance) => <String, dynamic>{
       'label': instance.label,
       'quantity': instance.quantity,
     };
 
-Sugars _$SugarsFromJson(Map<String, dynamic> json) {
-  return Sugars(
+SugarsAPI _$SugarsAPIFromJson(Map<String, dynamic> json) {
+  return SugarsAPI(
     label: json['label'] as String,
     quantity: (json['quantity'] as num).toDouble(),
   );
 }
 
-Map<String, dynamic> _$SugarsToJson(Sugars instance) => <String, dynamic>{
+Map<String, dynamic> _$SugarsAPIToJson(SugarsAPI instance) => <String, dynamic>{
       'label': instance.label,
       'quantity': instance.quantity,
     };
 
-Protein _$ProteinFromJson(Map<String, dynamic> json) {
-  return Protein(
+ProteinAPI _$ProteinAPIFromJson(Map<String, dynamic> json) {
+  return ProteinAPI(
     label: json['label'] as String,
     quantity: (json['quantity'] as num).toDouble(),
   );
 }
 
-Map<String, dynamic> _$ProteinToJson(Protein instance) => <String, dynamic>{
+Map<String, dynamic> _$ProteinAPIToJson(ProteinAPI instance) =>
+    <String, dynamic>{
       'label': instance.label,
       'quantity': instance.quantity,
     };

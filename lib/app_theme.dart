@@ -67,6 +67,11 @@ class AppTheme {
 
   static ThemeData dark() {
     return ThemeData(
+      appBarTheme: const AppBarTheme(
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
+      ),
       tabBarTheme: TabBarTheme(
         labelStyle: GoogleFonts.poppins(
           fontSize: 14,

@@ -4,7 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/components/custom_drop_down.dart';
 import 'package:food_recipe_final/components/recipe_card.dart';
+import 'package:food_recipe_final/data/class_models/recipe_model.dart';
 import 'package:food_recipe_final/models/api/recipe_api_model.dart';
+import 'package:food_recipe_final/screens/recipe_detail_screen.dart';
 import 'package:food_recipe_final/screens/tabs/bookmark_tab.dart';
 import 'package:food_recipe_final/service/recipe_service.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -316,13 +318,27 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
   Widget _buildRecipeCard(BuildContext context, List<HitsAPI> hits, int index) {
     final recipe = hits[index].recipe;
     return GestureDetector(
-      // onTap: () {
-      //   Navigator.push(topLevelContext, MaterialPageRoute(
-      //     builder: (context) {
-      //       return const RecipeDetails();
-      //     },
-      //   ));
-      // },
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) {
+            final detailRecipe = RecipeModel(
+              label: recipe.label,
+              image: recipe.image,
+              url: recipe.url,
+              ingredients: convertIngredients(recipe.ingredients),
+              calories: recipe.calories,
+              totalWeight: recipe.totalWeight,
+              totalTime: recipe.totalTime,
+              cuisine: recipe.cuisine,
+              meal: recipe.meal,
+              nutritions: convertNutritions(recipe.nutritions),
+            );
+            return RecipeDetailScreen(
+              recipe: detailRecipe,
+            );
+          },
+        ));
+      },
       child: RecipeCard(recipe: recipe),
     );
   }

@@ -22,9 +22,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   static List<Widget> pages = [
-    // DiscoverScreen(),
+    DiscoverScreen(),
     SearchRecipeScreen(),
-    RecipeDetailScreen(),
   ];
   final _appStateManager = AppStateManager();
   final _memoryRepository = BookmarkManager();
