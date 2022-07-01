@@ -1,10 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'recipe_model.g.dart';
+part 'recipe_api_model.g.dart';
 
 @JsonSerializable()
-class RecipeQuery {
-  factory RecipeQuery.fromJson(Map<String, dynamic> json) =>
+class RecipeAPIQuery {
+  factory RecipeAPIQuery.fromJson(Map<String, dynamic> json) =>
       _$RecipeQueryFromJson(json);
 
   Map<String, dynamic> toJson() => _$RecipeQueryToJson(this);
@@ -14,9 +14,9 @@ class RecipeQuery {
   int to;
   bool more;
   int count;
-  List<Hits> hits;
+  List<HitsAPI> hits;
 
-  RecipeQuery({
+  RecipeAPIQuery({
     required this.query,
     required this.from,
     required this.to,
@@ -27,29 +27,29 @@ class RecipeQuery {
 }
 
 @JsonSerializable()
-class Hits {
-  Recipe recipe;
+class HitsAPI {
+  RecipeAPI recipe;
 
-  Hits({
+  HitsAPI({
     required this.recipe,
   });
 
-  factory Hits.fromJson(Map<String, dynamic> json) => _$HitsFromJson(json);
+  factory HitsAPI.fromJson(Map<String, dynamic> json) => _$HitsFromJson(json);
 
   Map<String, dynamic> toJson() => _$HitsToJson(this);
 }
 
 @JsonSerializable()
-class Recipe {
+class RecipeAPI {
   String label;
   String image;
   String url;
-  List<Ingredients> ingredients;
+  List<IngredientsAPI> ingredients;
   double calories;
   double totalWeight;
   double totalTime;
 
-  Recipe({
+  RecipeAPI({
     required this.label,
     required this.image,
     required this.url,
@@ -59,7 +59,8 @@ class Recipe {
     required this.totalTime,
   });
 
-  factory Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json);
+  factory RecipeAPI.fromJson(Map<String, dynamic> json) =>
+      _$RecipeFromJson(json);
 
   Map<String, dynamic> toJson() => _$RecipeToJson(this);
 }
@@ -79,17 +80,17 @@ String getWeight(double? weight) {
 }
 
 @JsonSerializable()
-class Ingredients {
+class IngredientsAPI {
   @JsonKey(name: 'text')
   String name;
   double weight;
 
-  Ingredients({
+  IngredientsAPI({
     required this.name,
     required this.weight,
   });
 
-  factory Ingredients.fromJson(Map<String, dynamic> json) =>
+  factory IngredientsAPI.fromJson(Map<String, dynamic> json) =>
       _$IngredientsFromJson(json);
 
   Map<String, dynamic> toJson() => _$IngredientsToJson(this);

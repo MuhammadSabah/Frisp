@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/app_theme.dart';
-import '../models/recipe_model.dart';
+import '../models/recipe_api_model.dart';
 
 class RecipeCard extends StatefulWidget {
   const RecipeCard({Key? key, required this.recipe}) : super(key: key);
-  final Recipe recipe;
+  final RecipeAPI recipe;
 
   @override
   State<RecipeCard> createState() => _RecipeCardState();

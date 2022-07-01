@@ -4,7 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/components/custom_drop_down.dart';
 import 'package:food_recipe_final/components/recipe_card.dart';
-import 'package:food_recipe_final/models/recipe_model.dart';
+import 'package:food_recipe_final/models/recipe_api_model.dart';
+import 'package:food_recipe_final/screens/tabs/bookmark_tab.dart';
 import 'package:food_recipe_final/service/recipe_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,7 +25,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
   late TextEditingController _searchController;
   late TabController _tabController;
   List<String> _previousSearches = [];
-  List<Hits> _currentSearches = [];
+  List<HitsAPI> _currentSearches = [];
 
   bool _loading = false;
   bool _inErrorState = false;
@@ -36,10 +37,10 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
   int currentEndPosition = 20;
   int pageCount = 20;
 
-  Future<RecipeQuery> getRecipeData(String query, int from, int to) async {
+  Future<RecipeAPIQuery> getRecipeData(String query, int from, int to) async {
     final recipeJson = await RecipeService().getRecipes(query, from, to);
     final recipeMap = convert.json.decode(recipeJson);
-    return RecipeQuery.fromJson(recipeMap);
+    return RecipeAPIQuery.fromJson(recipeMap);
   }
 
   void savePreviousSearches() async {
@@ -115,7 +116,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                 controller: _tabController,
                 children: [
                   _buildRecipeLoader(context),
-                  Container(),
+                  BookmarkTab(),
                 ],
               ),
             ),
@@ -247,7 +248,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
         ),
       );
     }
-    return FutureBuilder<RecipeQuery>(
+    return FutureBuilder<RecipeAPIQuery>(
       future: getRecipeData(
         _searchController.text.trim(),
         currentStartPosition,
@@ -291,7 +292,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
     );
   }
 
-  Widget _buildRecipeList(BuildContext context, List<Hits> hits) {
+  Widget _buildRecipeList(BuildContext context, List<HitsAPI> hits) {
     final size = MediaQuery.of(context).size;
     double itemWidth = (size.width / 2) - 10;
     double itemHeight = 280;
@@ -312,7 +313,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
     );
   }
 
-  Widget _buildRecipeCard(BuildContext context, List<Hits> hits, int index) {
+  Widget _buildRecipeCard(BuildContext context, List<HitsAPI> hits, int index) {
     final recipe = hits[index].recipe;
     return GestureDetector(
       // onTap: () {
