@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/components/custom_drop_down.dart';
 import 'package:food_recipe_final/components/recipe_card.dart';
+import 'package:food_recipe_final/components/recipe_list.dart';
 import 'package:food_recipe_final/data/class_models/recipe_model.dart';
 import 'package:food_recipe_final/models/api/recipe_api_model.dart';
 import 'package:food_recipe_final/screens/recipe_detail_screen.dart';
@@ -229,7 +230,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
 
   Widget _buildRecipeLoader(BuildContext context) {
     if (_searchController.text.length < 3) {
-      return Container(
+      return SizedBox(
         height: 300,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -244,13 +245,16 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
             const SizedBox(height: 25),
             Text(
               "Search for your favorite recipe!",
-              style: Theme.of(context).textTheme.headline2,
+              style: Theme.of(context).textTheme.headline3!.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
           ],
         ),
       );
     }
     return FutureBuilder<RecipeAPIQuery>(
+      // key: ValueKey(),
       future: getRecipeData(
         _searchController.text.trim(),
         currentStartPosition,
@@ -280,66 +284,17 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
             }
             // .where((e) => e.vegan == true).toList()
           }
-          return _buildRecipeList(context, _currentSearches);
+          return RecipeList(context: context, hits: _currentSearches);
         } else {
           if (currentCount == 0) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
-            return _buildRecipeList(context, _currentSearches);
+            return RecipeList(context: context, hits: _currentSearches);
           }
         }
       },
-    );
-  }
-
-  Widget _buildRecipeList(BuildContext context, List<HitsAPI> hits) {
-    final size = MediaQuery.of(context).size;
-    double itemWidth = (size.width / 2) - 10;
-    double itemHeight = 280;
-    return Expanded(
-      child: GridView.builder(
-        // controller: _scrollController,
-        itemCount: hits.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: (itemWidth / itemHeight),
-        ),
-        itemBuilder: (context, index) {
-          print(hits[index].recipe);
-          final hit = hits[index].recipe;
-          return _buildRecipeCard(context, hits, index);
-        },
-      ),
-    );
-  }
-
-  Widget _buildRecipeCard(BuildContext context, List<HitsAPI> hits, int index) {
-    final recipe = hits[index].recipe;
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) {
-            final detailRecipe = RecipeModel(
-              label: recipe.label,
-              image: recipe.image,
-              url: recipe.url,
-              ingredients: convertIngredients(recipe.ingredients),
-              calories: recipe.calories,
-              totalWeight: recipe.totalWeight,
-              totalTime: recipe.totalTime,
-              cuisine: recipe.cuisine,
-              meal: recipe.meal,
-              nutritions: convertNutritions(recipe.nutritions),
-            );
-            return RecipeDetailScreen(
-              recipe: detailRecipe,
-            );
-          },
-        ));
-      },
-      child: RecipeCard(recipe: recipe),
     );
   }
 }

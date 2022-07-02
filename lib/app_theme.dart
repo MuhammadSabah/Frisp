@@ -7,54 +7,74 @@ const kBlackColor = Color(0xff0E0E0E);
 class AppTheme {
   static TextTheme lightTextTheme = TextTheme(
     bodyText1: GoogleFonts.poppins(
-      fontSize: 10,
-      fontWeight: FontWeight.w700,
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
     headline1: GoogleFonts.poppins(
-      fontSize: 23,
+      fontSize: 24,
       fontWeight: FontWeight.bold,
       color: Colors.black,
     ),
     headline2: GoogleFonts.poppins(
-      fontSize: 15,
-      fontWeight: FontWeight.w700,
+      fontSize: 20,
+      fontWeight: FontWeight.w400,
       color: Colors.black,
     ),
     headline3: GoogleFonts.poppins(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      color: Colors.black,
+    ),
+    headline4: GoogleFonts.poppins(
       fontSize: 12,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w400,
+      color: Colors.black,
+    ),
+    headline5: GoogleFonts.poppins(
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
       color: Colors.black,
     ),
     headline6: GoogleFonts.poppins(
-      fontSize: 20,
+      fontSize: 8,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
   );
   static TextTheme darkTextTheme = TextTheme(
     bodyText1: GoogleFonts.poppins(
-      fontSize: 10,
+      fontSize: 14,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
     headline1: GoogleFonts.poppins(
-      fontSize: 23,
-      fontWeight: FontWeight.bold,
+      fontSize: 24,
+      fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
     headline2: GoogleFonts.poppins(
-      fontSize: 16,
+      fontSize: 22,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
     headline3: GoogleFonts.poppins(
-      fontSize: 11,
-      fontWeight: FontWeight.w600,
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      color: Colors.white,
+    ),
+    headline4: GoogleFonts.poppins(
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      color: Colors.white,
+    ),
+    headline5: GoogleFonts.poppins(
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
       color: Colors.white,
     ),
     headline6: GoogleFonts.poppins(
-      fontSize: 20,
+      fontSize: 8,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),

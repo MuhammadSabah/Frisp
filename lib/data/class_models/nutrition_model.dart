@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:equatable/equatable.dart';
 
-class NutritionsModel {
+class NutritionsModel extends Equatable {
   Fat? fat;
   Carbs? carbs;
   Fiber? fiber;
@@ -14,6 +14,9 @@ class NutritionsModel {
     this.sugars,
     this.protein,
   });
+
+  @override
+  List<Object?> get props => [fat, carbs, fiber, sugars, protein];
 }
 
 class Fat {

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/models/api/recipe_api_model.dart';
@@ -11,6 +13,12 @@ class RecipeCard extends StatefulWidget {
 }
 
 class _RecipeCardState extends State<RecipeCard> {
+  double calcRandom() {
+    Random random = Random();
+    double randomNum = ((random.nextDouble() * 5) + 5);
+    return randomNum;
+  }
+
   bool _isSelected = false;
   @override
   Widget build(BuildContext context) {
@@ -73,10 +81,10 @@ class _RecipeCardState extends State<RecipeCard> {
                                 color: Color(0xffFFAD30),
                               ),
                               Text(
-                                '4.0',
+                                calcRandom().toStringAsFixed(1),
                                 style: Theme.of(context)
                                     .textTheme
-                                    .headline3!
+                                    .headline4!
                                     .copyWith(
                                       color: Colors.black,
                                     ),
@@ -93,11 +101,13 @@ class _RecipeCardState extends State<RecipeCard> {
               Align(
                 alignment: Alignment.center,
                 child: SizedBox(
-                  height: 65,
+                  height: 77,
                   width: 160,
                   child: Text(
                     widget.recipe.label,
-                    style: Theme.of(context).textTheme.headline2,
+                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ),
               ),
