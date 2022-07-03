@@ -23,16 +23,6 @@ class BookmarkManager extends Bookmark with ChangeNotifier {
   }
 
   @override
-  List<IngredientModel> findRecipeIngredients(int recipeId) {
-    final recipe =
-        _currentRecipes.firstWhere((recipe) => recipe.id == recipeId);
-    final recipeIngredients = _currentIngredients
-        .where((ingredient) => ingredient.recipeId == recipe.id)
-        .toList();
-    return recipeIngredients;
-  }
-
-  @override
   void insertRecipe(RecipeModel recipe) {
     _currentRecipes.add(recipe);
     if (recipe.ingredients != null) {
@@ -53,9 +43,6 @@ class BookmarkManager extends Bookmark with ChangeNotifier {
   @override
   void deleteRecipe(RecipeModel recipe) {
     _currentRecipes.remove(recipe);
-    if (recipe != null) {
-      deleteRecipeIngredients(recipe.id!);
-    }
   }
 
   @override
@@ -68,13 +55,6 @@ class BookmarkManager extends Bookmark with ChangeNotifier {
     _currentIngredients.removeWhere(
       (ingredient) => ingredients.contains(ingredient),
     );
-    notifyListeners();
-  }
-
-  @override
-  void deleteRecipeIngredients(int recipeId) {
-    _currentIngredients
-        .removeWhere((ingredient) => ingredient.recipeId == recipeId);
     notifyListeners();
   }
 

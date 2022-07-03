@@ -231,7 +231,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
       // key: ValueKey(),
       future: getRecipeData(
         _searchController.text.trim(),
-        30,
+        50,
       ),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {

@@ -10,6 +10,7 @@ class RecipeModel extends Equatable {
   bool? glutenFree;
   bool? dairyFree;
   bool? veryHealthy;
+  bool? healthScore;
   bool? cheap;
   bool? veryPopular;
   List<IngredientModel>? ingredients;
@@ -34,6 +35,7 @@ class RecipeModel extends Equatable {
     this.dairyFree,
     this.veryHealthy,
     this.cheap,
+    this.healthScore,
     this.veryPopular,
     this.ingredients,
     this.title,
@@ -60,6 +62,7 @@ class RecipeModel extends Equatable {
         veryHealthy,
         cheap,
         veryPopular,
+        healthScore,
         ingredients,
         title,
         readyInMinutes,

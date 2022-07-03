@@ -22,6 +22,7 @@ class ResultsAPI {
   bool? veryHealthy;
   bool? cheap;
   bool? veryPopular;
+  double? healthScore;
   @JsonKey(name: 'extendedIngredients')
   List<IngredientsAPI>? ingredients;
   String? title;
@@ -43,6 +44,7 @@ class ResultsAPI {
     this.vegan,
     this.glutenFree,
     this.dairyFree,
+    this.healthScore,
     this.veryHealthy,
     this.cheap,
     this.veryPopular,
