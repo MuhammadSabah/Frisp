@@ -50,11 +50,12 @@ ResultsAPI _$ResultsAPIFromJson(Map<String, dynamic> json) {
         ?.map((e) => InstructionsAPI.fromJson(e as Map<String, dynamic>))
         .toList(),
     spoonacularSourceUrl: json['spoonacularSourceUrl'] as String?,
-  );
+  )..id = json['id'] as int?;
 }
 
 Map<String, dynamic> _$ResultsAPIToJson(ResultsAPI instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'vegetarian': instance.vegetarian,
       'vegan': instance.vegan,
       'glutenFree': instance.glutenFree,

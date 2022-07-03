@@ -14,6 +14,7 @@ class RecipeAPIQuery {
 
 @JsonSerializable()
 class ResultsAPI {
+  int? id;
   bool? vegetarian;
   bool? vegan;
   bool? glutenFree;

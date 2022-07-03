@@ -1,36 +1,77 @@
 import 'package:equatable/equatable.dart';
 import 'package:food_recipe_final/data/class_models/ingredient_model.dart';
+import 'package:food_recipe_final/data/class_models/instruction_model.dart';
 import 'package:food_recipe_final/data/class_models/nutrition_model.dart';
 
 class RecipeModel extends Equatable {
   int? id;
-  final String? label;
-  final String? image;
-  final String? url;
-
+  bool? vegetarian;
+  bool? vegan;
+  bool? glutenFree;
+  bool? dairyFree;
+  bool? veryHealthy;
+  bool? cheap;
+  bool? veryPopular;
   List<IngredientModel>? ingredients;
-  final double? calories;
-  final double? totalWeight;
-  final double? totalTime;
-  List<String>? cuisine;
-  List<String>? meal;
-  NutritionsModel? nutritions;
+  String? title;
+  int? readyInMinutes;
+  int? servings;
+  String? sourceUrl;
+  String? image;
+  NutritionsModel? nutrition;
+  String? summary;
+  List<String>? dishTypes;
+  List<String>? diets;
+  List<String>? occasions;
+  List<InstructionModel>? instructions;
+  String? spoonacularSourceUrl;
 
   RecipeModel({
     this.id,
-    this.label,
-    this.image,
-    this.url,
+    this.vegetarian,
+    this.vegan,
+    this.glutenFree,
+    this.dairyFree,
+    this.veryHealthy,
+    this.cheap,
+    this.veryPopular,
     this.ingredients,
-    this.calories,
-    this.totalWeight,
-    this.totalTime,
-    this.cuisine,
-    this.meal,
-    this.nutritions,
+    this.title,
+    this.readyInMinutes,
+    this.servings,
+    this.sourceUrl,
+    this.image,
+    this.nutrition,
+    this.summary,
+    this.dishTypes,
+    this.diets,
+    this.occasions,
+    this.instructions,
+    this.spoonacularSourceUrl,
   });
 
   @override
-  List<Object?> get props =>
-      [label, image, url, calories, totalWeight, totalTime];
+  List<Object?> get props => [
+        id,
+        vegetarian,
+        vegan,
+        glutenFree,
+        dairyFree,
+        veryHealthy,
+        cheap,
+        veryPopular,
+        ingredients,
+        title,
+        readyInMinutes,
+        servings,
+        sourceUrl,
+        image,
+        nutrition,
+        summary,
+        dishTypes,
+        diets,
+        occasions,
+        instructions,
+        spoonacularSourceUrl,
+      ];
 }

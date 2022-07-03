@@ -2,12 +2,9 @@ import 'package:equatable/equatable.dart';
 
 class IngredientModel extends Equatable {
   int? id;
-  int? recipeId;
-  final String? name;
-  final double? weight;
+  String? name;
 
-  IngredientModel({this.id, this.recipeId, this.name, this.weight});
-
+  IngredientModel({this.id, this.name});
   @override
-  List<Object?> get props => [recipeId, name, weight];
+  List<Object?> get props => [id, name];
 }
