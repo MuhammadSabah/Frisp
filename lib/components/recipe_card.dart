@@ -66,28 +66,32 @@ class _RecipeCardState extends State<RecipeCard> {
                         borderRadius: BorderRadius.circular(50),
                         child: Container(
                           height: 22,
-                          width: 45,
+                          width: 50,
                           decoration: const BoxDecoration(
-                            color: Color(0xffFFE1B3),
+                            color: Color.fromARGB(255, 224, 255, 221),
                             borderRadius: BorderRadius.all(
                               Radius.circular(10),
                             ),
                           ),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              const Icon(
-                                Icons.star,
+                              Icon(
+                                Icons.health_and_safety_outlined,
                                 size: 18,
-                                color: Color(0xffFFAD30),
+                                color: Colors.green.shade600,
                               ),
-                              Text(
-                                calcRandom().toStringAsFixed(1),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4!
-                                    .copyWith(
-                                      color: Colors.black,
-                                    ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 4.0),
+                                child: Text(
+                                  widget.recipe.healthScore!.toStringAsFixed(1),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline4!
+                                      .copyWith(
+                                        color: Colors.black,
+                                      ),
+                                ),
                               ),
                             ],
                           ),
@@ -97,7 +101,7 @@ class _RecipeCardState extends State<RecipeCard> {
                   ),
                 ],
               ),
-              const SizedBox(height: 7),
+              const SizedBox(height: 10),
               Align(
                 alignment: Alignment.center,
                 child: SizedBox(
