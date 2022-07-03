@@ -1,3 +1,9 @@
+import 'package:food_recipe_final/data/class_models/ingredient_model.dart';
+import 'package:food_recipe_final/data/class_models/instruction_model.dart';
+import 'package:food_recipe_final/data/class_models/nutrients_model.dart';
+import 'package:food_recipe_final/data/class_models/nutrition_model.dart';
+import 'package:food_recipe_final/data/class_models/steps_model.dart';
+import 'package:food_recipe_final/mock_data/nutritions.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'recipe_api_model.g.dart';
 
@@ -131,4 +137,33 @@ class StepsAPI {
       _$StepsAPIFromJson(json);
 
   Map<String, dynamic> toJson() => _$StepsAPIToJson(this);
+}
+
+List<IngredientModel> convertIngredients(List<IngredientsAPI> apiIngredients) {
+  final ingredients = apiIngredients
+      .map((ingredient) => IngredientModel(
+            id: ingredient.id,
+            name: ingredient.name,
+          ))
+      .toList();
+  return ingredients;
+}
+
+List<InstructionModel> convertInstructions(
+    List<InstructionsAPI> apiInstructions) {
+  final instructions = apiInstructions
+      .map((instruction) => InstructionModel(
+            steps: convertSteps(instruction.steps!),
+          ))
+      .toList();
+  return instructions;
+}
+
+List<StepsModel> convertSteps(List<StepsAPI> apiSteps) {
+  final steps = apiSteps
+      .map((step) => StepsModel(
+            step: step.step,
+          ))
+      .toList();
+  return steps;
 }
