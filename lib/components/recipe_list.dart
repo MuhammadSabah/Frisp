@@ -8,9 +8,9 @@ class RecipeList extends StatefulWidget {
   const RecipeList({
     Key? key,
     required this.context,
-    required this.hits,
+    required this.results,
   }) : super(key: key);
-  final List<HitsAPI> hits;
+  final List<ResultsAPI> results;
   final BuildContext context;
 
   @override
@@ -26,43 +26,44 @@ class _RecipeListState extends State<RecipeList> {
     return Expanded(
       child: GridView.builder(
         // controller: _scrollController,
-        itemCount: widget.hits.length,
+        itemCount: widget.results.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: (itemWidth / itemHeight),
         ),
         itemBuilder: (context, index) {
-          print(widget.hits[index].recipe);
-          final hit = widget.hits[index].recipe;
-          return _buildRecipeCard(context, widget.hits, index);
+          print(widget.results[index]);
+          final result = widget.results[index];
+          return _buildRecipeCard(context, widget.results, index);
         },
       ),
     );
   }
 
-  Widget _buildRecipeCard(BuildContext context, List<HitsAPI> hits, int index) {
-    final recipe = hits[index].recipe;
+  Widget _buildRecipeCard(
+      BuildContext context, List<ResultsAPI> results, int index) {
+    final recipe = results[index];
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) {
-            final detailRecipe = RecipeModel(
-              label: recipe.label,
-              image: recipe.image,
-              url: recipe.url,
-              ingredients: convertIngredients(recipe.ingredients),
-              calories: recipe.calories,
-              totalWeight: recipe.totalWeight,
-              totalTime: recipe.totalTime,
-              cuisine: recipe.cuisine,
-              meal: recipe.meal,
-              nutritions: convertNutritions(recipe.nutritions),
-            );
-            return RecipeDetailScreen(
-              recipe: detailRecipe,
-            );
-          },
-        ));
+        // Navigator.push(context, MaterialPageRoute(
+        //   builder: (context) {
+        //     final detailRecipe = RecipeModel(
+        //       label: recipe.title,
+        //       image: recipe.image,
+        //       url: recipe.url,
+        //       ingredients: convertIngredients(recipe.ingredients),
+        //       calories: recipe.calories,
+        //       totalWeight: recipe.totalWeight,
+        //       totalTime: recipe.totalTime,
+        //       cuisine: recipe.cuisine,
+        //       meal: recipe.meal,
+        //       nutritions: convertNutritions(recipe.nutritions),
+        //     );
+        //     return RecipeDetailScreen(
+        //       recipe: detailRecipe,
+        //     );
+        //   },
+        // ));
       },
       child: RecipeCard(recipe: recipe),
     );

@@ -6,7 +6,7 @@ import 'package:food_recipe_final/models/api/recipe_api_model.dart';
 
 class RecipeCard extends StatefulWidget {
   const RecipeCard({Key? key, required this.recipe}) : super(key: key);
-  final RecipeAPI recipe;
+  final ResultsAPI recipe;
 
   @override
   State<RecipeCard> createState() => _RecipeCardState();
@@ -37,7 +37,7 @@ class _RecipeCardState extends State<RecipeCard> {
                       width: 175,
                       height: 210,
                       child: CachedNetworkImage(
-                        imageUrl: widget.recipe.image,
+                        imageUrl: widget.recipe.image!,
                         fit: BoxFit.cover,
                         placeholder: (context, url) => const SizedBox(
                           width: 40,
@@ -104,7 +104,7 @@ class _RecipeCardState extends State<RecipeCard> {
                   height: 77,
                   width: 160,
                   child: Text(
-                    widget.recipe.label,
+                    widget.recipe.title!,
                     style: Theme.of(context).textTheme.headline3!.copyWith(
                           fontWeight: FontWeight.bold,
                         ),

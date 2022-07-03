@@ -28,20 +28,13 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
   late TextEditingController _searchController;
   late TabController _tabController;
   List<String> _previousSearches = [];
-  List<HitsAPI> _currentSearches = [];
+  List<ResultsAPI> _currentSearches = [];
 
   bool _loading = false;
-  bool _inErrorState = false;
-  bool _hasMore = false;
-  bool _startSearch = false;
-  //
   int currentCount = 0;
-  int currentStartPosition = 0;
-  int currentEndPosition = 20;
-  int pageCount = 20;
 
-  Future<RecipeAPIQuery> getRecipeData(String query, int from, int to) async {
-    final recipeJson = await RecipeService().getRecipes(query, from, to);
+  Future<RecipeAPIQuery> getRecipeData(String query, int number) async {
+    final recipeJson = await RecipeService().getRecipes(query, number);
     final recipeMap = convert.json.decode(recipeJson);
     return RecipeAPIQuery.fromJson(recipeMap);
   }
@@ -69,24 +62,6 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
     _tabController = TabController(length: 2, vsync: this);
     _searchController = TextEditingController(text: '');
     getPreviousSearches();
-    _scrollController.addListener(() {
-      final triggerFetchMoreSize =
-          0.7 * _scrollController.position.maxScrollExtent;
-
-      if (_scrollController.position.pixels > triggerFetchMoreSize) {
-        if (_hasMore &&
-            currentEndPosition < currentCount &&
-            !_loading &&
-            !_inErrorState) {
-          setState(() {
-            _loading = true;
-            currentStartPosition = currentEndPosition;
-            currentEndPosition =
-                min(currentStartPosition + pageCount, currentCount);
-          });
-        }
-      }
-    });
   }
 
   @override
@@ -217,9 +192,8 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
     setState(() {
       _currentSearches.clear();
       currentCount = 0;
-      currentStartPosition = 0;
-      currentEndPosition = pageCount;
-      _hasMore = true;
+
+      // _hasMore = true;
       value = value.trim();
       if (!_previousSearches.contains(value)) {
         _previousSearches.add(value);
@@ -257,8 +231,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
       // key: ValueKey(),
       future: getRecipeData(
         _searchController.text.trim(),
-        currentStartPosition,
-        currentEndPosition,
+        30,
       ),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
@@ -272,26 +245,20 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
             );
           }
           _loading = false;
-          _inErrorState = false;
           final query = snapshot.data;
 
           if (query != null) {
-            currentCount == query.count;
-            _hasMore = query.more;
-            _currentSearches.addAll(query.hits);
-            if (query.to < currentEndPosition) {
-              currentEndPosition = query.to;
-            }
+            _currentSearches.addAll(query.results);
             // .where((e) => e.vegan == true).toList()
           }
-          return RecipeList(context: context, hits: _currentSearches);
+          return RecipeList(context: context, results: _currentSearches);
         } else {
           if (currentCount == 0) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
-            return RecipeList(context: context, hits: _currentSearches);
+            return RecipeList(context: context, results: _currentSearches);
           }
         }
       },
