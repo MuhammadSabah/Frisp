@@ -3,6 +3,7 @@ import 'package:http/http.dart';
 const String apiKey = '28da228ba92d4667baa0cd49841a4318';
 const String apiUrl = 'https://api.spoonacular.com/recipes/complexSearch';
 
+//!: SpoonacularAPI
 class RecipeService {
   Future getData(String url) async {
     print('Calling url: $url');
@@ -23,21 +24,6 @@ class RecipeService {
     return recipeData;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
