@@ -8,9 +8,13 @@ class BookmarkTab extends StatefulWidget {
   State<BookmarkTab> createState() => _BookmarkTabState();
 }
 
-class _BookmarkTabState extends State<BookmarkTab> {
+class _BookmarkTabState extends State<BookmarkTab>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     return BookmarkCard();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

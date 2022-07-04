@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/app_theme.dart';
@@ -42,18 +40,18 @@ class RecipeDetailScreen extends StatelessWidget {
                         height: MediaQuery.of(context).size.height / 3.4,
                         width: MediaQuery.of(context).size.width,
                         decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                            colors: [
-                              Colors.black,
-                              Colors.transparent,
-                              Colors.transparent,
-                              Colors.black,
-                            ],
-                            stops: [0, 0.2, 0.8, 1],
-                          ),
-                        ),
+                            // gradient: LinearGradient(
+                            //   begin: Alignment.bottomCenter,
+                            //   end: Alignment.topCenter,
+                            //   colors: [
+                            //     Colors.black,
+                            //     Colors.transparent,
+                            //     Colors.transparent,
+                            //     Colors.black,
+                            //   ],
+                            //   stops: [0, 0.2, 0.8, 1],
+                            // ),
+                            ),
                         child: CachedNetworkImage(
                           imageUrl: recipe.image!,
                           fit: BoxFit.cover,
@@ -72,7 +70,7 @@ class RecipeDetailScreen extends StatelessWidget {
                               },
                               icon: const Icon(
                                 Icons.close,
-                                color: Colors.black,
+                                color: kOrangeColor,
                               ),
                             ),
                           ],
@@ -88,7 +86,7 @@ class RecipeDetailScreen extends StatelessWidget {
                           },
                           icon: const Icon(
                             Icons.more_horiz,
-                            color: Colors.black,
+                            color: kOrangeColor,
                           ),
                         ),
                       ),
