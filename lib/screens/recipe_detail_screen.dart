@@ -11,6 +11,10 @@ class RecipeDetailScreen extends StatelessWidget {
 
   final RecipeModel recipe;
   late List nutritionsList = [];
+  late List<bool>? tagsList = [];
+  late List<String>? keysList = [];
+  late Map<String, dynamic>? tagsMap;
+  // late Map<String, dynamic>? tagsMapFiltered;
   @override
   Widget build(BuildContext context) {
     final bookmarkManager = Provider.of<BookmarkManager>(context);
@@ -25,6 +29,25 @@ class RecipeDetailScreen extends StatelessWidget {
               nutrition.name == 'Fiber',
         )
         .toList();
+
+    tagsList?.add(recipe.vegetarian!);
+    tagsList?.add(recipe.vegan!);
+    tagsList?.add(recipe.dairyFree!);
+    tagsList?.add(recipe.glutenFree!);
+    tagsList?.add(recipe.veryHealthy!);
+    tagsList?.add(recipe.veryPopular!);
+
+    tagsMap = {
+      "Vegetarian": tagsList![0],
+      "Vegan": tagsList![1],
+      "DairyFree": tagsList![2],
+      "GlutenFree": tagsList![3],
+      "VeryHealthy": tagsList![4],
+      "VeryPopular": tagsList![5],
+    };
+
+    tagsMap!.removeWhere((key, value) => value == false);
+    keysList = tagsMap!.keys.toList();
 
     return Scaffold(
       body: SafeArea(
@@ -188,7 +211,32 @@ class RecipeDetailScreen extends StatelessWidget {
                                     fontSize: 28,
                                   ),
                             ),
-                            const SizedBox(height: 26),
+                            const SizedBox(height: 10),
+                            SizedBox(
+                              height: 40,
+                              child: ListView.separated(
+                                separatorBuilder: (_, index) {
+                                  return const SizedBox(width: 6);
+                                },
+                                shrinkWrap: true,
+                                primary: false,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: keysList!.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Chip(
+                                    elevation: 4,
+                                    backgroundColor: Colors.white,
+                                    label: Text(
+                                      keysList![index].toString(),
+                                      style: const TextStyle(
+                                        color: kOrangeColor,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            const SizedBox(height: 20),
                             Divider(
                               color: Colors.grey.shade500,
                               thickness: 1.1,
@@ -198,11 +246,11 @@ class RecipeDetailScreen extends StatelessWidget {
                               "Ingredients",
                               style: Theme.of(context).textTheme.headline2,
                             ),
-                            const SizedBox(height: 18),
+                            const SizedBox(height: 10),
                             ListView.separated(
                               // physics: const NeverScrollableScrollPhysics(),
                               separatorBuilder: (_, index) {
-                                return const SizedBox(height: 8);
+                                return const SizedBox(height: 6);
                               },
                               primary: false,
                               shrinkWrap: true,
@@ -221,13 +269,13 @@ class RecipeDetailScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 26),
                             Text(
-                              "Nutritions:",
+                              "Nutritions",
                               style: Theme.of(context).textTheme.headline2,
                             ),
-                            const SizedBox(height: 18),
+                            const SizedBox(height: 10),
                             ListView.separated(
                               separatorBuilder: ((context, index) =>
-                                  const SizedBox(height: 8)),
+                                  const SizedBox(height: 6)),
                               itemCount: nutritionsList.length,
                               itemBuilder: (context, index) {
                                 return Row(
@@ -255,13 +303,13 @@ class RecipeDetailScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 26),
                             Text(
-                              "Instructions:",
+                              "Instructions",
                               style: Theme.of(context).textTheme.headline2,
                             ),
-                            const SizedBox(height: 26),
+                            const SizedBox(height: 10),
                             ListView.separated(
                               separatorBuilder: ((context, index) =>
-                                  const SizedBox(height: 8)),
+                                  const SizedBox(height: 6)),
                               itemCount: recipe.instructions![0].steps!.length,
                               itemBuilder: (context, index) {
                                 return Text(

@@ -5,7 +5,7 @@ import 'package:food_recipe_final/components/recipe_list.dart';
 import 'package:food_recipe_final/models/api/recipe_api_model.dart';
 
 class SearchTab extends StatefulWidget {
-  SearchTab({
+  const SearchTab({
     Key? key,
     required this.controller,
     required this.currentSearches,
@@ -15,7 +15,7 @@ class SearchTab extends StatefulWidget {
 
   final TextEditingController controller;
   final List<ResultsAPI> currentSearches;
-  final count;
+  final int count;
   final Future<RecipeAPIQuery>? futureMethod;
   @override
   State<SearchTab> createState() => _SearchTabState();
