@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_recipe_final/app_theme.dart';
-import 'package:food_recipe_final/components/recipe_list.dart';
+import 'package:food_recipe_final/components/recipe_grid_view.dart';
 import 'package:food_recipe_final/models/api/recipe_api_model.dart';
 
 class SearchTab extends StatefulWidget {
@@ -59,7 +59,6 @@ class _SearchTabState extends State<SearchTab>
               child: Text(
                 snapshot.error.toString(),
                 textAlign: TextAlign.center,
-                // textScaleFactor: 1.3,
               ),
             );
           }
@@ -69,14 +68,15 @@ class _SearchTabState extends State<SearchTab>
             widget.currentSearches.addAll(query.results);
             // .where((e) => e.vegan == true).toList()
           }
-          return RecipeList(context: context, results: widget.currentSearches);
+          return RecipeGridView(
+              context: context, results: widget.currentSearches);
         } else {
           if (widget.count == 0) {
             return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
-            return RecipeList(
+            return RecipeGridView(
                 context: context, results: widget.currentSearches);
           }
         }

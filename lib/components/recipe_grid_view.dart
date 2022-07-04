@@ -4,8 +4,8 @@ import 'package:food_recipe_final/data/class_models/recipe_model.dart';
 import 'package:food_recipe_final/models/api/recipe_api_model.dart';
 import 'package:food_recipe_final/screens/recipe_detail_screen.dart';
 
-class RecipeList extends StatefulWidget {
-  const RecipeList({
+class RecipeGridView extends StatefulWidget {
+  const RecipeGridView({
     Key? key,
     required this.context,
     required this.results,
@@ -14,10 +14,10 @@ class RecipeList extends StatefulWidget {
   final BuildContext context;
 
   @override
-  State<RecipeList> createState() => _RecipeListState();
+  State<RecipeGridView> createState() => _RecipeGridViewState();
 }
 
-class _RecipeListState extends State<RecipeList> {
+class _RecipeGridViewState extends State<RecipeGridView> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -25,7 +25,6 @@ class _RecipeListState extends State<RecipeList> {
     double itemHeight = 292;
     return Expanded(
       child: GridView.builder(
-        // controller: _scrollController,
         itemCount: widget.results.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

@@ -330,7 +330,11 @@ class RecipeDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const BottomSaveButton(),
+            BottomSaveButton(
+              saveRecipe: () {
+                bookmarkManager.insertRecipe(recipe);
+              },
+            ),
           ],
         ),
       ),

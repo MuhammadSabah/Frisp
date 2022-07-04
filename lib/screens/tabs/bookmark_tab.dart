@@ -12,7 +12,13 @@ class _BookmarkTabState extends State<BookmarkTab>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    return BookmarkCard();
+    return ListView.separated(
+      separatorBuilder: (_, index) => const SizedBox(height: 18),
+      itemBuilder: (context, index) {
+        return BookmarkCard();
+      },
+      itemCount: 4,
+    );
   }
 
   @override

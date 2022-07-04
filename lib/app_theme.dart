@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/app_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 const kOrangeColor = Color(0xffF94701);
@@ -89,7 +90,7 @@ class AppTheme {
     return ThemeData(
       appBarTheme: const AppBarTheme(
         iconTheme: IconThemeData(
-          color: Colors.white,
+          color: kOrangeColor,
         ),
       ),
       tabBarTheme: TabBarTheme(
