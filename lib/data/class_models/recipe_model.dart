@@ -10,7 +10,7 @@ class RecipeModel extends Equatable {
   bool? glutenFree;
   bool? dairyFree;
   bool? veryHealthy;
-  bool? healthScore;
+  double? healthScore;
   bool? cheap;
   bool? veryPopular;
   List<IngredientModel>? ingredients;
@@ -26,6 +26,7 @@ class RecipeModel extends Equatable {
   List<String>? occasions;
   List<InstructionModel>? instructions;
   String? spoonacularSourceUrl;
+  int? aggregateLikes;
 
   RecipeModel({
     this.id,
@@ -50,6 +51,7 @@ class RecipeModel extends Equatable {
     this.occasions,
     this.instructions,
     this.spoonacularSourceUrl,
+    this.aggregateLikes,
   });
 
   @override

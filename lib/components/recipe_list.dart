@@ -45,25 +45,38 @@ class _RecipeListState extends State<RecipeList> {
     final recipe = results[index];
     return GestureDetector(
       onTap: () {
-        // Navigator.push(context, MaterialPageRoute(
-        //   builder: (context) {
-        //     final detailRecipe = RecipeModel(
-        //       label: recipe.title,
-        //       image: recipe.image,
-        //       url: recipe.url,
-        //       ingredients: convertIngredients(recipe.ingredients),
-        //       calories: recipe.calories,
-        //       totalWeight: recipe.totalWeight,
-        //       totalTime: recipe.totalTime,
-        //       cuisine: recipe.cuisine,
-        //       meal: recipe.meal,
-        //       nutritions: convertNutritions(recipe.nutritions),
-        //     );
-        //     return RecipeDetailScreen(
-        //       recipe: detailRecipe,
-        //     );
-        //   },
-        // ));
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) {
+            final detailRecipe = RecipeModel(
+              id: recipe.id,
+              vegetarian: recipe.vegetarian,
+              vegan: recipe.vegan,
+              glutenFree: recipe.glutenFree,
+              dairyFree: recipe.dairyFree,
+              veryHealthy: recipe.veryHealthy,
+              cheap: recipe.cheap,
+              healthScore: recipe.healthScore,
+              veryPopular: recipe.veryPopular,
+              ingredients: convertIngredients(recipe.ingredients!),
+              title: recipe.title,
+              readyInMinutes: recipe.readyInMinutes,
+              servings: recipe.servings,
+              sourceUrl: recipe.sourceUrl,
+              image: recipe.image,
+              summary: recipe.summary,
+              diets: recipe.diets,
+              dishTypes: recipe.dishTypes,
+              occasions: recipe.occasions,
+              spoonacularSourceUrl: recipe.spoonacularSourceUrl,
+              instructions: convertInstructions(recipe.instructions!),
+              nutrition: convertNutritions(recipe.nutrition!),
+              aggregateLikes: recipe.aggregateLikes,
+            );
+            return RecipeDetailScreen(
+              recipe: detailRecipe,
+            );
+          },
+        ));
       },
       child: RecipeCard(recipe: recipe),
     );

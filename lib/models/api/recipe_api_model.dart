@@ -44,6 +44,7 @@ class ResultsAPI {
   @JsonKey(name: 'analyzedInstructions')
   List<InstructionsAPI>? instructions;
   String? spoonacularSourceUrl;
+  int? aggregateLikes;
 
   ResultsAPI({
     this.vegetarian,
@@ -67,6 +68,7 @@ class ResultsAPI {
     this.occasions,
     this.instructions,
     this.spoonacularSourceUrl,
+    this.aggregateLikes,
   });
   factory ResultsAPI.fromJson(Map<String, dynamic> json) =>
       _$ResultsAPIFromJson(json);
@@ -166,4 +168,22 @@ List<StepsModel> convertSteps(List<StepsAPI> apiSteps) {
           ))
       .toList();
   return steps;
+}
+
+List<NutrientsModel> convertNutrients(List<NutrientsAPI> apiNutrients) {
+  final nutrients = apiNutrients
+      .map((nutrient) => NutrientsModel(
+            name: nutrient.name,
+            amount: nutrient.amount,
+            unit: nutrient.unit,
+          ))
+      .toList();
+  return nutrients;
+}
+
+NutritionsModel convertNutritions(NutritionsObjectAPI apiNutrition) {
+  return NutritionsModel(
+      nutrients: convertNutrients(
+    apiNutrition.nutrients!,
+  ));
 }

@@ -51,6 +51,7 @@ ResultsAPI _$ResultsAPIFromJson(Map<String, dynamic> json) {
         ?.map((e) => InstructionsAPI.fromJson(e as Map<String, dynamic>))
         .toList(),
     spoonacularSourceUrl: json['spoonacularSourceUrl'] as String?,
+    aggregateLikes: json['aggregateLikes'] as int?,
   )..id = json['id'] as int?;
 }
 
@@ -78,6 +79,7 @@ Map<String, dynamic> _$ResultsAPIToJson(ResultsAPI instance) =>
       'occasions': instance.occasions,
       'analyzedInstructions': instance.instructions,
       'spoonacularSourceUrl': instance.spoonacularSourceUrl,
+      'aggregateLikes': instance.aggregateLikes,
     };
 
 IngredientsAPI _$IngredientsAPIFromJson(Map<String, dynamic> json) {
