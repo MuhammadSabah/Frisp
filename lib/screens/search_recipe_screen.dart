@@ -35,7 +35,11 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
 
   Future<RecipeAPIQuery> getRecipeData(String query, int number) async {
     final recipeJson = await RecipeService().getRecipes(query, number);
+    if (recipeJson == null) {
+      throw 'returned Json data is NULL ';
+    }
     final recipeMap = convert.json.decode(recipeJson);
+
     return RecipeAPIQuery.fromJson(recipeMap);
   }
 

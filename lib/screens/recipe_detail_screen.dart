@@ -250,7 +250,32 @@ class RecipeDetailScreen extends StatelessWidget {
                               primary: false,
                               shrinkWrap: true,
                             ),
-                            const SizedBox(height: 19),
+                            const SizedBox(height: 26),
+                            Divider(
+                              color: Colors.grey.shade500,
+                              thickness: 1.1,
+                            ),
+                            const SizedBox(height: 26),
+                            Text(
+                              "Instructions:",
+                              style: Theme.of(context).textTheme.headline2,
+                            ),
+                            const SizedBox(height: 26),
+                            ListView.separated(
+                              separatorBuilder: ((context, index) =>
+                                  const SizedBox(height: 8)),
+                              itemCount: recipe.instructions![0].steps!.length,
+                              itemBuilder: (context, index) {
+                                return Text(
+                                  "${index + 1}- ${recipe.instructions![0].steps![index].step}: ",
+                                  style: Theme.of(context).textTheme.headline3,
+                                );
+                              },
+                              physics: const NeverScrollableScrollPhysics(),
+                              primary: false,
+                              shrinkWrap: true,
+                            ),
+                            const SizedBox(height: 26),
                           ],
                         ),
                       ),
