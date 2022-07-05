@@ -88,6 +88,18 @@ class AppTheme {
 
   static ThemeData dark() {
     return ThemeData(
+      checkboxTheme: CheckboxThemeData(
+        checkColor: MaterialStateProperty.all(Colors.white),
+        fillColor: MaterialStateProperty.all(kOrangeColor),
+        side: BorderSide(
+          color: Colors.grey.shade800,
+          width: 1.5,
+        ),
+
+        // shape: RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.circular(25),
+        // ),
+      ),
       appBarTheme: const AppBarTheme(
         iconTheme: IconThemeData(
           color: kOrangeColor,

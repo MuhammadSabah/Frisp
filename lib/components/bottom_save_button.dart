@@ -21,7 +21,8 @@ class _BottomSaveButtonState extends State<BottomSaveButton> {
       left: MediaQuery.of(context).size.width -
           MediaQuery.of(context).size.width +
           25,
-      child: GestureDetector(
+      child: InkWell(
+        splashColor: Colors.grey.shade400,
         onTap: widget.saveRecipe,
         child: Material(
           color: Colors.transparent,

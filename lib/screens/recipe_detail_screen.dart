@@ -333,6 +333,7 @@ class RecipeDetailScreen extends StatelessWidget {
             BottomSaveButton(
               saveRecipe: () {
                 bookmarkManager.insertRecipe(recipe);
+                print("CLICKED!!");
               },
             ),
           ],

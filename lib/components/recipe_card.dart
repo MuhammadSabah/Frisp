@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/models/api/recipe_api_model.dart';
@@ -13,11 +12,11 @@ class RecipeCard extends StatefulWidget {
 }
 
 class _RecipeCardState extends State<RecipeCard> {
-  double calcRandom() {
-    Random random = Random();
-    double randomNum = ((random.nextDouble() * 5) + 5);
-    return randomNum;
-  }
+  // double calcRandom() {
+  //   Random random = Random();
+  //   double randomNum = ((random.nextDouble() * 5) + 5);
+  //   return randomNum;
+  // }
 
   bool _isSelected = false;
   @override

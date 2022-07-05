@@ -3,7 +3,6 @@ import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/data/bookmark_manager.dart';
 import 'package:food_recipe_final/models/app_state_manager.dart';
 import 'package:food_recipe_final/screens/discover_screen.dart';
-import 'package:food_recipe_final/screens/recipe_detail_screen.dart';
 import 'package:food_recipe_final/screens/search_recipe_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +25,7 @@ class _MyAppState extends State<MyApp> {
     SearchRecipeScreen(),
   ];
   final _appStateManager = AppStateManager();
-  final _memoryRepository = BookmarkManager();
+  final _bookmarkManager = BookmarkManager();
 
   int currentTab = 1;
   ThemeData theme = AppTheme.dark();
@@ -40,7 +39,7 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           lazy: false,
-          create: (context) => _memoryRepository,
+          create: (context) => _bookmarkManager,
         ),
       ],
       child: MaterialApp(
