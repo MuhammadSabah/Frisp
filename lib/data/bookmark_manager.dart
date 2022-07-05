@@ -19,7 +19,9 @@ class BookmarkManager extends Bookmark with ChangeNotifier {
 
   @override
   void insertRecipe(RecipeModel recipe) {
-    _currentRecipes.add(recipe);
+    if (!_currentRecipes.contains(recipe)) {
+      _currentRecipes.add(recipe);
+    }
 
     notifyListeners();
   }
