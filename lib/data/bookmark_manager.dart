@@ -18,11 +18,6 @@ class BookmarkManager extends Bookmark with ChangeNotifier {
   }
 
   @override
-  List<IngredientModel> findAllIngredients() {
-    return _currentIngredients;
-  }
-
-  @override
   void insertRecipe(RecipeModel recipe) {
     _currentRecipes.add(recipe);
 

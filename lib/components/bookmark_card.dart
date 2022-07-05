@@ -7,9 +7,11 @@ import 'package:food_recipe_final/screens/recipe_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class BookmarkCard extends StatefulWidget {
-  const BookmarkCard({Key? key, required this.recipe}) : super(key: key);
+  const BookmarkCard(
+      {Key? key, required this.recipe, required this.deleteCallback})
+      : super(key: key);
   final RecipeModel recipe;
-
+  final Function() deleteCallback;
   @override
   State<BookmarkCard> createState() => _BookmarkCardState();
 }
@@ -52,11 +54,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
                       top: 6,
                       right: 6,
                       child: GestureDetector(
-                        onTap: () {
-                          deleteRecipe(manager, widget.recipe);
-                          setState(() => {});
-                          print("DELETED");
-                        },
+                        onTap: widget.deleteCallback,
                         child: CircleAvatar(
                           radius: 14,
                           backgroundColor: Colors.white60,
@@ -116,13 +114,5 @@ class _BookmarkCardState extends State<BookmarkCard> {
         );
       },
     );
-  }
-
-  void deleteRecipe(BookmarkManager manager, RecipeModel recipe) async {
-    if (recipe.id != null) {
-      manager.deleteRecipe(recipe);
-    } else {
-      print("Recipe ID is null");
-    }
   }
 }

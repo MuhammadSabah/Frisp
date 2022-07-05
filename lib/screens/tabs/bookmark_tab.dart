@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/components/bookmark_card.dart';
 import 'package:food_recipe_final/data/bookmark_manager.dart';
+import 'package:food_recipe_final/data/class_models/recipe_model.dart';
 import 'package:provider/provider.dart';
 
 class BookmarkTab extends StatefulWidget {
@@ -20,7 +21,12 @@ class _BookmarkTabState extends State<BookmarkTab>
         key: Key(recipes.length.toString()),
         separatorBuilder: (_, index) => const SizedBox(height: 32),
         itemBuilder: (context, index) {
-          return BookmarkCard(recipe: recipes[index]);
+          return BookmarkCard(
+            recipe: recipes[index],
+            deleteCallback: () {
+              deleteRecipe(manager, recipes[index]);
+            },
+          );
         },
         itemCount: recipes.length,
       );
@@ -29,4 +35,12 @@ class _BookmarkTabState extends State<BookmarkTab>
 
   @override
   bool get wantKeepAlive => true;
+  void deleteRecipe(BookmarkManager manager, RecipeModel recipe) {
+    if (recipe.id != null) {
+      manager.deleteRecipe(recipe);
+      setState(() {});
+    } else {
+      print("Recipe ID is null");
+    }
+  }
 }
