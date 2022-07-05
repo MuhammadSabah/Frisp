@@ -1,14 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/data/bookmark_manager.dart';
-import 'package:food_recipe_final/data/class_models/ingredient_model.dart';
 import 'package:food_recipe_final/data/class_models/recipe_model.dart';
-import 'package:food_recipe_final/mock_data/ingredients.dart';
+import 'package:food_recipe_final/screens/recipe_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class BookmarkCard extends StatefulWidget {
   const BookmarkCard({Key? key, required this.recipe}) : super(key: key);
   final RecipeModel recipe;
+
   @override
   State<BookmarkCard> createState() => _BookmarkCardState();
 }
@@ -28,32 +29,42 @@ class _BookmarkCardState extends State<BookmarkCard> {
               children: [
                 Stack(
                   children: [
-                    SizedBox(
-                      height: 120,
-                      width: double.maxFinite,
-                      child: CachedNetworkImage(
-                        imageUrl: widget.recipe.image!,
-                        fit: BoxFit.cover,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return RecipeDetailScreen(
+                              recipe: widget.recipe,
+                            );
+                          },
+                        ));
+                      },
+                      child: SizedBox(
+                        height: 120,
+                        width: double.maxFinite,
+                        child: CachedNetworkImage(
+                          imageUrl: widget.recipe.image!,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Positioned(
-                      bottom: 10,
-                      left: 12,
-                      child: Text(
-                        widget.recipe.title!,
-                        style: Theme.of(context).textTheme.headline1,
-                        maxLines: 3,
-                      ),
-                    ),
-                    const Positioned(
                       top: 6,
                       right: 6,
-                      child: CircleAvatar(
-                        radius: 14,
-                        backgroundColor: Colors.white70,
-                        child: Icon(
-                          Icons.close,
-                          size: 20,
+                      child: GestureDetector(
+                        onTap: () {
+                          deleteRecipe(manager, widget.recipe);
+                          setState(() => {});
+                          print("DELETED");
+                        },
+                        child: CircleAvatar(
+                          radius: 14,
+                          backgroundColor: Colors.white60,
+                          child: FaIcon(
+                            FontAwesomeIcons.xmark,
+                            size: 18,
+                            color: Colors.red.shade600,
+                          ),
                         ),
                       ),
                     ),
@@ -105,5 +116,13 @@ class _BookmarkCardState extends State<BookmarkCard> {
         );
       },
     );
+  }
+
+  void deleteRecipe(BookmarkManager manager, RecipeModel recipe) async {
+    if (recipe.id != null) {
+      manager.deleteRecipe(recipe);
+    } else {
+      print("Recipe ID is null");
+    }
   }
 }

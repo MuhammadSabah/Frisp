@@ -25,37 +25,13 @@ class BookmarkManager extends Bookmark with ChangeNotifier {
   @override
   void insertRecipe(RecipeModel recipe) {
     _currentRecipes.add(recipe);
-    if (recipe.ingredients != null) {
-      insertIngredients(recipe.ingredients!);
-    }
-    notifyListeners();
-  }
 
-  @override
-  List<int> insertIngredients(List<IngredientModel> ingredients) {
-    if (ingredients.length != 0) {
-      _currentIngredients.addAll(ingredients);
-    }
     notifyListeners();
-    return <int>[];
   }
 
   @override
   void deleteRecipe(RecipeModel recipe) {
     _currentRecipes.remove(recipe);
-  }
-
-  @override
-  void deleteIngredient(IngredientModel ingredient) {
-    _currentIngredients.remove(ingredient);
-  }
-
-  @override
-  void deleteIngredients(List<IngredientModel> ingredients) {
-    _currentIngredients.removeWhere(
-      (ingredient) => ingredients.contains(ingredient),
-    );
-    notifyListeners();
   }
 
   @override

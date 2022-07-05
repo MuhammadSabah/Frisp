@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/data/bookmark_manager.dart';
+import 'package:food_recipe_final/data/class_models/recipe_model.dart';
 import 'package:food_recipe_final/models/api/recipe_api_model.dart';
 
 class RecipeCard extends StatefulWidget {
@@ -21,33 +23,30 @@ class _RecipeCardState extends State<RecipeCard> {
   bool _isSelected = false;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Column(
+    return Container(
+      color: Color(0xff232220),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Column(
             children: [
               Stack(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: SizedBox(
-                      width: 175,
-                      height: 210,
-                      child: CachedNetworkImage(
-                        imageUrl: widget.recipe.image!,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => const SizedBox(
-                          width: 40,
-                          height: 160,
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
+                  SizedBox(
+                    // width: 175,
+                    height: 200,
+                    child: CachedNetworkImage(
+                      imageUrl: widget.recipe.image!,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => const SizedBox(
+                        width: 40,
+                        height: 160,
+                        child: Center(
+                          child: CircularProgressIndicator(),
                         ),
-                        errorWidget: (context, url, error) => const Center(
-                          child: Icon(Icons.error),
-                        ),
+                      ),
+                      errorWidget: (context, url, error) => const Center(
+                        child: Icon(Icons.error),
                       ),
                     ),
                   ),
@@ -115,9 +114,9 @@ class _RecipeCardState extends State<RecipeCard> {
                 ),
               ),
             ],
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

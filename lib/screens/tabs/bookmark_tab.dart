@@ -15,10 +15,10 @@ class _BookmarkTabState extends State<BookmarkTab>
   @override
   Widget build(BuildContext context) {
     return Consumer<BookmarkManager>(builder: (context, manager, child) {
-      final ingredients = manager.findAllIngredients();
       final recipes = manager.findAllRecipes();
       return ListView.separated(
-        separatorBuilder: (_, index) => const SizedBox(height: 18),
+        key: Key(recipes.length.toString()),
+        separatorBuilder: (_, index) => const SizedBox(height: 32),
         itemBuilder: (context, index) {
           return BookmarkCard(recipe: recipes[index]);
         },

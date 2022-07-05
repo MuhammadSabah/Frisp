@@ -76,7 +76,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
           TabBar(
             controller: _tabController,
             indicatorColor: kOrangeColor,
-            indicatorPadding: const EdgeInsets.symmetric(horizontal: 10),
+            indicatorPadding: const EdgeInsets.symmetric(horizontal: 12),
             tabs: const [
               Tab(text: "Search"),
               Tab(text: "Bookmarks"),
