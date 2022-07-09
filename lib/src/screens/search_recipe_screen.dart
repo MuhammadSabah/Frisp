@@ -75,14 +75,19 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
       child: Column(
         children: [
           _buildSearchCard(),
-          TabBar(
-            controller: _tabController,
-            indicatorPadding: const EdgeInsets.symmetric(horizontal: 12),
-            tabs: const [
-              Tab(text: "Search"),
-              Tab(text: "Bookmarks"),
-            ],
-            indicator: CircleTabIndicator(radius: 4, color: kOrangeColor),
+          Theme(
+            data: ThemeData(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            child: TabBar(
+              controller: _tabController,
+              tabs: const [
+                Tab(text: "Search"),
+                Tab(text: "Bookmarks"),
+              ],
+              indicator: CircleTabIndicator(radius: 4, color: kOrangeColor),
+            ),
           ),
           Expanded(
             child: Container(

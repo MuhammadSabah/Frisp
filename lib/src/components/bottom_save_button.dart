@@ -27,7 +27,6 @@ class _BottomSaveButtonState extends State<BottomSaveButton> {
           color: Colors.transparent,
           elevation: 4,
           child: InkWell(
-            splashColor: Colors.grey.shade400,
             onTap: widget.saveRecipe,
             child: Ink(
               height: 50,
