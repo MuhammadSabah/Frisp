@@ -21,34 +21,36 @@ class _BottomSaveButtonState extends State<BottomSaveButton> {
       left: MediaQuery.of(context).size.width -
           MediaQuery.of(context).size.width +
           25,
-      child: InkWell(
-        splashColor: Colors.grey.shade400,
-        onTap: widget.saveRecipe,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
         child: Material(
           color: Colors.transparent,
           elevation: 4,
-          borderRadius: BorderRadius.circular(10),
-          child: Container(
-            height: 50,
-            width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(10),
-              ),
-              color: kOrangeColor,
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Save',
-                  style: Theme.of(context).textTheme.headline2!.copyWith(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                      ),
+          child: InkWell(
+            splashColor: Colors.grey.shade400,
+            onTap: widget.saveRecipe,
+            child: Ink(
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
                 ),
-              ],
+                color: kOrangeColor,
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Save',
+                    style: Theme.of(context).textTheme.headline2!.copyWith(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                        ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

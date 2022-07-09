@@ -88,6 +88,7 @@ class AppTheme {
 
   static ThemeData dark() {
     return ThemeData(
+      splashColor: Colors.white.withOpacity(0.5),
       checkboxTheme: CheckboxThemeData(
         checkColor: MaterialStateProperty.all(Colors.white),
         fillColor: MaterialStateProperty.all(kOrangeColor),

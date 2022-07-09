@@ -114,83 +114,109 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
   Widget _buildSearchCard() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Card(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8))),
-        elevation: 4,
-        child: Row(
-          children: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              splashRadius: 20,
-              onPressed: () {
-                startSearch(_searchController.text);
-                final currentFocus = FocusScope.of(context);
-                if (!currentFocus.hasPrimaryFocus) {
-                  currentFocus.unfocus();
-                }
-              },
-            ),
-            const SizedBox(width: 4),
-            Expanded(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Card(
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              elevation: 4,
               child: Row(
                 children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _searchController,
-                      cursorColor: const Color(0xffF94701),
-                      decoration: InputDecoration(
-                        hintText: 'Search',
-                        hintStyle: GoogleFonts.poppins(
-                          fontSize: 14,
-                        ),
-                        border: InputBorder.none,
-                      ),
-                      autocorrect: false,
-                      autofocus: false,
-                      textInputAction: TextInputAction.done,
-                      onSubmitted: (value) {
-                        if (!_previousSearches.contains(value)) {
-                          _previousSearches.add(value);
-                          savePreviousSearches();
-                        }
-                      },
-                    ),
-                  ),
-                  PopupMenuButton(
+                  IconButton(
+                    icon: const Icon(Icons.search),
                     splashRadius: 20,
-                    icon: const Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.grey,
-                    ),
-                    onSelected: (String value) {
-                      _searchController.text = value;
+                    onPressed: () {
                       startSearch(_searchController.text);
+                      final currentFocus = FocusScope.of(context);
+                      if (!currentFocus.hasPrimaryFocus) {
+                        currentFocus.unfocus();
+                      }
                     },
-                    itemBuilder: (BuildContext context) {
-                      return _previousSearches
-                          .map<CustomDropDownMenu<String>>(
-                            (String value) => CustomDropDownMenu(
-                              value: value,
-                              text: value,
-                              callback: () {
-                                setState(
-                                  () {
-                                    _previousSearches.remove(value);
-                                    Navigator.pop(context);
-                                  },
-                                );
-                              },
+                  ),
+                  const SizedBox(width: 4),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: _searchController,
+                            cursorColor: const Color(0xffF94701),
+                            decoration: InputDecoration(
+                              hintText: 'Search',
+                              hintStyle: GoogleFonts.poppins(
+                                fontSize: 14,
+                              ),
+                              border: InputBorder.none,
                             ),
-                          )
-                          .toList();
-                    },
+                            autocorrect: false,
+                            autofocus: false,
+                            textInputAction: TextInputAction.done,
+                            onSubmitted: (value) {
+                              if (!_previousSearches.contains(value)) {
+                                _previousSearches.add(value);
+                                savePreviousSearches();
+                              }
+                            },
+                          ),
+                        ),
+                        PopupMenuButton(
+                          splashRadius: 20,
+                          icon: const Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.grey,
+                          ),
+                          onSelected: (String value) {
+                            _searchController.text = value;
+                            startSearch(_searchController.text);
+                          },
+                          itemBuilder: (BuildContext context) {
+                            return _previousSearches
+                                .map<CustomDropDownMenu<String>>(
+                                  (String value) => CustomDropDownMenu(
+                                    value: value,
+                                    text: value,
+                                    callback: () {
+                                      setState(
+                                        () {
+                                          _previousSearches.remove(value);
+                                          Navigator.pop(context);
+                                        },
+                                      );
+                                    },
+                                  ),
+                                )
+                                .toList();
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Material(
+              child: InkWell(
+                onTap: () => print('Filter Clicked!'),
+                child: Ink(
+                  height: 48,
+                  width: 48,
+                  decoration: const BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                  ),
+                  child: const Icon(Icons.tune_outlined),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/src/data/bookmark_manager.dart';
 import 'package:food_recipe_final/src/models/app_state_manager.dart';
@@ -52,37 +53,54 @@ class _MyAppState extends State<MyApp> {
             index: currentTab,
             children: pages,
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            onTap: (index) {
-              setState(() {
-                currentTab = index;
-              });
-            },
-            currentIndex: currentTab,
-            type: BottomNavigationBarType.fixed,
-            iconSize: 28,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined),
-                label: 'Discover',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Search',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.add_circle_outline),
-                label: 'Create',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.list_alt_outlined),
-                label: 'Shopping',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline),
-                label: 'Profile',
-              ),
-            ],
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: BottomNavigationBar(
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              onTap: (index) {
+                setState(() {
+                  currentTab = index;
+                });
+              },
+              currentIndex: currentTab,
+              type: BottomNavigationBarType.fixed,
+              iconSize: 28,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: FaIcon(
+                    FontAwesomeIcons.house,
+                    size: 24,
+                  ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: FaIcon(
+                    FontAwesomeIcons.magnifyingGlass,
+                    size: 24,
+                  ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.add_circle_outline),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: FaIcon(
+                    FontAwesomeIcons.clipboardList,
+                    size: 24,
+                  ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: FaIcon(
+                    FontAwesomeIcons.solidUser,
+                    size: 23,
+                  ),
+                  label: '',
+                ),
+              ],
+            ),
           ),
         ),
       ),

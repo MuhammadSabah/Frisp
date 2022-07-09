@@ -1,4 +1,5 @@
 import 'package:food_recipe_final/src/data/class_models/ingredient_model.dart';
+import 'package:food_recipe_final/src/data/class_models/ingredient_model.dart';
 import 'package:food_recipe_final/src/data/class_models/instruction_model.dart';
 import 'package:food_recipe_final/src/data/class_models/nutrients_model.dart';
 import 'package:food_recipe_final/src/data/class_models/nutrition_model.dart';
