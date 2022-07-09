@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/app_theme.dart';
+import 'package:food_recipe_final/src/components/circle_tab_indicator.dart';
 import 'package:food_recipe_final/src/components/custom_drop_down.dart';
 
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
@@ -34,7 +35,6 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
       throw 'returned Json data is NULL ';
     }
     final recipeMap = convert.json.decode(recipeJson);
-
     return RecipeAPIQuery.fromJson(recipeMap);
   }
 
@@ -77,12 +77,12 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
           _buildSearchCard(),
           TabBar(
             controller: _tabController,
-            indicatorColor: kOrangeColor,
             indicatorPadding: const EdgeInsets.symmetric(horizontal: 12),
             tabs: const [
               Tab(text: "Search"),
               Tab(text: "Bookmarks"),
             ],
+            indicator: CircleTabIndicator(radius: 4, color: kOrangeColor),
           ),
           Expanded(
             child: Container(
