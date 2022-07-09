@@ -1,7 +1,7 @@
 import 'package:http/http.dart';
 
-const String apiKey = '<API Key>';
-const String apiUrl = '<Url>';
+const String apiKey = '<6ca0026f6be74680a38b3c9e766a0180>';
+const String apiUrl = 'https://api.spoonacular.com/recipes/complexSearch';
 
 //!: SpoonacularAPI
 class RecipeService {
