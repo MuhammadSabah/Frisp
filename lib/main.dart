@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/app_theme.dart';
-import 'package:food_recipe_final/data/bookmark_manager.dart';
-import 'package:food_recipe_final/models/app_state_manager.dart';
-import 'package:food_recipe_final/screens/discover_screen.dart';
-import 'package:food_recipe_final/screens/search_recipe_screen.dart';
+import 'package:food_recipe_final/src/data/bookmark_manager.dart';
+import 'package:food_recipe_final/src/models/app_state_manager.dart';
+import 'package:food_recipe_final/src/screens/discover_screen.dart';
+import 'package:food_recipe_final/src/screens/search_recipe_screen.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 

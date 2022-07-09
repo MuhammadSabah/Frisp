@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/data/class_models/ingredient_model.dart';
-import 'package:food_recipe_final/data/class_models/recipe_model.dart';
-import 'package:food_recipe_final/data/bookmark.dart';
+import 'package:food_recipe_final/src/data/bookmark_interface.dart';
+import 'package:food_recipe_final/src/data/class_models/ingredient_model.dart';
+import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
 
-class BookmarkManager extends Bookmark with ChangeNotifier {
+class BookmarkManager extends BookmarkInterface with ChangeNotifier {
   final List<RecipeModel> _currentRecipes = [];
   final List<IngredientModel> _currentIngredients = [];
 

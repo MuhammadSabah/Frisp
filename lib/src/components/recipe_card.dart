@@ -1,9 +1,7 @@
 import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/data/bookmark_manager.dart';
-import 'package:food_recipe_final/data/class_models/recipe_model.dart';
-import 'package:food_recipe_final/models/api/recipe_api_model.dart';
+import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
 
 class RecipeCard extends StatefulWidget {
   const RecipeCard({Key? key, required this.recipe}) : super(key: key);

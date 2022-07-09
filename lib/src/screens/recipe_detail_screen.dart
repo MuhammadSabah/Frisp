@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/app_theme.dart';
-import 'package:food_recipe_final/components/bottom_save_button.dart';
-import 'package:food_recipe_final/data/bookmark_manager.dart';
-import 'package:food_recipe_final/data/class_models/recipe_model.dart';
+import 'package:food_recipe_final/src/components/bottom_save_button.dart';
+
+import 'package:food_recipe_final/src/data/bookmark_manager.dart';
+import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
+
 import 'package:provider/provider.dart';
 
 class RecipeDetailScreen extends StatelessWidget {

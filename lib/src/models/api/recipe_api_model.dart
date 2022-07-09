@@ -1,9 +1,8 @@
-import 'package:food_recipe_final/data/class_models/ingredient_model.dart';
-import 'package:food_recipe_final/data/class_models/instruction_model.dart';
-import 'package:food_recipe_final/data/class_models/nutrients_model.dart';
-import 'package:food_recipe_final/data/class_models/nutrition_model.dart';
-import 'package:food_recipe_final/data/class_models/steps_model.dart';
-import 'package:food_recipe_final/mock_data/nutritions.dart';
+import 'package:food_recipe_final/src/data/class_models/ingredient_model.dart';
+import 'package:food_recipe_final/src/data/class_models/instruction_model.dart';
+import 'package:food_recipe_final/src/data/class_models/nutrients_model.dart';
+import 'package:food_recipe_final/src/data/class_models/nutrition_model.dart';
+import 'package:food_recipe_final/src/data/class_models/steps_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'recipe_api_model.g.dart';
 

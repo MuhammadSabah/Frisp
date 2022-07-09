@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/app_theme.dart';
-import 'package:food_recipe_final/components/custom_drop_down.dart';
-import 'package:food_recipe_final/models/api/recipe_api_model.dart';
-import 'package:food_recipe_final/screens/tabs/bookmark_tab.dart';
-import 'package:food_recipe_final/screens/tabs/search_tab.dart';
-import 'package:food_recipe_final/service/recipe_service.dart';
+import 'package:food_recipe_final/src/components/custom_drop_down.dart';
+
+import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
+import 'package:food_recipe_final/src/screens/tabs/bookmark_tab.dart';
+import 'package:food_recipe_final/src/screens/tabs/search_tab.dart';
+import 'package:food_recipe_final/src/service/recipe_service.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert' as convert;

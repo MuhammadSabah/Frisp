@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/components/recipe_card.dart';
-import 'package:food_recipe_final/data/class_models/recipe_model.dart';
-import 'package:food_recipe_final/models/api/recipe_api_model.dart';
-import 'package:food_recipe_final/screens/recipe_detail_screen.dart';
+import 'package:food_recipe_final/src/components/recipe_card.dart';
+
+import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
+import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
+import 'package:food_recipe_final/src/screens/recipe_detail_screen.dart';
 
 class RecipeGridView extends StatefulWidget {
   const RecipeGridView({
