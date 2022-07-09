@@ -82,7 +82,10 @@ class _MyAppState extends State<MyApp> {
                   label: '',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.add_circle_outline),
+                  icon: FaIcon(
+                    FontAwesomeIcons.plus,
+                    size: 24,
+                  ),
                   label: '',
                 ),
                 BottomNavigationBarItem(
