@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/src/data/bookmark_interface.dart';
 import 'package:food_recipe_final/src/data/bookmark_manager.dart';
 import 'package:food_recipe_final/src/models/app_state_manager.dart';
-import 'package:food_recipe_final/src/screens/discover_screen.dart';
-import 'package:food_recipe_final/src/screens/search_recipe_screen.dart';
+import 'package:food_recipe_final/src/navigation/app_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -22,13 +20,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  static List<Widget> pages = [
-    DiscoverScreen(),
-    SearchRecipeScreen(),
-  ];
   final _appStateManager = AppStateManager();
+  late AppRouter _appRouter;
 
-  int currentTab = 1;
+  @override
+  void initState() {
+    super.initState();
+    _appRouter = AppRouter(
+      appStateManager: _appStateManager,
+    );
+  }
+
   ThemeData theme = AppTheme.dark();
   @override
   Widget build(BuildContext context) {
@@ -44,66 +46,11 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: MaterialApp(
-        theme: theme,
         debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          // extendBody: true,
-          body: IndexedStack(
-            index: currentTab,
-            children: pages,
-          ),
-          bottomNavigationBar: Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: BottomNavigationBar(
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              onTap: (index) {
-                setState(() {
-                  currentTab = index;
-                });
-              },
-              currentIndex: currentTab,
-              type: BottomNavigationBarType.fixed,
-              iconSize: 28,
-              items: const [
-                BottomNavigationBarItem(
-                  icon: FaIcon(
-                    FontAwesomeIcons.house,
-                    size: 24,
-                  ),
-                  label: '',
-                ),
-                BottomNavigationBarItem(
-                  icon: FaIcon(
-                    FontAwesomeIcons.magnifyingGlass,
-                    size: 24,
-                  ),
-                  label: '',
-                ),
-                BottomNavigationBarItem(
-                  icon: FaIcon(
-                    FontAwesomeIcons.plus,
-                    size: 24,
-                  ),
-                  label: '',
-                ),
-                BottomNavigationBarItem(
-                  icon: FaIcon(
-                    FontAwesomeIcons.clipboardList,
-                    size: 24,
-                  ),
-                  label: '',
-                ),
-                BottomNavigationBarItem(
-                  icon: FaIcon(
-                    FontAwesomeIcons.solidUser,
-                    size: 23,
-                  ),
-                  label: '',
-                ),
-              ],
-            ),
-          ),
+        theme: theme,
+        home: Router(
+          routerDelegate: _appRouter,
+          backButtonDispatcher: RootBackButtonDispatcher(),
         ),
       ),
     );
