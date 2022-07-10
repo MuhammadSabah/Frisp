@@ -2,10 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/src/components/bottom_save_button.dart';
-
-import 'package:food_recipe_final/src/data/bookmark_manager.dart';
+import 'package:food_recipe_final/src/data/bookmark_interface.dart';
 import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
-
 import 'package:provider/provider.dart';
 
 class RecipeDetailScreen extends StatelessWidget {
@@ -19,7 +17,7 @@ class RecipeDetailScreen extends StatelessWidget {
   // late Map<String, dynamic>? tagsMapFiltered;
   @override
   Widget build(BuildContext context) {
-    final bookmarkManager = Provider.of<BookmarkManager>(context);
+    final bookmark = Provider.of<BookmarkInterface>(context);
     nutritionsList = recipe.nutrition!.nutrients!
         .where(
           (nutrition) =>
@@ -334,8 +332,7 @@ class RecipeDetailScreen extends StatelessWidget {
             ),
             BottomSaveButton(
               saveRecipe: () {
-                bookmarkManager.insertRecipe(recipe);
-                print("CLICKED!!");
+                bookmark.insertRecipe(recipe);
               },
             ),
           ],

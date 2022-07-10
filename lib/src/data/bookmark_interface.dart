@@ -1,13 +1,15 @@
 import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
 
 abstract class BookmarkInterface {
-  List<RecipeModel> findAllRecipes();
-  RecipeModel findRecipeById(int id);
+  Future<List<RecipeModel>> findAllRecipes();
+  Future<RecipeModel> findRecipeById(int id);
 
-  void insertRecipe(RecipeModel recipe);
+  Future<void> insertRecipe(RecipeModel recipe);
+  Future<void> deleteRecipe(RecipeModel recipe);
 
-  void deleteRecipe(RecipeModel recipe);
+  //Streams:
+  Stream<List<RecipeModel>> watchAllRecipes();
 
-  // Future init();
-  // void close();
+  Future init();
+  void close();
 }

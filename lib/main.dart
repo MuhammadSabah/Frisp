@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/app_theme.dart';
+import 'package:food_recipe_final/src/data/bookmark_interface.dart';
 import 'package:food_recipe_final/src/data/bookmark_manager.dart';
 import 'package:food_recipe_final/src/models/app_state_manager.dart';
 import 'package:food_recipe_final/src/screens/discover_screen.dart';
 import 'package:food_recipe_final/src/screens/search_recipe_screen.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +27,6 @@ class _MyAppState extends State<MyApp> {
     SearchRecipeScreen(),
   ];
   final _appStateManager = AppStateManager();
-  final _bookmarkManager = BookmarkManager();
 
   int currentTab = 1;
   ThemeData theme = AppTheme.dark();
@@ -35,13 +34,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
+        Provider<BookmarkInterface>(
           lazy: false,
-          create: (context) => _appStateManager,
+          create: (context) => BookmarkManager(),
         ),
         ChangeNotifierProvider(
           lazy: false,
-          create: (context) => _bookmarkManager,
+          create: (context) => _appStateManager,
         ),
       ],
       child: MaterialApp(
