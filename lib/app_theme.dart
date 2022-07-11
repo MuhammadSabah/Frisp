@@ -45,6 +45,11 @@ class AppTheme {
   );
   static TextTheme darkTextTheme = TextTheme(
     bodyText1: GoogleFonts.poppins(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: Colors.white,
+    ),
+    bodyText2: GoogleFonts.poppins(
       fontSize: 14,
       fontWeight: FontWeight.w600,
       color: Colors.white,
@@ -88,6 +93,9 @@ class AppTheme {
 
   static ThemeData dark() {
     return ThemeData(
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: kOrangeColor,
+      ),
       splashColor: Colors.white.withOpacity(0.5),
       splashFactory: NoSplash.splashFactory,
       checkboxTheme: CheckboxThemeData(
@@ -103,6 +111,7 @@ class AppTheme {
         // ),
       ),
       appBarTheme: const AppBarTheme(
+        backgroundColor: kBlackColor,
         iconTheme: IconThemeData(
           color: kOrangeColor,
         ),

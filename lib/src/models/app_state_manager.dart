@@ -5,9 +5,9 @@ import 'package:food_recipe_final/src/models/app_cache.dart';
 class AppTab {
   static const int discover = 0;
   static const int search = 1;
-  // static const int create = 2;
-  // static const int shopping = 3;
-  // static const int profile = 4;
+  static const int create = 2;
+  static const int shopping = 3;
+  static const int profile = 4;
 }
 
 class AppStateManager extends ChangeNotifier {

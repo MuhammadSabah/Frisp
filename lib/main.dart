@@ -3,6 +3,7 @@ import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/src/data/bookmark_interface.dart';
 import 'package:food_recipe_final/src/data/bookmark_manager.dart';
 import 'package:food_recipe_final/src/models/app_state_manager.dart';
+import 'package:food_recipe_final/src/models/shopping_manager.dart';
 import 'package:food_recipe_final/src/navigation/app_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _appStateManager = AppStateManager();
+  final _shoppingManager = ShoppingManager();
   late AppRouter _appRouter;
 
   @override
@@ -28,6 +30,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     _appRouter = AppRouter(
       appStateManager: _appStateManager,
+      shoppingManager: _shoppingManager,
     );
   }
 
@@ -39,6 +42,10 @@ class _MyAppState extends State<MyApp> {
         Provider<BookmarkInterface>(
           lazy: false,
           create: (context) => BookmarkManager(),
+        ),
+        ChangeNotifierProvider(
+          lazy: false,
+          create: (context) => _shoppingManager,
         ),
         ChangeNotifierProvider(
           lazy: false,

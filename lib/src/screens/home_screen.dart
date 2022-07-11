@@ -4,6 +4,7 @@ import 'package:food_recipe_final/app_pages.dart';
 import 'package:food_recipe_final/src/models/app_state_manager.dart';
 import 'package:food_recipe_final/src/screens/discover_screen.dart';
 import 'package:food_recipe_final/src/screens/search_recipe_screen.dart';
+import 'package:food_recipe_final/src/screens/shopping_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -27,6 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
   static List<Widget> pages = [
     DiscoverScreen(),
     SearchRecipeScreen(),
+    Container(),
+    ShoppingScreen(),
   ];
   @override
   Widget build(BuildContext context) {
