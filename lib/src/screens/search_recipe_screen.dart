@@ -25,9 +25,11 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
   List<ResultsAPI> _currentSearches = [];
   int currentCount = 0;
 
-  Future<RecipeAPIQuery> getRecipeData(String query, int number) async {
+  Future<RecipeAPIQuery>? getRecipeData(String query, int number) async {
     final recipeJson = await RecipeService().getRecipes(query, number);
-
+    if (recipeJson == null) {
+      return Future.value(null);
+    }
     final recipeMap = convert.json.decode(recipeJson);
     return RecipeAPIQuery.fromJson(recipeMap);
   }
@@ -205,7 +207,6 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
             borderRadius: BorderRadius.circular(10),
             child: Material(
               child: InkWell(
-                onTap: () => print('Filter Clicked!'),
                 child: Ink(
                   height: 48,
                   width: 48,
