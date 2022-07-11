@@ -94,6 +94,7 @@ class AppTheme {
   static ThemeData dark() {
     return ThemeData(
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        elevation: 4,
         backgroundColor: kOrangeColor,
       ),
       splashColor: Colors.white.withOpacity(0.5),

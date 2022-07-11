@@ -37,10 +37,13 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         elevation: 0,
         centerTitle: true,
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(4.0),
-          child: Container(
-            color: Colors.grey.shade600,
-            height: 1,
+          preferredSize: const Size.fromHeight(2.0),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Container(
+              color: Colors.grey.shade600,
+              height: 1,
+            ),
           ),
         ),
         title: Text(
