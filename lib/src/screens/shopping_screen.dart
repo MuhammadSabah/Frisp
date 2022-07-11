@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/src/models/shopping_manager.dart';
 import 'package:food_recipe_final/src/screens/empty_shopping_screen.dart';
+import 'package:food_recipe_final/src/screens/shopping_list_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/retry.dart';
 import 'package:provider/provider.dart';
@@ -59,8 +60,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
     return Consumer<ShoppingManager>(
       builder: (context, manager, child) {
         if (manager.shoppingItems.isNotEmpty) {
-          // return ShoppingListScreen();
-          return Container();
+          return ShoppingListScreen();
         } else {
           return const EmptyShoppingScreen();
         }
