@@ -111,7 +111,8 @@ class AppTheme {
         // ),
       ),
       appBarTheme: const AppBarTheme(
-        backgroundColor: kBlackColor,
+        elevation: 2,
+        backgroundColor: Colors.transparent,
         iconTheme: IconThemeData(
           color: kOrangeColor,
         ),
@@ -119,6 +120,7 @@ class AppTheme {
       tabBarTheme: TabBarTheme(
         labelStyle: GoogleFonts.poppins(
           fontSize: 14,
+          fontWeight: FontWeight.normal,
         ),
         unselectedLabelStyle: GoogleFonts.poppins(
           fontSize: 14,

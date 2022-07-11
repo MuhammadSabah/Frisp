@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/app_theme.dart';
-import 'package:food_recipe_final/src/components/circle_tab_indicator.dart';
 import 'package:food_recipe_final/src/components/custom_drop_down.dart';
-
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
 import 'package:food_recipe_final/src/screens/tabs/bookmark_tab.dart';
 import 'package:food_recipe_final/src/screens/tabs/search_tab.dart';
 import 'package:food_recipe_final/src/services/recipe_service.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert' as convert;
@@ -31,9 +27,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
 
   Future<RecipeAPIQuery> getRecipeData(String query, int number) async {
     final recipeJson = await RecipeService().getRecipes(query, number);
-    if (recipeJson == null) {
-      throw 'returned Json data is NULL ';
-    }
+
     final recipeMap = convert.json.decode(recipeJson);
     return RecipeAPIQuery.fromJson(recipeMap);
   }
@@ -86,7 +80,12 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                 Tab(text: "Search"),
                 Tab(text: "Bookmarks"),
               ],
-              indicator: CircleTabIndicator(radius: 4, color: kOrangeColor),
+              indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
+              indicatorColor: Colors.grey.shade600,
+              // indicator: CircleTabIndicator(
+              //   radius: 4.1,
+              //   color: Colors.grey.shade600,
+              // ),
             ),
           ),
           Expanded(

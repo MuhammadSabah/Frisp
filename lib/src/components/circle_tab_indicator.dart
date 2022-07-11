@@ -4,7 +4,7 @@ class CircleTabIndicator extends Decoration {
   final Color color;
   final double radius;
 
-  CircleTabIndicator({required this.color, required this.radius});
+  const CircleTabIndicator({required this.color, required this.radius});
 
   @override
   BoxPainter createBoxPainter([VoidCallback? onChanged]) {

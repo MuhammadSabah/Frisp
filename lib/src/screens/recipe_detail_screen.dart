@@ -313,7 +313,7 @@ class RecipeDetailScreen extends StatelessWidget {
                               itemCount: recipe.instructions![0].steps!.length,
                               itemBuilder: (context, index) {
                                 return Text(
-                                  "${index + 1}- ${recipe.instructions![0].steps![index].step}: ",
+                                  "${index + 1}- ${recipe.instructions![0].steps![index].step}",
                                   style: Theme.of(context).textTheme.headline3,
                                 );
                               },

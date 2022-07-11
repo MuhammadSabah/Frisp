@@ -36,6 +36,13 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.grey.shade600,
+            height: 1,
+          ),
+        ),
         title: Text(
           "Shopping Page",
           style: Theme.of(context).textTheme.headline2,
