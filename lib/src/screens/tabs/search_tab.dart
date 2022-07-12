@@ -24,6 +24,7 @@ class _SearchTabState extends State<SearchTab>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     if (widget.controller.text.length < 3) {
       return SizedBox(
         height: 300,

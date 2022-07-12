@@ -16,6 +16,9 @@ class ShoppingListScreen extends StatelessWidget {
           final item = shoppingItems[index];
 
           return InkWell(
+            onTap: () {
+              manager.shoppingItemTapped(index);
+            },
             child: ShoppingTile(
               item: item,
             ),

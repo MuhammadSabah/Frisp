@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/app_pages.dart';
 import 'package:food_recipe_final/src/models/app_state_manager.dart';
 import 'package:food_recipe_final/src/models/shopping_manager.dart';
 import 'package:food_recipe_final/src/screens/home_screen.dart';
@@ -31,7 +32,7 @@ class AppRouter extends RouterDelegate
   Widget build(BuildContext context) {
     return Navigator(
       key: navigatorKey,
-      // onPopPage: ,
+      onPopPage: _handlePopPage,
       pages: [
         if (!appStateManager.isInitialized) ...[
           SplashScreen.page(),
@@ -46,12 +47,13 @@ class AppRouter extends RouterDelegate
             ),
           if (shoppingManager.selectedIndex != -1)
             ShoppingItemScreen.page(
-                item: shoppingManager.selectedShoppingItem,
-                index: shoppingManager.selectedIndex,
-                onCreate: (_) {},
-                onUpdate: (item, index) {
-                  shoppingManager.updateItem(item, index);
-                }),
+              item: shoppingManager.selectedShoppingItem,
+              index: shoppingManager.selectedIndex,
+              onCreate: (_) {},
+              onUpdate: (item, index) {
+                shoppingManager.updateItem(item, index);
+              },
+            ),
         ]
       ],
     );
@@ -60,6 +62,12 @@ class AppRouter extends RouterDelegate
   bool _handlePopPage(Route<dynamic> route, result) {
     if (!route.didPop(result)) {
       return false;
+    }
+    if (route.settings.name == AppPages.onboardingPath) {
+      appStateManager.logOut();
+    }
+    if (route.settings.name == AppPages.shoppingItemDetails) {
+      shoppingManager.shoppingItemTapped(-1);
     }
     return true;
   }

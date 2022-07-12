@@ -98,6 +98,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
         ),
         actions: [
           IconButton(
+            splashRadius: 20,
             icon: const Icon(Icons.check),
             onPressed: () {
               final shoppingItem = ShoppingItem(
@@ -229,6 +230,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
               },
             ),
             ChoiceChip(
+              backgroundColor: Colors.grey,
               selectedColor: Colors.grey.shade600,
               selected: _importance == Importance.medium,
               label: Text(
@@ -243,6 +245,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
               },
             ),
             ChoiceChip(
+              backgroundColor: Colors.grey,
               selectedColor: Colors.grey.shade600,
               selected: _importance == Importance.high,
               label: Text(
