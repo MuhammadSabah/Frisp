@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:food_recipe_final/src/data/bookmark_manager.dart';
+import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
 import 'package:food_recipe_final/src/screens/recipe_detail_screen.dart';
-import 'package:provider/provider.dart';
 
 class BookmarkCard extends StatefulWidget {
   const BookmarkCard(
@@ -68,7 +67,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
             ),
             Container(
               decoration: const BoxDecoration(
-                color: Color(0xff232220),
+                color: kGreyColor,
               ),
               child: ListView.builder(
                 shrinkWrap: true,

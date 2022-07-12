@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
 import 'package:intl/intl.dart';
 
@@ -14,16 +15,26 @@ class ShoppingTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 90,
+    return Container(
+      decoration: const BoxDecoration(
+        color: kGreyColor,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      height: 100,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
               Container(
-                width: 5.0,
-                color: item.color,
+                width: 8.0,
+                decoration: BoxDecoration(
+                  color: item.color,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    bottomLeft: Radius.circular(10),
+                  ),
+                ),
               ),
               const SizedBox(width: 14),
               Column(
@@ -32,9 +43,7 @@ class ShoppingTile extends StatelessWidget {
                 children: [
                   Text(
                     item.name,
-                    style: Theme.of(context).textTheme.headline3!.copyWith(
-                          fontSize: 18,
-                        ),
+                    style: Theme.of(context).textTheme.headline2,
                   ),
                   const SizedBox(height: 4),
                   buildDate(context),
@@ -46,9 +55,14 @@ class ShoppingTile extends StatelessWidget {
           ),
           Row(
             children: [
-              Text(
-                item.quantity.toString(),
-                style: Theme.of(context).textTheme.headline2,
+              Padding(
+                padding: const EdgeInsets.only(right: 16.0),
+                child: Text(
+                  item.quantity.toString(),
+                  style: Theme.of(context).textTheme.headline2!.copyWith(
+                        fontSize: 20,
+                      ),
+                ),
               ),
             ],
           ),

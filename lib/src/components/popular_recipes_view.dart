@@ -55,7 +55,7 @@ class _PopularRecipesListViewViewState extends State<PopularRecipesListView> {
                 padding: EdgeInsets.only(right: 8.0),
                 child: Text(
                   "View All",
-                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
                         color: Colors.grey,
                         fontSize: 13,
                       ),

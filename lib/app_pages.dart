@@ -5,5 +5,5 @@ class AppPages {
   static String onboardingPath = '/onboarding';
   static String home = '/';
   static String recipeDetails = '/detail';
-  static String groceryItemDetails = '/item';
+  static String shoppingItemDetails = '/item';
 }

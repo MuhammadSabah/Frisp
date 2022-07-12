@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
 
 class RecipeCard extends StatefulWidget {
@@ -21,7 +22,7 @@ class _RecipeCardState extends State<RecipeCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xff232220),
+      color: kGreyColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

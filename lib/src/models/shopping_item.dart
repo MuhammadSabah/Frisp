@@ -7,7 +7,7 @@ class ShoppingItem {
   final String name;
   final Importance importance;
   final Color color;
-  final int quantity;
+  final String quantity;
   final DateTime date;
   final bool isComplete;
 
@@ -26,7 +26,7 @@ class ShoppingItem {
     String? name,
     Importance? importance,
     Color? color,
-    int? quantity,
+    String? quantity,
     DateTime? date,
     bool? isComplete,
   }) {

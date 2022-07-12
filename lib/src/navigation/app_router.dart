@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_recipe_final/src/models/app_state_manager.dart';
 import 'package:food_recipe_final/src/models/shopping_manager.dart';
 import 'package:food_recipe_final/src/screens/home_screen.dart';
+import 'package:food_recipe_final/src/screens/shopping_item_screen.dart';
 import 'package:food_recipe_final/src/screens/splash_screen.dart';
 
 class AppRouter extends RouterDelegate
@@ -36,6 +37,21 @@ class AppRouter extends RouterDelegate
           SplashScreen.page(),
         ] else ...[
           HomeScreen.page(appStateManager.selectedTab),
+          if (shoppingManager.isCreatingNewItem)
+            ShoppingItemScreen.page(
+              onCreate: (item) {
+                shoppingManager.addItem(item);
+              },
+              onUpdate: (item, index) {},
+            ),
+          if (shoppingManager.selectedIndex != -1)
+            ShoppingItemScreen.page(
+                item: shoppingManager.selectedShoppingItem,
+                index: shoppingManager.selectedIndex,
+                onCreate: (_) {},
+                onUpdate: (item, index) {
+                  shoppingManager.updateItem(item, index);
+                }),
         ]
       ],
     );

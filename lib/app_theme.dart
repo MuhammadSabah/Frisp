@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/app_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 const kOrangeColor = Color(0xffF94701);
+const kOrangeColorTint = Color(0xfffa6c34);
+const kOrangeColorTint2 = Color(0xfffb7e4d);
 const kBlackColor = Color(0xff0E0E0E);
+const kGreyColor = Color(0xff232220);
 
 class AppTheme {
   static TextTheme lightTextTheme = TextTheme(
@@ -45,12 +47,12 @@ class AppTheme {
   );
   static TextTheme darkTextTheme = TextTheme(
     bodyText1: GoogleFonts.poppins(
-      fontSize: 16,
-      fontWeight: FontWeight.w600,
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
       color: Colors.white,
     ),
     bodyText2: GoogleFonts.poppins(
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
@@ -95,7 +97,7 @@ class AppTheme {
     return ThemeData(
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         elevation: 4,
-        backgroundColor: kOrangeColor,
+        backgroundColor: kOrangeColorTint,
       ),
       splashColor: Colors.white.withOpacity(0.5),
       splashFactory: NoSplash.splashFactory,

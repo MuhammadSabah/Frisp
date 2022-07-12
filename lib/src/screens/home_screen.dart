@@ -35,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Consumer<AppStateManager>(builder: (context, manager, child) {
       return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: IndexedStack(
           index: widget.currentTabIndex,
           children: pages,

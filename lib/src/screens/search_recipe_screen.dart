@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/src/components/custom_drop_down.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
 import 'package:food_recipe_final/src/screens/tabs/bookmark_tab.dart';
@@ -18,7 +19,7 @@ class SearchRecipeScreen extends StatefulWidget {
 class _SearchRecipeScreenState extends State<SearchRecipeScreen>
     with SingleTickerProviderStateMixin {
   static const prefSearchKey = 'previousSearches';
-  final ScrollController _scrollController = ScrollController();
+  // final ScrollController _scrollController = ScrollController();
   late TextEditingController _searchController;
   late TabController _tabController;
   List<String> _previousSearches = [];
@@ -28,7 +29,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
   Future<RecipeAPIQuery>? getRecipeData(String query, int number) async {
     final recipeJson = await RecipeService().getRecipes(query, number);
     if (recipeJson == null) {
-      return Future.value(null);
+      throw 'Data is null';
     }
     final recipeMap = convert.json.decode(recipeJson);
     return RecipeAPIQuery.fromJson(recipeMap);
@@ -211,7 +212,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                   height: 48,
                   width: 48,
                   decoration: const BoxDecoration(
-                    color: Colors.red,
+                    color: kOrangeColorTint,
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
                     ),
