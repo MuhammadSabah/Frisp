@@ -54,7 +54,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
                     onTap: widget.deleteCallback,
                     child: CircleAvatar(
                       radius: 14,
-                      backgroundColor: Colors.white60,
+                      backgroundColor: Colors.white.withOpacity(0.9),
                       child: FaIcon(
                         FontAwesomeIcons.xmark,
                         size: 18,
