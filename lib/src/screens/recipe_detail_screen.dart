@@ -5,6 +5,7 @@ import 'package:food_recipe_final/src/components/bottom_save_button.dart';
 import 'package:food_recipe_final/src/data/bookmark_interface.dart';
 import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RecipeDetailScreen extends StatefulWidget {
   RecipeDetailScreen({Key? key, required this.recipe}) : super(key: key);
@@ -158,7 +159,16 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                                       child: Material(
                                         color: Colors.transparent,
                                         child: InkWell(
-                                          onTap: () {},
+                                          onTap: () async {
+                                            final Uri toLaunch = Uri.parse(
+                                              widget.recipe.sourceUrl!,
+                                            );
+                                            if (!await launchUrl(toLaunch,
+                                                mode: LaunchMode
+                                                    .externalApplication)) {
+                                              throw 'Could not launch $toLaunch';
+                                            }
+                                          },
                                           child: Ink(
                                             decoration: BoxDecoration(
                                               borderRadius:
