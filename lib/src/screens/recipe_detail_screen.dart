@@ -226,12 +226,15 @@ class RecipeDetailScreen extends StatelessWidget {
                                   return Chip(
                                     elevation: 4,
                                     backgroundColor: Colors.white,
-                                    label: Text(
-                                      keysList![index].toString(),
-                                      style: const TextStyle(
-                                        color: kOrangeColor,
-                                      ),
-                                    ),
+                                    label: Text(keysList![index].toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline4!
+                                            .copyWith(
+                                              color: kOrangeColor,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14,
+                                            )),
                                   );
                                 },
                               ),

@@ -64,7 +64,7 @@ class _SearchTabState extends State<SearchTab>
             ),
           );
         } else if (snapshot.data == null) {
-          return const Text("Data IS NULL");
+          return const Text("Data is not available!");
         } else {
           final query = snapshot.data;
           if (query != null) {

@@ -25,6 +25,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
   List<String> _previousSearches = [];
   List<ResultsAPI> _currentSearches = [];
   int currentCount = 0;
+  Future<RecipeAPIQuery>? _searchResult;
 
   Future<RecipeAPIQuery>? getRecipeData(String query, int number) async {
     final recipeJson = await RecipeService().getRecipes(query, number);
@@ -103,10 +104,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                     controller: _searchController,
                     currentSearches: _currentSearches,
                     count: currentCount,
-                    futureMethod: getRecipeData(
-                      _searchController.text.trim(),
-                      50,
-                    ),
+                    futureMethod: _searchResult,
                   ),
                   const BookmarkTab(),
                 ],
@@ -229,6 +227,10 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
 
   void startSearch(String value) {
     setState(() {
+      _searchResult = getRecipeData(
+        _searchController.text.trim(),
+        50,
+      );
       _currentSearches.clear();
       currentCount = 0;
       value = value.trim();

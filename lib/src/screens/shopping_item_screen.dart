@@ -216,7 +216,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
           children: [
             ChoiceChip(
               backgroundColor: Colors.grey,
-              selectedColor: Colors.grey.shade600,
+              selectedColor: Colors.grey.shade700,
               selected: _importance == Importance.low,
               label: Text(
                 'low',
@@ -231,7 +231,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             ),
             ChoiceChip(
               backgroundColor: Colors.grey,
-              selectedColor: Colors.grey.shade600,
+              selectedColor: Colors.grey.shade700,
               selected: _importance == Importance.medium,
               label: Text(
                 'medium',
@@ -246,7 +246,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             ),
             ChoiceChip(
               backgroundColor: Colors.grey,
-              selectedColor: Colors.grey.shade600,
+              selectedColor: Colors.grey.shade700,
               selected: _importance == Importance.high,
               label: Text(
                 'high',

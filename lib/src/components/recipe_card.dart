@@ -62,7 +62,7 @@ class _RecipeCardState extends State<RecipeCard> {
                         borderRadius: BorderRadius.circular(50),
                         child: Container(
                           height: 22,
-                          width: 50,
+                          width: 60,
                           decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 224, 255, 221),
                             borderRadius: BorderRadius.all(

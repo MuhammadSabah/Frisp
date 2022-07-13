@@ -32,8 +32,6 @@ class _RecipeGridViewState extends State<RecipeGridView> {
           childAspectRatio: (itemWidth / itemHeight),
         ),
         itemBuilder: (context, index) {
-          print(widget.results[index]);
-          final result = widget.results[index];
           return _buildRecipeCard(context, widget.results, index);
         },
       ),
