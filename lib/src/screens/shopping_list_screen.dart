@@ -41,7 +41,7 @@ class ShoppingListScreen extends StatelessWidget {
                 SnackBar(
                   content: Text('${item.name} dismissed'),
                   duration: const Duration(
-                    milliseconds: 1850,
+                    milliseconds: 2000,
                   ),
                   action: SnackBarAction(
                     label: 'Undo',
