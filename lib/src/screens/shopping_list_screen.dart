@@ -15,12 +15,52 @@ class ShoppingListScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           final item = shoppingItems[index];
 
-          return InkWell(
-            onTap: () {
-              manager.shoppingItemTapped(index);
+          return Dismissible(
+            key: Key(item.id),
+            direction: DismissDirection.endToStart,
+            background: Container(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(10),
+                ),
+                color: Colors.red.shade400,
+              ),
+              alignment: Alignment.centerRight,
+              child: const Padding(
+                padding: EdgeInsets.only(right: 16.0),
+                child: Icon(
+                  Icons.delete_forever,
+                  color: Colors.white,
+                  size: 30.0,
+                ),
+              ),
+            ),
+            onDismissed: (direction) {
+              manager.deleteItem(index);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('${item.name} dismissed'),
+                  duration: const Duration(
+                    milliseconds: 1850,
+                  ),
+                  action: SnackBarAction(
+                    label: 'Undo',
+                    textColor: Colors.green.shade300,
+                    onPressed: () {
+                      manager.addItem(item);
+                    },
+                  ),
+                ),
+              );
             },
-            child: ShoppingTile(
-              item: item,
+            child: InkWell(
+              onTap: () {
+                manager.shoppingItemTapped(index);
+              },
+              child: ShoppingTile(
+                key: Key(item.id),
+                item: item,
+              ),
             ),
           );
         },
