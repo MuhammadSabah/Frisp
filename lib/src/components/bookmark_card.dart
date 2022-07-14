@@ -55,10 +55,10 @@ class _BookmarkCardState extends State<BookmarkCard> {
                     child: CircleAvatar(
                       radius: 14,
                       backgroundColor: Colors.white.withOpacity(0.9),
-                      child: FaIcon(
+                      child: const FaIcon(
                         FontAwesomeIcons.xmark,
                         size: 18,
-                        color: Colors.red.shade600,
+                        color: kGreyColor,
                       ),
                     ),
                   ),

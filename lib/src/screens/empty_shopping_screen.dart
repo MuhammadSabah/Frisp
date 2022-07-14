@@ -20,7 +20,7 @@ class EmptyShoppingScreen extends StatelessWidget {
             height: 20,
           ),
           Text(
-            'No Groceries!',
+            'No Items!',
             style: Theme.of(context).textTheme.headline3,
           ),
         ],
