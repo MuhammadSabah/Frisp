@@ -13,17 +13,19 @@ class AppTab {
 class AppStateManager extends ChangeNotifier {
   bool _initialized = false;
   bool _loggedIn = false;
+  bool _signedUp = false;
   bool _onboardingComplete = false;
-  //For now I will use the profile tab to create logIn Screen.
-  int _selectedTab = AppTab.profile;
+  int _selectedTab = AppTab.discover;
   final _appCache = AppCache();
 
   bool get isInitialized => _initialized;
   bool get isLoggedIn => _loggedIn;
+  bool get isSignedUp => _signedUp;
   bool get isOnboardingComplete => _onboardingComplete;
   int get selectedTab => _selectedTab;
 
   void initializeApp() async {
+    _signedUp = await _appCache.isUserSignedUp();
     _loggedIn = await _appCache.isUserLoggedIn();
     _onboardingComplete = await _appCache.didCompleteOnboarding();
 
@@ -36,9 +38,31 @@ class AppStateManager extends ChangeNotifier {
     );
   }
 
-  void logIn(String name, String password, String confirmPassword) async {
+  void goToLogIn() async {
+    _signedUp = false;
+    _loggedIn = false;
+    print('SIGN UP: $_signedUp\n LOG IN: $_loggedIn');
+    notifyListeners();
+  }
+
+  void goToSignUp() async {
+    _signedUp = false;
+    _loggedIn = false;
+    print('SIGN UP: $_signedUp\n LOG IN: $_loggedIn');
+    notifyListeners();
+  }
+
+  void signUp(String userName, String email, String password) async {
+    _signedUp = true;
+    print('SIGN UP: $_signedUp\n LOG IN: $_loggedIn');
+    await _appCache.cacheUserSignup();
+    notifyListeners();
+  }
+
+  void logIn(String email, String password) async {
     _loggedIn = true;
-    await _appCache.cacheUser();
+    print('SIGN UP: $_signedUp\n LOG IN: $_loggedIn');
+    await _appCache.cacheUserLogin();
     notifyListeners();
   }
 
@@ -55,8 +79,8 @@ class AppStateManager extends ChangeNotifier {
 
   void logOut() async {
     _initialized = false;
-    // _loggedIn = false;
     _selectedTab = 0;
+    await _appCache.invalidate();
 
     initializeApp();
     notifyListeners();

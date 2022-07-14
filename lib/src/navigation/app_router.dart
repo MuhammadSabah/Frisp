@@ -3,7 +3,9 @@ import 'package:food_recipe_final/app_pages.dart';
 import 'package:food_recipe_final/src/models/app_state_manager.dart';
 import 'package:food_recipe_final/src/models/shopping_manager.dart';
 import 'package:food_recipe_final/src/screens/home_screen.dart';
+import 'package:food_recipe_final/src/screens/log_in_screen.dart';
 import 'package:food_recipe_final/src/screens/shopping_item_screen.dart';
+import 'package:food_recipe_final/src/screens/sign_up_screen.dart';
 import 'package:food_recipe_final/src/screens/splash_screen.dart';
 
 class AppRouter extends RouterDelegate
@@ -36,6 +38,10 @@ class AppRouter extends RouterDelegate
       pages: [
         if (!appStateManager.isInitialized) ...[
           SplashScreen.page(),
+        ] else if (!appStateManager.isSignedUp) ...[
+          SignUpScreen.page(),
+        ] else if (!appStateManager.isLoggedIn) ...[
+          LogInScreen.page(),
         ] else ...[
           HomeScreen.page(appStateManager.selectedTab),
           if (shoppingManager.isCreatingNewItem)
@@ -68,6 +74,9 @@ class AppRouter extends RouterDelegate
     }
     if (route.settings.name == AppPages.shoppingItemDetails) {
       shoppingManager.shoppingItemTapped(-1);
+    }
+    if (route.settings.name == AppPages.loginPath) {
+      appStateManager.goToSignUp();
     }
     return true;
   }

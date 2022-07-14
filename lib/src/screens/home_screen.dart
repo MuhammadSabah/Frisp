@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/app_pages.dart';
 import 'package:food_recipe_final/src/models/app_state_manager.dart';
 import 'package:food_recipe_final/src/screens/discover_screen.dart';
+import 'package:food_recipe_final/src/screens/profile_screen.dart';
 import 'package:food_recipe_final/src/screens/search_recipe_screen.dart';
 import 'package:food_recipe_final/src/screens/shopping_screen.dart';
 import 'package:food_recipe_final/src/screens/sign_up_screen.dart';
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     SearchRecipeScreen(),
     Container(),
     ShoppingScreen(),
-    SignUpScreen(),
+    ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {

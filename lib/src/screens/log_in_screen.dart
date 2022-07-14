@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/app_pages.dart';
 import 'package:food_recipe_final/app_theme.dart';
 import 'package:food_recipe_final/src/components/auth_bottom_rich_text.dart';
 import 'package:food_recipe_final/src/components/auth_confirm_button.dart';
+import 'package:food_recipe_final/src/models/app_state_manager.dart';
+import 'package:provider/provider.dart';
 
 class LogInScreen extends StatelessWidget {
+  static MaterialPage page() {
+    return MaterialPage(
+      name: AppPages.loginPath,
+      key: ValueKey(AppPages.loginPath),
+      child: const LogInScreen(),
+    );
+  }
+
   const LogInScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: SizedBox(
-          // height: MediaQuery.of(context).size.height / 40,
-          ),
+        height: MediaQuery.of(context).size.height / 40,
+      ),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
           splashRadius: 20,
-          onPressed: () {},
+          onPressed: () {
+            Provider.of<AppStateManager>(context, listen: false).goToSignUp();
+          },
           icon: FaIcon(
             FontAwesomeIcons.arrowLeft,
             color: Colors.grey.shade500,
@@ -57,13 +70,24 @@ class LogInScreen extends StatelessWidget {
                 const SizedBox(height: 40),
                 AuthConfirmButton(
                   title: 'Log in',
-                  callBack: () {},
+                  callBack: () {
+                    Provider.of<AppStateManager>(context, listen: false)
+                        .logIn('email', 'password');
+                  },
                 ),
                 const Spacer(),
                 AuthBottomRichText(
                   detailText: 'Don\'t have account? ',
                   clickableText: 'Sign up',
-                  onTap: () {},
+                  onTap: () {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) => const SignUpScreen()),
+                    // );
+                    Provider.of<AppStateManager>(context, listen: false)
+                        .goToSignUp();
+                  },
                 ),
               ],
             ),
