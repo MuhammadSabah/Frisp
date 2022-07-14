@@ -41,27 +41,23 @@ class AppStateManager extends ChangeNotifier {
   void goToLogIn() async {
     _signedUp = false;
     _loggedIn = false;
-    print('SIGN UP: $_signedUp\n LOG IN: $_loggedIn');
     notifyListeners();
   }
 
   void goToSignUp() async {
     _signedUp = false;
     _loggedIn = false;
-    print('SIGN UP: $_signedUp\n LOG IN: $_loggedIn');
     notifyListeners();
   }
 
   void signUp(String userName, String email, String password) async {
     _signedUp = true;
-    print('SIGN UP: $_signedUp\n LOG IN: $_loggedIn');
     await _appCache.cacheUserSignup();
     notifyListeners();
   }
 
   void logIn(String email, String password) async {
     _loggedIn = true;
-    print('SIGN UP: $_signedUp\n LOG IN: $_loggedIn');
     await _appCache.cacheUserLogin();
     notifyListeners();
   }
