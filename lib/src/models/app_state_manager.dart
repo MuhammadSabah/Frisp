@@ -14,7 +14,8 @@ class AppStateManager extends ChangeNotifier {
   bool _initialized = false;
   bool _loggedIn = false;
   bool _onboardingComplete = false;
-  int _selectedTab = AppTab.discover;
+  //For now I will use the profile tab to create logIn Screen.
+  int _selectedTab = AppTab.profile;
   final _appCache = AppCache();
 
   bool get isInitialized => _initialized;

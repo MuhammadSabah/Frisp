@@ -196,7 +196,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
                   elevation: 4,
                   backgroundColor: Colors.white,
                   label: Text(
-                    widget.keysList![index].toString(),
+                    widget.keysList[index].toString(),
                     style: Theme.of(context).textTheme.headline4!.copyWith(
                           color: kOrangeColor,
                           fontWeight: FontWeight.w600,

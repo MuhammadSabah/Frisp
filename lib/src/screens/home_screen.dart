@@ -5,6 +5,7 @@ import 'package:food_recipe_final/src/models/app_state_manager.dart';
 import 'package:food_recipe_final/src/screens/discover_screen.dart';
 import 'package:food_recipe_final/src/screens/search_recipe_screen.dart';
 import 'package:food_recipe_final/src/screens/shopping_screen.dart';
+import 'package:food_recipe_final/src/screens/sign_up_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -30,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     SearchRecipeScreen(),
     Container(),
     ShoppingScreen(),
+    SignUpScreen(),
   ];
   @override
   Widget build(BuildContext context) {

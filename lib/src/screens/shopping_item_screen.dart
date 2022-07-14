@@ -181,6 +181,8 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             autofocus: false,
             controller: _nameController,
             cursorColor: _currentColor,
+            autocorrect: false,
+            textInputAction: TextInputAction.done,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(left: 8),
               hintText: 'E.g. Apples, Banana, 500g of salt',
@@ -444,6 +446,8 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             child: TextField(
               style: Theme.of(context).textTheme.headline3,
               autofocus: false,
+              autocorrect: false,
+              textInputAction: TextInputAction.done,
               controller: _quantityController,
               cursorColor: _currentColor,
               decoration: const InputDecoration(

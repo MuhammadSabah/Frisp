@@ -46,7 +46,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
           ),
         ),
         title: Text(
-          "Shopping Page",
+          "Shopping List",
           style: Theme.of(context).textTheme.headline2,
         ),
       ),

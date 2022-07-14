@@ -20,7 +20,7 @@ class NutritionsSection extends StatelessWidget {
           const SizedBox(height: 10),
           ListView.separated(
             separatorBuilder: ((context, index) => const SizedBox(height: 6)),
-            itemCount: nutritionsList!.length,
+            itemCount: nutritionsList.length,
             itemBuilder: (context, index) {
               return Row(
                 children: [
