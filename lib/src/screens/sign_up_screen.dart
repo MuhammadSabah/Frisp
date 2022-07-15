@@ -116,6 +116,7 @@ class SignUpScreen extends StatelessWidget {
         cursorColor: Colors.white,
         autofocus: false,
         autocorrect: false,
+        keyboardType: isEmail == true? TextInputType.emailAddress:null,
         obscureText: isEmail == false ? true : false,
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(

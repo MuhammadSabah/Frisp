@@ -89,7 +89,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
                       ),
                       padding: const EdgeInsets.all(6),
                       child: Text(
-                        'View Source',
+                        'More Info',
                         style: Theme.of(context).textTheme.headline3,
                       ),
                     ),

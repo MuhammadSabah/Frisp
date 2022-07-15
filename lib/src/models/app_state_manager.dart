@@ -39,14 +39,18 @@ class AppStateManager extends ChangeNotifier {
   }
 
   void goToLogIn() async {
-    _signedUp = false;
+    _signedUp = true;
     _loggedIn = false;
+    await _appCache.cacheUserSignup();
+    await _appCache.cacheUserLogin();
     notifyListeners();
   }
 
   void goToSignUp() async {
     _signedUp = false;
     _loggedIn = false;
+    await _appCache.cacheUserSignup();
+    await _appCache.cacheUserLogin();
     notifyListeners();
   }
 
