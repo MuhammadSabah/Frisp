@@ -60,7 +60,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
     if (originalItem != null) {
       _name = originalItem.name;
       _nameController.text = originalItem.name;
-      _quantityController.text = originalItem.quantity;
+      _quantityController.text = originalItem.quantity.toString();
       _importance = originalItem.importance;
       _currentColor = originalItem.color;
       final date = originalItem.date;
@@ -185,7 +185,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(left: 8),
-              hintText: 'E.g. Apples, Banana, 500g of salt',
+              hintText: 'E.g. 1kg of Apples, A bag of Bananas, 500g of salt',
               hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
                     color: Colors.white70,
                   ),
@@ -444,6 +444,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             width: 65,
             color: kGreyColor,
             child: TextField(
+              keyboardType: TextInputType.number,
               style: Theme.of(context).textTheme.headline3,
               autofocus: false,
               autocorrect: false,

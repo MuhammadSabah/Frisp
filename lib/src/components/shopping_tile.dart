@@ -43,6 +43,7 @@ class ShoppingTile extends StatelessWidget {
                 children: [
                   Text(
                     item.name,
+                    maxLines: 3,
                     style: Theme.of(context).textTheme.headline2,
                   ),
                   const SizedBox(height: 4),
