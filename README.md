@@ -20,9 +20,9 @@ Flutter
 
 Clone repository git clone https://github.com/MuhammadSabah/Food-Recipe-FinalProject.git
 
-and open pubspec.yaml
+and open ``pubspec.yaml``
 
-run flutter packages get
+run ``flutter packages get``
 
 
 
