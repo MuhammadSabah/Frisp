@@ -23,7 +23,7 @@ Clone repository ``git clone https://github.com/MuhammadSabah/Food-Recipe-FinalP
 
 and open ``pubspec.yaml``
 
-run ``flutter packages get``
+run ``flutter pub get``
 
 - Get an API Key at https://spoonacular.com/food-api/docs.
 
