@@ -17,8 +17,6 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 ## Prerequisites
-Flutter
-
 Clone repository ``git clone https://github.com/MuhammadSabah/Food-Recipe-FinalProject.git``
 
 and open ``pubspec.yaml``
