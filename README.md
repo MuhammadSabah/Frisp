@@ -1,5 +1,5 @@
 # A Food Recipe Application
-## A social media application for food recipes.
+A social media application for food recipes.
 
 My goal is to learn about organizing code, folder structure, using backend, Firebase services, having a good UI/UX Design, data persistent, deep linking, responsiveness and implementing a lot of functionalities for a complex app. 
 
