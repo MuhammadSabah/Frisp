@@ -34,6 +34,7 @@ run ``flutter packages get``
 
 ## Raodmap
 - [ ] Use Firebase for user Auth.
+- [ ] Implement deep linking for desktop and mobile.
 - [x] Finish the UI design for the signup and login screens.
 - [x] Create data models for the JSON data.
 - [x] Code the search recipe tab.
