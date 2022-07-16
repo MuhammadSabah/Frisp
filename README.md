@@ -26,7 +26,7 @@ run ``flutter packages get``
 
 - Get an API Key at https://spoonacular.com/food-api/docs.
 
-
+Specify your API Key in the recipe_service.dart file.
 
 ## Features
 
