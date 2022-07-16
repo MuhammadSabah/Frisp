@@ -42,10 +42,6 @@ const String apiKey = <Your API Key>;
 
 &check; A list for saving ingredients while going to grocery store.
 
-
-
-
-
 ## Raodmap
 - [ ] Use Firebase for user Auth.
 - [ ] Implement deep linking for desktop and mobile.
