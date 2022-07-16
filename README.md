@@ -45,6 +45,7 @@ run app on an emulator ``flutter run``
 ## Raodmap
 - [ ] Use Firebase for user Auth.
 - [ ] Implement deep linking for desktop and mobile.
+- [x] Use FontAwesome icons instead of material icons.
 - [x] Finish the UI design for the signup and login screens.
 - [x] Create data models for the JSON data.
 - [x] Code the search recipe tab.
