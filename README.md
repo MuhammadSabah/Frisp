@@ -1,6 +1,8 @@
 # Food-Recipe-FinalProject
 A social media application for food recipes.
 
+My goal is to learn about organizing code, folder structure, using backend, having a good UI/UX Design, data persistent, responsiveness and implementing a lot of functionalities for a complex app. 
+
 A new Flutter project.
 ## Getting Started
 
