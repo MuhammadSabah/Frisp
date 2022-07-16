@@ -42,7 +42,7 @@ run ``flutter packages get``
 - [x] Use Streams instead of Provider to save each recipe.
 - [ ] Save complex data using Sqlite.
 - [x] Save simple data using SharedPreferences.
-- [ ] Switch the api service to either Dio or Chopper.
+- [ ] Switch the API service to either Dio or Chopper.
 - [x] Add searching functionality.
 - [ ] Use Firebase to implement posting functionality.
 - [ ] Design and Code Splash and Onboarding screen. 
