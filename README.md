@@ -40,6 +40,8 @@ const String apiKey = <Your API Key>;
 
 &check; Ability to Post and Comment on what other people have shared.
 
+&check; A list for saving ingredients while going to grocery store. 
+
 
 
 
