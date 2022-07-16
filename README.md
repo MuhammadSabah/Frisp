@@ -32,6 +32,12 @@ const String apiKey = <Your API Key>;
 ```
 
 ## Features
+&check Exploring different types of recipes and categories.
+&check Searching for specific recipes.
+&check Bookmarking your favorite recipes.
+&check Ability to Post and Comment on what other people have shared.
+
+
 
 
 
