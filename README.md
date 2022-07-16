@@ -29,6 +29,7 @@ Specify your API Key in the recipe_service.dart file.
 ```
 const String apiKey = '<Your API Key>';
 ```
+run app on an emulator ``flutter run``
 
 ## Features
 &check; Exploring different types of recipes and categories.
