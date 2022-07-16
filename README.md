@@ -29,7 +29,7 @@ run ``flutter packages get``
 
 Specify your API Key in the recipe_service.dart file.
 ```
-const String apiKey = <Your API Key>;
+const String apiKey = '<Your API Key>';
 ```
 
 ## Features
