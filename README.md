@@ -24,6 +24,8 @@ and open ``pubspec.yaml``
 
 run ``flutter packages get``
 
+- Get an API Key at (https://spoonacular.com/food-api/docs).
+
 
 
 ## Features
