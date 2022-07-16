@@ -1,8 +1,7 @@
 # Food-Recipe-FinalProject
-
+A social media application for food recipes.
 
 A new Flutter project.
-
 ## Getting Started
 
 This project is a starting point for a Flutter application.
