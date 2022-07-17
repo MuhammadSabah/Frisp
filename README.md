@@ -25,7 +25,7 @@ run ``flutter pub get``
 
 - Get an API Key at https://spoonacular.com/food-api/docs.
 
-- Specify your API Key in the recipe_service.dart file.
+- Specify your API Key in the **recipe_service.dart** file.
 ```
  const String apiKey = '<Your API Key>';
 ```
