@@ -89,6 +89,6 @@ Search screen              |  Recipe Detail Screen     |  Shopping List Screen  
 [MuhammadSabah](https://github.com/MuhammadSabah) 
 
 ## Screenshots:
-<img src="https://user-images.githubusercontent.com/75329130/179361010-b4f75d9e-cd39-4f8e-9637-8560e211c498.png" width="360" height="720" />   <img src="https://user-images.githubusercontent.com/75329130/179361012-ed42ef40-2cb8-4641-b527-0ad468015585.png" width="360" height="720" /> <img src="https://user-images.githubusercontent.com/75329130/179361105-9eaf23ba-434d-4d35-8d1e-24cdcd540c63.png" width="360" height="720" /> <img src="https://user-images.githubusercontent.com/75329130/179361108-806ccfa5-557b-4739-b9ca-b47a967cb2ec.png" width="360" height="720" /> <img src="https://user-images.githubusercontent.com/75329130/179361111-7bd5067c-13ac-459e-a93a-e36120376728.png" width="360" height="720" /> <img src="https://user-images.githubusercontent.com/75329130/179361112-6278276d-e105-4c06-be8d-5e1f396b1f2f.png" width="360" height="720" />
+<img src="https://user-images.githubusercontent.com/75329130/179361105-9eaf23ba-434d-4d35-8d1e-24cdcd540c63.png" width="360" height="720" /> <img src="https://user-images.githubusercontent.com/75329130/179361108-806ccfa5-557b-4739-b9ca-b47a967cb2ec.png" width="360" height="720" /> <img src="https://user-images.githubusercontent.com/75329130/179361111-7bd5067c-13ac-459e-a93a-e36120376728.png" width="360" height="720" /> <img src="https://user-images.githubusercontent.com/75329130/179361112-6278276d-e105-4c06-be8d-5e1f396b1f2f.png" width="360" height="720" />
 
 
