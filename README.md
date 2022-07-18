@@ -73,6 +73,7 @@ run app on an emulator ``flutter run``
 - [x] Code the shopping screen.
 - [x] Code the shopping item and shopping list screens.
 
+## Screenshots (Dark mode)
 
 Splash screen              |   Onboarding screen       |  Signup Screen            |   Login Screen
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
