@@ -75,7 +75,7 @@ run app on an emulator ``flutter run``
 
 ## Screenshots (Dark mode)
 
-Signup Screen              |   Login Screen
+Signup Screen              |   Login Screen            |
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![]()|![]()|![](https://user-images.githubusercontent.com/75329130/179361010-b4f75d9e-cd39-4f8e-9637-8560e211c498.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/179361012-ed42ef40-2cb8-4641-b527-0ad468015585.png?raw=true)
 
