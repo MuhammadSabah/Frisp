@@ -47,7 +47,7 @@ run app on an emulator ``flutter run``
 • A list for saving ingredients while going to grocery store.
 ```
 
-## Raodmap
+## ☑️ Raodmap :
 - [ ] Use Firebase for user Auth.
 - [ ] Implement deep linking for desktop and mobile.
 - [x] Use FontAwesome icons instead of material icons.
