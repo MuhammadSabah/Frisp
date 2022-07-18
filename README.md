@@ -1,4 +1,7 @@
-# A Food Recipe Application
+# [Application Name]
+
+[App Icon]
+
 ### A small social media application for food recipes.
 
 For this project my goal is to learn about organizing code, folder structure, using backend, Firebase services, having a good UI/UX Design, data persistent, deep linking, responsiveness and implementing a lot of functionalities for a complex app. 
