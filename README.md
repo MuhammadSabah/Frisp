@@ -34,16 +34,18 @@ run ``flutter pub get``
 ```
 run app on an emulator ``flutter run``
 
-## Features
-&check; Exploring different types of recipes and categories.
+## 🚀 Features :
+```
+• Exploring different types of recipes and categories.
 
-&check; Searching for specific recipes.
+• Searching for specific recipes.
 
-&check; Bookmarking your favorite recipes.
+• Bookmarking your favorite recipes.
 
-&check; Ability to Post and Comment on what other people have shared.
+• Ability to Post and Comment on what other people have shared.
 
-&check; A list for saving ingredients while going to grocery store.
+• A list for saving ingredients while going to grocery store.
+```
 
 ## Raodmap
 - [ ] Use Firebase for user Auth.
