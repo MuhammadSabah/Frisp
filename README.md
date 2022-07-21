@@ -4,7 +4,7 @@
 
 ### A small social media application for food recipes.
 
-For this project my goal is to learn about organizing code, folder structure, using backend, Firebase services, having a good UI/UX Design, data persistent, deep linking, responsiveness and implementing a lot of functionalities for a complex app. 
+For this project my goal is to learn about organizing code, folder structure, using backend, Firebase services, having a good UI/UX Design, data persistent, deep linking, responsiveness and implementing functionalities for a complex app. 
 
 A new Flutter project.
 ## Getting Started
