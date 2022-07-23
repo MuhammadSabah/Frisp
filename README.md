@@ -2,9 +2,6 @@
   <img alt="food_app_icon" src="https://user-images.githubusercontent.com/75329130/180597881-010e2d45-abf3-4248-ad35-70ee0caef64a.jpg" width="224px"/><br/>
   [App Name]
 </h1>
-# [Application Name]
-
-[App Icon]
 
 ### A small social media application for food recipes.
 
