@@ -1,6 +1,6 @@
 <h1 align="center">
   <img alt="food_app_icon" src="https://user-images.githubusercontent.com/75329130/180597881-010e2d45-abf3-4248-ad35-70ee0caef64a.jpg" width="224px"/><br/>
-  Create Go App CLI
+  [App Name]
 </h1>
 # [Application Name]
 
