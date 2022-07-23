@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="food_app_icon" src="https://user-images.githubusercontent.com/75329130/180597881-010e2d45-abf3-4248-ad35-70ee0caef64a.jpg" width="224px" border-radius="50%"/><br/>
+  <img alt="food_app_icon" src="https://user-images.githubusercontent.com/75329130/180598065-99a17935-740b-430f-a9b3-d642c6c060bc.png" width="224px"/><br/>
   [App Name]
 </h1>
 
