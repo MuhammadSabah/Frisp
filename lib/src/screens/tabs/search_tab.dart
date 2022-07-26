@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:food_recipe_final/src/components/recipe_grid_view.dart';
+import 'package:food_recipe_final/src/widgets/recipe_grid_view.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
 
 class SearchTab extends StatefulWidget {

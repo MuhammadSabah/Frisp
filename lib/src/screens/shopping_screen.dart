@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:food_recipe_final/src/models/shopping_manager.dart';
+import 'package:food_recipe_final/src/providers/shopping_manager.dart';
 import 'package:food_recipe_final/src/screens/empty_shopping_screen.dart';
 import 'package:food_recipe_final/src/screens/shopping_list_screen.dart';
 import 'package:provider/provider.dart';

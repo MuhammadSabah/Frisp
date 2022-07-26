@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/app_pages.dart';
-import 'package:food_recipe_final/src/models/app_state_manager.dart';
-import 'package:food_recipe_final/src/models/shopping_manager.dart';
+import 'package:food_recipe_final/src/providers/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/shopping_manager.dart';
 import 'package:food_recipe_final/src/screens/home_screen.dart';
 import 'package:food_recipe_final/src/screens/log_in_screen.dart';
 import 'package:food_recipe_final/src/screens/shopping_item_screen.dart';

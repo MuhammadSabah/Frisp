@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:food_recipe_final/src/models/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {

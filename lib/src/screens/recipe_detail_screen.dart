@@ -1,14 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/src/components/bottom_save_button.dart';
-import 'package:food_recipe_final/src/components/details_sliver_app_bar.dart';
-import 'package:food_recipe_final/src/components/ingredients_section.dart';
-import 'package:food_recipe_final/src/components/instructions_section.dart';
-import 'package:food_recipe_final/src/components/nutritions_section.dart';
-import 'package:food_recipe_final/src/components/servings_and_ready_in_section.dart';
+
 import 'package:food_recipe_final/src/data/bookmark_interface.dart';
 import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
 import 'package:food_recipe_final/src/screens/details_title_section.dart';
+import 'package:food_recipe_final/src/widgets/bottom_save_button.dart';
+import 'package:food_recipe_final/src/widgets/details_sliver_app_bar.dart';
+import 'package:food_recipe_final/src/widgets/ingredients_section.dart';
+import 'package:food_recipe_final/src/widgets/instructions_section.dart';
+import 'package:food_recipe_final/src/widgets/nutritions_section.dart';
+import 'package:food_recipe_final/src/widgets/servings_and_ready_in_section.dart';
 import 'package:provider/provider.dart';
 
 class RecipeDetailScreen extends StatefulWidget {

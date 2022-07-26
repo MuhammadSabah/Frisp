@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/app_pages.dart';
 import 'package:food_recipe_final/app_theme.dart';
-import 'package:food_recipe_final/src/components/auth_bottom_rich_text.dart';
-import 'package:food_recipe_final/src/components/auth_confirm_button.dart';
-import 'package:food_recipe_final/src/models/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/app_state_manager.dart';
+import 'package:food_recipe_final/src/widgets/auth_bottom_rich_text.dart';
+import 'package:food_recipe_final/src/widgets/auth_confirm_button.dart';
 import 'package:provider/provider.dart';
 
 class LogInScreen extends StatelessWidget {
