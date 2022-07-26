@@ -1,6 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import 'package:food_recipe_final/src/data/bookmark_interface.dart';
 import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
 import 'package:food_recipe_final/src/screens/details_title_section.dart';

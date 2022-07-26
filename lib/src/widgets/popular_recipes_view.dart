@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PopularRecipesListView extends StatefulWidget {
-  PopularRecipesListView({Key? key}) : super(key: key);
+  const PopularRecipesListView({Key? key}) : super(key: key);
 
   @override
   State<PopularRecipesListView> createState() =>
@@ -52,7 +52,7 @@ class _PopularRecipesListViewViewState extends State<PopularRecipesListView> {
                 style: Theme.of(context).textTheme.headline1,
               ),
               Padding(
-                padding: EdgeInsets.only(right: 8.0),
+                padding: const EdgeInsets.only(right: 8.0),
                 child: Text(
                   "View All",
                   style: Theme.of(context).textTheme.bodyText2!.copyWith(

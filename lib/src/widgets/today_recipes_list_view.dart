@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TodayRecipesListView extends StatefulWidget {
-  TodayRecipesListView({Key? key}) : super(key: key);
+  const TodayRecipesListView({Key? key}) : super(key: key);
 
   @override
   State<TodayRecipesListView> createState() => _TodayRecipesListViewState();
@@ -57,7 +57,7 @@ class _TodayRecipesListViewState extends State<TodayRecipesListView> {
                 style: Theme.of(context).textTheme.headline1,
               ),
               Padding(
-                padding: EdgeInsets.only(right: 8.0),
+                padding: const EdgeInsets.only(right: 8.0),
                 child: Text(
                   "View All",
                   style: Theme.of(context).textTheme.bodyText2!.copyWith(

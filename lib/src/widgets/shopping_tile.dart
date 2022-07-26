@@ -72,13 +72,6 @@ class ShoppingTile extends StatelessWidget {
     );
   }
 
-  // Widget buildCheckbox() {
-  //   return Checkbox(
-  //     value: item.isComplete,
-  //     onChanged: onComplete,
-  //   );
-  // }
-
   Widget buildDate(BuildContext context) {
     final dateFormatter = DateFormat('MMMM dd h:mm a');
     final dateString = dateFormatter.format(item.date);

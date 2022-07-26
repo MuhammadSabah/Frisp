@@ -1,7 +1,5 @@
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
-import 'package:intl/intl.dart';
 
 class ShoppingManager extends ChangeNotifier {
   // Fields:

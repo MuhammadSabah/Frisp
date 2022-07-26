@@ -10,11 +10,11 @@ import 'package:provider/provider.dart';
 
 void main() {
   GoogleFonts.config.allowRuntimeFetching = false;
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();

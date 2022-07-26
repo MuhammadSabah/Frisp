@@ -6,7 +6,6 @@ import 'package:food_recipe_final/src/screens/discover_screen.dart';
 import 'package:food_recipe_final/src/screens/profile_screen.dart';
 import 'package:food_recipe_final/src/screens/search_recipe_screen.dart';
 import 'package:food_recipe_final/src/screens/shopping_screen.dart';
-import 'package:food_recipe_final/src/screens/sign_up_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -28,11 +27,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   static List<Widget> pages = [
-    DiscoverScreen(),
-    SearchRecipeScreen(),
+    const DiscoverScreen(),
+    const SearchRecipeScreen(),
     Container(),
-    ShoppingScreen(),
-    ProfileScreen(),
+    const ShoppingScreen(),
+    const ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {
