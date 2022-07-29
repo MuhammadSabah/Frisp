@@ -85,6 +85,26 @@ Shopping List screen       | Shopping Item screen      |   Recipe Detail screen 
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/75329130/179361158-7856f85f-00f5-47fa-8da6-0afd183e65a4.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/179361155-992ed6b9-bd1b-40b9-b44b-e7dd85bdca7a.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/179361111-7bd5067c-13ac-459e-a93a-e36120376728.png?raw=true)
 
+## Dependencies
+|       Name      |  version                     |
+| :-------------: | :--------------------------: |
+| [google_fonts](https://pub.dev/packages/google_fonts)  |  2.1.0  |
+| [provider](https://pub.dev/packages/provider)  | 6.0.0  |
+| [flutter_colorpicker](https://pub.dev/packages/flutter_colorpicker)  | 0.6.0  |
+| [intl](https://pub.dev/packages/intl)  | 0.17.0  |
+| [uuid](https://pub.dev/packages/uuid)  | 3.0.4  |
+| [smooth_page_indicator](https://pub.dev/packages/smooth_page_indicator)  | 1.0.0+2  |
+| [url_launcher](https://pub.dev/packages/url_launcher)  | 6.0.10  |
+| [shared_preferences](https://pub.dev/packages/shared_preferences)  | 2.0.7  |
+| [flutter_svg](https://pub.dev/packages/flutter_svg)  | 1.1.0  |
+| [json_annotation](https://pub.dev/packages/json_annotation)  | 4.6.0  |
+| [http](https://pub.dev/packages/http)  | 0.13.4  |
+| [flutter_slidable](https://pub.dev/packages/flutter_slidable)  | 0.6.0  |
+| [shimmer](https://pub.dev/packages/shimmer)  | 2.0.0  |
+| [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter)  | 10.1.0  |
+| [build_runner](https://pub.dev/packages/build_runner)  | 2.1.1  |
+| [json_serializable](https://pub.dev/packages/json_serializable)  | 4.1.4  |
+
 
 
 
