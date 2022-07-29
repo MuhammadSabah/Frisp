@@ -88,7 +88,7 @@ Shopping List screen       | Shopping Item screen      |   Recipe Detail screen 
 
 
 ## Dependencies
-|       Name      |  version                     |
+|       Name      |  Version                     |
 | :-------------: | :--------------------------: |
 | [google_fonts](https://pub.dev/packages/google_fonts)  |  2.1.0  |
 | [provider](https://pub.dev/packages/provider)  | 6.0.0  |
