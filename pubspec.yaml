@@ -43,8 +43,8 @@ dependencies:
   url_launcher: ^6.0.10
   shared_preferences: ^2.0.7
   flutter_svg: ^1.1.0
-  json_annotation:
-  http:
+  json_annotation: ^4.6.0
+  http: ^0.13.4
   cached_network_image: ^3.1.0
   flutter_slidable: ^0.6.0
   equatable:
@@ -52,13 +52,17 @@ dependencies:
   extended_image: ^4.0.0
   font_awesome_flutter: ^10.1.0
   glassmorphism: ^3.0.0
+  firebase_core: ^1.20.0
+  cloud_firestore: ^3.4.2
+  firebase_storage: ^10.3.4
+  firebase_auth: ^3.6.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   build_runner: ^2.1.1
-  json_serializable: ^4.1.4
+  json_serializable: ^6.3.1
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

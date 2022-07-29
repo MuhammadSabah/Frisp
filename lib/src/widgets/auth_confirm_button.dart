@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/app_theme.dart';
+import 'package:food_recipe_final/core/app_theme.dart';
 
 class AuthConfirmButton extends StatelessWidget {
   const AuthConfirmButton({

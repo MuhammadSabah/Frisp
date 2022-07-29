@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:food_recipe_final/app_pages.dart';
-import 'package:food_recipe_final/app_theme.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
+import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
 import 'package:food_recipe_final/src/widgets/shopping_tile.dart';
 import 'package:intl/intl.dart';

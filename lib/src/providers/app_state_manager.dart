@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/app_cache.dart';
+import 'package:food_recipe_final/core/app_cache.dart';
 
 class AppTab {
   static const int discover = 0;

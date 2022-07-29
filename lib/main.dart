@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/app_theme.dart';
+import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/src/data/bookmark_interface.dart';
 import 'package:food_recipe_final/src/providers/bookmark_manager.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
