@@ -105,7 +105,7 @@ Shopping List screen       | Shopping Item screen      |   Recipe Detail screen 
 | [shimmer](https://pub.dev/packages/shimmer)  | 2.0.0  |
 | [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter)  | 10.1.0  |
 | [build_runner](https://pub.dev/packages/build_runner)  | 2.1.1  |
-| [json_serializable](https://pub.dev/packages/json_serializable)  | 4.1.4  |
+| [json_serializable](https://pub.dev/packages/json_serializable)  | 6.3.1  |
 
 
 
