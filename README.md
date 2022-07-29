@@ -106,6 +106,11 @@ Shopping List screen       | Shopping Item screen      |   Recipe Detail screen 
 | [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter)  | 10.1.0  |
 | [build_runner](https://pub.dev/packages/build_runner)  | 2.1.1  |
 | [json_serializable](https://pub.dev/packages/json_serializable)  | 6.3.1  |
+| [firebase_core](https://pub.dev/packages/firebase_core)  | 1.20.0  |
+| [cloud_firestore](https://pub.dev/packages/cloud_firestore)  | 3.4.2 |
+| [firebase_auth](https://pub.dev/packages/firebase_auth)  | 3.6.1  |
+| [firebase_storage](https://pub.dev/packages/firebase_storage)  | 10.3.4  |
+
 
 
 
