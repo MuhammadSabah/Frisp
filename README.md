@@ -85,6 +85,7 @@ Shopping List screen       | Shopping Item screen      |   Recipe Detail screen 
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/75329130/179361158-7856f85f-00f5-47fa-8da6-0afd183e65a4.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/179361155-992ed6b9-bd1b-40b9-b44b-e7dd85bdca7a.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/179361111-7bd5067c-13ac-459e-a93a-e36120376728.png?raw=true)
 
+
 ## Dependencies
 |       Name      |  version                     |
 | :-------------: | :--------------------------: |
