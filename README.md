@@ -73,6 +73,7 @@ run app on an emulator ``flutter run``
 - [x] Use Navigation 2.0
 - [x] Code the shopping screen.
 - [x] Code the shopping item and shopping list screens.
+- [ ] Add Shimmer loading.
 
 ## Screenshots (Dark mode)
 
