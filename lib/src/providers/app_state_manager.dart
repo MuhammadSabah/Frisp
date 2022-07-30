@@ -12,7 +12,7 @@ class AppTab {
 }
 
 class AppStateManager extends ChangeNotifier {
-  final auth = FirebaseAuth.instance;
+  final _auth = FirebaseAuth.instance;
   bool _initialized = false;
   bool _loggedIn = false;
   bool _signedUp = false;
@@ -68,7 +68,7 @@ class AppStateManager extends ChangeNotifier {
   }) async {
     String errorResult = 'Error occurred';
     try {
-      await auth.createUserWithEmailAndPassword(
+      await _auth.createUserWithEmailAndPassword(
           email: userEmail, password: userPassword);
       notifyListeners();
       _signedUp = true;
@@ -104,7 +104,7 @@ class AppStateManager extends ChangeNotifier {
   }) async {
     String errorResult = 'Error occurred';
     try {
-      await auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: userEmail,
         password: userPassword,
       );
@@ -142,7 +142,7 @@ class AppStateManager extends ChangeNotifier {
   }
 
   void logOutUser() async {
-    await auth.signOut();
+    await _auth.signOut();
     _initialized = false;
     _selectedTab = 0;
     await _appCache.invalidate();

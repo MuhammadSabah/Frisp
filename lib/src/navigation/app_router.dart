@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
@@ -14,6 +15,7 @@ class AppRouter extends RouterDelegate
   final GlobalKey<NavigatorState> navigatorKey;
   final AppStateManager appStateManager;
   final ShoppingManager shoppingManager;
+  final _auth = FirebaseAuth.instance;
 
   AppRouter({
     required this.appStateManager,
@@ -38,11 +40,12 @@ class AppRouter extends RouterDelegate
       pages: [
         if (!appStateManager.isInitialized) ...[
           SplashScreen.page(),
-        ] else if (!appStateManager.isSignedUp) ...[
+        ] else if (!appStateManager.isSignedUp &&
+            _auth.currentUser == null) ...[
           SignUpScreen.page(),
         ] else if (!appStateManager.isLoggedIn) ...[
           LogInScreen.page(),
-        ] else ...[
+        ] else if (_auth.currentUser != null) ...[
           HomeScreen.page(appStateManager.selectedTab),
           if (shoppingManager.isCreatingNewItem)
             ShoppingItemScreen.page(
