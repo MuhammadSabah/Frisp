@@ -1,5 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_theme.dart';
+import 'package:food_recipe_final/firebase_options.dart';
 import 'package:food_recipe_final/src/data/bookmark_interface.dart';
 import 'package:food_recipe_final/src/providers/bookmark_manager.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
@@ -8,8 +10,12 @@ import 'package:food_recipe_final/src/navigation/app_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   GoogleFonts.config.allowRuntimeFetching = false;
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
