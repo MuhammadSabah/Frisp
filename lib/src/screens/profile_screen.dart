@@ -11,7 +11,7 @@ class ProfileScreen extends StatelessWidget {
       child: Center(
         child: GestureDetector(
           onTap: () {
-            Provider.of<AppStateManager>(context, listen: false).logOut();
+            Provider.of<AppStateManager>(context, listen: false).logOutUser();
           },
           child: const Text(
             'Log out',

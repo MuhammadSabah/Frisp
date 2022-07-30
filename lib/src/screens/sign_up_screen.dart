@@ -7,7 +7,7 @@ import 'package:food_recipe_final/src/widgets/auth_confirm_button.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:provider/provider.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   static MaterialPage page() {
     return MaterialPage(
       name: AppPages.signupPath,
@@ -19,6 +19,32 @@ class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  late TextEditingController _userNameController;
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _showPassword = false;
+  @override
+  void initState() {
+    super.initState();
+    _userNameController = TextEditingController();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _userNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: SizedBox(
@@ -26,6 +52,8 @@ class SignUpScreen extends StatelessWidget {
       ),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        elevation: 0,
+        bottomOpacity: 0,
         leading: IconButton(
           splashRadius: 20,
           onPressed: () {},
@@ -39,9 +67,9 @@ class SignUpScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(18.0),
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          child: Form(
+            key: _formKey,
+            child: ListView(
               children: [
                 Text(
                   'Sign up',
@@ -51,12 +79,219 @@ class SignUpScreen extends StatelessWidget {
                       .copyWith(fontSize: 34),
                 ),
                 const SizedBox(height: 50),
-                _buildEmailOrPassField(context, true, '@Username'),
-                const SizedBox(height: 20),
-                _buildEmailOrPassField(context, true, 'Your Email'),
-                const SizedBox(height: 20),
-                _buildEmailOrPassField(context, false, "Password"),
-                const SizedBox(height: 20),
+                // !: Username Field
+                Container(
+                  decoration: const BoxDecoration(
+                      // color: kGreyColor,
+                      borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  )),
+                  child: TextFormField(
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Username Required';
+                      }
+                      return null;
+                    },
+                    textAlign: TextAlign.start,
+                    textAlignVertical: TextAlignVertical.center,
+                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                    controller: _userNameController,
+                    cursorColor: Colors.white,
+                    autofocus: false,
+                    autocorrect: false,
+                    keyboardType: TextInputType.text,
+                    obscureText: false,
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(
+                      counterText: ' ',
+                      fillColor: kGreyColor,
+                      filled: true,
+                      isCollapsed: true,
+                      contentPadding: const EdgeInsets.all(18),
+                      hintText: '@Username',
+                      hintStyle:
+                          Theme.of(context).textTheme.headline4!.copyWith(
+                                fontSize: 15,
+                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.bold,
+                              ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade800),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: kGreyColor),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: kGreyColor),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade800),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                // !: Email field
+                Container(
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  )),
+                  child: TextFormField(
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Email Required';
+                      }
+                      return null;
+                    },
+                    textAlign: TextAlign.start,
+                    textAlignVertical: TextAlignVertical.center,
+                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                    controller: _emailController,
+                    cursorColor: Colors.white,
+                    autofocus: false,
+                    autocorrect: false,
+                    keyboardType: TextInputType.emailAddress,
+                    obscureText: false,
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(
+                      counterText: ' ',
+                      fillColor: kGreyColor,
+                      filled: true,
+                      isCollapsed: true,
+                      contentPadding: const EdgeInsets.all(18),
+                      hintText: 'Your Email',
+                      hintStyle:
+                          Theme.of(context).textTheme.headline4!.copyWith(
+                                fontSize: 15,
+                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.bold,
+                              ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade800),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: kGreyColor),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: kGreyColor),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade800),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                // !: Password field
+                Container(
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  )),
+                  child: TextFormField(
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Password Required';
+                      } else if (_passwordController.text.length < 6) {
+                        return 'Password must be at least 6 characters';
+                      } else if (_userNameController.text.length < 4) {
+                        return 'Username must be at least 4 characters';
+                      }
+                      return null;
+                    },
+                    textAlign: TextAlign.start,
+                    textAlignVertical: TextAlignVertical.center,
+                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                    controller: _passwordController,
+                    cursorColor: Colors.white,
+                    autofocus: false,
+                    autocorrect: false,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: _showPassword,
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(
+                      counterText: ' ',
+                      fillColor: kGreyColor,
+                      filled: true,
+                      isCollapsed: true,
+                      suffixIcon: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            splashRadius: 20,
+                            onPressed: () {
+                              setState(() {
+                                _showPassword = !_showPassword;
+                              });
+                            },
+                            icon: _showPassword == false
+                                ? FaIcon(
+                                    FontAwesomeIcons.eyeSlash,
+                                    color: Colors.grey.shade400,
+                                    size: 20,
+                                  )
+                                : FaIcon(
+                                    FontAwesomeIcons.eye,
+                                    color: Colors.grey.shade400,
+                                    size: 20,
+                                  ),
+                          ),
+                        ],
+                      ),
+                      contentPadding: const EdgeInsets.all(18),
+                      hintText: 'Password',
+                      hintStyle:
+                          Theme.of(context).textTheme.headline4!.copyWith(
+                                fontSize: 15,
+                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.bold,
+                              ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade800),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: kGreyColor),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: kGreyColor),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade800),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 14),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
@@ -72,11 +307,18 @@ class SignUpScreen extends StatelessWidget {
                 AuthConfirmButton(
                   title: 'Sign up',
                   callBack: () {
-                    Provider.of<AppStateManager>(context, listen: false)
-                        .signUp('userName', 'email', 'password');
+                    final isValidForm = _formKey.currentState!.validate();
+                    if (isValidForm) {
+                      Provider.of<AppStateManager>(context, listen: false)
+                          .signUpUser(
+                        userName: _userNameController.text,
+                        userEmail: _emailController.text,
+                        userPassword: _passwordController.text,
+                      );
+                    }
                   },
                 ),
-                const Spacer(),
+                SizedBox(height: MediaQuery.of(context).size.height / 10),
                 AuthBottomRichText(
                   detailText: 'Already have account? ',
                   clickableText: 'Log in',
@@ -92,69 +334,6 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Container _buildEmailOrPassField(
-      BuildContext context, bool isEmail, String hintText) {
-    return Container(
-      decoration: const BoxDecoration(
-          color: kGreyColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
-          )),
-      child: TextFormField(
-        textAlign: TextAlign.start,
-        textAlignVertical: TextAlignVertical.center,
-        style: Theme.of(context).textTheme.headline3!.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-        // controller: _nameController,
-        cursorColor: Colors.white,
-        autofocus: false,
-        autocorrect: false,
-        keyboardType: isEmail == true ? TextInputType.emailAddress : null,
-        obscureText: isEmail == false ? true : false,
-        textInputAction: TextInputAction.done,
-        decoration: InputDecoration(
-          isCollapsed: true,
-          suffixIcon: isEmail == false
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      splashRadius: 20,
-                      onPressed: () {},
-                      icon: FaIcon(
-                        FontAwesomeIcons.eye,
-                        color: Colors.grey.shade400,
-                        size: 20,
-                      ),
-                    ),
-                  ],
-                )
-              : null,
-          contentPadding: const EdgeInsets.all(18),
-          hintText: hintText,
-          hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
-                fontSize: 15,
-                color: Colors.grey.shade600,
-                fontWeight: FontWeight.bold,
-              ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: kGreyColor),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey.shade800),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
           ),
         ),
       ),

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_cache.dart';
 
@@ -11,6 +12,7 @@ class AppTab {
 }
 
 class AppStateManager extends ChangeNotifier {
+  final auth = FirebaseAuth.instance;
   bool _initialized = false;
   bool _loggedIn = false;
   bool _signedUp = false;
@@ -54,16 +56,70 @@ class AppStateManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  void signUp(String userName, String email, String password) async {
-    _signedUp = true;
-    await _appCache.cacheUserSignup();
-    notifyListeners();
+//  void signUp(String userName, String email, String password) async {
+  // _signedUp = true;
+  // await _appCache.cacheUserSignup();
+//     notifyListeners();
+//   }
+  Future<String?> signUpUser({
+    required userName,
+    required userEmail,
+    required userPassword,
+  }) async {
+    try {
+      await auth.createUserWithEmailAndPassword(
+          email: userEmail, password: userPassword);
+      notifyListeners();
+      _signedUp = true;
+      await _appCache.cacheUserSignup();
+      return null;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      } else {
+        print(e);
+      }
+      return e.message;
+    } catch (e) {
+      print(e);
+      return e.toString();
+    }
   }
 
-  void logIn(String email, String password) async {
-    _loggedIn = true;
-    await _appCache.cacheUserLogin();
-    notifyListeners();
+  // void logIn(String email, String password) async {
+  // _loggedIn = true;
+  // await _appCache.cacheUserLogin();
+  //   notifyListeners();
+  // }
+
+  Future<String?> login({
+    required String userEmail,
+    required String userPassword,
+  }) async {
+    try {
+      await auth.signInWithEmailAndPassword(
+        email: userEmail,
+        password: userPassword,
+      );
+      _loggedIn = true;
+      await _appCache.cacheUserLogin();
+      notifyListeners();
+      return null;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      } else {
+        print(e);
+      }
+      return e.message;
+    } catch (e) {
+      print(e);
+      return e.toString();
+    }
   }
 
   void completeOnboarding() async {
@@ -77,7 +133,8 @@ class AppStateManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  void logOut() async {
+  void logOutUser() async {
+    await auth.signOut();
     _initialized = false;
     _selectedTab = 0;
     await _appCache.invalidate();

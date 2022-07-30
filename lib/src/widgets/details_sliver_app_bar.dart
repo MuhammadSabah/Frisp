@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_theme.dart';
 
 class DetailsSliverAppBar extends StatelessWidget {
@@ -8,12 +9,17 @@ class DetailsSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      backgroundColor: kBlackColor,
       stretch: true,
+      // pinned: true,
+      floating: false,
       expandedHeight: MediaQuery.of(context).size.height / 3,
-      flexibleSpace: CachedNetworkImage(
-        imageUrl: imgUrl,
-        fit: BoxFit.cover,
-        fadeInCurve: Curves.easeInOut,
+      flexibleSpace: FlexibleSpaceBar(
+        background: CachedNetworkImage(
+          imageUrl: imgUrl,
+          fit: BoxFit.cover,
+          fadeInCurve: Curves.easeInOut,
+        ),
       ),
       leading: GestureDetector(
         onTap: () {
@@ -23,9 +29,10 @@ class DetailsSliverAppBar extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: CircleAvatar(
             backgroundColor: Colors.white.withOpacity(0.9),
-            child: const Icon(
-              Icons.arrow_back,
+            child: const FaIcon(
+              FontAwesomeIcons.arrowLeft,
               color: kGreyColor,
+              size: 20,
             ),
           ),
         ),
@@ -40,9 +47,10 @@ class DetailsSliverAppBar extends StatelessWidget {
             child: CircleAvatar(
               radius: 16,
               backgroundColor: Colors.white.withOpacity(0.9),
-              child: const Icon(
-                Icons.more_horiz,
+              child: const FaIcon(
+                FontAwesomeIcons.ellipsisVertical,
                 color: kGreyColor,
+                size: 20,
               ),
             ),
           ),

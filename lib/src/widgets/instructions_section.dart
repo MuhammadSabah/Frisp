@@ -18,19 +18,23 @@ class InstructionsSection extends StatelessWidget {
             "Instructions",
             style: Theme.of(context).textTheme.headline2,
           ),
-          const SizedBox(height: 10),
-          ListView.separated(
-            separatorBuilder: ((context, index) => const SizedBox(height: 6)),
-            itemCount: instructions![0].steps!.length,
-            itemBuilder: (context, index) {
-              return Text(
-                "${index + 1}- ${instructions![0].steps![index].step}",
-                style: Theme.of(context).textTheme.headline3,
-              );
-            },
-            physics: const NeverScrollableScrollPhysics(),
-            primary: false,
-            shrinkWrap: true,
+          const SizedBox(height: 20),
+          MediaQuery.removePadding(
+            removeTop: true,
+            context: context,
+            child: ListView.separated(
+              separatorBuilder: ((context, index) => const SizedBox(height: 6)),
+              itemCount: instructions![0].steps!.length,
+              itemBuilder: (context, index) {
+                return Text(
+                  "${index + 1}- ${instructions![0].steps![index].step}",
+                  style: Theme.of(context).textTheme.headline3,
+                );
+              },
+              physics: const NeverScrollableScrollPhysics(),
+              primary: false,
+              shrinkWrap: true,
+            ),
           ),
         ],
       ),

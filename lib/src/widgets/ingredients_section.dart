@@ -10,7 +10,7 @@ class IngredientsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(14.0),
+      padding: const EdgeInsets.all(14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -18,21 +18,25 @@ class IngredientsSection extends StatelessWidget {
             "Ingredients",
             style: Theme.of(context).textTheme.headline2,
           ),
-          const SizedBox(height: 10),
-          ListView.separated(
-            // physics: const NeverScrollableScrollPhysics(),
-            separatorBuilder: (_, index) {
-              return const SizedBox(height: 6);
-            },
-            primary: false,
-            shrinkWrap: true,
-            itemCount: ingredients.length,
-            itemBuilder: (context, index) {
-              return Text(
-                '${ingredients[index].name}',
-                style: Theme.of(context).textTheme.headline3,
-              );
-            },
+          const SizedBox(height: 20),
+          MediaQuery.removePadding(
+            removeTop: true,
+            context: context,
+            child: ListView.separated(
+              physics: const NeverScrollableScrollPhysics(),
+              separatorBuilder: (_, index) {
+                return const SizedBox(height: 6);
+              },
+              primary: false,
+              shrinkWrap: true,
+              itemCount: ingredients.length,
+              itemBuilder: (context, index) {
+                return Text(
+                  '${ingredients[index].name}',
+                  style: Theme.of(context).textTheme.headline3,
+                );
+              },
+            ),
           ),
         ],
       ),

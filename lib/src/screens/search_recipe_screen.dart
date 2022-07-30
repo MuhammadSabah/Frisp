@@ -94,7 +94,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
           ),
           Expanded(
             child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 20),
+              // margin: const EdgeInsets.symmetric(vertical: 20),
               height: double.maxFinite,
               width: MediaQuery.of(context).size.width,
               child: TabBarView(

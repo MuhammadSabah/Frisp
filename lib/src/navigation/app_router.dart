@@ -70,7 +70,7 @@ class AppRouter extends RouterDelegate
       return false;
     }
     if (route.settings.name == AppPages.onboardingPath) {
-      appStateManager.logOut();
+      appStateManager.logOutUser();
     }
     if (route.settings.name == AppPages.shoppingItemDetails) {
       shoppingManager.shoppingItemTapped(-1);

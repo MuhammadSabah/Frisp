@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 const kOrangeColor = Color(0xffF94701);
@@ -114,8 +115,13 @@ class AppTheme {
         // ),
       ),
       appBarTheme: const AppBarTheme(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: kBlackColor,
+          statusBarIconBrightness: Brightness.light,
+          statusBarBrightness: Brightness.light,
+        ),
         elevation: 2,
-        backgroundColor: Colors.transparent,
+        backgroundColor: kBlackColor,
         iconTheme: IconThemeData(
           color: kOrangeColor,
         ),
