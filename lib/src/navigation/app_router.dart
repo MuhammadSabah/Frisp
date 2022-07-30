@@ -40,10 +40,10 @@ class AppRouter extends RouterDelegate
       pages: [
         if (!appStateManager.isInitialized) ...[
           SplashScreen.page(),
-        ] else if (!appStateManager.isSignedUp &&
-            _auth.currentUser == null) ...[
+        ] else if (!appStateManager.isSignedUp) ...[
           SignUpScreen.page(),
-        ] else if (!appStateManager.isLoggedIn) ...[
+        ] else if (!appStateManager.isLoggedIn ||
+            _auth.currentUser == null) ...[
           LogInScreen.page(),
         ] else if (_auth.currentUser != null) ...[
           HomeScreen.page(appStateManager.selectedTab),

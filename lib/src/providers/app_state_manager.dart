@@ -27,6 +27,11 @@ class AppStateManager extends ChangeNotifier {
   int get selectedTab => _selectedTab;
 
   void initializeApp() async {
+    print(_auth.currentUser);
+    if (_auth.currentUser == null) {
+      _loggedIn = false;
+      _signedUp = false;
+    }
     _signedUp = await _appCache.isUserSignedUp();
     _loggedIn = await _appCache.isUserLoggedIn();
     _onboardingComplete = await _appCache.didCompleteOnboarding();
