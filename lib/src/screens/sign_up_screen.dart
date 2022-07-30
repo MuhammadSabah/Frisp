@@ -90,6 +90,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Username Required';
+                      } else if (_userNameController.text.length < 4) {
+                        return 'Username should be at least 4 characters';
+                      } else if (_userNameController.text.length > 16) {
+                        return 'Username is too long!';
                       }
                       return null;
                     },
@@ -212,10 +216,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Password Required';
-                      } else if (_passwordController.text.length < 6) {
-                        return 'Password must be at least 6 characters';
-                      } else if (_userNameController.text.length < 4) {
-                        return 'Username must be at least 4 characters';
                       }
                       return null;
                     },
@@ -247,7 +247,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 _showPassword = !_showPassword;
                               });
                             },
-                            icon: _showPassword == false
+                            icon: _showPassword
                                 ? FaIcon(
                                     FontAwesomeIcons.eyeSlash,
                                     color: Colors.grey.shade400,
@@ -306,15 +306,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(height: 40),
                 AuthConfirmButton(
                   title: 'Sign up',
-                  callBack: () {
+                  callBack: () async {
                     final isValidForm = _formKey.currentState!.validate();
                     if (isValidForm) {
-                      Provider.of<AppStateManager>(context, listen: false)
+                      final _output = await Provider.of<AppStateManager>(
+                              context,
+                              listen: false)
                           .signUpUser(
                         userName: _userNameController.text,
                         userEmail: _emailController.text,
                         userPassword: _passwordController.text,
                       );
+                      if (_output != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('$_output'),
+                          duration: const Duration(
+                            milliseconds: 2300,
+                          ),
+                          backgroundColor: Colors.red.shade500,
+                        ));
+                      }
                     }
                   },
                 ),

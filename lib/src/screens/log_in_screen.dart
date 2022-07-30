@@ -178,8 +178,12 @@ class _LogInScreenState extends State<LogInScreen> {
                           children: [
                             IconButton(
                               splashRadius: 20,
-                              onPressed: () {},
-                              icon: _showPassword == false
+                              onPressed: () {
+                                setState(() {
+                                  _showPassword = !_showPassword;
+                                });
+                              },
+                              icon: _showPassword
                                   ? FaIcon(
                                       FontAwesomeIcons.eyeSlash,
                                       color: Colors.grey.shade400,
@@ -237,18 +241,29 @@ class _LogInScreenState extends State<LogInScreen> {
                   const SizedBox(height: 40),
                   AuthConfirmButton(
                     title: 'Log in',
-                    callBack: () {
+                    callBack: () async {
                       final isValidForm = _formKey.currentState!.validate();
                       if (isValidForm) {
-                        Provider.of<AppStateManager>(context, listen: false)
-                            .login(
+                        final _output = await Provider.of<AppStateManager>(
+                                context,
+                                listen: false)
+                            .logInUser(
                           userEmail: _emailController.text,
                           userPassword: _passwordController.text,
                         );
+                        if (_output != null) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text('$_output'),
+                            duration: const Duration(
+                              milliseconds: 2300,
+                            ),
+                            backgroundColor: Colors.red.shade500,
+                          ));
+                        }
                       }
                     },
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height / 10),
+                  SizedBox(height: MediaQuery.of(context).size.height / 4),
                   AuthBottomRichText(
                     detailText: 'Don\'t have account? ',
                     clickableText: 'Sign up',

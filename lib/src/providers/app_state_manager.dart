@@ -66,6 +66,7 @@ class AppStateManager extends ChangeNotifier {
     required userEmail,
     required userPassword,
   }) async {
+    String errorResult = 'Error occurred';
     try {
       await auth.createUserWithEmailAndPassword(
           email: userEmail, password: userPassword);
@@ -75,13 +76,16 @@ class AppStateManager extends ChangeNotifier {
       return null;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        errorResult = 'The password provided is too weak.';
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        errorResult = 'An account already exists for that email.';
+      } else if (e.code == 'invalid-email') {
+        errorResult = 'Email is invalid.';
       } else {
         print(e);
       }
-      return e.message;
+      _signedUp = false;
+      return errorResult;
     } catch (e) {
       print(e);
       return e.toString();
@@ -94,10 +98,11 @@ class AppStateManager extends ChangeNotifier {
   //   notifyListeners();
   // }
 
-  Future<String?> login({
+  Future<String?> logInUser({
     required String userEmail,
     required String userPassword,
   }) async {
+    String errorResult = 'Error occurred';
     try {
       await auth.signInWithEmailAndPassword(
         email: userEmail,
@@ -108,14 +113,17 @@ class AppStateManager extends ChangeNotifier {
       notifyListeners();
       return null;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+      if (e.code == 'wrong-password') {
+        errorResult = 'Password is incorrect.';
+      } else if (e.code == 'user-not-found') {
+        errorResult = 'User is not registered.';
+      } else if (e.code == 'invalid-email') {
+        errorResult = 'Invalid email.';
       } else {
         print(e);
       }
-      return e.message;
+      _loggedIn = false;
+      return errorResult;
     } catch (e) {
       print(e);
       return e.toString();
