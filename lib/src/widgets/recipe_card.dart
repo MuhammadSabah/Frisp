@@ -36,13 +36,13 @@ class _RecipeCardState extends State<RecipeCard> {
                     child: CachedNetworkImage(
                       imageUrl: widget.recipe.image!,
                       fit: BoxFit.cover,
-                      placeholder: (context, url) => const SizedBox(
-                        width: 40,
-                        height: 160,
-                        child: Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      ),
+                      // placeholder: (context, url) => const SizedBox(
+                      //   width: 40,
+                      //   height: 160,
+                      //   child: Center(
+                      //     child: CircularProgressIndicator(),
+                      //   ),
+                      // ),
                       errorWidget: (context, url, error) => const Center(
                         child: Icon(Icons.error),
                       ),

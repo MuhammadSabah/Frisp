@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_recipe_final/src/widgets/recipe_grid_view.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SearchTab extends StatefulWidget {
   const SearchTab({
@@ -24,6 +25,9 @@ class _SearchTabState extends State<SearchTab>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    double itemWidth = (size.width / 2) - 10;
+    double itemHeight = 292;
     super.build(context);
     if (widget.controller.text.length < 3) {
       return SizedBox(
@@ -55,7 +59,34 @@ class _SearchTabState extends State<SearchTab>
       future: widget.futureMethod,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return Expanded(
+            child: GridView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: 10,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: (itemWidth / itemHeight),
+              ),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0, vertical: 10.0),
+                  child: Shimmer.fromColors(
+                    // enabled: true,
+                    baseColor: Colors.grey.shade400,
+                    highlightColor: Colors.grey.shade300,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          )),
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
         } else if (snapshot.hasError) {
           return Center(
             child: Text(

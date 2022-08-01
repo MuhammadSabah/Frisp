@@ -29,14 +29,13 @@ class ProfileScreen extends StatelessWidget {
                     right: 5,
                     child: IconButton(
                       onPressed: () {
-                        //!: Replace this later
                         Provider.of<AppStateManager>(context, listen: false)
-                            .logOutUser();
+                            .settingsClicked(true);
                       },
                       icon: const Icon(
-                        Icons.more_horiz,
+                        Icons.settings,
                         color: Colors.white,
-                        size: 30,
+                        size: 24,
                       ),
                     ),
                   ),

@@ -92,6 +92,14 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
         centerTitle: true,
         elevation: 0.0,
         bottomOpacity: 0.0,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            )),
         title: Text(
           'Shopping Item',
           style: Theme.of(context).textTheme.headline2,
@@ -99,7 +107,10 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
         actions: [
           IconButton(
             splashRadius: 20,
-            icon: const Icon(Icons.check),
+            icon: const Icon(
+              Icons.check,
+              color: Colors.white,
+            ),
             onPressed: () {
               final currentFocus = FocusScope.of(context);
               if (!currentFocus.hasPrimaryFocus) {

@@ -5,6 +5,7 @@ import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
 import 'package:food_recipe_final/src/screens/home_screen.dart';
 import 'package:food_recipe_final/src/screens/log_in_screen.dart';
+import 'package:food_recipe_final/src/screens/settings_screen.dart';
 import 'package:food_recipe_final/src/screens/shopping_item_screen.dart';
 import 'package:food_recipe_final/src/screens/sign_up_screen.dart';
 import 'package:food_recipe_final/src/screens/splash_screen.dart';
@@ -63,6 +64,7 @@ class AppRouter extends RouterDelegate
                 shoppingManager.updateItem(item, index);
               },
             ),
+          if (appStateManager.isSettingsClicked) SettingsScreen.page(),
         ]
       ],
     );
@@ -80,6 +82,9 @@ class AppRouter extends RouterDelegate
     }
     if (route.settings.name == AppPages.loginPath) {
       appStateManager.goToSignUp();
+    }
+    if (route.settings.name == AppPages.settingsPath) {
+      appStateManager.settingsClicked(false);
     }
     return true;
   }

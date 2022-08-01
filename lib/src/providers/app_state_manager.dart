@@ -17,6 +17,7 @@ class AppStateManager extends ChangeNotifier {
   bool _loggedIn = false;
   bool _signedUp = false;
   bool _onboardingComplete = false;
+  bool _settings = false;
   int _selectedTab = AppTab.discover;
   final _appCache = AppCache();
 
@@ -25,6 +26,7 @@ class AppStateManager extends ChangeNotifier {
   bool get isSignedUp => _signedUp;
   bool get isOnboardingComplete => _onboardingComplete;
   int get selectedTab => _selectedTab;
+  bool get isSettingsClicked => _settings;
 
   void initializeApp() async {
     print(_auth.currentUser);
@@ -45,6 +47,11 @@ class AppStateManager extends ChangeNotifier {
         notifyListeners();
       },
     );
+  }
+
+  void settingsClicked(bool value) {
+    _settings = value;
+    notifyListeners();
   }
 
   void goToLogIn() async {
@@ -150,6 +157,7 @@ class AppStateManager extends ChangeNotifier {
 
   void logOutUser() async {
     await _auth.signOut();
+    _settings = false;
     _initialized = false;
     _selectedTab = 0;
     await _appCache.invalidate();

@@ -5,6 +5,7 @@ import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/screens/discover_screen.dart';
 import 'package:food_recipe_final/src/screens/profile_screen.dart';
 import 'package:food_recipe_final/src/screens/search_recipe_screen.dart';
+import 'package:food_recipe_final/src/screens/settings_screen.dart';
 import 'package:food_recipe_final/src/screens/shopping_screen.dart';
 import 'package:provider/provider.dart';
 
