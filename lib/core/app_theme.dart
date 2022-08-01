@@ -69,7 +69,7 @@ class AppTheme {
     ),
     headline3: GoogleFonts.poppins(
       fontSize: 16,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
       color: Colors.white,
     ),
     headline4: GoogleFonts.poppins(

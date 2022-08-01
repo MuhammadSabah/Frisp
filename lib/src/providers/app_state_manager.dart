@@ -31,6 +31,8 @@ class AppStateManager extends ChangeNotifier {
     if (_auth.currentUser == null) {
       _loggedIn = false;
       _signedUp = false;
+      _signedUp = await _appCache.isUserSignedUp();
+      _loggedIn = await _appCache.isUserLoggedIn();
     }
     _signedUp = await _appCache.isUserSignedUp();
     _loggedIn = await _appCache.isUserLoggedIn();

@@ -26,6 +26,7 @@ class _RecipeGridViewState extends State<RecipeGridView> {
     double itemHeight = 292;
     return Expanded(
       child: GridView.builder(
+        physics: const BouncingScrollPhysics(),
         itemCount: widget.results.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

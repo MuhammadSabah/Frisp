@@ -229,7 +229,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
     setState(() {
       _searchResult = getRecipeData(
         _searchController.text.trim(),
-        50,
+        30,
       );
       _currentSearches.clear();
       currentCount = 0;

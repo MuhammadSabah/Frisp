@@ -21,6 +21,7 @@ class _BookmarkTabState extends State<BookmarkTab>
       builder: (context, snapshot) {
         final recipes = snapshot.data ?? [];
         return ListView.separated(
+          physics: const BouncingScrollPhysics(),
           key: Key(recipes.length.toString()),
           separatorBuilder: (_, index) => const SizedBox(height: 32),
           itemBuilder: (context, index) {
