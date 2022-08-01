@@ -27,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool _showPassword = false;
+  bool _obscureText = true;
   @override
   void initState() {
     super.initState();
@@ -229,7 +229,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     autofocus: false,
                     autocorrect: false,
                     keyboardType: TextInputType.visiblePassword,
-                    obscureText: _showPassword,
+                    obscureText: _obscureText,
                     textInputAction: TextInputAction.done,
                     decoration: InputDecoration(
                       counterText: ' ',
@@ -244,10 +244,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             splashRadius: 20,
                             onPressed: () {
                               setState(() {
-                                _showPassword = !_showPassword;
+                                _obscureText = !_obscureText;
                               });
                             },
-                            icon: _showPassword
+                            icon: _obscureText
                                 ? FaIcon(
                                     FontAwesomeIcons.eyeSlash,
                                     color: Colors.grey.shade400,

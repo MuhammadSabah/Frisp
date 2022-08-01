@@ -10,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     double itemWidth = (size.width / 2) - 10;
-    double itemHeight = 252;
+    double itemHeight = 256;
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(

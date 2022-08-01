@@ -101,6 +101,10 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             splashRadius: 20,
             icon: const Icon(Icons.check),
             onPressed: () {
+              final currentFocus = FocusScope.of(context);
+              if (!currentFocus.hasPrimaryFocus) {
+                currentFocus.unfocus();
+              }
               final shoppingItem = ShoppingItem(
                 id: widget.originalItem?.id ?? const Uuid().v1(),
                 name: _nameController.text,
