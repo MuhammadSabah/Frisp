@@ -1,11 +1,53 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/core/app_theme.dart';
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/storage_methods.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  Uint8List? _image;
+  bool isLoading = false;
+  ByteData? _defaultImage;
+
+  void selectAnImage(BuildContext context) async {
+    final result = await Provider.of<StorageMethods>(context, listen: false)
+        .pickAnImage(ImageSource.gallery);
+
+    result.fold((l) {
+      setState(() {
+        _image = l;
+      });
+    }, (r) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(r.toString()),
+          duration: const Duration(
+            milliseconds: 2300,
+          ),
+          backgroundColor: kGreyColor,
+        ),
+      );
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    rootBundle.load('assets/default_image.jpg').then(
+          (data) => _defaultImage = data,
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,28 +62,58 @@ class ProfileScreen extends StatelessWidget {
               height: MediaQuery.of(context).size.height / 2,
               child: Stack(
                 children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height / 3.2,
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                    ),
-                  ),
+                  _image != null
+                      ? Container(
+                          height: MediaQuery.of(context).size.height / 3.2,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: MemoryImage(_image!),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
+                      : Container(
+                          height: MediaQuery.of(context).size.height / 3.2,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/default_image.jpg'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                   Positioned(
-                    right: 5,
+                    left: 5,
+                    top: 0,
                     child: IconButton(
+                      splashRadius: 20,
                       onPressed: () {
-                        Provider.of<AppStateManager>(context, listen: false)
-                            .settingsClicked(true);
+                        selectAnImage(context);
                       },
-                      icon: const Icon(
-                        Icons.settings,
-                        color: Colors.white,
-                        size: 24,
+                      icon: FaIcon(
+                        FontAwesomeIcons.penToSquare,
+                        color: Colors.grey.shade300,
+                        size: 21,
                       ),
                     ),
                   ),
                   Positioned(
-                    bottom: 35,
+                    top: 0,
+                    right: 5,
+                    child: IconButton(
+                      splashRadius: 20,
+                      onPressed: () {
+                        Provider.of<AppStateManager>(context, listen: false)
+                            .settingsClicked(true);
+                      },
+                      icon: FaIcon(
+                        FontAwesomeIcons.gear,
+                        color: Colors.grey.shade300,
+                        size: 21,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 5,
                     left: 0,
                     right: 0,
                     child: Padding(
@@ -176,7 +248,8 @@ class ProfileScreen extends StatelessWidget {
             ),
             // Posts Section:
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 25),
               child: GridView.builder(
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),

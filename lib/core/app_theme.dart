@@ -91,9 +91,14 @@ class AppTheme {
 
   static ThemeData dark() {
     return ThemeData(
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: kOrangeColorTint,
+      ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         elevation: 4,
         backgroundColor: kOrangeColorTint,
+        foregroundColor: Colors.white,
       ),
       splashColor: Colors.white.withOpacity(0.5),
       splashFactory: NoSplash.splashFactory,
@@ -115,7 +120,7 @@ class AppTheme {
           statusBarIconBrightness: Brightness.light,
           statusBarBrightness: Brightness.light,
         ),
-        elevation: 2,
+        elevation: 0,
         backgroundColor: kBlackColor,
         iconTheme: IconThemeData(
           color: kOrangeColor,

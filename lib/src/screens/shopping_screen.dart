@@ -30,6 +30,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         icon: const FaIcon(
           FontAwesomeIcons.plus,
           size: 20,
+          color: Colors.white,
         ),
       ),
       appBar: AppBar(

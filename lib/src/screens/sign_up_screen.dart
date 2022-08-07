@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
-import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/widgets/auth_bottom_rich_text.dart';
 import 'package:food_recipe_final/src/widgets/auth_confirm_button.dart';
@@ -29,6 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late TextEditingController _passwordController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
+  bool _isLoading = false;
   @override
   void initState() {
     super.initState();
@@ -70,7 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           padding: const EdgeInsets.all(18.0),
           child: Form(
             key: _formKey,
-            child: ListView(
+            child: Column(
               children: [
                 Text(
                   'Sign up',
@@ -101,7 +101,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textAlign: TextAlign.start,
                     textAlignVertical: TextAlignVertical.center,
                     style: Theme.of(context).textTheme.headline3!.copyWith(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                         ),
                     controller: _userNameController,
                     cursorColor: Colors.white,
@@ -148,7 +148,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textAlign: TextAlign.start,
                     textAlignVertical: TextAlignVertical.center,
                     style: Theme.of(context).textTheme.headline3!.copyWith(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                         ),
                     controller: _emailController,
                     cursorColor: Colors.white,
@@ -195,7 +195,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textAlign: TextAlign.start,
                     textAlignVertical: TextAlignVertical.center,
                     style: Theme.of(context).textTheme.headline3!.copyWith(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                         ),
                     controller: _passwordController,
                     cursorColor: Colors.white,
@@ -268,17 +268,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   callBack: () async {
                     final isValidForm = _formKey.currentState!.validate();
                     if (isValidForm) {
-                      final _output = await Provider.of<AppStateManager>(
-                              context,
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      final output = await Provider.of<AppStateManager>(context,
                               listen: false)
                           .signUpUser(
                         userName: _userNameController.text,
                         userEmail: _emailController.text,
                         userPassword: _passwordController.text,
                       );
-                      if (_output != null) {
+                      setState(() {
+                        _isLoading = false;
+                      });
+                      if (output != null) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('$_output'),
+                          content: Text('$output'),
                           duration: const Duration(
                             milliseconds: 2300,
                           ),

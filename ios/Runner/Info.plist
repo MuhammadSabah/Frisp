@@ -46,6 +46,12 @@
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>LSApplicationQueriesSchemes</key>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photo Library Usage<string/>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera Usage<string/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Mic Usage<string/>
 <array>
   <string>sms</string>
   <string>tel</string>

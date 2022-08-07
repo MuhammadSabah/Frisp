@@ -22,6 +22,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
+          splashRadius: 20,
           onPressed: () {
             Provider.of<AppStateManager>(context, listen: false)
                 .settingsClicked(false);

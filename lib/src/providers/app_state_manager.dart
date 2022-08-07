@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_cache.dart';
+import 'package:food_recipe_final/src/models/user_model.dart';
 
 class AppTab {
   static const int discover = 0;
@@ -12,7 +14,8 @@ class AppTab {
 }
 
 class AppStateManager extends ChangeNotifier {
-  final _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _userAuth = FirebaseAuth.instance;
   bool _initialized = false;
   bool _loggedIn = false;
   bool _signedUp = false;
@@ -28,9 +31,11 @@ class AppStateManager extends ChangeNotifier {
   int get selectedTab => _selectedTab;
   bool get isSettingsClicked => _settings;
 
+  // final _streamController = StreamController<User?>();
+  // Future getUserState() async {}
   void initializeApp() async {
-    print(_auth.currentUser);
-    if (_auth.currentUser == null) {
+    debugPrint(_userAuth.currentUser.toString());
+    if (_userAuth.currentUser == null) {
       _loggedIn = false;
       _signedUp = false;
       _signedUp = await _appCache.isUserSignedUp();
@@ -77,12 +82,27 @@ class AppStateManager extends ChangeNotifier {
   }) async {
     String errorResult = 'Error occurred';
     try {
-      await _auth.createUserWithEmailAndPassword(
+      UserCredential userCred = await _userAuth.createUserWithEmailAndPassword(
           email: userEmail, password: userPassword);
+      UserModel user = UserModel(
+        id: _userAuth.currentUser!.uid,
+        userName: userName,
+        email: userEmail,
+        photoUrl: '',
+        bio: '',
+        followers: [],
+        following: [],
+      );
+      await _firestore
+          .collection('users')
+          .doc(userCred.user!.uid)
+          .set(user.toJson());
+      //
       notifyListeners();
       _signedUp = true;
       await _appCache.cacheUserSignup();
       return null;
+      //
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         errorResult = 'The password provided is too weak.';
@@ -91,7 +111,7 @@ class AppStateManager extends ChangeNotifier {
       } else if (e.code == 'invalid-email') {
         errorResult = 'Email is invalid.';
       } else {
-        print(e);
+        debugPrint(e.toString());
       }
       _signedUp = false;
       return errorResult;
@@ -107,14 +127,17 @@ class AppStateManager extends ChangeNotifier {
   }) async {
     String errorResult = 'Error occurred';
     try {
-      await _auth.signInWithEmailAndPassword(
+      await _userAuth.signInWithEmailAndPassword(
         email: userEmail,
         password: userPassword,
       );
+
+      //
       _loggedIn = true;
       await _appCache.cacheUserLogin();
       notifyListeners();
       return null;
+      //
     } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password') {
         errorResult = 'Password is incorrect.';
@@ -145,7 +168,7 @@ class AppStateManager extends ChangeNotifier {
   }
 
   void logOutUser() async {
-    await _auth.signOut();
+    await _userAuth.signOut();
     _settings = false;
     _initialized = false;
     _selectedTab = 0;

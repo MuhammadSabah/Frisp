@@ -96,7 +96,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       textAlign: TextAlign.start,
                       textAlignVertical: TextAlignVertical.center,
                       style: Theme.of(context).textTheme.headline3!.copyWith(
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                           ),
                       // controller: _nameController,
                       cursorColor: Colors.white,
@@ -145,7 +145,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       textAlign: TextAlign.start,
                       textAlignVertical: TextAlignVertical.center,
                       style: Theme.of(context).textTheme.headline3!.copyWith(
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                           ),
                       // controller: _nameController,
                       cursorColor: Colors.white,
@@ -192,7 +192,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                   color: Colors.grey.shade600,
                                   fontWeight: FontWeight.bold,
                                 ),
-                      focusedErrorBorder: kFocusedErrorBorder,
+                        focusedErrorBorder: kFocusedErrorBorder,
                         errorBorder: kErrorBorder,
                         enabledBorder: kEnabledBorder,
                         focusedBorder: kFocusedBorder,
