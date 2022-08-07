@@ -70,11 +70,6 @@ class AppStateManager extends ChangeNotifier {
     notifyListeners();
   }
 
-//  void signUp(String userName, String email, String password) async {
-  // _signedUp = true;
-  // await _appCache.cacheUserSignup();
-//     notifyListeners();
-//   }
   Future<String?> signUpUser({
     required userName,
     required userEmail,
@@ -105,12 +100,6 @@ class AppStateManager extends ChangeNotifier {
       return e.toString();
     }
   }
-
-  // void logIn(String email, String password) async {
-  // _loggedIn = true;
-  // await _appCache.cacheUserLogin();
-  //   notifyListeners();
-  // }
 
   Future<String?> logInUser({
     required String userEmail,

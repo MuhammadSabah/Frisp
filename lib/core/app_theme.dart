@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:food_recipe_final/core/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-const kOrangeColor = Color(0xffF94701);
-const kOrangeColorTint = Color(0xfffa6c34);
-const kOrangeColorTint2 = Color(0xfffb7e4d);
-const kBlackColor = Color(0xff0E0E0E);
-const kGreyColor = Color(0xff232220);
 
 class AppTheme {
   static TextTheme lightTextTheme = TextTheme(
