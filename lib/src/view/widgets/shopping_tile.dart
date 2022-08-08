@@ -57,16 +57,18 @@ class ShoppingTile extends StatelessWidget {
                               item.name,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.headline2,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline2!
+                                  .copyWith(height: 1.4),
                             ),
                           ),
                         ],
                       ),
                       const SizedBox(height: 12),
                       buildDate(context),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 6),
                       buildImportance(context),
-                      const SizedBox(height: 4),
                     ],
                   ),
                 ),
@@ -104,15 +106,17 @@ class ShoppingTile extends StatelessWidget {
     if (item.importance == Importance.low) {
       return Text(
         'Low',
-        style: Theme.of(context).textTheme.bodyText2,
+        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+              fontSize: 15,
+            ),
       );
     } else if (item.importance == Importance.medium) {
       return Text(
         'Medium',
         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Colors.yellow.shade400,
-            ),
+            fontWeight: FontWeight.bold,
+            color: Colors.yellow.shade400,
+            fontSize: 15),
       );
     }
     if (item.importance == Importance.high) {
@@ -121,6 +125,7 @@ class ShoppingTile extends StatelessWidget {
         style: Theme.of(context).textTheme.bodyText2!.copyWith(
               fontWeight: FontWeight.bold,
               color: Colors.red.shade400,
+              fontSize: 15,
             ),
       );
     } else {

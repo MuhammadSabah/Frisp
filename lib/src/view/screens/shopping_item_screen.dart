@@ -154,17 +154,17 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                buildNameField(),
+                _buildNameField(),
                 const SizedBox(height: 8),
-                buildQuantityField(),
+                _buildQuantityField(),
                 const SizedBox(height: 8),
-                buildImportanceField(),
+                _buildImportanceField(),
                 const SizedBox(height: 14),
-                buildDateField(context),
+                _buildDatePicker(context),
                 const SizedBox(height: 14),
-                buildTimeField(context),
+                _buildTimePicker(context),
                 const SizedBox(height: 14),
-                buildColorPicker(context),
+                _buildColorPicker(context),
                 const SizedBox(height: 22),
                 ShoppingTile(
                   item: ShoppingItem(
@@ -190,7 +190,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
     );
   }
 
-  Widget buildNameField() {
+  Widget _buildNameField() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -237,7 +237,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
     );
   }
 
-  Widget buildImportanceField() {
+  Widget _buildImportanceField() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -299,7 +299,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
     );
   }
 
-  Widget buildDateField(BuildContext context) {
+  Widget _buildDatePicker(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -353,7 +353,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
     );
   }
 
-  Widget buildTimeField(BuildContext context) {
+  Widget _buildTimePicker(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -404,7 +404,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
     );
   }
 
-  Widget buildColorPicker(BuildContext context) {
+  Widget _buildColorPicker(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -461,7 +461,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
     );
   }
 
-  Widget buildQuantityField() {
+  Widget _buildQuantityField() {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
