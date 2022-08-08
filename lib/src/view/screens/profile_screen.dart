@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -66,6 +67,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   //   await userProvider.refreshUser();
   //   setState(() {});
   // }
+  Future<void> _refresh() async {
+    await Future.delayed(const Duration(milliseconds: 2300), () {
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +85,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       color: kOrangeColor,
       backgroundColor: Colors.white,
       displacement: 80,
-      onRefresh: () async {
-        setState(() {});
-      },
+      onRefresh: _refresh,
       child: SafeArea(
         child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
           future: FirebaseFirestore.instance
