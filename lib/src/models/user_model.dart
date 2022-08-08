@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 class UserModel {
   final String id;
@@ -19,15 +22,35 @@ class UserModel {
     required this.following,
   });
 
+  UserModel copyWith({
+    String? id,
+    String? userName,
+    String? email,
+    String? photoUrl,
+    String? bio,
+    List? followers,
+    List? following,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      userName: userName ?? this.userName,
+      email: email ?? this.email,
+      photoUrl: photoUrl ?? this.photoUrl,
+      bio: bio ?? this.bio,
+      followers: followers ?? this.followers,
+      following: following ?? this.following,
+    );
+  }
+
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       id: json['id'],
       userName: json['userName'],
       email: json['email'],
-      photoUrl: json['photoUrl'],
-      bio: json['bio'],
-      followers: json[' followers'],
-      following: json['following'],
+      photoUrl: json['photoUrl'] ?? "",
+      bio: json['bio'] ?? "",
+      followers: json[' followers'] ?? [],
+      following: json['following'] ?? [],
     );
   }
   Map<String, dynamic> toJson() {
@@ -43,7 +66,8 @@ class UserModel {
   }
 
   factory UserModel.fromSnapshot(DocumentSnapshot snapshot) {
-    final userModel = UserModel.fromJson(snapshot as Map<String, dynamic>);
+    final userModel =
+        UserModel.fromJson(snapshot.data() as Map<String, dynamic>);
     return userModel;
   }
 }

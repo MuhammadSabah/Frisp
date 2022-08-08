@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
-import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
-import 'package:food_recipe_final/src/widgets/auth_bottom_rich_text.dart';
-import 'package:food_recipe_final/src/widgets/auth_confirm_button.dart';
-import 'package:provider/provider.dart';
+import 'package:food_recipe_final/src/view/widgets/auth_bottom_rich_text.dart';
+import 'package:food_recipe_final/src/view/widgets/auth_confirm_button.dart';
 
 class LogInScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -215,7 +214,9 @@ class _LogInScreenState extends State<LogInScreen> {
                   AuthConfirmButton(
                     title: 'Log in',
                     callBack: () async {
-                      final isValidForm = _formKey.currentState!.validate();
+                      FocusScope.of(context).unfocus();
+                      final isValidForm = _formKey.currentState!.
+                      validate();
                       if (isValidForm) {
                         final _output = await Provider.of<AppStateManager>(
                                 context,

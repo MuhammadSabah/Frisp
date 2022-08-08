@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
-import 'package:food_recipe_final/src/screens/home_screen.dart';
-import 'package:food_recipe_final/src/screens/log_in_screen.dart';
-import 'package:food_recipe_final/src/screens/settings_screen.dart';
-import 'package:food_recipe_final/src/screens/shopping_item_screen.dart';
-import 'package:food_recipe_final/src/screens/sign_up_screen.dart';
-import 'package:food_recipe_final/src/screens/splash_screen.dart';
+import 'package:food_recipe_final/src/view/screens/home_screen.dart';
+import 'package:food_recipe_final/src/view/screens/log_in_screen.dart';
+import 'package:food_recipe_final/src/view/screens/settings_screen.dart';
+import 'package:food_recipe_final/src/view/screens/shopping_item_screen.dart';
+import 'package:food_recipe_final/src/view/screens/sign_up_screen.dart';
+import 'package:food_recipe_final/src/view/screens/splash_screen.dart';
 
 class AppRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
@@ -17,6 +17,7 @@ class AppRouter extends RouterDelegate
   final AppStateManager appStateManager;
   final ShoppingManager shoppingManager;
   final _auth = FirebaseAuth.instance;
+  bool _hasData = false;
 
   AppRouter({
     required this.appStateManager,
@@ -43,10 +44,9 @@ class AppRouter extends RouterDelegate
           SplashScreen.page(),
         ] else if (!appStateManager.isSignedUp) ...[
           SignUpScreen.page(),
-        ] else if (!appStateManager.isLoggedIn ||
-            _auth.currentUser == null) ...[
+        ] else if (!appStateManager.isLoggedIn) ...[
           LogInScreen.page(),
-        ] else if (_auth.currentUser != null) ...[
+        ] else ...[
           HomeScreen.page(appStateManager.selectedTab),
           if (shoppingManager.isCreatingNewItem)
             ShoppingItemScreen.page(

@@ -23,6 +23,7 @@ class AppStateManager extends ChangeNotifier {
   bool _settings = false;
   int _selectedTab = AppTab.discover;
   final _appCache = AppCache();
+  UserModel? user;
 
   bool get isInitialized => _initialized;
   bool get isLoggedIn => _loggedIn;
@@ -33,11 +34,11 @@ class AppStateManager extends ChangeNotifier {
 
   // final _streamController = StreamController<User?>();
   // Future getUserState() async {}
-  void initializeApp() async {
+  void initializeApp(bool loginVal, bool signupVal) async {
     debugPrint(_userAuth.currentUser.toString());
     if (_userAuth.currentUser == null) {
-      _loggedIn = false;
-      _signedUp = false;
+      _loggedIn = loginVal;
+      _signedUp = signupVal;
       _signedUp = await _appCache.isUserSignedUp();
       _loggedIn = await _appCache.isUserLoggedIn();
     }
@@ -84,7 +85,7 @@ class AppStateManager extends ChangeNotifier {
     try {
       UserCredential userCred = await _userAuth.createUserWithEmailAndPassword(
           email: userEmail, password: userPassword);
-      UserModel user = UserModel(
+      user = UserModel(
         id: _userAuth.currentUser!.uid,
         userName: userName,
         email: userEmail,
@@ -96,7 +97,7 @@ class AppStateManager extends ChangeNotifier {
       await _firestore
           .collection('users')
           .doc(userCred.user!.uid)
-          .set(user.toJson());
+          .set(user!.toJson());
       //
       notifyListeners();
       _signedUp = true;
@@ -174,7 +175,7 @@ class AppStateManager extends ChangeNotifier {
     _selectedTab = 0;
     await _appCache.invalidate();
 
-    initializeApp();
+    initializeApp(false, false);
     notifyListeners();
   }
 }

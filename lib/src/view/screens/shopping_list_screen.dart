@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/src/widgets/shopping_tile.dart';
+import 'package:food_recipe_final/src/view/widgets/shopping_tile.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
 
 class ShoppingListScreen extends StatelessWidget {

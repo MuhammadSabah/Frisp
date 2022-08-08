@@ -4,7 +4,7 @@ import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
-import 'package:food_recipe_final/src/widgets/shopping_tile.dart';
+import 'package:food_recipe_final/src/view/widgets/shopping_tile.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 

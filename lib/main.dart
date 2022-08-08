@@ -7,7 +7,8 @@ import 'package:food_recipe_final/src/providers/bookmark_manager.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
 import 'package:food_recipe_final/src/navigation/app_router.dart';
-import 'package:food_recipe_final/src/providers/storage_methods.dart';
+import 'package:food_recipe_final/src/providers/user_image_provider.dart';
+import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -46,9 +47,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<StorageMethods>(
+        ChangeNotifierProvider<UserProvider>(
           lazy: false,
-          create: (context) => StorageMethods(),
+          create: (context) => UserProvider(),
+        ),
+        Provider<UserImageProvider>(
+          lazy: false,
+          create: (context) => UserImageProvider(),
         ),
         Provider<BookmarkInterface>(
           lazy: false,

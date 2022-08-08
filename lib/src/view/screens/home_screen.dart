@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
-import 'package:food_recipe_final/src/screens/discover_screen.dart';
-import 'package:food_recipe_final/src/screens/profile_screen.dart';
-import 'package:food_recipe_final/src/screens/search_recipe_screen.dart';
-import 'package:food_recipe_final/src/screens/settings_screen.dart';
-import 'package:food_recipe_final/src/screens/shopping_screen.dart';
+import 'package:food_recipe_final/src/view/screens/discover_screen.dart';
+import 'package:food_recipe_final/src/view/screens/profile_screen.dart';
+import 'package:food_recipe_final/src/view/screens/search_recipe_screen.dart';
+import 'package:food_recipe_final/src/view/screens/shopping_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const ShoppingScreen(),
     const ProfileScreen(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Consumer<AppStateManager>(builder: (context, manager, child) {

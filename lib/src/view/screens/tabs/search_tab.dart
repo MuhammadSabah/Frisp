@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:food_recipe_final/src/widgets/recipe_grid_view.dart';
+import 'package:food_recipe_final/src/view/widgets/recipe_grid_view.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
 import 'package:shimmer/shimmer.dart';
 

@@ -1,12 +1,14 @@
 import 'dart:typed_data';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 
-class StorageMethods {
+class UserImageProvider {
   final FirebaseAuth _userAuth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
   Future<Either<Uint8List, String>> pickAnImage(ImageSource source) async {
@@ -35,5 +37,24 @@ class StorageMethods {
     TaskSnapshot snapShot = await uploadTask;
     String downloadUrl = await snapShot.ref.getDownloadURL();
     return downloadUrl;
+  }
+
+  Future updateUserProfilePhoto(String? photoUrl) async {
+    await _firestore.collection('users').doc(_userAuth.currentUser!.uid).update(
+      {
+        'photoUrl': "$photoUrl",
+      },
+    );
+  }
+
+  Future<String> getUserProfileImage() async {
+    String photoUrl = '';
+    DocumentReference userDocId = FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid);
+    userDocId.get().then((DocumentSnapshot snapshot) => {
+          photoUrl = (snapshot.data() as Map<String, dynamic>)['photoUrl'],
+        });
+    return photoUrl;
   }
 }

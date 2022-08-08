@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
-import 'package:food_recipe_final/src/screens/recipe_detail_screen.dart';
+import 'package:food_recipe_final/src/view/screens/recipe_detail_screen.dart';
 
 class BookmarkCard extends StatefulWidget {
   const BookmarkCard(
