@@ -183,6 +183,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                                   (String value) => CustomDropDownMenu(
                                     value: value,
                                     text: value,
+                                    isRemovable: true,
                                     callback: () {
                                       setState(
                                         () {

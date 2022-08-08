@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomDropDownMenu<T> extends PopupMenuEntry<T> {
   const CustomDropDownMenu(
-      {required this.value, required this.text, this.callback, Key? key})
+      {required this.value, required this.text, this.callback,required this.isRemovable,  Key? key})
       : super(key: key);
   final T value;
   final String text;
   final Function()? callback;
+  final isRemovable;
 
   @override
   _CustomDropDownMenuState<T> createState() => _CustomDropDownMenuState<T>();
@@ -50,7 +50,8 @@ class _CustomDropDownMenuState<T> extends State<CustomDropDownMenu<T>> {
                     ),
                   ),
                 ),
-                GestureDetector(
+                widget.isRemovable==false?
+                const SizedBox():GestureDetector(
                   onTap: widget.callback,
                   child: SvgPicture.asset(
                     'assets/images/dismiss.svg',

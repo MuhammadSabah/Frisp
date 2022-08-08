@@ -8,6 +8,7 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
+import 'package:food_recipe_final/src/view/widgets/custom_drop_down.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -23,6 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Uint8List? _image;
   bool _isLoading = false;
   String imageUrl = 'assets/default_image.jpg';
+  List<String> dropDownList = ['Settings', 'Edit Profile'];
 
   void selectAnImage(BuildContext context) async {
     final imageProvider =
@@ -114,36 +116,67 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
-                        Positioned(
-                          left: 5,
-                          top: 0,
-                          child: IconButton(
-                            splashRadius: 20,
-                            onPressed: () {
-                              selectAnImage(context);
-                            },
-                            icon: FaIcon(
-                              FontAwesomeIcons.penToSquare,
-                              color: Colors.grey.shade500,
-                              size: 21,
-                            ),
-                          ),
-                        ),
+                        // Positioned(
+                        //   left: 5,
+                        //   top: 0,
+                        //   child: IconButton(
+                        //     splashRadius: 20,
+                        //     onPressed: () {
+                        //       selectAnImage(context);
+                        //     },
+                        //     icon: FaIcon(
+                        //       FontAwesomeIcons.penToSquare,
+                        //       color: Colors.grey.shade500,
+                        //       size: 21,
+                        //     ),
+                        //   ),
+                        // ),
+                        // Positioned(
+                        //   top: 0,
+                        //   right: 5,
+                        //   child: IconButton(
+                        //     splashRadius: 20,
+                        //     onPressed: () {
+                        //       Provider.of<AppStateManager>(context,
+                        //               listen: false)
+                        //           .settingsClicked(true);
+                        //     },
+                        //     icon: FaIcon(
+                        //       FontAwesomeIcons.gear,
+                        //       color: Colors.grey.shade500,
+                        //       size: 21,
+                        //     ),
+                        //   ),
+                        // ),
                         Positioned(
                           top: 0,
                           right: 5,
-                          child: IconButton(
+                          child: PopupMenuButton(
                             splashRadius: 20,
-                            onPressed: () {
-                              Provider.of<AppStateManager>(context,
-                                      listen: false)
-                                  .settingsClicked(true);
-                            },
-                            icon: FaIcon(
-                              FontAwesomeIcons.gear,
-                              color: Colors.grey.shade500,
-                              size: 21,
+                            icon: const FaIcon(
+                              FontAwesomeIcons.ellipsis,
+                              color: Colors.white,
                             ),
+                            onSelected: (String value) {
+                              if (value == 'Settings') {
+                                Provider.of<AppStateManager>(context,
+                                        listen: false)
+                                    .settingsClicked(true);
+                              } else if (value == 'Edit Profile') {
+                                selectAnImage(context);
+                              }
+                            },
+                            itemBuilder: (BuildContext context) {
+                              return dropDownList
+                                  .map<CustomDropDownMenu<String>>(
+                                    (String value) => CustomDropDownMenu(
+                                      value: value,
+                                      text: value,
+                                      isRemovable: false,
+                                    ),
+                                  )
+                                  .toList();
+                            },
                           ),
                         ),
                         Positioned(
@@ -237,7 +270,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                           FontWeight.w500,
                                                     ),
                                               ),
-                                              Text('128'),
+                                              const Text('128'),
                                             ],
                                           ),
                                           Column(
@@ -254,7 +287,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                           FontWeight.w500,
                                                     ),
                                               ),
-                                              Text('210k'),
+                                              Text(user.followers.length
+                                                  .toString()),
                                             ],
                                           ),
                                           Column(
@@ -271,7 +305,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                           FontWeight.w500,
                                                     ),
                                               ),
-                                              const Text('12'),
+                                              Text(user.following.length
+                                                  .toString()),
                                             ],
                                           ),
                                         ],
