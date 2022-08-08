@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
 import 'package:intl/intl.dart';
@@ -21,52 +20,69 @@ class ShoppingTile extends StatelessWidget {
         color: kGreyColor,
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
-      height: 100,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Stack(
         children: [
-          Row(
-            children: [
-              Container(
-                width: 8.0,
-                decoration: BoxDecoration(
-                  color: item.color,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                  ),
+          Positioned(
+            left: 0,
+            top: 0,
+            bottom: 0,
+            child: Container(
+              width: 12.0,
+              decoration: BoxDecoration(
+                color: item.color,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10),
                 ),
               ),
-              const SizedBox(width: 14),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    item.name,
-                    maxLines: 3,
-                    style: Theme.of(context).textTheme.headline2,
-                  ),
-                  const SizedBox(height: 4),
-                  buildDate(context),
-                  const SizedBox(height: 4),
-                  buildImportance(context),
-                ],
-              ),
-            ],
+            ),
           ),
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 16.0),
-                child: Text(
-                  item.quantity.toString(),
-                  style: Theme.of(context).textTheme.headline2!.copyWith(
-                        fontSize: 19,
+          Padding(
+            padding: const EdgeInsets.all(12.0).copyWith(left: 24),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              item.name,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.headline2,
+                            ),
+                          ),
+                        ],
                       ),
+                      const SizedBox(height: 12),
+                      buildDate(context),
+                      const SizedBox(height: 4),
+                      buildImportance(context),
+                      const SizedBox(height: 4),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: Text(
+                        item.quantity.toString(),
+                        style: Theme.of(context).textTheme.headline2!.copyWith(
+                              fontSize: 19,
+                            ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

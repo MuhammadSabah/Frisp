@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
-import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
 import 'package:food_recipe_final/src/view/widgets/shopping_tile.dart';
@@ -49,6 +48,7 @@ class ShoppingItemScreen extends StatefulWidget {
 class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
   final _nameController = TextEditingController();
   final _quantityController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String _name = '';
   Importance _importance = Importance.low;
   DateTime _dueDate = DateTime.now();
@@ -94,6 +94,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
         elevation: 0.0,
         bottomOpacity: 0.0,
         leading: IconButton(
+            splashRadius: 20,
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -117,25 +118,28 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
               if (!currentFocus.hasPrimaryFocus) {
                 currentFocus.unfocus();
               }
-              final shoppingItem = ShoppingItem(
-                id: widget.originalItem?.id ?? const Uuid().v1(),
-                name: _nameController.text,
-                importance: _importance,
-                color: _currentColor,
-                quantity: _quantityController.text,
-                date: DateTime(
-                  _dueDate.year,
-                  _dueDate.month,
-                  _dueDate.day,
-                  _timeOfDay.hour,
-                  _timeOfDay.minute,
-                ),
-              );
+              final isValidForm = _formKey.currentState!.validate();
+              if (isValidForm) {
+                final shoppingItem = ShoppingItem(
+                  id: widget.originalItem?.id ?? const Uuid().v1(),
+                  name: _nameController.text,
+                  importance: _importance,
+                  color: _currentColor,
+                  quantity: _quantityController.text,
+                  date: DateTime(
+                    _dueDate.year,
+                    _dueDate.month,
+                    _dueDate.day,
+                    _timeOfDay.hour,
+                    _timeOfDay.minute,
+                  ),
+                );
 
-              if (widget.isUpdating) {
-                widget.onUpdate(shoppingItem, widget.index);
-              } else {
-                widget.onCreate(shoppingItem);
+                if (widget.isUpdating) {
+                  widget.onUpdate(shoppingItem, widget.index);
+                } else {
+                  widget.onCreate(shoppingItem);
+                }
               }
             },
           )
@@ -145,6 +149,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
         child: Container(
           padding: const EdgeInsets.all(16),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               buildNameField(),
@@ -190,9 +195,17 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
           'Item Name',
           style: Theme.of(context).textTheme.bodyText1,
         ),
-        Container(
-          color: kGreyColor,
-          child: TextField(
+        Form(
+          key: _formKey,
+          child: TextFormField(
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return 'Enter a name';
+              }
+              if (value.length > 55) {
+                return 'Name is too long';
+              }
+            },
             style: Theme.of(context).textTheme.headline3,
             autofocus: false,
             controller: _nameController,
@@ -200,6 +213,9 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             autocorrect: false,
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: kGreyColor,
+              counterText: ' ',
               contentPadding: const EdgeInsets.only(left: 8),
               hintText: 'E.g. 1kg of Apples, A bag of Bananas, 500g of salt',
               hintStyle: Theme.of(context).textTheme.headline4!.copyWith(

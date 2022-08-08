@@ -12,9 +12,9 @@ class ShoppingListScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: ListView.separated(
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           final item = shoppingItems[index];
-
           return Dismissible(
             key: Key(item.id),
             direction: DismissDirection.endToStart,
@@ -41,7 +41,7 @@ class ShoppingListScreen extends StatelessWidget {
                 SnackBar(
                   content: Text('${item.name} dismissed'),
                   duration: const Duration(
-                    milliseconds: 2000,
+                    milliseconds: 2300,
                   ),
                   action: SnackBarAction(
                     label: 'Undo',

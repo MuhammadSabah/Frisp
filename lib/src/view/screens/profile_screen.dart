@@ -76,25 +76,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
     double itemWidth = (size.width / 2) - 10;
     double itemHeight = 256;
     return SafeArea(
-      child: SingleChildScrollView(
-        child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-          future: FirebaseFirestore.instance
-              .collection('users')
-              .doc(FirebaseAuth.instance.currentUser!.uid)
-              .get(),
-          builder: (context, AsyncSnapshot snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.hasError) {
-              return const Center(
-                child: Text('Error occurred!'),
-              );
-            } else {
-              final user = UserModel.fromSnapshot(snapshot.data);
-              // debugPrint('USER: $user');
-              return Column(
+      child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+        future: FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .get(),
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return const Center(
+              child: Text('Error occurred!'),
+            );
+          } else {
+            final user = UserModel.fromSnapshot(snapshot.data);
+            // debugPrint('USER: $user');
+            return SingleChildScrollView(
+              child: Column(
                 children: [
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 2,
@@ -362,10 +362,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ],
-              );
-            }
-          },
-        ),
+              ),
+            );
+          }
+        },
       ),
     );
   }
