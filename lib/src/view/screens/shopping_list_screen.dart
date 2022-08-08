@@ -53,13 +53,18 @@ class ShoppingListScreen extends StatelessWidget {
                 ),
               );
             },
-            child: InkWell(
-              onTap: () {
-                manager.shoppingItemTapped(index);
-              },
-              child: ShoppingTile(
-                key: Key(item.id),
-                item: item,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Material(
+                child: InkWell(
+                  onTap: () {
+                    manager.shoppingItemTapped(index);
+                  },
+                  child: ShoppingTile(
+                    key: Key(item.id),
+                    item: item,
+                  ),
+                ),
               ),
             ),
           );

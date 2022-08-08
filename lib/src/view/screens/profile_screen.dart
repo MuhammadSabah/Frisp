@@ -116,38 +116,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
-                        // Positioned(
-                        //   left: 5,
-                        //   top: 0,
-                        //   child: IconButton(
-                        //     splashRadius: 20,
-                        //     onPressed: () {
-                        //       selectAnImage(context);
-                        //     },
-                        //     icon: FaIcon(
-                        //       FontAwesomeIcons.penToSquare,
-                        //       color: Colors.grey.shade500,
-                        //       size: 21,
-                        //     ),
-                        //   ),
-                        // ),
-                        // Positioned(
-                        //   top: 0,
-                        //   right: 5,
-                        //   child: IconButton(
-                        //     splashRadius: 20,
-                        //     onPressed: () {
-                        //       Provider.of<AppStateManager>(context,
-                        //               listen: false)
-                        //           .settingsClicked(true);
-                        //     },
-                        //     icon: FaIcon(
-                        //       FontAwesomeIcons.gear,
-                        //       color: Colors.grey.shade500,
-                        //       size: 21,
-                        //     ),
-                        //   ),
-                        // ),
+                  
                         Positioned(
                           top: 0,
                           right: 5,

@@ -15,10 +15,12 @@ class ShoppingTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Ink(
       decoration: const BoxDecoration(
         color: kGreyColor,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
       ),
       child: Stack(
         children: [
@@ -27,7 +29,7 @@ class ShoppingTile extends StatelessWidget {
             top: 0,
             bottom: 0,
             child: Container(
-              width: 12.0,
+              width: 10.0,
               decoration: BoxDecoration(
                 color: item.color,
                 borderRadius: const BorderRadius.only(

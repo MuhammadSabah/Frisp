@@ -5,12 +5,16 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomDropDownMenu<T> extends PopupMenuEntry<T> {
   const CustomDropDownMenu(
-      {required this.value, required this.text, this.callback,required this.isRemovable,  Key? key})
+      {required this.value,
+      required this.text,
+      this.callback,
+      required this.isRemovable,
+      Key? key})
       : super(key: key);
   final T value;
   final String text;
   final Function()? callback;
-  final isRemovable;
+  final bool isRemovable;
 
   @override
   _CustomDropDownMenuState<T> createState() => _CustomDropDownMenuState<T>();
@@ -28,7 +32,7 @@ class _CustomDropDownMenuState<T> extends State<CustomDropDownMenu<T>> {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 60, minWidth: 110),
+      constraints: const BoxConstraints(minHeight: 60, minWidth: 100),
       child: InkWell(
         onTap: () {
           Navigator.of(context).pop<T>(widget.value);
@@ -36,7 +40,6 @@ class _CustomDropDownMenuState<T> extends State<CustomDropDownMenu<T>> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
-            width: 80,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -44,20 +47,21 @@ class _CustomDropDownMenuState<T> extends State<CustomDropDownMenu<T>> {
                   child: Text(
                     widget.text,
                     style: GoogleFonts.poppins(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
                       color: kBlackColor,
                     ),
                   ),
                 ),
-                widget.isRemovable==false?
-                const SizedBox():GestureDetector(
-                  onTap: widget.callback,
-                  child: SvgPicture.asset(
-                    'assets/images/dismiss.svg',
-                    width: 20,
-                  ),
-                ),
+                widget.isRemovable == false
+                    ? const SizedBox()
+                    : GestureDetector(
+                        onTap: widget.callback,
+                        child: SvgPicture.asset(
+                          'assets/images/dismiss.svg',
+                          width: 20,
+                        ),
+                      ),
               ],
             ),
           ),

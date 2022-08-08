@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food_recipe_final/core/app_theme.dart';
+import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/firebase_options.dart';
 import 'package:food_recipe_final/src/data/bookmark_interface.dart';
 import 'package:food_recipe_final/src/providers/bookmark_manager.dart';
@@ -18,6 +20,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+    // SystemChrome.setSystemUIOverlayStyle(
+    // const SystemUiOverlayStyle(
+    //   systemNavigationBarColor: kBlackColor2,
+    // ),
+  // );
   runApp(const MyApp());
 }
 
