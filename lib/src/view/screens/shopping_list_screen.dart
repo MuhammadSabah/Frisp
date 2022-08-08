@@ -56,6 +56,7 @@ class ShoppingListScreen extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Material(
+                shadowColor: Colors.transparent,
                 child: InkWell(
                   onTap: () {
                     manager.shoppingItemTapped(index);

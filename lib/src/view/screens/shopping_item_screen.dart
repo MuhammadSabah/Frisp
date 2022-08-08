@@ -148,39 +148,42 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              buildNameField(),
-              const SizedBox(height: 14),
-              buildQuantityField(),
-              const SizedBox(height: 14),
-              buildImportanceField(),
-              const SizedBox(height: 14),
-              buildDateField(context),
-              const SizedBox(height: 14),
-              buildTimeField(context),
-              const SizedBox(height: 14),
-              buildColorPicker(context),
-              const SizedBox(height: 22),
-              ShoppingTile(
-                item: ShoppingItem(
-                  id: 'PreviewMode',
-                  name: _name,
-                  importance: _importance,
-                  color: _currentColor,
-                  quantity: _quantityController.text,
-                  date: DateTime(
-                    _dueDate.year,
-                    _dueDate.month,
-                    _dueDate.day,
-                    _timeOfDay.hour,
-                    _timeOfDay.minute,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildNameField(),
+                const SizedBox(height: 8),
+                buildQuantityField(),
+                const SizedBox(height: 8),
+                buildImportanceField(),
+                const SizedBox(height: 14),
+                buildDateField(context),
+                const SizedBox(height: 14),
+                buildTimeField(context),
+                const SizedBox(height: 14),
+                buildColorPicker(context),
+                const SizedBox(height: 22),
+                ShoppingTile(
+                  item: ShoppingItem(
+                    id: 'PreviewMode',
+                    name: _name,
+                    importance: _importance,
+                    color: _currentColor,
+                    quantity: _quantityController.text,
+                    date: DateTime(
+                      _dueDate.year,
+                      _dueDate.month,
+                      _dueDate.day,
+                      _timeOfDay.hour,
+                      _timeOfDay.minute,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -195,41 +198,38 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
           'Item Name',
           style: Theme.of(context).textTheme.bodyText1,
         ),
-        Form(
-          key: _formKey,
-          child: TextFormField(
-            validator: (String? value) {
-              if (value!.isEmpty) {
-                return 'Enter a name';
-              }
-              if (value.length > 55) {
-                return 'Name is too long';
-              }
-            },
-            style: Theme.of(context).textTheme.headline3,
-            autofocus: false,
-            controller: _nameController,
-            cursorColor: _currentColor,
-            autocorrect: false,
-            textInputAction: TextInputAction.done,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: kGreyColor,
-              counterText: ' ',
-              contentPadding: const EdgeInsets.only(left: 8),
-              hintText: 'E.g. 1kg of Apples, A bag of Bananas, 500g of salt',
-              hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
-                    color: Colors.white70,
-                  ),
-              enabledBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: kOrangeColorTint2),
-              ),
-              focusedBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: kOrangeColorTint),
-              ),
-              border: const UnderlineInputBorder(
-                borderSide: BorderSide(color: kOrangeColorTint),
-              ),
+        TextFormField(
+          validator: (String? value) {
+            if (value!.isEmpty) {
+              return 'Enter a name';
+            }
+            if (value.length > 55) {
+              return 'Name is too long';
+            }
+          },
+          style: Theme.of(context).textTheme.headline3,
+          autofocus: false,
+          controller: _nameController,
+          cursorColor: Colors.white,
+          autocorrect: false,
+          textInputAction: TextInputAction.done,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: kGreyColor,
+            counterText: ' ',
+            contentPadding: const EdgeInsets.only(left: 8),
+            hintText: 'E.g. 1kg of Apples, A bag of Bananas, 500g of salt',
+            hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
+                  color: Colors.white70,
+                ),
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: kOrangeColorTint2),
+            ),
+            focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: kOrangeColorTint),
+            ),
+            border: const UnderlineInputBorder(
+              borderSide: BorderSide(color: kOrangeColorTint),
             ),
           ),
         ),
@@ -472,18 +472,25 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
         ),
         Padding(
           padding: const EdgeInsets.only(right: 12),
-          child: Container(
-            width: 65,
-            color: kGreyColor,
-            child: TextField(
+          child: SizedBox(
+            width: 85,
+            child: TextFormField(
+              validator: (String? value) {
+                if (value!.length >= 5) {
+                  return 'Too much';
+                }
+              },
               keyboardType: TextInputType.number,
               style: Theme.of(context).textTheme.headline3,
               autofocus: false,
               autocorrect: false,
               textInputAction: TextInputAction.done,
               controller: _quantityController,
-              cursorColor: _currentColor,
+              cursorColor: Colors.white,
               decoration: const InputDecoration(
+                fillColor: kGreyColor,
+                filled: true,
+                counterText: ' ',
                 contentPadding: EdgeInsets.all(8),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: kOrangeColorTint2),
