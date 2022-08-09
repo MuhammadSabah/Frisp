@@ -82,9 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     double itemWidth = (size.width / 2) - 10;
     double itemHeight = 256;
     return Theme(
-      data: Theme.of(context).copyWith(
-        useMaterial3: false
-      ),
+      data: Theme.of(context).copyWith(useMaterial3: false),
       child: RefreshIndicator(
         color: kOrangeColor,
         backgroundColor: Colors.white,
@@ -121,12 +119,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: CachedNetworkImage(
                                 imageUrl: user.photoUrl,
                                 fit: BoxFit.cover,
-                                placeholder: (context, url) => Shimmer.fromColors(
+                                placeholder: (context, url) =>
+                                    Shimmer.fromColors(
                                   baseColor: Colors.grey.shade400,
                                   highlightColor: Colors.grey.shade300,
                                   child: SizedBox(
-                                    height:
-                                        MediaQuery.of(context).size.height / 3.2,
+                                    height: MediaQuery.of(context).size.height /
+                                        3.2,
                                   ),
                                 ),
                               ),
@@ -167,8 +166,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               left: 0,
                               right: 0,
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 16.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0),
                                 child: Container(
                                   height:
                                       MediaQuery.of(context).size.height / 3.2,
@@ -318,11 +317,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           shrinkWrap: true,
                           physics: const BouncingScrollPhysics(),
                           itemCount: 5,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: (itemWidth / itemHeight),
-                              crossAxisSpacing: 14,
-                              mainAxisSpacing: 14),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: (itemWidth / itemHeight),
+                                  crossAxisSpacing: 14,
+                                  mainAxisSpacing: 14),
                           itemBuilder: (context, index) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -337,12 +337,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 8.0, bottom: 8),
+                                  padding: const EdgeInsets.only(
+                                      top: 8.0, bottom: 8),
                                   child: Text(
                                     'Post Title',
                                     textAlign: TextAlign.start,
-                                    style: Theme.of(context).textTheme.headline3,
+                                    style:
+                                        Theme.of(context).textTheme.headline3,
                                   ),
                                 )
                               ],

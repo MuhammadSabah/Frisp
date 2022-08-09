@@ -126,7 +126,7 @@ class _RecipeCardState extends State<RecipeCard> {
                       'By ${widget.recipe.sourceName}',
                       style: Theme.of(context).textTheme.headline4!.copyWith(
                             color: Colors.grey,
-                            // fontSize: 10,
+                            fontSize: 14,
                           ),
                       maxLines: 2,
                     ),

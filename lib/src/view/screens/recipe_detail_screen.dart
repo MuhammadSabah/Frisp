@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/data/bookmark_interface.dart';
 import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
 import 'package:food_recipe_final/src/view/widgets/bottom_save_button.dart';
@@ -60,9 +61,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
     keysList = tagsMap!.keys.toList();
 
     return Theme(
-      data: Theme.of(context).copyWith(
-        useMaterial3: false
-      ),
+      data: Theme.of(context).copyWith(useMaterial3: false),
       child: Scaffold(
         body: Stack(
           children: [
@@ -129,6 +128,22 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
             BottomSaveButton(
               saveRecipe: () {
                 bookmark.insertRecipe(widget.recipe);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text('Recipe Saved!'),
+                    duration: const Duration(
+                      milliseconds: 2300,
+                    ),
+                    backgroundColor: kOrangeColorTint,
+                    action: SnackBarAction(
+                      label: 'Undo',
+                      textColor: Colors.grey,
+                      onPressed: () {
+                        bookmark.deleteRecipe(widget.recipe);
+                      },
+                    ),
+                  ),
+                );
               },
             ),
           ],

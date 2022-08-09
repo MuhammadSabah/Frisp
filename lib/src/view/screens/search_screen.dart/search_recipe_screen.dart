@@ -252,6 +252,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
   }
 
   void startSearch(String value) {
+     FocusScope.of(context).unfocus();
     setState(() {
       _searchResult = getRecipeData(
         _searchController.text.trim(),
