@@ -24,7 +24,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
   late TextEditingController _searchController;
   late TabController _tabController;
   List<String> _previousSearches = [];
-  List<ResultsAPI> _currentSearches = [];
+  final List<ResultsAPI> _currentSearches = [];
   int currentCount = 0;
   Future<RecipeAPIQuery>? _searchResult;
 

@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/view/screens/discover_screen.dart';
-import 'package:food_recipe_final/src/view/screens/feed_screen.dart';
+import 'package:food_recipe_final/src/view/screens/feed_screen/feed_screen.dart';
 import 'package:food_recipe_final/src/view/screens/profile_screen.dart';
 import 'package:food_recipe_final/src/view/screens/search_screen.dart/search_recipe_screen.dart';
 import 'package:food_recipe_final/src/view/screens/shopping_screen/shopping_screen.dart';
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static List<Widget> pages = [
     const DiscoverScreen(),
     const SearchRecipeScreen(),
-    const FeedScreen(),
+    FeedScreen(),
     const ShoppingScreen(),
     const ProfileScreen(),
   ];
