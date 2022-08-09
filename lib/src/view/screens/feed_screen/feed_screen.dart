@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/view/screens/feed_screen/tab_bars/discover_tab.dart';
 import 'package:food_recipe_final/src/view/screens/feed_screen/tab_bars/activity_tab.dart';
 
 class FeedScreen extends StatefulWidget {
@@ -89,7 +90,7 @@ class _FeedScreenState extends State<FeedScreen>
                   controller: _tabController,
                   children: [
                     ActivityTab(),
-                    Container(),
+                    DiscoverTab(),
                   ],
                 ),
               )),
