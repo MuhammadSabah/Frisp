@@ -84,92 +84,49 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: kOrangeColorTint,
-        ),
-        centerTitle: true,
-        elevation: 0.0,
-        bottomOpacity: 0.0,
-        leading: IconButton(
-            splashRadius: 20,
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            )),
-        title: Text(
-          'Shopping Item',
-          style: Theme.of(context).textTheme.headline2,
-        ),
-        actions: [
-          IconButton(
-            splashRadius: 20,
-            icon: const Icon(
-              Icons.check,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              final currentFocus = FocusScope.of(context);
-              if (!currentFocus.hasPrimaryFocus) {
-                currentFocus.unfocus();
-              }
-              final isValidForm = _formKey.currentState!.validate();
-              if (isValidForm) {
-                final shoppingItem = ShoppingItem(
-                  id: widget.originalItem?.id ?? const Uuid().v1(),
-                  name: _nameController.text,
-                  importance: _importance,
-                  color: _currentColor,
-                  quantity: _quantityController.text,
-                  date: DateTime(
-                    _dueDate.year,
-                    _dueDate.month,
-                    _dueDate.day,
-                    _timeOfDay.hour,
-                    _timeOfDay.minute,
-                  ),
-                );
-
-                if (widget.isUpdating) {
-                  widget.onUpdate(shoppingItem, widget.index);
-                } else {
-                  widget.onCreate(shoppingItem);
-                }
-              }
-            },
-          )
-        ],
+    return Theme(
+      data: Theme.of(context).copyWith(
+        useMaterial3: false
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildNameField(),
-                const SizedBox(height: 8),
-                _buildQuantityField(),
-                const SizedBox(height: 8),
-                _buildImportanceField(),
-                const SizedBox(height: 14),
-                _buildDatePicker(context),
-                const SizedBox(height: 14),
-                _buildTimePicker(context),
-                const SizedBox(height: 14),
-                _buildColorPicker(context),
-                const SizedBox(height: 22),
-                ShoppingTile(
-                  item: ShoppingItem(
-                    id: 'PreviewMode',
-                    name: _name,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          iconTheme: const IconThemeData(
+            color: kOrangeColorTint,
+          ),
+          centerTitle: true,
+          elevation: 0.0,
+          bottomOpacity: 0.0,
+          leading: IconButton(
+              splashRadius: 20,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              )),
+          title: Text(
+            'Shopping Item',
+            style: Theme.of(context).textTheme.headline2,
+          ),
+          actions: [
+            IconButton(
+              splashRadius: 20,
+              icon: const Icon(
+                Icons.check,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                final currentFocus = FocusScope.of(context);
+                if (!currentFocus.hasPrimaryFocus) {
+                  currentFocus.unfocus();
+                }
+                final isValidForm = _formKey.currentState!.validate();
+                if (isValidForm) {
+                  final shoppingItem = ShoppingItem(
+                    id: widget.originalItem?.id ?? const Uuid().v1(),
+                    name: _nameController.text,
                     importance: _importance,
                     color: _currentColor,
                     quantity: _quantityController.text,
@@ -180,9 +137,57 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                       _timeOfDay.hour,
                       _timeOfDay.minute,
                     ),
+                  );
+    
+                  if (widget.isUpdating) {
+                    widget.onUpdate(shoppingItem, widget.index);
+                  } else {
+                    widget.onCreate(shoppingItem);
+                  }
+                }
+              },
+            )
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildNameField(),
+                  const SizedBox(height: 8),
+                  _buildQuantityField(),
+                  const SizedBox(height: 8),
+                  _buildImportanceField(),
+                  const SizedBox(height: 14),
+                  _buildDatePicker(context),
+                  const SizedBox(height: 14),
+                  _buildTimePicker(context),
+                  const SizedBox(height: 14),
+                  _buildColorPicker(context),
+                  const SizedBox(height: 22),
+                  ShoppingTile(
+                    item: ShoppingItem(
+                      id: 'PreviewMode',
+                      name: _name,
+                      importance: _importance,
+                      color: _currentColor,
+                      quantity: _quantityController.text,
+                      date: DateTime(
+                        _dueDate.year,
+                        _dueDate.month,
+                        _dueDate.day,
+                        _timeOfDay.hour,
+                        _timeOfDay.minute,
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

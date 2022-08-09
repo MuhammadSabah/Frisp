@@ -94,7 +94,7 @@ class AppTheme {
       useMaterial3: true,
       
       colorScheme: ColorScheme.fromSeed(
-        seedColor: kOrangeColorTint,
+        seedColor: kOrangeColor,
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         elevation: 4,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/view/screens/search_screen.dart/tabs_bars/bookmark_tab.dart';
+import 'package:food_recipe_final/src/view/screens/search_screen.dart/tabs_bars/search_tab.dart';
 import 'package:food_recipe_final/src/view/widgets/custom_drop_down.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
-import 'package:food_recipe_final/src/view/screens/tabs/bookmark_tab.dart';
-import 'package:food_recipe_final/src/view/screens/tabs/search_tab.dart';
 import 'package:food_recipe_final/src/services/recipe_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -70,52 +70,55 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          _buildSearchCard(),
-          Theme(
-            data: ThemeData(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-            ),
-            child: TabBar(
-              controller: _tabController,
-              labelStyle: Theme.of(context).textTheme.headline3!.copyWith(
-                    fontSize: 14,
-                  ),
-              tabs: const [
-                Tab(text: "Search"),
-                Tab(text: "Bookmarks"),
-              ],
-              indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
-              indicatorColor: Colors.grey.shade600,
-              // indicator: CircleTabIndicator(
-              //   radius: 4.1,
-              //   color: Colors.grey.shade600,
-              // ),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.only(top: 6),
-              height: double.maxFinite,
-              width: MediaQuery.of(context).size.width,
-              child: TabBarView(
+    return Theme(
+      data: Theme.of(context).copyWith(useMaterial3: false),
+      child: SafeArea(
+        child: Column(
+          children: [
+            _buildSearchCard(),
+            Theme(
+              data: ThemeData(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+              ),
+              child: TabBar(
                 controller: _tabController,
-                children: [
-                  SearchTab(
-                    controller: _searchController,
-                    currentSearches: _currentSearches,
-                    count: currentCount,
-                    futureMethod: _searchResult,
-                  ),
-                  const BookmarkTab(),
+                labelStyle: Theme.of(context).textTheme.headline3!.copyWith(
+                      fontSize: 14,
+                    ),
+                tabs: const [
+                  Tab(text: "Search"),
+                  Tab(text: "Bookmarks"),
                 ],
+                indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
+                indicatorColor: Colors.grey.shade600,
+                // indicator: CircleTabIndicator(
+                //   radius: 4.1,
+                //   color: Colors.grey.shade600,
+                // ),
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.only(top: 6),
+                height: double.maxFinite,
+                width: MediaQuery.of(context).size.width,
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    SearchTab(
+                      controller: _searchController,
+                      currentSearches: _currentSearches,
+                      count: currentCount,
+                      futureMethod: _searchResult,
+                    ),
+                    const BookmarkTab(),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

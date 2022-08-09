@@ -59,75 +59,80 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
     tagsMap!.removeWhere((key, value) => value == false);
     keysList = tagsMap!.keys.toList();
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          CustomScrollView(
-            slivers: [
-              DetailsSliverAppBar(imgUrl: widget.recipe.image!),
-              SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        DetailsTitleSection(
-                          diets: widget.recipe.diets ?? [],
-                          dishTypes: widget.recipe.dishTypes ?? [],
-                          sourceName: widget.recipe.creditsText ?? '',
-                          sourceUrl: widget.recipe.sourceUrl ?? '',
-                          keysList: keysList ?? [],
-                          title: widget.recipe.title ?? '',
-                        ),
-                        Divider(
-                          color: Colors.grey.shade700,
-                          thickness: 1.1,
-                        ),
-                        ServingsAndReadyInSection(
-                          readyInMinutes: widget.recipe.readyInMinutes!,
-                          servings: widget.recipe.servings!,
-                        ),
-                        Divider(
-                          color: Colors.grey.shade700,
-                          thickness: 1.1,
-                        ),
-                        const SizedBox(height: 16),
-                        IngredientsSection(
-                          ingredients: widget.recipe.ingredients!,
-                        ),
-                        const SizedBox(height: 16),
-                        Divider(
-                          color: Colors.grey.shade700,
-                          thickness: 1.1,
-                        ),
-                        const SizedBox(height: 16),
-                        NutritionsSection(
-                          nutritionsList: nutritionsList,
-                        ),
-                        const SizedBox(height: 16),
-                        Divider(
-                          color: Colors.grey.shade700,
-                          thickness: 1.1,
-                        ),
-                        const SizedBox(height: 16),
-                        InstructionsSection(
-                          instructions: widget.recipe.instructions,
-                        ),
-                        const SizedBox(height: 60),
-                      ],
-                    ),
-                  ],
+    return Theme(
+      data: Theme.of(context).copyWith(
+        useMaterial3: false
+      ),
+      child: Scaffold(
+        body: Stack(
+          children: [
+            CustomScrollView(
+              slivers: [
+                DetailsSliverAppBar(imgUrl: widget.recipe.image!),
+                SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          DetailsTitleSection(
+                            diets: widget.recipe.diets ?? [],
+                            dishTypes: widget.recipe.dishTypes ?? [],
+                            sourceName: widget.recipe.creditsText ?? '',
+                            sourceUrl: widget.recipe.sourceUrl ?? '',
+                            keysList: keysList ?? [],
+                            title: widget.recipe.title ?? '',
+                          ),
+                          Divider(
+                            color: Colors.grey.shade700,
+                            thickness: 1.1,
+                          ),
+                          ServingsAndReadyInSection(
+                            readyInMinutes: widget.recipe.readyInMinutes!,
+                            servings: widget.recipe.servings!,
+                          ),
+                          Divider(
+                            color: Colors.grey.shade700,
+                            thickness: 1.1,
+                          ),
+                          const SizedBox(height: 16),
+                          IngredientsSection(
+                            ingredients: widget.recipe.ingredients!,
+                          ),
+                          const SizedBox(height: 16),
+                          Divider(
+                            color: Colors.grey.shade700,
+                            thickness: 1.1,
+                          ),
+                          const SizedBox(height: 16),
+                          NutritionsSection(
+                            nutritionsList: nutritionsList,
+                          ),
+                          const SizedBox(height: 16),
+                          Divider(
+                            color: Colors.grey.shade700,
+                            thickness: 1.1,
+                          ),
+                          const SizedBox(height: 16),
+                          InstructionsSection(
+                            instructions: widget.recipe.instructions,
+                          ),
+                          const SizedBox(height: 60),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          BottomSaveButton(
-            saveRecipe: () {
-              bookmark.insertRecipe(widget.recipe);
-            },
-          ),
-        ],
+              ],
+            ),
+            BottomSaveButton(
+              saveRecipe: () {
+                bookmark.insertRecipe(widget.recipe);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
