@@ -27,8 +27,10 @@ class RecipeModel extends Equatable {
   List<InstructionModel>? instructions;
   String? spoonacularSourceUrl;
   int? aggregateLikes;
+  String? creditsText;
 
   RecipeModel({
+    this.creditsText,
     this.id,
     this.vegetarian,
     this.vegan,

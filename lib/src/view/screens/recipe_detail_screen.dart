@@ -73,11 +73,12 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         DetailsTitleSection(
-                          diets: widget.recipe.diets!,
-                          dishTypes: widget.recipe.diets!,
-                          sourceUrl: widget.recipe.sourceUrl!,
-                          keysList: keysList!,
-                          title: widget.recipe.title!,
+                          diets: widget.recipe.diets ?? [],
+                          dishTypes: widget.recipe.dishTypes ?? [],
+                          sourceName: widget.recipe.creditsText ?? '',
+                          sourceUrl: widget.recipe.sourceUrl ?? '',
+                          keysList: keysList ?? [],
+                          title: widget.recipe.title ?? '',
                         ),
                         Divider(
                           color: Colors.grey.shade700,

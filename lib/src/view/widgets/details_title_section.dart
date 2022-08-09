@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -8,12 +7,14 @@ class DetailsTitleSection extends StatefulWidget {
     Key? key,
     required this.sourceUrl,
     required this.title,
+    required this.sourceName,
     required this.dishTypes,
     required this.diets,
     required this.keysList,
   }) : super(key: key);
   final String sourceUrl;
   final String title;
+  final String sourceName;
   final List<String> dishTypes;
   final List<String> diets;
   final List<String> keysList;
@@ -22,8 +23,6 @@ class DetailsTitleSection extends StatefulWidget {
 }
 
 class _DetailsTitleSectionState extends State<DetailsTitleSection> {
-  bool _heartClicked = false;
-  bool _starClicked = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,82 +33,82 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _heartClicked = !_heartClicked;
-                      });
-                    },
-                    icon: Icon(
-                      _heartClicked == false
-                          ? Icons.favorite_border_outlined
-                          : Icons.favorite,
-                      color: Colors.red,
-                      size: 30,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _starClicked = !_starClicked;
-                      });
-                    },
-                    icon: Icon(
-                      _starClicked == false ? Icons.star_outline : Icons.star,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                  ),
-                ],
+              Expanded(
+                child: Text(
+                  'By ${widget.sourceName}',
+                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                        color: Colors.grey,
+                        fontSize: 18,
+                      ),
+                  maxLines: 2,
+                ),
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Material(
                   color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () async {
-                      final Uri toLaunch = Uri.parse(
-                        widget.sourceUrl,
-                      );
-                      if (!await launchUrl(toLaunch,
-                          mode: LaunchMode.externalApplication)) {
-                        throw 'Could not launch $toLaunch';
-                      }
-                    },
-                    child: Ink(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        border: Border.all(
-                          color: Colors.white60,
-                          width: 1,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () async {
+                          final Uri link = Uri.parse(widget.sourceUrl);
+                          try {
+                            await launchUrl(link,
+                                mode: LaunchMode.externalApplication);
+                          } catch (e) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text('Could not be launched!'),
+                              duration: Duration(
+                                milliseconds: 2300,
+                              ),
+                              backgroundColor: kOrangeColorTint2,
+                            ));
+                          }
+                        },
+                        child: Ink(
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            border: Border.all(
+                              color: Colors.white60,
+                              width: 1,
+                            ),
+                          ),
+                          padding: const EdgeInsets.all(6),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text(
+                              'More Info',
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.headline3,
+                            ),
+                          ),
                         ),
                       ),
-                      padding: const EdgeInsets.all(6),
-                      child: Text(
-                        'More Info',
-                        style: Theme.of(context).textTheme.headline3,
-                      ),
-                    ),
+                    ],
                   ),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 10),
-          Text(
-            widget.title,
-            style: Theme.of(context).textTheme.headline1!.copyWith(
-                  fontSize: 28,
-                ),
-            maxLines: 4,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
+            child: Text(
+              widget.title,
+              style: Theme.of(context).textTheme.headline1!.copyWith(
+                    fontSize: 28,
+                  ),
+              maxLines: 4,
+            ),
           ),
           const SizedBox(height: 6),
           SizedBox(
-            height: widget.dishTypes.isEmpty ? 0 : 25,
+            height: widget.dishTypes.isEmpty ? 0 : 26,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.baseline,
               textBaseline: TextBaseline.alphabetic,
@@ -146,7 +145,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
           ),
           //!:
           SizedBox(
-            height: widget.diets.isEmpty ? 0 : 25,
+            height: widget.diets.isEmpty ? 0 : 26,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.baseline,
               textBaseline: TextBaseline.alphabetic,
@@ -208,6 +207,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
               },
             ),
           ),
+          const SizedBox(height: 14),
         ],
       ),
     );

@@ -76,6 +76,7 @@ class _RecipeGridViewState extends State<RecipeGridView> {
                     instructions: convertInstructions(recipe.instructions!),
                     nutrition: convertNutritions(recipe.nutrition!),
                     aggregateLikes: recipe.aggregateLikes,
+                    creditsText: recipe.sourceName,
                   );
                   return RecipeDetailScreen(
                     recipe: detailRecipe,

@@ -37,60 +37,63 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<AppStateManager>(builder: (context, manager, child) {
-      return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: IndexedStack(
-          index: widget.currentTabIndex,
-          children: pages,
-        ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(top: 10.0),
-          child: BottomNavigationBar(
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            onTap: (index) {
-              manager.gotToTab(index);
-            },
-            currentIndex: widget.currentTabIndex,
-            type: BottomNavigationBarType.fixed,
-            iconSize: 28,
-            items: const [
-              BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.house,
-                  size: 24,
+      return GestureDetector(
+        onTap: ()=>FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: IndexedStack(
+            index: widget.currentTabIndex,
+            children: pages,
+          ),
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: BottomNavigationBar(
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              onTap: (index) {
+                manager.gotToTab(index);
+              },
+              currentIndex: widget.currentTabIndex,
+              type: BottomNavigationBarType.fixed,
+              iconSize: 28,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: FaIcon(
+                    FontAwesomeIcons.house,
+                    size: 24,
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.magnifyingGlass,
-                  size: 24,
+                BottomNavigationBarItem(
+                  icon: FaIcon(
+                    FontAwesomeIcons.magnifyingGlass,
+                    size: 24,
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.plus,
-                  size: 24,
+                BottomNavigationBarItem(
+                  icon: FaIcon(
+                    FontAwesomeIcons.plus,
+                    size: 24,
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.clipboardList,
-                  size: 24,
+                BottomNavigationBarItem(
+                  icon: FaIcon(
+                    FontAwesomeIcons.clipboardList,
+                    size: 24,
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.solidUser,
-                  size: 23,
+                BottomNavigationBarItem(
+                  icon: FaIcon(
+                    FontAwesomeIcons.solidUser,
+                    size: 23,
+                  ),
+                  label: '',
                 ),
-                label: '',
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );

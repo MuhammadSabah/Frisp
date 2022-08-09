@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 const kOrangeColor = Color(0xffF94701);
 const kOrangeColorTint = Color(0xfffa6c34);
 const kOrangeColorTint2 = Color(0xfffb7e4d);
+const kOrangeColorTint3 = Color.fromARGB(255, 240, 140, 101);
 const kBlackColor = Color(0xff0E0E0E);
 const kBlackColor2 = Color.fromARGB(255, 27, 27, 27);
 const kGreyColor = Color(0xff232220);

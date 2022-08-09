@@ -28,7 +28,10 @@ class InstructionsSection extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Text(
                   "${index + 1}- ${instructions![0].steps![index].step}",
-                  style: Theme.of(context).textTheme.headline3,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline3!
+                      .copyWith(height: 1.5),
                 );
               },
               physics: const NeverScrollableScrollPhysics(),

@@ -44,8 +44,10 @@ class ResultsAPI {
   List<InstructionsAPI>? instructions;
   String? spoonacularSourceUrl;
   int? aggregateLikes;
+  String? sourceName;
 
   ResultsAPI({
+    this.sourceName,
     this.vegetarian,
     this.vegan,
     this.glutenFree,

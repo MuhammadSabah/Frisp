@@ -81,6 +81,9 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
             ),
             child: TabBar(
               controller: _tabController,
+              labelStyle: Theme.of(context).textTheme.headline3!.copyWith(
+                    fontSize: 14,
+                  ),
               tabs: const [
                 Tab(text: "Search"),
                 Tab(text: "Bookmarks"),
@@ -124,86 +127,104 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-            child: Card(
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
-              elevation: 4,
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.search),
-                    splashRadius: 20,
-                    onPressed: () {
-                      startSearch(_searchController.text);
-                      final currentFocus = FocusScope.of(context);
-                      if (!currentFocus.hasPrimaryFocus) {
-                        currentFocus.unfocus();
-                      }
-                    },
+            child: Material(
+              borderRadius: BorderRadius.circular(10),
+              elevation: 2,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
                   ),
-                  const SizedBox(width: 4),
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            controller: _searchController,
-                            cursorColor: const Color(0xffF94701),
-                            decoration: InputDecoration(
-                              hintText: 'Search',
-                              hintStyle: GoogleFonts.poppins(
-                                fontSize: 14,
+                ),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.search),
+                      splashRadius: 20,
+                      onPressed: () {
+                        startSearch(_searchController.text);
+                        final currentFocus = FocusScope.of(context);
+                        if (currentFocus.hasPrimaryFocus) {
+                          currentFocus.unfocus();
+                        }
+                      },
+                    ),
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline3!
+                                  .copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                              controller: _searchController,
+                              cursorColor: const Color(0xffF94701),
+                              decoration: InputDecoration(
+                                hintText: 'Search...',
+                                hintStyle: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                ),
+                                border: InputBorder.none,
                               ),
-                              border: InputBorder.none,
+                              autocorrect: false,
+                              autofocus: false,
+                              textInputAction: TextInputAction.done,
+                              onSubmitted: (value) {
+                                if (!_previousSearches.contains(value)) {
+                                  _previousSearches.add(value);
+                                  savePreviousSearches();
+                                }
+                              },
                             ),
-                            autocorrect: false,
-                            autofocus: false,
-                            textInputAction: TextInputAction.done,
-                            onSubmitted: (value) {
-                              if (!_previousSearches.contains(value)) {
-                                _previousSearches.add(value);
-                                savePreviousSearches();
-                              }
+                          ),
+                          PopupMenuButton(
+                            splashRadius: 20,
+                            icon: const Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.grey,
+                            ),
+                            onSelected: (String value) {
+                              _searchController.text = value;
+                              startSearch(_searchController.text);
+                            },
+                            itemBuilder: (BuildContext context) {
+                              return _previousSearches
+                                  .map<CustomDropDownMenu<String>>(
+                                    (String value) => CustomDropDownMenu(
+                                      value: value,
+                                      text: value,
+                                      isRemovable: true,
+                                      callback: () {
+                                        setState(
+                                          () {
+                                            final currentFocus =
+                                                FocusScope.of(context)
+                                                    .unfocus();
+                                            _previousSearches.remove(value);
+                                            Navigator.pop(context);
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  )
+                                  .toList();
                             },
                           ),
-                        ),
-                        PopupMenuButton(
-                          splashRadius: 20,
-                          icon: const Icon(
-                            Icons.arrow_drop_down,
-                            color: Colors.grey,
-                          ),
-                          onSelected: (String value) {
-                            _searchController.text = value;
-                            startSearch(_searchController.text);
-                          },
-                          itemBuilder: (BuildContext context) {
-                            return _previousSearches
-                                .map<CustomDropDownMenu<String>>(
-                                  (String value) => CustomDropDownMenu(
-                                    value: value,
-                                    text: value,
-                                    isRemovable: true,
-                                    callback: () {
-                                      setState(
-                                        () {
-                                          _previousSearches.remove(value);
-                                          Navigator.pop(context);
-                                        },
-                                      );
-                                    },
-                                  ),
-                                )
-                                .toList();
-                          },
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
+          const SizedBox(width: 6),
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Material(
