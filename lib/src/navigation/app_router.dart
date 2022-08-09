@@ -16,8 +16,6 @@ class AppRouter extends RouterDelegate
   final GlobalKey<NavigatorState> navigatorKey;
   final AppStateManager appStateManager;
   final ShoppingManager shoppingManager;
-  final _auth = FirebaseAuth.instance;
-  bool _hasData = false;
 
   AppRouter({
     required this.appStateManager,

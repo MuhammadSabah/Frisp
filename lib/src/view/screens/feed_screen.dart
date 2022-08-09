@@ -12,10 +12,14 @@ class FeedScreen extends StatelessWidget {
     return SafeArea(
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height / 1.85,
-        decoration: const BoxDecoration(
-          color: kGreyColor,
-        ),
+        height: MediaQuery.of(context).size.height / 1.8,
+        decoration: BoxDecoration(
+            color: kGreyColor,
+            border: Border.symmetric(
+              horizontal: BorderSide(
+                color: Colors.grey.shade800,
+              ),
+            )),
         child: Padding(
           padding: const EdgeInsets.only(top: 18.0),
           child: Column(
