@@ -21,6 +21,7 @@ class AppStateManager extends ChangeNotifier {
   bool _signedUp = false;
   bool _onboardingComplete = false;
   bool _settings = false;
+  bool _comments = false;
   int _selectedTab = AppTab.discover;
   final _appCache = AppCache();
   UserModel? user;
@@ -31,6 +32,7 @@ class AppStateManager extends ChangeNotifier {
   bool get isOnboardingComplete => _onboardingComplete;
   int get selectedTab => _selectedTab;
   bool get isSettingsClicked => _settings;
+  bool get isCommentsClicked => _comments;
 
   // final _streamController = StreamController<User?>();
   // Future getUserState() async {}
@@ -57,6 +59,11 @@ class AppStateManager extends ChangeNotifier {
 
   void settingsClicked(bool value) {
     _settings = value;
+    notifyListeners();
+  }
+
+  void commentsClicked(bool value) {
+    _comments = value;
     notifyListeners();
   }
 

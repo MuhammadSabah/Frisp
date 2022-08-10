@@ -52,7 +52,10 @@ class _FeedScreenState extends State<FeedScreen>
                           Tab(text: 'Activity'),
                           Tab(text: 'Discover'),
                         ],
-                        indicatorColor: Colors.grey.shade600,
+                        indicatorPadding: const EdgeInsets.only(right: 10),
+                        labelColor: kOrangeColorTint,
+                        unselectedLabelColor: Colors.white,
+                        indicatorColor: kOrangeColor,
                       ),
                     ),
                     Padding(
@@ -82,12 +85,12 @@ class _FeedScreenState extends State<FeedScreen>
                 ),
               ),
               Expanded(
-                  child: Container(
-                margin: const EdgeInsets.only(top: 6),
+                  child: SizedBox(
                 height: double.maxFinite,
                 width: MediaQuery.of(context).size.width,
                 child: TabBarView(
                   controller: _tabController,
+                  
                   children: [
                     ActivityTab(),
                     DiscoverTab(),

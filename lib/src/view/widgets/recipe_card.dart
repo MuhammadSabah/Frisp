@@ -108,7 +108,7 @@ class _RecipeCardState extends State<RecipeCard> {
                       children: [
                         Expanded(
                           child: Text(
-                            widget.recipe.title!,
+                            widget.recipe.title ?? " ",
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style:
@@ -122,14 +122,25 @@ class _RecipeCardState extends State<RecipeCard> {
                   ),
                   const SizedBox(height: 8),
                   Expanded(
-                    child: Text(
-                      'By ${widget.recipe.sourceName}',
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                            color: Colors.grey,
-                            fontSize: 14,
+                    child: widget.recipe.sourceName == null
+                        ? Text(
+                            'Unknown source',
+                            style:
+                                Theme.of(context).textTheme.headline4!.copyWith(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                    ),
+                            maxLines: 2,
+                          )
+                        : Text(
+                            'By ${widget.recipe.sourceName}',
+                            style:
+                                Theme.of(context).textTheme.headline4!.copyWith(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                    ),
+                            maxLines: 2,
                           ),
-                      maxLines: 2,
-                    ),
                   ),
                 ],
               ),

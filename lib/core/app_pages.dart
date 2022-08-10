@@ -7,4 +7,5 @@ class AppPages {
   static String recipeDetails = '/detail';
   static String shoppingItemDetails = '/item';
   static String settingsPath = '/settings';
+  static String commentsPath = '/comments';
 }

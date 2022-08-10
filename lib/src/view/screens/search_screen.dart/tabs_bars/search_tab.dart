@@ -55,10 +55,11 @@ class _SearchTabState extends State<SearchTab>
       );
     }
     return FutureBuilder<RecipeAPIQuery>(
-      // key: ValueKey(),
       future: widget.futureMethod,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
+        final query = snapshot.data;
         if (snapshot.connectionState == ConnectionState.waiting) {
+          print('SNAPSHOT DATA: $snapshot.data');
           return Expanded(
             child: GridView.builder(
               physics: const BouncingScrollPhysics(),
@@ -92,12 +93,28 @@ class _SearchTabState extends State<SearchTab>
             child: Text(
               snapshot.error.toString(),
               textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headline3!.copyWith(
+                    fontWeight: FontWeight.normal,
+                  ),
             ),
           );
+        } else if (query.results.length == 0) {
+          return Center(
+              child: Text(
+            "Recipe is not available, try another one.",
+            style: Theme.of(context).textTheme.headline3!.copyWith(
+                  fontWeight: FontWeight.normal,
+                ),
+          ));
         } else if (snapshot.data == null) {
-          return const Text("Data is not available!");
+          return Center(
+              child: Text(
+            "Data is not available!",
+            style: Theme.of(context).textTheme.headline3!.copyWith(
+                  fontWeight: FontWeight.normal,
+                ),
+          ));
         } else {
-          final query = snapshot.data;
           if (query != null) {
             widget.currentSearches.addAll(query.results);
             // .where((e) => e.vegan == true).toList()

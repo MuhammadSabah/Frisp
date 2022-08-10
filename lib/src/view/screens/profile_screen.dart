@@ -15,8 +15,8 @@ import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
-
+  const ProfileScreen({Key? key, required this.userId}) : super(key: key);
+  final String userId;
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -92,7 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
             future: FirebaseFirestore.instance
                 .collection('users')
-                .doc(FirebaseAuth.instance.currentUser!.uid)
+                .doc(widget.userId)
                 .get(),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -131,36 +131,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ),
                             Positioned(
-                              top: 0,
-                              right: 5,
-                              child: PopupMenuButton(
-                                splashRadius: 20,
-                                icon: const FaIcon(
-                                  FontAwesomeIcons.ellipsis,
-                                  color: Colors.white,
-                                ),
-                                onSelected: (String value) {
-                                  if (value == 'Settings') {
+                                top: 0,
+                                right: 5,
+                                child: IconButton(
+                                  onPressed: () {
                                     Provider.of<AppStateManager>(context,
                                             listen: false)
                                         .settingsClicked(true);
-                                  } else if (value == 'Edit Profile') {
-                                    selectAnImage(context);
-                                  }
-                                },
-                                itemBuilder: (BuildContext context) {
-                                  return dropDownList
-                                      .map<CustomDropDownMenu<String>>(
-                                        (String value) => CustomDropDownMenu(
-                                          value: value,
-                                          text: value,
-                                          isRemovable: false,
-                                        ),
-                                      )
-                                      .toList();
-                                },
-                              ),
-                            ),
+                                  },
+                                  splashRadius: 20,
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.gear,
+                                    color: Colors.white,
+                                  ),
+                                )),
                             Positioned(
                               bottom: 0,
                               left: 0,
@@ -183,12 +167,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Text(
-                                          user.userName,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline2,
-                                        ),
+                                        Text(user.userName,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline2),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 16.0, vertical: 10),
@@ -199,42 +181,79 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 .textTheme
                                                 .bodyText2!
                                                 .copyWith(
-                                                  color: Colors.grey,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                                    color: Colors.grey,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w500),
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 5.0),
-                                          child: GestureDetector(
-                                            onTap: () {},
-                                            child: Container(
-                                              width: 110,
-                                              height: 36,
-                                              decoration: const BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(50),
+                                        FirebaseAuth.instance.currentUser!
+                                                    .uid ==
+                                                widget.userId
+                                            ? Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 5.0),
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    selectAnImage(context);
+                                                  },
+                                                  child: Container(
+                                                    width: 130,
+                                                    height: 36,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
+                                                    ),
+                                                    child: Center(
+                                                        child: Text(
+                                                      'Edit Profile',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline3!
+                                                          .copyWith(
+                                                              color: kGreyColor,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                    )),
+                                                  ),
                                                 ),
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  'Follow',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline3!
-                                                      .copyWith(
-                                                        color: kGreyColor,
-                                                        fontWeight:
-                                                            FontWeight.bold,
+                                              )
+                                            : Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 5.0),
+                                                child: GestureDetector(
+                                                  onTap: () {},
+                                                  child: Container(
+                                                    width: 110,
+                                                    height: 36,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                        Radius.circular(50),
                                                       ),
+                                                    ),
+                                                    child: Center(
+                                                        child: Text(
+                                                      'Follow',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline3!
+                                                          .copyWith(
+                                                              color: kGreyColor,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                    )),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                        ),
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(top: 20.0),
@@ -252,11 +271,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                         .textTheme
                                                         .bodyText2!
                                                         .copyWith(
-                                                          color: Colors.grey,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
+                                                            color: Colors.grey,
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
                                                   ),
                                                   const Text('128'),
                                                 ],
@@ -269,11 +288,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                         .textTheme
                                                         .bodyText2!
                                                         .copyWith(
-                                                          color: Colors.grey,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
+                                                            color: Colors.grey,
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
                                                   ),
                                                   Text(user.followers.length
                                                       .toString()),
@@ -287,11 +306,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                         .textTheme
                                                         .bodyText2!
                                                         .copyWith(
-                                                          color: Colors.grey,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
+                                                            color: Colors.grey,
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
                                                   ),
                                                   Text(user.following.length
                                                       .toString()),

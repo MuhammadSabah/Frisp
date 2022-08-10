@@ -70,54 +70,57 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: Theme.of(context).copyWith(useMaterial3: false),
-      child: SafeArea(
-        child: Column(
-          children: [
-            _buildSearchCard(),
-            Theme(
-              data: ThemeData(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-              ),
-              child: TabBar(
-                controller: _tabController,
-                labelStyle: Theme.of(context).textTheme.headline3!.copyWith(
-                      fontSize: 14,
-                    ),
-                tabs: const [
-                  Tab(text: "Search"),
-                  Tab(text: "Bookmarks"),
-                ],
-                indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
-                indicatorColor: Colors.grey.shade600,
-                // indicator: CircleTabIndicator(
-                //   radius: 4.1,
-                //   color: Colors.grey.shade600,
-                // ),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(top: 6),
-                height: double.maxFinite,
-                width: MediaQuery.of(context).size.width,
-                child: TabBarView(
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Theme(
+        data: Theme.of(context).copyWith(useMaterial3: false),
+        child: SafeArea(
+          child: Column(
+            children: [
+              _buildSearchCard(),
+              Theme(
+                data: ThemeData(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                ),
+                child: TabBar(
                   controller: _tabController,
-                  children: [
-                    SearchTab(
-                      controller: _searchController,
-                      currentSearches: _currentSearches,
-                      count: currentCount,
-                      futureMethod: _searchResult,
-                    ),
-                    const BookmarkTab(),
+                  labelStyle: Theme.of(context).textTheme.headline3!.copyWith(
+                        fontSize: 14,
+                      ),
+                  tabs: const [
+                    Tab(text: "Search"),
+                    Tab(text: "Bookmarks"),
                   ],
+                  indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
+                  indicatorColor: Colors.grey.shade600,
+                  // indicator: CircleTabIndicator(
+                  //   radius: 4.1,
+                  //   color: Colors.grey.shade600,
+                  // ),
                 ),
               ),
-            ),
-          ],
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(top: 6),
+                  height: double.maxFinite,
+                  width: MediaQuery.of(context).size.width,
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      SearchTab(
+                        controller: _searchController,
+                        currentSearches: _currentSearches,
+                        count: currentCount,
+                        futureMethod: _searchResult,
+                      ),
+                      const BookmarkTab(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -147,10 +150,6 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                       splashRadius: 20,
                       onPressed: () {
                         startSearch(_searchController.text);
-                        final currentFocus = FocusScope.of(context);
-                        if (currentFocus.hasPrimaryFocus) {
-                          currentFocus.unfocus();
-                        }
                       },
                     ),
                     const SizedBox(width: 4),
@@ -177,7 +176,6 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                               ),
                               autocorrect: false,
                               autofocus: false,
-                              textInputAction: TextInputAction.done,
                               onSubmitted: (value) {
                                 if (!_previousSearches.contains(value)) {
                                   _previousSearches.add(value);
@@ -206,9 +204,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                                       callback: () {
                                         setState(
                                           () {
-                                            final currentFocus =
-                                                FocusScope.of(context)
-                                                    .unfocus();
+                                            FocusScope.of(context).unfocus();
                                             _previousSearches.remove(value);
                                             Navigator.pop(context);
                                           },
@@ -252,7 +248,6 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
   }
 
   void startSearch(String value) {
-     FocusScope.of(context).unfocus();
     setState(() {
       _searchResult = getRecipeData(
         _searchController.text.trim(),
@@ -261,7 +256,12 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
       _currentSearches.clear();
       currentCount = 0;
       value = value.trim();
-      if (!_previousSearches.contains(value)) {
+      if (!_previousSearches.contains(value) &&
+          value.isNotEmpty &&
+          value != null &&
+          value != '' &&
+          value != ' ') {
+        FocusScope.of(context).unfocus();
         _previousSearches.add(value);
         savePreviousSearches();
       }

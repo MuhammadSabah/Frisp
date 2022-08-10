@@ -108,7 +108,8 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                 )),
             title: Text(
               'Shopping Item',
-              style: Theme.of(context).textTheme.headline2,
+              style:
+                  Theme.of(context).textTheme.headline2!.copyWith(fontSize: 20),
             ),
             actions: [
               IconButton(

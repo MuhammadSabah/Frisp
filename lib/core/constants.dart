@@ -7,6 +7,7 @@ const kOrangeColorTint3 = Color.fromARGB(255, 240, 140, 101);
 const kBlackColor = Color(0xff0E0E0E);
 const kBlackColor2 = Color.fromARGB(255, 27, 27, 27);
 const kGreyColor = Color(0xff232220);
+const kGreyColor2 = Color.fromARGB(255, 31, 30, 29);
 
 OutlineInputBorder kFocusedErrorBorder = OutlineInputBorder(
   borderSide: BorderSide(color: Colors.grey.shade800),

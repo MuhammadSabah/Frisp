@@ -46,6 +46,8 @@ class _CustomDropDownMenuState<T> extends State<CustomDropDownMenu<T>> {
                 Expanded(
                   child: Text(
                     widget.text,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       fontWeight: FontWeight.w400,

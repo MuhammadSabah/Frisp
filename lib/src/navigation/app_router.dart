@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
+import 'package:food_recipe_final/src/view/screens/comments_screen.dart';
 import 'package:food_recipe_final/src/view/screens/home_screen.dart';
 import 'package:food_recipe_final/src/view/screens/auth_screen.dart/log_in_screen.dart';
 import 'package:food_recipe_final/src/view/screens/settings_screen.dart';
@@ -63,6 +64,7 @@ class AppRouter extends RouterDelegate
               },
             ),
           if (appStateManager.isSettingsClicked) SettingsScreen.page(),
+          if (appStateManager.isCommentsClicked) CommentsScreen.page(),
         ]
       ],
     );
@@ -83,6 +85,9 @@ class AppRouter extends RouterDelegate
     }
     if (route.settings.name == AppPages.settingsPath) {
       appStateManager.settingsClicked(false);
+    }
+    if (route.settings.name == AppPages.commentsPath) {
+      appStateManager.commentsClicked(false);
     }
     return true;
   }

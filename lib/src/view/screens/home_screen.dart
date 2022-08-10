@@ -1,8 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
-import 'package:food_recipe_final/src/view/screens/feed_screen/tab_bars/discover_tab.dart';
+import 'package:food_recipe_final/src/view/screens/add_recipe_post_screen/add_recipe_post_screen.dart';
 import 'package:food_recipe_final/src/view/screens/feed_screen/feed_screen.dart';
 import 'package:food_recipe_final/src/view/screens/profile_screen.dart';
 import 'package:food_recipe_final/src/view/screens/search_screen.dart/search_recipe_screen.dart';
@@ -30,16 +31,18 @@ class _HomeScreenState extends State<HomeScreen> {
   static List<Widget> pages = [
     FeedScreen(),
     const SearchRecipeScreen(),
-    Container(),
+    const AddRecipePostScreen(),
     const ShoppingScreen(),
-    const ProfileScreen(),
+    ProfileScreen(
+      userId: FirebaseAuth.instance.currentUser!.uid,
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Consumer<AppStateManager>(builder: (context, manager, child) {
       return GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           body: IndexedStack(
