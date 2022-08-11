@@ -10,11 +10,11 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
     required this.servesController,
     required this.cookTimeController,
   }) : super(key: key);
-  final formKey;
-  final titleController;
-  final descriptionController;
-  final servesController;
-  final cookTimeController;
+  final GlobalKey<FormState> formKey;
+  final TextEditingController titleController;
+  final TextEditingController descriptionController;
+  final TextEditingController servesController;
+  final TextEditingController cookTimeController;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -118,7 +118,7 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
                           child: Align(
                             child: TextFormField(
                               validator: (String? value) {
-                                if (value!.length >= 5) {
+                                if (value!.length >= 10) {
                                   return 'Too much';
                                 }
                               },
@@ -175,7 +175,7 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
                           width: 135,
                           child: TextFormField(
                             validator: (String? value) {
-                              if (value!.length >= 5) {
+                              if (value!.length >= 20) {
                                 return 'Too much';
                               }
                             },
