@@ -2,7 +2,10 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/models/user_model.dart';
+import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
+import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/widgets/add_fields_section.dart';
 import 'package:food_recipe_final/src/view/widgets/title_and_description_form_section.dart';
 import 'package:image_picker/image_picker.dart';
@@ -27,13 +30,48 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
   final List _instructionsFormList = [];
   final List<TextEditingController> _ingredientControllersList = [];
   final List<TextEditingController> _instructionsControllersList = [];
+  bool _isLoading = false;
   //
   Uint8List? _imageFile;
+  //
+  Future<void> publishRecipePost({
+    required String uid,
+    required String userName,
+    required String userEmail,
+    required String profImage,
+  }) async {
+    setState(() {
+      _isLoading = true;
+    });
 
+    try {
+      //
+      String? result = await RecipePostProvider().uploadRecipePost(
+        uid: uid,
+        userName: userName,
+        userEmail: userEmail,
+        imageFile: _imageFile!,
+        profImage: profImage,
+        title: _titleController.text,
+        description: _descriptionController.text,
+        serves: _servesController.text,
+        cookTime: _cookTimeController.text,
+        ingredients: _ingredientControllersList.map((element) {
+          return element.text;
+        }).toList(),
+        steps: _instructionsControllersList.map((e) => e.text).toList(),
+      );
+      if (result == null) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
-
-
-    //
+  //
   void _selectAnImageDialog(BuildContext context) async {
     return showDialog(
       context: context,
@@ -137,6 +175,11 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+    UserModel? user;
+    if (userProvider.getUser != null) {
+      user = userProvider.getUser;
+    }
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Theme(
@@ -165,7 +208,18 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                   child: Material(
                     elevation: 4,
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        //!: publish post.
+                        final isValidForm = _formKey.currentState!.validate();
+                        if (isValidForm) {
+                          publishRecipePost(
+                            uid: user!.id,
+                            userName: user.userName,
+                            userEmail: user.email,
+                            profImage: user.photoUrl,
+                          );
+                        }
+                      },
                       child: Ink(
                         width: 80,
                         decoration: const BoxDecoration(
@@ -192,8 +246,12 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                _isLoading == true
+                    ? const LinearProgressIndicator()
+                    : const Padding(
+                        padding: EdgeInsets.only(top: 4),
+                      ),
                 Material(
-                  color: Colors.grey,
                   child: InkWell(
                     highlightColor: Colors.grey.shade400,
                     onTap: () {
@@ -202,7 +260,7 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                     child: Ink(
                       height: MediaQuery.of(context).size.height / 4,
                       decoration: BoxDecoration(
-                        color: Colors.transparent,
+                        color: Colors.grey,
                         image: _imageFile == null
                             ? const DecorationImage(
                                 image: NetworkImage(''),

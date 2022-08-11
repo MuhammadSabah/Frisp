@@ -5,6 +5,7 @@ import 'package:food_recipe_final/firebase_options.dart';
 import 'package:food_recipe_final/src/data/bookmark_interface.dart';
 import 'package:food_recipe_final/src/providers/bookmark_manager.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
 import 'package:food_recipe_final/src/navigation/app_router.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
@@ -18,10 +19,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-    // SystemChrome.setSystemUIOverlayStyle(
-    // const SystemUiOverlayStyle(
-    //   systemNavigationBarColor: kBlackColor2,
-    // ),
+  // SystemChrome.setSystemUIOverlayStyle(
+  // const SystemUiOverlayStyle(
+  //   systemNavigationBarColor: kBlackColor2,
+  // ),
   // );
   runApp(const MyApp());
 }
@@ -63,6 +64,10 @@ class _MyAppState extends State<MyApp> {
         Provider<BookmarkInterface>(
           lazy: false,
           create: (context) => BookmarkManager(),
+        ),
+        ChangeNotifierProvider<RecipePostProvider>(
+          lazy: false,
+          create: (context) => RecipePostProvider(),
         ),
         ChangeNotifierProvider(
           lazy: false,

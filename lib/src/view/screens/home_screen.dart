@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/screens/add_recipe_post_screen/add_recipe_post_screen.dart';
 import 'package:food_recipe_final/src/view/screens/feed_screen/feed_screen.dart';
 import 'package:food_recipe_final/src/view/screens/profile_screen.dart';
@@ -37,6 +38,21 @@ class _HomeScreenState extends State<HomeScreen> {
       userId: FirebaseAuth.instance.currentUser!.uid,
     ),
   ];
+
+  Future<void> getUserData() async {
+     UserProvider userProvider =
+        Provider.of<UserProvider>(context, listen: false);
+   await Future.delayed(const Duration(milliseconds: 2500),(){
+    
+     userProvider.refreshUser();
+   });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserData();
+  }
 
   @override
   Widget build(BuildContext context) {

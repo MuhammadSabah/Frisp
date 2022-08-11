@@ -12,8 +12,8 @@ class RecipePostModel {
   final String description;
   final String serveAmount;
   final String cookTime;
-  final List<String> ingredients;
-  final List<String> instructions;
+  final List ingredients;
+  final List instructions;
 
   RecipePostModel({
     required this.uid,

@@ -40,8 +40,7 @@ class RecipePostTile extends StatelessWidget {
                     shadowColor: Colors.grey.withOpacity(0.2),
                     child: const CircleAvatar(
                       radius: 28,
-                      backgroundImage: NetworkImage(
-                          'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80'),
+                      backgroundImage: AssetImage('assets/flower.jpg'),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -127,8 +126,7 @@ class RecipePostTile extends StatelessWidget {
                                 Radius.circular(10),
                               ),
                               image: DecorationImage(
-                                image: NetworkImage(
-                                    'https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80'),
+                                image: AssetImage('assets/flower.jpg'),
                                 fit: BoxFit.cover,
                               ),
                             ),

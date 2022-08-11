@@ -112,23 +112,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         height: MediaQuery.of(context).size.height / 2,
                         child: Stack(
                           children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height / 3.3,
-                              width: double.infinity,
-                              child: CachedNetworkImage(
-                                imageUrl: user.photoUrl,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) =>
-                                    Shimmer.fromColors(
-                                  baseColor: Colors.grey.shade400,
-                                  highlightColor: Colors.grey.shade300,
-                                  child: SizedBox(
+                            user.photoUrl == ""
+                                ? Container(
                                     height: MediaQuery.of(context).size.height /
-                                        3.2,
+                                        3.3,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.grey,
+                                    ),
+                                  )
+                                : SizedBox(
+                                    height: MediaQuery.of(context).size.height /
+                                        3.3,
+                                    width: double.infinity,
+                                    child: CachedNetworkImage(
+                                      imageUrl: user.photoUrl,
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) =>
+                                          Shimmer.fromColors(
+                                        baseColor: Colors.grey.shade400,
+                                        highlightColor: Colors.grey.shade300,
+                                        child: SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              3.2,
+                                        ),
+                                      ),
+                                      errorWidget: (context, widget, anything) {
+                                        return const Center(
+                                          child: Text('Image is not available'),
+                                        );
+                                      },
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
                             Positioned(
                                 top: 0,
                                 right: 5,

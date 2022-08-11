@@ -20,6 +20,11 @@ class DetailsSliverAppBar extends StatelessWidget {
           imageUrl: imgUrl,
           fit: BoxFit.cover,
           fadeInCurve: Curves.easeInOut,
+           errorWidget: (context, widget, anything) {
+                                  return const Center(
+                                    child: Text('Image is not available'),
+                                  );
+                                },
         ),
       ),
       leading: GestureDetector(

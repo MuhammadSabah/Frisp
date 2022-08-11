@@ -17,7 +17,7 @@ class BookmarkCard extends StatefulWidget {
 }
 
 class _BookmarkCardState extends State<BookmarkCard> {
-  final checkBoxValues = Map<int, bool>();
+  final checkBoxValues = <int, bool>{};
   bool value = false;
   @override
   Widget build(BuildContext context) {
@@ -45,6 +45,11 @@ class _BookmarkCardState extends State<BookmarkCard> {
                     child: CachedNetworkImage(
                       imageUrl: widget.recipe.image!,
                       fit: BoxFit.cover,
+                      errorWidget: (context, widget, anything) {
+                        return const Center(
+                          child: Text('Image is not available'),
+                        );
+                      },
                     ),
                   ),
                 ),

@@ -9,20 +9,18 @@ class UserProvider extends ChangeNotifier {
   UserModel? _user;
   UserModel? get getUser => _user;
 
-  // Future<UserModel?> getUserFromDocument() async {
-  //   User currentUser = _auth.currentUser!;
-  //   var userDoc = await FirebaseFirestore.instance
-  //       .collection('users')
-  //       .doc(currentUser.uid)
-  //       .get();
-  //   UserModel? userModel = UserModel.fromSnapshot(userDoc);
+  Future<UserModel?> getUserFromDocument() async {
+    User currentUser = _auth.currentUser!;
+    DocumentSnapshot userSnapshot =
+        await _firestore.collection('users').doc(currentUser.uid).get();
+    UserModel? userModel = UserModel.fromSnapshot(userSnapshot);
 
-  //   return userModel;
-  // }
+    return userModel;
+  }
 
-  // Future<void> refreshUser() async {
-  //   UserModel? user = await getUserFromDocument();
-  //   _user = user;
-  //   notifyListeners();
-  // }
+  Future<void> refreshUser() async {
+    UserModel? user = await getUserFromDocument();
+    _user = user;
+    notifyListeners();
+  }
 }

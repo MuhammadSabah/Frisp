@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class RecipePostProvider extends ChangeNotifier {
@@ -12,21 +11,17 @@ class RecipePostProvider extends ChangeNotifier {
     required String uid,
     required String userName,
     required String userEmail,
-    required BuildContext context,
     required Uint8List imageFile,
     required String profImage,
     required String title,
     required String description,
     required String serves,
     required String cookTime,
-    required List<String> ingredients,
-    required List<String> steps,
+    required List ingredients,
+    required List steps,
   }) async {
     try {
-      final imageProvider =
-          Provider.of<UserImageProvider>(context, listen: false);
-
-      String fileImageUrl = await imageProvider.uploadAnImageToStorage(
+      String fileImageUrl = await UserImageProvider().uploadAnImageToStorage(
         fileName: 'posts',
         file: imageFile,
         isPost: true,
