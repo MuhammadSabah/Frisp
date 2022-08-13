@@ -6,7 +6,7 @@ import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/screens/comments_screen/comments_screen.dart';
-import 'package:food_recipe_final/src/view/widgets/recipe_post_tile.dart';
+import 'package:food_recipe_final/src/view/widgets/recipe_post_card.dart';
 import 'package:provider/provider.dart';
 
 class ActivityTab extends StatefulWidget {
@@ -66,7 +66,7 @@ class _ActivityTabState extends State<ActivityTab> {
                 return ListView.builder(
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: ((context, index) {
-                    return RecipePostTile(
+                    return RecipePostCard(
                       onCommentPressed: () {
                         Navigator.push(
                           context,

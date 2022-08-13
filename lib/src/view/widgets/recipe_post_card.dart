@@ -6,8 +6,8 @@ import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
-class RecipePostTile extends StatelessWidget {
-  const RecipePostTile({
+class RecipePostCard extends StatelessWidget {
+  const RecipePostCard({
     Key? key,
     required this.onCommentPressed,
     required this.post,
@@ -23,11 +23,12 @@ class RecipePostTile extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       width: screenWidth,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: kGreyColor2,
           border: Border.symmetric(
             horizontal: BorderSide(
-              color: Colors.grey.shade800,
+              color: kBlackColor,
+              width: 3,
             ),
           )),
       child: Padding(
@@ -283,11 +284,12 @@ class RecipePostTile extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              //!: Like button:
                               IconButton(
                                 splashRadius: 20,
                                 onPressed: () {},
                                 icon: Icon(
-                                  Icons.favorite_outlined,
+                                  Icons.favorite_border_outlined,
                                   color: Colors.grey.shade300,
                                 ),
                               ),

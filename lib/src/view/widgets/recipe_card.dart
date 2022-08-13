@@ -39,10 +39,15 @@ class _RecipeCardState extends State<RecipeCard> {
                     fit: BoxFit.cover,
                     imageUrl: widget.recipe.image!,
                     placeholder: (context, url) => const Center(
-                      child: FaIcon(FontAwesomeIcons.spinner),
+                      child: FaIcon(
+                        FontAwesomeIcons.spinner,
+                        color: Colors.white,
+                      ),
                     ),
-                    errorWidget: (context, url, error) =>
-                        const FaIcon(FontAwesomeIcons.circleExclamation),
+                    errorWidget: (context, url, error) => const FaIcon(
+                      FontAwesomeIcons.circleExclamation,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 Positioned(

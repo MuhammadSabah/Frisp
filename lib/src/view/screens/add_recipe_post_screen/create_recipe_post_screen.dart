@@ -41,6 +41,7 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
   final List<TextEditingController> _ingredientControllersList = [];
   final List<TextEditingController> _instructionsControllersList = [];
   bool _isLoading = false;
+
   //
   Uint8List? _imageFile;
   //
@@ -50,6 +51,7 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
     required String userEmail,
     required String profImage,
   }) async {
+    final _navigator = Navigator.of(context);
     setState(() {
       _isLoading = true;
     });
@@ -75,9 +77,10 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
         setState(() {
           _isLoading = false;
         });
+        _navigator.pop();
       }
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -229,7 +232,6 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                             userEmail: user.email,
                             profImage: user.photoUrl,
                           );
-                          Navigator.pop(context);
                         }
                       },
                       child: Ink(
