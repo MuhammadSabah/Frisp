@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
@@ -28,6 +29,13 @@ class SignupForm extends StatefulWidget {
 class _SignupFormState extends State<SignupForm> {
   bool _obscureText = true;
   bool _isLoading = false;
+  ByteData? _imageData;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -237,6 +245,7 @@ class _SignupFormState extends State<SignupForm> {
                     userName: widget.userNameController.text,
                     userEmail: widget.emailController.text,
                     userPassword: widget.passwordController.text,
+                    // photoUrl: 'assets/default_image.jpg',
                   );
                   setState(() {
                     _isLoading = false;
@@ -258,11 +267,6 @@ class _SignupFormState extends State<SignupForm> {
               detailText: 'Already have account? ',
               clickableText: 'Log in',
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //       builder: (context) => const LogInScreen()),
-                // );
                 Provider.of<AppStateManager>(context, listen: false)
                     .goToLogIn();
               },

@@ -91,8 +91,8 @@ class AppTheme {
 
   static ThemeData dark() {
     return ThemeData(
+      visualDensity: VisualDensity.adaptivePlatformDensity,
       useMaterial3: true,
-      
       colorScheme: ColorScheme.fromSeed(
         seedColor: kOrangeColor,
       ),

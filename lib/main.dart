@@ -53,17 +53,15 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        Provider<BookmarkInterface>(
+          create: (context) => BookmarkManager(),
+        ),
         ChangeNotifierProvider<UserProvider>(
           lazy: false,
           create: (context) => UserProvider(),
         ),
-        Provider<UserImageProvider>(
-          lazy: false,
+        ChangeNotifierProvider<UserImageProvider>(
           create: (context) => UserImageProvider(),
-        ),
-        Provider<BookmarkInterface>(
-          lazy: false,
-          create: (context) => BookmarkManager(),
         ),
         ChangeNotifierProvider<RecipePostProvider>(
           lazy: false,

@@ -1,8 +1,10 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
+import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
@@ -12,6 +14,14 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class CreateRecipePost extends StatefulWidget {
+  static MaterialPage page() {
+    return MaterialPage(
+      name: AppPages.createPostRecipePath,
+      key: ValueKey(AppPages.createPostRecipePath),
+      child: const CreateRecipePost(),
+    );
+  }
+
   const CreateRecipePost({Key? key}) : super(key: key);
 
   @override
@@ -192,7 +202,8 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
             leading: IconButton(
               splashRadius: 20,
               onPressed: () {
-                Navigator.of(context).pop();
+                  Provider.of<AppStateManager>(context, listen: false)
+              .createRecipePostClicked(false);
               },
               icon: const Icon(
                 Icons.arrow_back,
@@ -211,7 +222,7 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                       onTap: () {
                         //!: publish post.
                         final isValidForm = _formKey.currentState!.validate();
-                        if (isValidForm) {
+                        if (isValidForm && _imageFile != null) {
                           publishRecipePost(
                             uid: user!.id,
                             userName: user.userName,
@@ -304,7 +315,7 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                   ),
                 ),
                 const SizedBox(height: 14),
-                // !: Title and description section:
+                // !: Title and Description Section:
                 TitleAndDescriptionFormSection(
                   formKey: _formKey,
                   titleController: _titleController,

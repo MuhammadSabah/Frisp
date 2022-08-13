@@ -3,10 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
 
-class UserImageProvider {
+class UserImageProvider with ChangeNotifier {
   final FirebaseAuth _userAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
@@ -36,6 +37,7 @@ class UserImageProvider {
     UploadTask uploadTask = reference.putData(file);
     TaskSnapshot snapShot = await uploadTask;
     String downloadUrl = await snapShot.ref.getDownloadURL();
+    notifyListeners();
     return downloadUrl;
   }
 
@@ -45,6 +47,7 @@ class UserImageProvider {
         'photoUrl': "$photoUrl",
       },
     );
+    notifyListeners();
   }
 
   Future<String> getUserProfileImage() async {
@@ -57,6 +60,4 @@ class UserImageProvider {
         });
     return photoUrl;
   }
-
-  
 }

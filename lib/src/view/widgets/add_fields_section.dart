@@ -30,8 +30,8 @@ class AddFieldsSection extends StatefulWidget {
   final Color addButtonColor;
   final Color cursorColor;
   final int maxLines;
-  final formFieldsList;
-  final controllersList;
+  final List formFieldsList;
+  final List controllersList;
   final List<String> popUpItemsList;
   @override
   State<AddFieldsSection> createState() => _AddFieldsSectionState();

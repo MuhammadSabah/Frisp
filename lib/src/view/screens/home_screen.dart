@@ -7,7 +7,7 @@ import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/screens/add_recipe_post_screen/add_recipe_post_screen.dart';
 import 'package:food_recipe_final/src/view/screens/feed_screen/feed_screen.dart';
 import 'package:food_recipe_final/src/view/screens/profile_screen.dart';
-import 'package:food_recipe_final/src/view/screens/search_screen.dart/search_recipe_screen.dart';
+import 'package:food_recipe_final/src/view/screens/search_screen/search_recipe_screen.dart';
 import 'package:food_recipe_final/src/view/screens/shopping_screen/shopping_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -37,15 +37,15 @@ class _HomeScreenState extends State<HomeScreen> {
     ProfileScreen(
       userId: FirebaseAuth.instance.currentUser!.uid,
     ),
+    // SettingsScreen(),
   ];
 
   Future<void> getUserData() async {
-     UserProvider userProvider =
+    UserProvider userProvider =
         Provider.of<UserProvider>(context, listen: false);
-   await Future.delayed(const Duration(milliseconds: 2500),(){
-    
-     userProvider.refreshUser();
-   });
+    await Future.delayed(const Duration(milliseconds: 2500), () {
+      userProvider.refreshUser();
+    });
   }
 
   @override

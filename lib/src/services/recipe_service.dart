@@ -7,15 +7,13 @@ const String apiUrl = 'https://api.spoonacular.com/recipes/complexSearch';
 //!: SpoonacularAPI
 class RecipeService {
   Future getData(String url) async {
-    print('Calling url: $url');
-
     // Response and get() are from the HTTP package.
-    final response = await get(Uri.parse(url));
+    Response response = await get(Uri.parse(url));
 
     if (response.statusCode == 200) {
       return Future.value(response.body);
     } else {
-      print("STATUS CODE: $response.statusCode");
+      // print("STATUS CODE: $response.statusCode");
       return Future.value();
     }
   }

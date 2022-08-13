@@ -13,14 +13,19 @@ class UserProvider extends ChangeNotifier {
     User currentUser = _auth.currentUser!;
     DocumentSnapshot userSnapshot =
         await _firestore.collection('users').doc(currentUser.uid).get();
-    UserModel? userModel = UserModel.fromSnapshot(userSnapshot);
+    UserModel? userModel;
+    if (userSnapshot.exists) {
+      userModel = UserModel.fromSnapshot(userSnapshot);
+    }
 
     return userModel;
   }
 
   Future<void> refreshUser() async {
     UserModel? user = await getUserFromDocument();
-    _user = user;
+    if (user != null) {
+      _user = user;
+    }
     notifyListeners();
   }
 }

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
-import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/view/widgets/auth_bottom_rich_text.dart';
-import 'package:food_recipe_final/src/view/widgets/auth_confirm_button.dart';
-import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/view/widgets/sign_up_form.dart';
-import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -47,29 +42,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        elevation: 0,
-        bottomOpacity: 0,
-        leading: IconButton(
-          splashRadius: 20,
-          onPressed: () {},
-          icon: FaIcon(
-            FontAwesomeIcons.arrowLeft,
-            color: Colors.grey.shade500,
-            size: 21,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          elevation: 0,
+          bottomOpacity: 0,
+          leading: IconButton(
+            splashRadius: 20,
+            onPressed: () {},
+            icon: FaIcon(
+              FontAwesomeIcons.arrowLeft,
+              color: Colors.grey.shade500,
+              size: 21,
+            ),
           ),
         ),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: SignupForm(
-            formKey: _formKey,
-            userNameController: _userNameController,
-            emailController: _emailController,
-            passwordController: _passwordController,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: SignupForm(
+              formKey: _formKey,
+              userNameController: _userNameController,
+              emailController: _emailController,
+              passwordController: _passwordController,
+            ),
           ),
         ),
       ),

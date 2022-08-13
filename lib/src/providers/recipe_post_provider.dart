@@ -6,7 +6,7 @@ import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:uuid/uuid.dart';
 
 class RecipePostProvider extends ChangeNotifier {
-  FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Future<String?> uploadRecipePost({
     required String uid,
     required String userName,

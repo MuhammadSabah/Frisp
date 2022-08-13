@@ -1,8 +1,4 @@
-import 'dart:typed_data';
-
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 const kOrangeColor = Color(0xffF94701);
 const kOrangeColorTint = Color(0xfffa6c34);
@@ -12,7 +8,6 @@ const kBlackColor = Color(0xff0E0E0E);
 const kBlackColor2 = Color.fromARGB(255, 27, 27, 27);
 const kGreyColor = Color(0xff232220);
 const kGreyColor2 = Color.fromARGB(255, 31, 30, 29);
-
 
 OutlineInputBorder kFocusedErrorBorder = OutlineInputBorder(
   borderSide: BorderSide(color: Colors.grey.shade800),

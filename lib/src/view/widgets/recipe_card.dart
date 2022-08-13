@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
 
@@ -35,11 +36,13 @@ class _RecipeCardState extends State<RecipeCard> {
                   // width: 175,
                   height: double.maxFinite,
                   child: CachedNetworkImage(
-                    imageUrl: widget.recipe.image!,
                     fit: BoxFit.cover,
-                    errorWidget: (context, url, error) => const Center(
-                      child: Icon(Icons.error),
+                    imageUrl: widget.recipe.image!,
+                    placeholder: (context, url) => const Center(
+                      child: FaIcon(FontAwesomeIcons.spinner),
                     ),
+                    errorWidget: (context, url, error) =>
+                        const FaIcon(FontAwesomeIcons.circleExclamation),
                   ),
                 ),
                 Positioned(

@@ -21,6 +21,7 @@ class AppStateManager extends ChangeNotifier {
   bool _signedUp = false;
   bool _onboardingComplete = false;
   bool _settings = false;
+  bool _createRecipePost = false;
   bool _comments = false;
   int _selectedTab = AppTab.discover;
   final _appCache = AppCache();
@@ -32,10 +33,9 @@ class AppStateManager extends ChangeNotifier {
   bool get isOnboardingComplete => _onboardingComplete;
   int get selectedTab => _selectedTab;
   bool get isSettingsClicked => _settings;
+  bool get didCreateRecipePost => _createRecipePost;
   bool get isCommentsClicked => _comments;
 
-  // final _streamController = StreamController<User?>();
-  // Future getUserState() async {}
   void initializeApp(bool loginVal, bool signupVal) async {
     debugPrint(_userAuth.currentUser.toString());
     if (_userAuth.currentUser == null) {
@@ -59,6 +59,11 @@ class AppStateManager extends ChangeNotifier {
 
   void settingsClicked(bool value) {
     _settings = value;
+    notifyListeners();
+  }
+
+  void createRecipePostClicked(bool value) {
+    _createRecipePost = value;
     notifyListeners();
   }
 
@@ -87,20 +92,32 @@ class AppStateManager extends ChangeNotifier {
     required userName,
     required userEmail,
     required userPassword,
+    // required String photoUrl,
   }) async {
+    // Convert a String into Uint8List:
+    // List<int> list = photoUrl.codeUnits;
+    // Uint8List bytes = Uint8List.fromList(list);
+    // String photoInUint8List = String.fromCharCodes(bytes);
+    //
     String errorResult = 'Error occurred';
     try {
+      // String? photoUrlFromStorage;
+      // if (photoUrl != null) {
+      //   photoUrlFromStorage = await UserImageProvider().uploadAnImageToStorage(
+      //       fileName: 'profilePics', file: bytes, isPost: false);
+      // }
       UserCredential userCred = await _userAuth.createUserWithEmailAndPassword(
           email: userEmail, password: userPassword);
       user = UserModel(
         id: _userAuth.currentUser!.uid,
         userName: userName,
         email: userEmail,
-        photoUrl: '',
+        photoUrl: "",
         bio: '',
         followers: [],
         following: [],
       );
+
       await _firestore
           .collection('users')
           .doc(userCred.user!.uid)
@@ -124,7 +141,6 @@ class AppStateManager extends ChangeNotifier {
       _signedUp = false;
       return errorResult;
     } catch (e) {
-      print(e);
       return e.toString();
     }
   }
@@ -153,13 +169,10 @@ class AppStateManager extends ChangeNotifier {
         errorResult = 'User is not registered.';
       } else if (e.code == 'invalid-email') {
         errorResult = 'Invalid email.';
-      } else {
-        print(e);
       }
       _loggedIn = false;
       return errorResult;
     } catch (e) {
-      print(e);
       return e.toString();
     }
   }
@@ -179,6 +192,7 @@ class AppStateManager extends ChangeNotifier {
     await _userAuth.signOut();
     _settings = false;
     _initialized = false;
+    _createRecipePost = false;
     _selectedTab = 0;
     await _appCache.invalidate();
 

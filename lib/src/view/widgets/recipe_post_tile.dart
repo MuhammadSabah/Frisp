@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/models/recipe_post_model.dart';
+import 'package:food_recipe_final/src/models/user_model.dart';
+import 'package:food_recipe_final/src/providers/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class RecipePostTile extends StatelessWidget {
-  const RecipePostTile({Key? key, required this.onCommentPressed})
-      : super(key: key);
+  const RecipePostTile({
+    Key? key,
+    required this.onCommentPressed,
+    required this.post,
+    required this.user,
+  }) : super(key: key);
+  final UserModel? user;
+  final RecipePostModel post;
   final Function()? onCommentPressed;
   @override
   Widget build(BuildContext context) {
+    Provider.of<UserProvider>(context, listen: false).refreshUser();
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       width: screenWidth,
-      // height: screenHeight / 1.8,
       decoration: BoxDecoration(
           color: kGreyColor2,
           border: Border.symmetric(
@@ -21,7 +31,7 @@ class RecipePostTile extends StatelessWidget {
             ),
           )),
       child: Padding(
-        padding: const EdgeInsets.only(top: 18.0),
+        padding: const EdgeInsets.only(top: 24.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -38,9 +48,22 @@ class RecipePostTile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50),
                     elevation: 8,
                     shadowColor: Colors.grey.withOpacity(0.2),
-                    child: const CircleAvatar(
-                      radius: 28,
-                      backgroundImage: AssetImage('assets/flower.jpg'),
+                    child: SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: user == null
+                                  ? const NetworkImage("")
+                                  : NetworkImage(user!.photoUrl),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -50,9 +73,9 @@ class RecipePostTile extends StatelessWidget {
                         Column(
                           children: [
                             Row(
-                              children: const [
+                              children: [
                                 Text(
-                                  'User Name',
+                                  post.userName,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -61,7 +84,7 @@ class RecipePostTile extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  'User Email',
+                                  "",
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -94,12 +117,15 @@ class RecipePostTile extends StatelessWidget {
                 bottom: 12,
               ),
               child: Row(
-                children: const [
+                children: [
                   Expanded(
                     child: Text(
-                      'sdfak sdfkj sdfk skdf ksdjf sudifoe dshjsd hasdjfhj 90944r sdjkafjlksd0 93493 dksajkfl 9pi  sadfjlsd klsajdfkjs 9994 jsadk jjjfsl jksadf ;adjf hasdfh iadifo i893899 isajfk ioasjlif ja sfkadj jaksdfjka kjsda o9oe 9o ja fla jkjdkjkjf jla f;a l klad f930 jdfl',
+                      post.description,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 5,
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                            height: 1.5,
+                          ),
                     ),
                   ),
                 ],
@@ -125,9 +151,13 @@ class RecipePostTile extends StatelessWidget {
                               borderRadius: BorderRadius.all(
                                 Radius.circular(10),
                               ),
-                              image: DecorationImage(
-                                image: AssetImage('assets/flower.jpg'),
-                                fit: BoxFit.cover,
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(post.postUrl),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
@@ -156,7 +186,7 @@ class RecipePostTile extends StatelessWidget {
                                             children: [
                                               Expanded(
                                                 child: Text(
-                                                  'Title',
+                                                  post.title,
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   maxLines: 1,
@@ -171,24 +201,24 @@ class RecipePostTile extends StatelessWidget {
                                             ],
                                           ),
                                           const SizedBox(height: 8),
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: Text(
-                                                  'Subtitle',
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  maxLines: 1,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline3!
-                                                      .copyWith(
-                                                          color: Colors
-                                                              .grey.shade600),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                          // Row(
+                                          //   children: [
+                                          //     Expanded(
+                                          //       child: Text(
+                                          //         'Subtitle',
+                                          //         overflow:
+                                          //             TextOverflow.ellipsis,
+                                          //         maxLines: 1,
+                                          //         style: Theme.of(context)
+                                          //             .textTheme
+                                          //             .headline3!
+                                          //             .copyWith(
+                                          //                 color: Colors
+                                          //                     .grey.shade600),
+                                          //       ),
+                                          //     ),
+                                          //   ],
+                                          // ),
                                         ],
                                       ),
                                     ),
@@ -218,7 +248,7 @@ class RecipePostTile extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Text(
-                                '2 Likes',
+                                '${post.likes.length.toString()} Likes',
                                 maxLines: 1,
                                 style: TextStyle(
                                   color: Colors.grey.shade300,
@@ -228,7 +258,8 @@ class RecipePostTile extends StatelessWidget {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 14.0)
+                              .copyWith(bottom: 8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -236,7 +267,7 @@ class RecipePostTile extends StatelessWidget {
                                 splashRadius: 20,
                                 onPressed: () {},
                                 icon: Icon(
-                                  Icons.thumb_up_outlined,
+                                  Icons.favorite_outlined,
                                   color: Colors.grey.shade300,
                                 ),
                               ),

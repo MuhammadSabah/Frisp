@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/view/screens/search_screen.dart/tabs_bars/bookmark_tab.dart';
-import 'package:food_recipe_final/src/view/screens/search_screen.dart/tabs_bars/search_tab.dart';
+import 'package:food_recipe_final/src/view/screens/search_screen/tabs_bars/bookmark_tab.dart';
+import 'package:food_recipe_final/src/view/screens/search_screen/tabs_bars/search_tab.dart';
 import 'package:food_recipe_final/src/view/widgets/custom_drop_down.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
 import 'package:food_recipe_final/src/services/recipe_service.dart';

@@ -16,15 +16,13 @@ class DetailsSliverAppBar extends StatelessWidget {
       floating: false,
       expandedHeight: MediaQuery.of(context).size.height / 3,
       flexibleSpace: FlexibleSpaceBar(
-        background: CachedNetworkImage(
-          imageUrl: imgUrl,
-          fit: BoxFit.cover,
-          fadeInCurve: Curves.easeInOut,
-           errorWidget: (context, widget, anything) {
-                                  return const Center(
-                                    child: Text('Image is not available'),
-                                  );
-                                },
+        background: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(imgUrl),
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ),
       leading: GestureDetector(

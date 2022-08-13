@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/models/user_model.dart';
+import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/screens/feed_screen/tab_bars/discover_tab.dart';
 import 'package:food_recipe_final/src/view/screens/feed_screen/tab_bars/activity_tab.dart';
+import 'package:provider/provider.dart';
 
 class FeedScreen extends StatefulWidget {
-  FeedScreen({Key? key}) : super(key: key);
+  const FeedScreen({Key? key}) : super(key: key);
 
   @override
   State<FeedScreen> createState() => _FeedScreenState();
@@ -18,12 +21,20 @@ class _FeedScreenState extends State<FeedScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    getUserData();
+  }
+
+  Future<void> getUserData() async {
+    UserProvider userProvider =
+        Provider.of<UserProvider>(context, listen: false);
+    await Future.delayed(const Duration(milliseconds: 2500), () {
+      userProvider.refreshUser();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
+    UserModel? user = Provider.of<UserProvider>(context).getUser;
     return Theme(
       data: Theme.of(context).copyWith(
         useMaterial3: false,
@@ -73,11 +84,26 @@ class _FeedScreenState extends State<FeedScreen>
                             ),
                           ),
                           const SizedBox(width: 10),
-                          const CircleAvatar(
-                            radius: 18,
-                            backgroundImage: AssetImage(
-                                'assets/flower.jpg'),
-                          ),
+                          user == null
+                              ? CircleAvatar(
+                                  radius: 18,
+                                  backgroundColor: Colors.grey.shade300,
+                                )
+                              : SizedBox(
+                                  width: 35,
+                                  height: 35,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(100),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: NetworkImage(user.photoUrl),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                         ],
                       ),
                     ),
@@ -90,8 +116,7 @@ class _FeedScreenState extends State<FeedScreen>
                 width: MediaQuery.of(context).size.width,
                 child: TabBarView(
                   controller: _tabController,
-                  
-                  children: [
+                  children: const [
                     ActivityTab(),
                     DiscoverTab(),
                   ],

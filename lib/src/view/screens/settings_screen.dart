@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
-import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:provider/provider.dart';
 

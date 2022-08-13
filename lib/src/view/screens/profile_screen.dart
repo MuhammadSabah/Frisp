@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:typed_data';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +28,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void selectAnImage(BuildContext context) async {
     final imageProvider =
         Provider.of<UserImageProvider>(context, listen: false);
+    setState(() {
+      _isLoading = true;
+    });
     final result = await imageProvider.pickAnImage(ImageSource.gallery);
 
     result.fold((l) async {
@@ -38,6 +40,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       String downloadUrl = await imageProvider.uploadAnImageToStorage(
           fileName: 'profilePictures', file: _image!, isPost: false);
       await imageProvider.updateUserProfilePhoto(downloadUrl);
+      setState(() {
+        _isLoading = false;
+      });
     }, (r) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -48,6 +53,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           backgroundColor: Colors.grey.shade700,
         ),
       );
+      setState(() {
+        _isLoading = false;
+      });
     });
   }
 
@@ -118,33 +126,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         3.3,
                                     decoration: const BoxDecoration(
                                       color: Colors.grey,
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/default_image.jpg'),
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   )
-                                : SizedBox(
-                                    height: MediaQuery.of(context).size.height /
-                                        3.3,
-                                    width: double.infinity,
-                                    child: CachedNetworkImage(
-                                      imageUrl: user.photoUrl,
-                                      fit: BoxFit.cover,
-                                      placeholder: (context, url) =>
-                                          Shimmer.fromColors(
+                                : _isLoading == true
+                                    ? Shimmer.fromColors(
+                                        // enabled: true,
                                         baseColor: Colors.grey.shade400,
                                         highlightColor: Colors.grey.shade300,
-                                        child: SizedBox(
+                                        child: Container(
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height /
-                                              3.2,
+                                              3.3,
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                            image: NetworkImage(user.photoUrl),
+                                            fit: BoxFit.cover,
+                                          )),
                                         ),
+                                      )
+                                    : Container(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                3.3,
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                          image: NetworkImage(user.photoUrl),
+                                          fit: BoxFit.cover,
+                                        )),
                                       ),
-                                      errorWidget: (context, widget, anything) {
-                                        return const Center(
-                                          child: Text('Image is not available'),
-                                        );
-                                      },
-                                    ),
-                                  ),
                             Positioned(
                                 top: 0,
                                 right: 5,
@@ -155,9 +172,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         .settingsClicked(true);
                                   },
                                   splashRadius: 20,
-                                  icon: const FaIcon(
+                                  icon: FaIcon(
                                     FontAwesomeIcons.gear,
-                                    color: Colors.white,
+                                    color: Colors.grey.shade200,
                                   ),
                                 )),
                             Positioned(

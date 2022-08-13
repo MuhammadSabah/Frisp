@@ -3,10 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/src/view/widgets/log_in_form.dart';
 import 'package:provider/provider.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
-import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
-import 'package:food_recipe_final/src/view/widgets/auth_bottom_rich_text.dart';
-import 'package:food_recipe_final/src/view/widgets/auth_confirm_button.dart';
 
 class LogInScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -27,7 +24,7 @@ class _LogInScreenState extends State<LogInScreen> {
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
- 
+
   @override
   void initState() {
     super.initState();
@@ -44,31 +41,34 @@ class _LogInScreenState extends State<LogInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: SizedBox(
-        height: MediaQuery.of(context).size.height / 40,
-      ),
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        leading: IconButton(
-          splashRadius: 20,
-          onPressed: () {
-            Provider.of<AppStateManager>(context, listen: false).goToSignUp();
-          },
-          icon: FaIcon(
-            FontAwesomeIcons.arrowLeft,
-            color: Colors.grey.shade500,
-            size: 21,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        bottomNavigationBar: SizedBox(
+          height: MediaQuery.of(context).size.height / 40,
+        ),
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          leading: IconButton(
+            splashRadius: 20,
+            onPressed: () {
+              Provider.of<AppStateManager>(context, listen: false).goToSignUp();
+            },
+            icon: FaIcon(
+              FontAwesomeIcons.arrowLeft,
+              color: Colors.grey.shade500,
+              size: 21,
+            ),
           ),
         ),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: LoginForm(
-            formKey: _formKey,
-            emailController: _emailController,
-            passwordController: _passwordController,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: LoginForm(
+              formKey: _formKey,
+              emailController: _emailController,
+              passwordController: _passwordController,
+            ),
           ),
         ),
       ),
