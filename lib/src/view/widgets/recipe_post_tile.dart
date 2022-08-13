@@ -49,8 +49,8 @@ class RecipePostTile extends StatelessWidget {
                     elevation: 8,
                     shadowColor: Colors.grey.withOpacity(0.2),
                     child: SizedBox(
-                      width: 60,
-                      height: 60,
+                      width: 50,
+                      height: 50,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: Container(
@@ -71,8 +71,10 @@ class RecipePostTile extends StatelessWidget {
                     child: Row(
                       children: [
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
                                   post.userName,
@@ -84,12 +86,17 @@ class RecipePostTile extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  "",
+                                  post.userEmail,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: Colors.grey.shade300,
-                                  ),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.grey,
+                                        fontSize: 14,
+                                      ),
                                 ),
                               ],
                             ),
@@ -152,11 +159,14 @@ class RecipePostTile extends StatelessWidget {
                                 Radius.circular(10),
                               ),
                             ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage(post.postUrl),
-                                  fit: BoxFit.cover,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(post.postUrl),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
@@ -167,13 +177,23 @@ class RecipePostTile extends StatelessWidget {
                             right: 0,
                             child: Container(
                               // 3.2 is the image height.
-                              height: (screenHeight / 3.2) / 3.4,
+                              height: (screenHeight / 3.2) / 4.1,
                               decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
+                                gradient: LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                    Colors.white.withOpacity(0.5),
+                                    Colors.white.withOpacity(0.2),
+                                  ],
+                                  stops: const [0.0, 1.0],
+                                ),
                                 borderRadius: const BorderRadius.only(
                                   bottomLeft: Radius.circular(10),
                                   bottomRight: Radius.circular(10),
                                 ),
+                                // border:
+                                //     Border.all(width: 2, color: Colors.white30),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),

@@ -4,6 +4,7 @@ class RecipePostModel {
   final String uid;
   final String postId;
   final String userName;
+  final String userEmail;
   final DateTime datePublished;
   final String profImage;
   final String postUrl;
@@ -19,6 +20,7 @@ class RecipePostModel {
     required this.uid,
     required this.postId,
     required this.userName,
+    required this.userEmail,
     required this.datePublished,
     required this.profImage,
     required this.postUrl,
@@ -37,6 +39,7 @@ class RecipePostModel {
     result.addAll({'uid': uid});
     result.addAll({'postId': postId});
     result.addAll({'userName': userName});
+    result.addAll({'userEmail': userEmail});
     result.addAll({'datePublished': datePublished.millisecondsSinceEpoch});
     result.addAll({'profImage': profImage});
     result.addAll({'postUrl': postUrl});
@@ -56,6 +59,7 @@ class RecipePostModel {
       uid: json['uid'] ?? '',
       postId: json['postId'] ?? '',
       userName: json['userName'] ?? '',
+      userEmail: json['userEmail'] ?? '',
       datePublished: DateTime.fromMillisecondsSinceEpoch(json['datePublished']),
       profImage: json['profImage'] ?? '',
       postUrl: json['postUrl'] ?? '',
@@ -78,6 +82,7 @@ class RecipePostModel {
     String? uid,
     String? postId,
     String? userName,
+    String? userEmail,
     DateTime? datePublished,
     String? profImage,
     String? postUrl,
@@ -93,6 +98,7 @@ class RecipePostModel {
       uid: uid ?? this.uid,
       postId: postId ?? this.postId,
       userName: userName ?? this.userName,
+      userEmail: userEmail ?? this.userEmail,
       datePublished: datePublished ?? this.datePublished,
       profImage: profImage ?? this.profImage,
       postUrl: postUrl ?? this.postUrl,

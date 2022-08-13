@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:food_recipe_final/src/models/comment_model.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:uuid/uuid.dart';
@@ -31,6 +32,7 @@ class RecipePostProvider extends ChangeNotifier {
         uid: uid,
         postId: recipePostId,
         userName: userName,
+        userEmail: userEmail,
         datePublished: DateTime.now(),
         profImage: profImage,
         postUrl: fileImageUrl,
@@ -48,6 +50,36 @@ class RecipePostProvider extends ChangeNotifier {
       return null;
     } catch (e) {
       return e.toString();
+    }
+  }
+
+  Future<void> postComment({
+    required String userName,
+    required String profileImage,
+    required String postId,
+    required String text,
+    required String uid,
+  }) async {
+    try {
+      String commentId = const Uuid().v1();
+      final comment = CommentModel(
+        userId: uid,
+        userName: userName,
+        commentId: commentId,
+        commentText: text,
+        profilePicture: profileImage,
+        dateCommented: DateTime.now(),
+      );
+      await _firestore
+          .collection('posts')
+          .doc(postId)
+          .collection('comments')
+          .doc(commentId)
+          .set(
+            comment.toJson(),
+          );
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 }

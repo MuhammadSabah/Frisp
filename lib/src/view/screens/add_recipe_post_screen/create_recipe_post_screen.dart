@@ -202,8 +202,8 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
             leading: IconButton(
               splashRadius: 20,
               onPressed: () {
-                  Provider.of<AppStateManager>(context, listen: false)
-              .createRecipePostClicked(false);
+                Provider.of<AppStateManager>(context, listen: false)
+                    .createRecipePostClicked(false);
               },
               icon: const Icon(
                 Icons.arrow_back,
@@ -229,6 +229,7 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                             userEmail: user.email,
                             profImage: user.photoUrl,
                           );
+                          Navigator.pop(context);
                         }
                       },
                       child: Ink(
@@ -253,119 +254,128 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
               ),
             ],
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _isLoading == true
+          body: Stack(
+            children: [
+              SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Material(
+                      child: InkWell(
+                        highlightColor: Colors.grey.shade400,
+                        onTap: () {
+                          _selectAnImageDialog(context);
+                        },
+                        child: Ink(
+                          height: MediaQuery.of(context).size.height / 4,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            image: _imageFile == null
+                                ? const DecorationImage(
+                                    image: NetworkImage(''),
+                                    fit: BoxFit.cover,
+                                  )
+                                : DecorationImage(
+                                    image: MemoryImage(_imageFile!),
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                bottom: 20,
+                                left: 0,
+                                right: 0,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const FaIcon(
+                                      FontAwesomeIcons.camera,
+                                      color: Colors.white,
+                                    ),
+                                    const SizedBox(width: 15),
+                                    Text(
+                                      'Upload a recipe photo',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline2!
+                                          .copyWith(
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 18,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    // !: Title and Description Section:
+                    TitleAndDescriptionFormSection(
+                      formKey: _formKey,
+                      titleController: _titleController,
+                      descriptionController: _descriptionController,
+                      servesController: _servesController,
+                      cookTimeController: _cookTimeController,
+                    ),
+                    const Divider(
+                      color: kGreyColor,
+                      thickness: 10,
+                    ),
+                    // !: Sections:
+                    const SizedBox(height: 14),
+                    AddFieldsSection(
+                      formFieldsList: _ingredientsFormList,
+                      controllersList: _ingredientControllersList,
+                      popUpItemsList: _popUpItemsList,
+                      buttonText: '+ Ingredient',
+                      validatorText: 'Field Required',
+                      addButtonColor: kOrangeColor,
+                      leadingTextFieldColor: kOrangeColor,
+                      sectionText: 'Ingredients',
+                      hintText: '250g flour',
+                      buttonTextColor: Colors.white,
+                      maxLines: 1,
+                      leadingTextFieldTextColor: Colors.white,
+                      cursorColor: kOrangeColor,
+                    ),
+                    const Divider(
+                      color: kGreyColor,
+                      thickness: 10,
+                    ),
+                    AddFieldsSection(
+                      formFieldsList: _instructionsFormList,
+                      controllersList: _instructionsControllersList,
+                      popUpItemsList: _popUpItemsList,
+                      buttonText: '+ Step',
+                      validatorText: 'Field Required',
+                      addButtonColor: Colors.white,
+                      leadingTextFieldColor: Colors.white,
+                      sectionText: 'Instructions',
+                      hintText: 'Mix the flour and water until they thicken',
+                      buttonTextColor: kBlackColor,
+                      maxLines: 2,
+                      leadingTextFieldTextColor: Colors.black,
+                      cursorColor: Colors.white,
+                    ),
+                    const SizedBox(height: 120),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: _isLoading == true
                     ? const LinearProgressIndicator()
                     : const Padding(
                         padding: EdgeInsets.only(top: 4),
                       ),
-                Material(
-                  child: InkWell(
-                    highlightColor: Colors.grey.shade400,
-                    onTap: () {
-                      _selectAnImageDialog(context);
-                    },
-                    child: Ink(
-                      height: MediaQuery.of(context).size.height / 4,
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        image: _imageFile == null
-                            ? const DecorationImage(
-                                image: NetworkImage(''),
-                                fit: BoxFit.cover,
-                              )
-                            : DecorationImage(
-                                image: MemoryImage(_imageFile!),
-                                fit: BoxFit.cover,
-                              ),
-                      ),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            bottom: 20,
-                            left: 0,
-                            right: 0,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const FaIcon(
-                                  FontAwesomeIcons.camera,
-                                  color: Colors.white,
-                                ),
-                                const SizedBox(width: 15),
-                                Text(
-                                  'Upload a recipe photo',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline2!
-                                      .copyWith(
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 18,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 14),
-                // !: Title and Description Section:
-                TitleAndDescriptionFormSection(
-                  formKey: _formKey,
-                  titleController: _titleController,
-                  descriptionController: _descriptionController,
-                  servesController: _servesController,
-                  cookTimeController: _cookTimeController,
-                ),
-                const Divider(
-                  color: kGreyColor,
-                  thickness: 10,
-                ),
-                // !: Sections:
-                const SizedBox(height: 14),
-                AddFieldsSection(
-                  formFieldsList: _ingredientsFormList,
-                  controllersList: _ingredientControllersList,
-                  popUpItemsList: _popUpItemsList,
-                  buttonText: '+ Ingredient',
-                  validatorText: 'Field Required',
-                  addButtonColor: kOrangeColor,
-                  leadingTextFieldColor: kOrangeColor,
-                  sectionText: 'Ingredients',
-                  hintText: '250g flour',
-                  buttonTextColor: Colors.white,
-                  maxLines: 1,
-                  leadingTextFieldTextColor: Colors.white,
-                  cursorColor: kOrangeColor,
-                ),
-                const Divider(
-                  color: kGreyColor,
-                  thickness: 10,
-                ),
-                AddFieldsSection(
-                  formFieldsList: _instructionsFormList,
-                  controllersList: _instructionsControllersList,
-                  popUpItemsList: _popUpItemsList,
-                  buttonText: '+ Step',
-                  validatorText: 'Field Required',
-                  addButtonColor: Colors.white,
-                  leadingTextFieldColor: Colors.white,
-                  sectionText: 'Instructions',
-                  hintText: 'Mix the flour and water until they thicken',
-                  buttonTextColor: kBlackColor,
-                  maxLines: 2,
-                  leadingTextFieldTextColor: Colors.black,
-                  cursorColor: Colors.white,
-                ),
-                const SizedBox(height: 120),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

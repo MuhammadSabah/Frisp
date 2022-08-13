@@ -5,6 +5,7 @@ import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
+import 'package:food_recipe_final/src/view/screens/comments_screen/comments_screen.dart';
 import 'package:food_recipe_final/src/view/widgets/recipe_post_tile.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +26,7 @@ class _ActivityTabState extends State<ActivityTab> {
 
   Future<void> _refresh() async {
     await Future.delayed(const Duration(milliseconds: 2300), () {
-      Provider.of<UserProvider>(context,listen: false).refreshUser();
+      Provider.of<UserProvider>(context, listen: false).refreshUser();
       setState(() {});
     });
   }
@@ -35,7 +36,8 @@ class _ActivityTabState extends State<ActivityTab> {
     _refresh();
     final commentsProvider =
         Provider.of<AppStateManager>(context, listen: false);
-        UserModel? userProvider =   Provider.of<UserProvider>(context,listen: false).getUser;
+    UserModel? userProvider =
+        Provider.of<UserProvider>(context, listen: false).getUser;
     return RefreshIndicator(
       color: kOrangeColor,
       backgroundColor: Colors.white,
@@ -66,7 +68,15 @@ class _ActivityTabState extends State<ActivityTab> {
                   itemBuilder: ((context, index) {
                     return RecipePostTile(
                       onCommentPressed: () {
-                        commentsProvider.commentsClicked(true);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CommentsScreen(
+                                    recipePost: RecipePostModel.fromSnapshot(
+                                      snapshot.data!.docs[index],
+                                    ),
+                                  )),
+                        );
                       },
                       user: userProvider,
                       post: RecipePostModel.fromSnapshot(

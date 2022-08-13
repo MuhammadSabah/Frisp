@@ -3,7 +3,6 @@ import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
 import 'package:food_recipe_final/src/view/screens/add_recipe_post_screen/create_recipe_post_screen.dart';
-import 'package:food_recipe_final/src/view/screens/comments_screen/comments_screen.dart';
 import 'package:food_recipe_final/src/view/screens/home_screen.dart';
 import 'package:food_recipe_final/src/view/screens/auth_screen/log_in_screen.dart';
 import 'package:food_recipe_final/src/view/screens/settings_screen.dart';
@@ -65,7 +64,6 @@ class AppRouter extends RouterDelegate
               },
             ),
           if (appStateManager.isSettingsClicked) SettingsScreen.page(),
-          if (appStateManager.isCommentsClicked) CommentsScreen.page(),
           if (appStateManager.didCreateRecipePost) CreateRecipePost.page(),
         ]
       ],
@@ -87,9 +85,6 @@ class AppRouter extends RouterDelegate
     }
     if (route.settings.name == AppPages.settingsPath) {
       appStateManager.settingsClicked(false);
-    }
-    if (route.settings.name == AppPages.commentsPath) {
-      appStateManager.commentsClicked(false);
     }
     if (route.settings.name == AppPages.createPostRecipePath) {
       appStateManager.createRecipePostClicked(false);

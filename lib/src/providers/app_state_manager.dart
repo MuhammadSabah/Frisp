@@ -22,7 +22,6 @@ class AppStateManager extends ChangeNotifier {
   bool _onboardingComplete = false;
   bool _settings = false;
   bool _createRecipePost = false;
-  bool _comments = false;
   int _selectedTab = AppTab.discover;
   final _appCache = AppCache();
   UserModel? user;
@@ -34,7 +33,6 @@ class AppStateManager extends ChangeNotifier {
   int get selectedTab => _selectedTab;
   bool get isSettingsClicked => _settings;
   bool get didCreateRecipePost => _createRecipePost;
-  bool get isCommentsClicked => _comments;
 
   void initializeApp(bool loginVal, bool signupVal) async {
     debugPrint(_userAuth.currentUser.toString());
@@ -67,10 +65,6 @@ class AppStateManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  void commentsClicked(bool value) {
-    _comments = value;
-    notifyListeners();
-  }
 
   void goToLogIn() async {
     _signedUp = true;
