@@ -5,19 +5,18 @@ import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
+import 'package:food_recipe_final/src/view/screens/comments_screen/comments_screen.dart';
 import 'package:food_recipe_final/src/view/widgets/animated_like_button.dart';
 import 'package:provider/provider.dart';
 
 class RecipePostCard extends StatelessWidget {
   const RecipePostCard({
     Key? key,
-    required this.onCommentPressed,
     required this.post,
     required this.user,
   }) : super(key: key);
   final UserModel? user;
   final RecipePostModel post;
-  final Function()? onCommentPressed;
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
@@ -314,7 +313,7 @@ class RecipePostCard extends StatelessWidget {
                                   onPressed: () async {
                                     await postProvider.likePost(
                                       postId: post.postId,
-                                      userId: post.uid,
+                                      userId: user!.id,
                                       likes: post.likes,
                                     );
                                   },
@@ -336,7 +335,15 @@ class RecipePostCard extends StatelessWidget {
                               ),
                               IconButton(
                                 splashRadius: 20,
-                                onPressed: onCommentPressed,
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CommentsScreen(
+                                              recipePost: post,
+                                            )),
+                                  );
+                                },
                                 icon: Icon(
                                   Icons.comment,
                                   color: Colors.grey.shade300,

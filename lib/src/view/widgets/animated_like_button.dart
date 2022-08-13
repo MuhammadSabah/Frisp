@@ -16,7 +16,7 @@ class AnimatedLikeButton extends StatefulWidget {
 
 class _AnimatedLikeButtonState extends State<AnimatedLikeButton>
     with SingleTickerProviderStateMixin {
-  final Duration _duration = const Duration(microseconds: 150);
+  final Duration _duration = const Duration(milliseconds: 150);
   late AnimationController _likeController;
   late Animation<double> _heartScale;
 

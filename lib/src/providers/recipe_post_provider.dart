@@ -86,7 +86,7 @@ class RecipePostProvider extends ChangeNotifier {
   Future<void> likePost(
       {required String postId,
       required String userId,
-      required List<dynamic> likes}) async {
+      required List likes}) async {
     try {
       if (likes.contains(userId)) {
         await _firestore.collection('posts').doc(postId).update(
