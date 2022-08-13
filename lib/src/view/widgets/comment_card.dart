@@ -53,7 +53,7 @@ class _CommentCardState extends State<CommentCard> {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Colors.grey,
                             ),
                       )
@@ -72,8 +72,9 @@ class _CommentCardState extends State<CommentCard> {
                                   .bodyText2!
                                   .copyWith(
                                     fontSize: 14,
-                                    color: Colors.grey,
+                                    color: Colors.grey.shade300,
                                     fontWeight: FontWeight.w400,
+                                    height: 1.4,
                                   ),
                             ),
                           ),
@@ -82,7 +83,7 @@ class _CommentCardState extends State<CommentCard> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 4),
+                    padding: const EdgeInsets.only(top: 6, bottom: 6),
                     child: Text(
                       DateFormat.yMMMd().format(
                         widget.comment.dateCommented,
@@ -91,6 +92,22 @@ class _CommentCardState extends State<CommentCard> {
                           .textTheme
                           .bodyText2!
                           .copyWith(fontSize: 12),
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                            fontSize: 13,
+                            color: Colors.grey,
+                          ),
+                      children: const [
+                        TextSpan(text: ""),
+                        TextSpan(text: 'Like'),
+                        TextSpan(text: '  ●  '),
+                        TextSpan(text: 'Reply'),
+                        TextSpan(text: '  ●  '),
+                        TextSpan(text: 'Report'),
+                      ],
                     ),
                   ),
                 ],

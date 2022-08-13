@@ -85,7 +85,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
           title: Text(
             'Comments',
             style:
-                Theme.of(context).textTheme.headline2!.copyWith(fontSize: 20),
+                Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
           ),
           centerTitle: true,
         ),
