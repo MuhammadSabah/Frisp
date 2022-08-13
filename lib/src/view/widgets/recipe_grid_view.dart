@@ -24,18 +24,16 @@ class _RecipeGridViewState extends State<RecipeGridView> {
     final size = MediaQuery.of(context).size;
     double itemWidth = (size.width / 2) - 10;
     double itemHeight = 292;
-    return Expanded(
-      child: GridView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: widget.results.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: (itemWidth / itemHeight),
-        ),
-        itemBuilder: (context, index) {
-          return _buildRecipeCard(context, widget.results, index);
-        },
+    return GridView.builder(
+      physics: const BouncingScrollPhysics(),
+      itemCount: widget.results.length,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: (itemWidth / itemHeight),
       ),
+      itemBuilder: (context, index) {
+        return _buildRecipeCard(context, widget.results, index);
+      },
     );
   }
 

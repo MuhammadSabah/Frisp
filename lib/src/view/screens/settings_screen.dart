@@ -18,6 +18,8 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appStateProvider =
+        Provider.of<AppStateManager>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -222,8 +224,7 @@ class SettingsScreen extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Provider.of<AppStateManager>(context, listen: false)
-                    .logOutUser();
+                appStateProvider.logOutUser();
               },
               child: Ink(
                 height: MediaQuery.of(context).size.height / 14,

@@ -65,7 +65,6 @@ class AppStateManager extends ChangeNotifier {
     notifyListeners();
   }
 
-
   void goToLogIn() async {
     _signedUp = true;
     _loggedIn = false;

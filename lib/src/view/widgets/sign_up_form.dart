@@ -243,7 +243,7 @@ class _SignupFormState extends State<SignupForm> {
                       await Provider.of<AppStateManager>(context, listen: false)
                           .signUpUser(
                     userName: widget.userNameController.text,
-                    userEmail: widget.emailController.text,
+                    userEmail: widget.emailController.text.trim(),
                     userPassword: widget.passwordController.text,
                     // photoUrl: 'assets/default_image.jpg',
                   );

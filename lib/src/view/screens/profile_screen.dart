@@ -172,9 +172,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         .settingsClicked(true);
                                   },
                                   splashRadius: 20,
-                                  icon: FaIcon(
+                                  icon: const FaIcon(
                                     FontAwesomeIcons.gear,
-                                    color: Colors.grey.shade200,
+                                    color: kOrangeColorTint2,
                                   ),
                                 )),
                             Positioned(
@@ -375,29 +375,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   crossAxisSpacing: 14,
                                   mainAxisSpacing: 14),
                           itemBuilder: (context, index) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                        color: Colors.red,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10),
-                                        )),
+                            return Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                          color: Colors.red,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10),
+                                          )),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, bottom: 8),
-                                  child: Text(
-                                    'Post Title',
-                                    textAlign: TextAlign.start,
-                                    style:
-                                        Theme.of(context).textTheme.headline3,
-                                  ),
-                                )
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 8.0, bottom: 8),
+                                    child: Text(
+                                      'Post Title',
+                                      textAlign: TextAlign.start,
+                                      style:
+                                          Theme.of(context).textTheme.headline3,
+                                    ),
+                                  )
+                                ],
+                              ),
                             );
                           },
                         ),

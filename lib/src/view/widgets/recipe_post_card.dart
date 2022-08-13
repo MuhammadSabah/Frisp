@@ -3,7 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
+import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
+import 'package:food_recipe_final/src/view/widgets/animated_like_button.dart';
 import 'package:provider/provider.dart';
 
 class RecipePostCard extends StatelessWidget {
@@ -18,7 +20,10 @@ class RecipePostCard extends StatelessWidget {
   final Function()? onCommentPressed;
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
     Provider.of<UserProvider>(context, listen: false).refreshUser();
+    UserModel? user = userProvider.getUser;
+    final postProvider = Provider.of<RecipePostProvider>(context);
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
@@ -50,20 +55,35 @@ class RecipePostCard extends StatelessWidget {
                     elevation: 8,
                     shadowColor: Colors.grey.withOpacity(0.2),
                     child: SizedBox(
-                      width: 50,
-                      height: 50,
+                      width: 48,
+                      height: 48,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: user == null
-                                  ? const NetworkImage("")
-                                  : NetworkImage(user!.photoUrl),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
+                        child: user == null
+                            ? const Center(
+                                child: LinearProgressIndicator(
+                                  color: kOrangeColor,
+                                  backgroundColor: Colors.white,
+                                ),
+                              )
+                            : post.profImage == ""
+                                ? Container(
+                                    decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/default_image.jpg'),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: NetworkImage(post.profImage),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
                       ),
                     ),
                   ),
@@ -285,12 +305,33 @@ class RecipePostCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               //!: Like button:
-                              IconButton(
-                                splashRadius: 20,
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.favorite_border_outlined,
-                                  color: Colors.grey.shade300,
+                              AnimatedLikeButton(
+                                isAnimating: user == null
+                                    ? false
+                                    : post.likes.contains(user.id),
+                                child: IconButton(
+                                  splashRadius: 20,
+                                  onPressed: () async {
+                                    await postProvider.likePost(
+                                      postId: post.postId,
+                                      userId: post.uid,
+                                      likes: post.likes,
+                                    );
+                                  },
+                                  icon: user == null
+                                      ? Icon(
+                                          Icons.favorite_border_outlined,
+                                          color: Colors.grey.shade300,
+                                        )
+                                      : post.likes.contains(user.id)
+                                          ? const Icon(
+                                              Icons.favorite,
+                                              color: Colors.red,
+                                            )
+                                          : Icon(
+                                              Icons.favorite_border_outlined,
+                                              color: Colors.grey.shade300,
+                                            ),
                                 ),
                               ),
                               IconButton(

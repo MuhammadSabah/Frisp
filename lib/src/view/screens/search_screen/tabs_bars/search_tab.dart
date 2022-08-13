@@ -60,33 +60,31 @@ class _SearchTabState extends State<SearchTab>
         final query = snapshot.data;
         if (snapshot.connectionState == ConnectionState.waiting) {
           print('SNAPSHOT DATA: $snapshot.data');
-          return Expanded(
-            child: GridView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: 10,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: (itemWidth / itemHeight),
-              ),
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0, vertical: 10.0),
-                  child: Shimmer.fromColors(
-                    // enabled: true,
-                    baseColor: Colors.grey.shade400,
-                    highlightColor: Colors.grey.shade300,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          )),
-                    ),
-                  ),
-                );
-              },
+          return GridView.builder(
+            physics: const BouncingScrollPhysics(),
+            itemCount: 10,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: (itemWidth / itemHeight),
             ),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
+                child: Shimmer.fromColors(
+                  // enabled: true,
+                  baseColor: Colors.grey.shade400,
+                  highlightColor: Colors.grey.shade300,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        )),
+                  ),
+                ),
+              );
+            },
           );
         } else if (snapshot.hasError) {
           return Center(

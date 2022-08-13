@@ -48,9 +48,9 @@ class _AddFieldsSectionState extends State<AddFieldsSection> {
         children: [
           Row(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 30.0),
-                child: Expanded(
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 30.0),
                   child: Text(
                     widget.sectionText,
                     maxLines: 1,

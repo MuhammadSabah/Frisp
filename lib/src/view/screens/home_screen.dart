@@ -30,7 +30,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   static List<Widget> pages = [
-    FeedScreen(),
+    const FeedScreen(),
     const SearchRecipeScreen(),
     const AddRecipePostScreen(),
     const ShoppingScreen(),
@@ -40,19 +40,19 @@ class _HomeScreenState extends State<HomeScreen> {
     // SettingsScreen(),
   ];
 
-  Future<void> getUserData() async {
-    UserProvider userProvider =
-        Provider.of<UserProvider>(context, listen: false);
-    await Future.delayed(const Duration(milliseconds: 2500), () {
-      userProvider.refreshUser();
-    });
-  }
+  // Future<void> getUserData() async {
+  //   UserProvider userProvider =
+  //       Provider.of<UserProvider>(context, listen: false);
+  //   await Future.delayed(const Duration(milliseconds: 2500), () {
+  //     userProvider.refreshUser();
+  //   });
+  // }
 
-  @override
-  void initState() {
-    super.initState();
-    getUserData();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getUserData();
+  // }
 
   @override
   Widget build(BuildContext context) {

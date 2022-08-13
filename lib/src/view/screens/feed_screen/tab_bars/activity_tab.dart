@@ -16,7 +16,8 @@ class ActivityTab extends StatefulWidget {
   State<ActivityTab> createState() => _ActivityTabState();
 }
 
-class _ActivityTabState extends State<ActivityTab> {
+class _ActivityTabState extends State<ActivityTab>
+    with AutomaticKeepAliveClientMixin {
   Stream<QuerySnapshot<Map<String, dynamic>>>? streamResult;
   @override
   void initState() {
@@ -24,70 +25,67 @@ class _ActivityTabState extends State<ActivityTab> {
     streamResult = FirebaseFirestore.instance.collection('posts').snapshots();
   }
 
-  Future<void> _refresh() async {
-    await Future.delayed(const Duration(milliseconds: 2300), () {
-      Provider.of<UserProvider>(context, listen: false).refreshUser();
-      setState(() {});
-    });
-  }
+  // Future<void> _refresh() async {
+  //   await Future.delayed(const Duration(milliseconds: 3300), () {
+  //     Provider.of<UserProvider>(context, listen: false).refreshUser();
+  //     if (mounted) {
+  //       setState(() {});
+  //     }
+  //   });
 
   @override
   Widget build(BuildContext context) {
-    _refresh();
+    // _refresh();
     final commentsProvider =
         Provider.of<AppStateManager>(context, listen: false);
     UserModel? userProvider =
         Provider.of<UserProvider>(context, listen: false).getUser;
-    return RefreshIndicator(
-      color: kOrangeColor,
-      backgroundColor: Colors.white,
-      onRefresh: _refresh,
-      child: Expanded(
-        child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-            stream: streamResult,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (snapshot.hasError) {
-                return const Center(
-                  child: Text('Some error occurred'),
-                );
-              } else if (!snapshot.hasData) {
-                return const Center(
-                  child: Text(''),
-                );
-              } else if (snapshot.data == null) {
-                return const Center(
-                  child: Text(''),
-                );
-              } else {
-                return ListView.builder(
-                  itemCount: snapshot.data!.docs.length,
-                  itemBuilder: ((context, index) {
-                    return RecipePostCard(
-                      onCommentPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CommentsScreen(
-                                    recipePost: RecipePostModel.fromSnapshot(
-                                      snapshot.data!.docs[index],
-                                    ),
-                                  )),
-                        );
-                      },
-                      user: userProvider,
-                      post: RecipePostModel.fromSnapshot(
-                        snapshot.data!.docs[index],
-                      ),
+    return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+        stream: streamResult,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return const Center(
+              child: Text('Some error occurred'),
+            );
+          } else if (!snapshot.hasData) {
+            return const Center(
+              child: Text(''),
+            );
+          } else if (snapshot.data == null) {
+            return const Center(
+              child: Text(''),
+            );
+          } else {
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: ((context, index) {
+                return RecipePostCard(
+                  onCommentPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CommentsScreen(
+                                recipePost: RecipePostModel.fromSnapshot(
+                                  snapshot.data!.docs[index],
+                                ),
+                              )),
                     );
-                  }),
+                  },
+                  user: userProvider,
+                  post: RecipePostModel.fromSnapshot(
+                    snapshot.data!.docs[index],
+                  ),
                 );
-              }
-            }),
-      ),
-    );
+              }),
+            );
+          }
+        });
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

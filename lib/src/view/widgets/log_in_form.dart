@@ -180,7 +180,7 @@ class _LoginFormState extends State<LoginForm> {
                   final _output =
                       await Provider.of<AppStateManager>(context, listen: false)
                           .logInUser(
-                    userEmail: widget.emailController.text,
+                    userEmail: widget.emailController.text.trim(),
                     userPassword: widget.passwordController.text,
                   );
                   if (_output != null) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
+import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/screens/feed_screen/tab_bars/discover_tab.dart';
 import 'package:food_recipe_final/src/view/screens/feed_screen/tab_bars/activity_tab.dart';
@@ -21,20 +22,22 @@ class _FeedScreenState extends State<FeedScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    getUserData();
+    // getUserData();
   }
 
-  Future<void> getUserData() async {
-    UserProvider userProvider =
-        Provider.of<UserProvider>(context, listen: false);
-    await Future.delayed(const Duration(milliseconds: 2500), () {
-      userProvider.refreshUser();
-    });
-  }
+  // Future<void> getUserData() async {
+  //   UserProvider userProvider =
+  //       Provider.of<UserProvider>(context, listen: false);
+  //   await Future.delayed(const Duration(milliseconds: 2500), () {
+  //     userProvider.refreshUser();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     UserModel? user = Provider.of<UserProvider>(context).getUser;
+    final appProvider = Provider.of<AppStateManager>(context);
+
     return Theme(
       data: Theme.of(context).copyWith(
         useMaterial3: false,
@@ -84,26 +87,53 @@ class _FeedScreenState extends State<FeedScreen>
                             ),
                           ),
                           const SizedBox(width: 10),
-                          user == null
-                              ? CircleAvatar(
-                                  radius: 18,
-                                  backgroundColor: Colors.grey.shade300,
-                                )
-                              : SizedBox(
-                                  width: 35,
-                                  height: 35,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(100),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: NetworkImage(user.photoUrl),
-                                          fit: BoxFit.cover,
-                                        ),
+                          GestureDetector(
+                            onTap: () {
+                              appProvider.gotToTab(4);
+                            },
+                            child: SizedBox(
+                              width: 35,
+                              height: 35,
+                              child: user == null
+                                  ? const Center(
+                                      child: LinearProgressIndicator(
+                                        color: kOrangeColor,
+                                        backgroundColor: Colors.white,
                                       ),
-                                    ),
-                                  ),
-                                ),
+                                    )
+                                  : user.photoUrl == ""
+                                      ? SizedBox(
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            child: Container(
+                                              decoration: const BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                      'assets/default_image.jpg'),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      : SizedBox(
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      user.photoUrl),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
