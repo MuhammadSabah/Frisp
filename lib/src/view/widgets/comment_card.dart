@@ -15,12 +15,13 @@ class CommentCard extends StatefulWidget {
 class _CommentCardState extends State<CommentCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 18,
+        vertical: 16,
         horizontal: 16,
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CircleAvatar(
             backgroundImage: NetworkImage(widget.comment.profilePicture),
@@ -30,26 +31,55 @@ class _CommentCardState extends State<CommentCard> {
             child: Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: widget.comment.userName,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          widget.comment.userName,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                                    fontSize: 14,
+                                  ),
                         ),
-                        TextSpan(
-                          text: '  ${widget.comment.commentText}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
+                      ),
+                      Text(
+                        'm',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                      )
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              widget.comment.commentText,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
+                                    fontSize: 14,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 4),
@@ -57,10 +87,10 @@ class _CommentCardState extends State<CommentCard> {
                       DateFormat.yMMMd().format(
                         widget.comment.dateCommented,
                       ),
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .copyWith(fontSize: 12),
                     ),
                   ),
                 ],
@@ -68,16 +98,6 @@ class _CommentCardState extends State<CommentCard> {
             ),
           ),
           //
-          Align(
-            alignment: Alignment.centerRight,
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              child: const Icon(
-                Icons.favorite,
-                size: 16,
-              ),
-            ),
-          ),
         ],
       ),
     );

@@ -145,11 +145,19 @@ class _CommentsScreenState extends State<CommentsScreen> {
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
                             splashRadius: 20,
-                            onPressed: () {
+                            onPressed: () async {
                               final validForm =
                                   _formKey.currentState!.validate();
                               if (validForm) {
                                 // !: Post comment.
+                                postProvider.postComment(
+                                  userName: user!.userName,
+                                  profileImage: user.photoUrl,
+                                  postId: widget.recipePost!.postId,
+                                  text: _commentController.text,
+                                  uid: user.id,
+                                );
+                                _commentController.clear();
                               }
                             },
                             icon: const Icon(
