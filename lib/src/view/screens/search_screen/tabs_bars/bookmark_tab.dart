@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/src/data/bookmark_interface.dart';
-import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
+import 'package:food_recipe_final/src/repository/bookmark_interface.dart';
+import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
 import 'package:food_recipe_final/src/view/widgets/bookmark_card.dart';
 import 'package:provider/provider.dart';
 

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:food_recipe_final/src/data/class_models/ingredient_model.dart';
-import 'package:food_recipe_final/src/data/class_models/instruction_model.dart';
-import 'package:food_recipe_final/src/data/class_models/nutrition_model.dart';
+import 'package:food_recipe_final/src/models/data_class_models/ingredient_model.dart';
+import 'package:food_recipe_final/src/models/data_class_models/instruction_model.dart';
+import 'package:food_recipe_final/src/models/data_class_models/nutrition_model.dart';
 
 class RecipeModel extends Equatable {
   int? id;

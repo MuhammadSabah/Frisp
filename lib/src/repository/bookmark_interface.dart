@@ -1,4 +1,5 @@
-import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
+
+import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
 
 abstract class BookmarkInterface {
   Future<List<RecipeModel>> findAllRecipes();

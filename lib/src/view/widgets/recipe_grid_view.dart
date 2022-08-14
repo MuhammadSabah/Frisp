@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
+import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
 import 'package:food_recipe_final/src/view/screens/recipe_detail_screen.dart';
 import 'package:food_recipe_final/src/view/widgets/recipe_card.dart';
 

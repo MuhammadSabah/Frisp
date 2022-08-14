@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/data/bookmark_interface.dart';
-import 'package:food_recipe_final/src/data/class_models/recipe_model.dart';
+import 'package:food_recipe_final/src/repository/bookmark_interface.dart';
+import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
 import 'package:food_recipe_final/src/view/widgets/bottom_save_button.dart';
 import 'package:food_recipe_final/src/view/widgets/details_sliver_app_bar.dart';
 import 'package:food_recipe_final/src/view/widgets/details_title_section.dart';
