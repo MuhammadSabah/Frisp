@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/view/widgets/shopping_tile.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
 
@@ -56,7 +57,7 @@ class ShoppingListScreen extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Material(
-                shadowColor: Colors.transparent,
+                color: kGreyColor,
                 child: InkWell(
                   onTap: () {
                     manager.shoppingItemTapped(index);

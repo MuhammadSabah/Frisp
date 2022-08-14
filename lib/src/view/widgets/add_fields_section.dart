@@ -185,6 +185,7 @@ class _AddFieldsSectionState extends State<AddFieldsSection> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Material(
+                      color: widget.addButtonColor,
                       elevation: 4,
                       child: InkWell(
                         onTap: () {
@@ -198,11 +199,10 @@ class _AddFieldsSectionState extends State<AddFieldsSection> {
                         },
                         child: Ink(
                           height: 40,
-                          decoration: BoxDecoration(
-                              color: widget.addButtonColor,
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10),
-                              )),
+                          decoration: const BoxDecoration(
+                              borderRadius:  BorderRadius.all(
+                            Radius.circular(10),
+                          )),
                           child: Center(
                             child: Text(
                               widget.buttonText,

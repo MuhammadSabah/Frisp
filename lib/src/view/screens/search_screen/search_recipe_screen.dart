@@ -136,10 +136,10 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
           Expanded(
             child: Material(
               borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
               elevation: 2,
               child: Container(
                 decoration: const BoxDecoration(
-                  color: Colors.white,
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ),
@@ -228,12 +228,12 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Material(
+              color: kOrangeColorTint,
               child: InkWell(
                 child: Ink(
                   height: 48,
                   width: 48,
                   decoration: const BoxDecoration(
-                    color: kOrangeColorTint,
                     borderRadius: BorderRadius.all(
                       Radius.circular(10),
                     ),

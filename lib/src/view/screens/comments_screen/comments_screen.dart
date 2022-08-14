@@ -39,6 +39,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
         .collection('posts')
         .doc(widget.recipePost!.postId)
         .collection('comments')
+        .orderBy("dateCommented", descending: true)
         .snapshots();
   }
 

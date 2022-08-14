@@ -61,13 +61,13 @@ class _RecipeCardState extends State<RecipeCard> {
                         });
                       },
                       child: Material(
+                        color: const Color.fromARGB(255, 224, 255, 221),
                         elevation: 8,
                         borderRadius: BorderRadius.circular(50),
                         child: Container(
                           height: 22,
                           width: 60,
                           decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 224, 255, 221),
                             borderRadius: BorderRadius.all(
                               Radius.circular(10),
                             ),

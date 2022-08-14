@@ -23,10 +23,15 @@ class _CommentCardState extends State<CommentCard> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
-            backgroundImage: NetworkImage(widget.comment.profilePicture),
-            radius: 18,
-          ),
+          widget.comment.profilePicture == ""
+              ? const CircleAvatar(
+                  backgroundImage: AssetImage("assets/default_image.jpg"),
+                  radius: 18,
+                )
+              : CircleAvatar(
+                  backgroundImage: NetworkImage(widget.comment.profilePicture),
+                  radius: 18,
+                ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 16),

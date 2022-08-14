@@ -15,8 +15,10 @@ class RecipePostModel {
   final String cookTime;
   final List ingredients;
   final List instructions;
+  DocumentReference? reference;
 
   RecipePostModel({
+    this.reference,
     required this.uid,
     required this.postId,
     required this.userName,

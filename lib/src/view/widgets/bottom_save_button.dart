@@ -25,7 +25,7 @@ class _BottomSaveButtonState extends State<BottomSaveButton> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Material(
-          color: Colors.transparent,
+           color: kOrangeColor,
           elevation: 4,
           child: InkWell(
             onTap: widget.saveRecipe,
@@ -36,7 +36,7 @@ class _BottomSaveButtonState extends State<BottomSaveButton> {
                 borderRadius: BorderRadius.all(
                   Radius.circular(10),
                 ),
-                color: kOrangeColor,
+               
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,

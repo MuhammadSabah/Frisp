@@ -14,7 +14,7 @@ class AuthConfirmButton extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: Material(
-        color: Colors.transparent,
+        color: kOrangeColor,
         elevation: 4,
         child: InkWell(
           onTap: callBack,
@@ -25,7 +25,7 @@ class AuthConfirmButton extends StatelessWidget {
               borderRadius: BorderRadius.all(
                 Radius.circular(10),
               ),
-              color: kOrangeColor,
+              
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,

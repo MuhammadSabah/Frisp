@@ -17,7 +17,6 @@ class ShoppingTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Ink(
       decoration: const BoxDecoration(
-        color: kGreyColor,
         borderRadius: BorderRadius.all(
           Radius.circular(10),
         ),
