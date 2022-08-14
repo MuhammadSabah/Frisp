@@ -79,6 +79,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
   @override
   void dispose() {
     _nameController.dispose();
+    _quantityController.dispose();
     super.dispose();
   }
 

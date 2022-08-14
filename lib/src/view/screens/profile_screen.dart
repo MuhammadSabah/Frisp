@@ -8,6 +8,7 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
+import 'package:food_recipe_final/src/view/widgets/profile_post_section.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -85,15 +86,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     // final userProvider = Provider.of<UserProvider>(context, listen: false);
     // UserModel? user = userProvider.getUser;
 
-    final size = MediaQuery.of(context).size;
-    double itemWidth = (size.width / 2) - 10;
-    double itemHeight = 256;
     return Theme(
       data: Theme.of(context).copyWith(useMaterial3: false),
       child: RefreshIndicator(
         color: kOrangeColor,
         backgroundColor: Colors.white,
-        displacement: 80,
+        displacement: 40,
         onRefresh: _refresh,
         child: SafeArea(
           child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
@@ -172,9 +170,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         .settingsClicked(true);
                                   },
                                   splashRadius: 20,
-                                  icon: const FaIcon(
-                                    FontAwesomeIcons.gear,
-                                    color: kOrangeColorTint2,
+                                  icon: CircleAvatar(
+                                    backgroundColor:
+                                        Colors.white.withOpacity(0.9),
+                                    child: const FaIcon(
+                                      FontAwesomeIcons.gear,
+                                      color: kGreyColor,
+                                      size: 20,
+                                    ),
                                   ),
                                 )),
                             Positioned(
@@ -360,50 +363,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ],
                         ),
                       ),
-                      // Posts Section:
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0, vertical: 25),
-                        child: GridView.builder(
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: 5,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: (itemWidth / itemHeight),
-                                  crossAxisSpacing: 14,
-                                  mainAxisSpacing: 14),
-                          itemBuilder: (context, index) {
-                            return Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                          color: Colors.red,
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10),
-                                          )),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 8.0, bottom: 8),
-                                    child: Text(
-                                      'Post Title',
-                                      textAlign: TextAlign.start,
-                                      style:
-                                          Theme.of(context).textTheme.headline3,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                      ),
+                      //!: Posts Section:
+                      const ProfilePostSection(),
                     ],
                   ),
                 );
