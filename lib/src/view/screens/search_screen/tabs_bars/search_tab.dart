@@ -32,25 +32,30 @@ class _SearchTabState extends State<SearchTab>
     if (widget.controller.text.length < 3) {
       return SizedBox(
         height: 300,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Flexible(
-                child: AspectRatio(
-                  aspectRatio: 2 / 1.2,
-                  child: SvgPicture.asset('assets/searching.svg'),
-                ),
-              ),
-              const SizedBox(height: 25),
-              Text(
-                "Search for your favorite recipe!",
-                style: Theme.of(context).textTheme.headline3!.copyWith(
-                      fontWeight: FontWeight.normal,
+        child: Flex(
+          direction: Axis.vertical,
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    child: AspectRatio(
+                      aspectRatio: 2 / 1.2,
+                      child: SvgPicture.asset('assets/searching.svg'),
                     ),
+                  ),
+                  const SizedBox(height: 25),
+                  Text(
+                    "Search for your favorite recipe!",
+                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                          fontWeight: FontWeight.normal,
+                        ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       );
     }

@@ -120,25 +120,23 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
                         color: Colors.grey.shade300,
                       ),
                 ),
-                Expanded(
-                  child: ListView.separated(
-                    primary: false,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: widget.dishTypes.length,
-                    itemBuilder: (context, index) {
-                      return Text(
-                        widget.dishTypes[index],
-                        style: Theme.of(context).textTheme.headline4!.copyWith(
-                              fontSize: 14,
-                              color: Colors.grey,
-                            ),
-                      );
-                    },
-                    separatorBuilder: (_, index) {
-                      return const SizedBox(width: 6);
-                    },
-                  ),
+                ListView.separated(
+                  primary: false,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: widget.dishTypes.length,
+                  itemBuilder: (context, index) {
+                    return Text(
+                      widget.dishTypes[index],
+                      style: Theme.of(context).textTheme.headline4!.copyWith(
+                            fontSize: 14,
+                            color: Colors.grey,
+                          ),
+                    );
+                  },
+                  separatorBuilder: (_, index) {
+                    return const SizedBox(width: 6);
+                  },
                 ),
               ],
             ),

@@ -10,11 +10,9 @@ class EmptyShoppingScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Flexible(
-            child: AspectRatio(
-              aspectRatio: 2 / 1.2,
-              child: SvgPicture.asset('assets/empty.svg'),
-            ),
+          AspectRatio(
+            aspectRatio: 2 / 1.2,
+            child: SvgPicture.asset('assets/empty.svg'),
           ),
           const SizedBox(
             height: 20,

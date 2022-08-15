@@ -106,18 +106,23 @@ class _CommentsScreenState extends State<CommentsScreen> {
                       child: CircularProgressIndicator(),
                     );
                   }
-                  return Expanded(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.docs.length,
-                      itemBuilder: (context, index) {
-                        return CommentCard(
-                          comment: CommentModel.fromSnapshot(
-                            snapshot.data!.docs[index],
-                          ),
-                        );
-                      },
-                    ),
+                  return Flex(
+                    direction: Axis.vertical,
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (context, index) {
+                            return CommentCard(
+                              comment: CommentModel.fromSnapshot(
+                                snapshot.data!.docs[index],
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
                   );
                 },
               ),
