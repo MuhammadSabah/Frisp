@@ -273,10 +273,7 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                           decoration: BoxDecoration(
                             color: Colors.grey,
                             image: _imageFile == null
-                                ? const DecorationImage(
-                                    image: NetworkImage(''),
-                                    fit: BoxFit.cover,
-                                  )
+                                ? null
                                 : DecorationImage(
                                     image: MemoryImage(_imageFile!),
                                     fit: BoxFit.cover,

@@ -19,10 +19,11 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
       resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton.extended(
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16))),
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
         label: Text(
           "Add Item",
-          style: Theme.of(context).textTheme.bodyText2,
+          style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 14),
         ),
         onPressed: () {
           final manager = Provider.of<ShoppingManager>(context, listen: false);
@@ -49,7 +50,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         ),
         title: Text(
           "Shopping List",
-          style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 20),
+          style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
         ),
       ),
       body: _buildShoppingScreen(),

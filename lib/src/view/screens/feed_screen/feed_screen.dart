@@ -42,123 +42,116 @@ class _FeedScreenState extends State<FeedScreen>
       data: Theme.of(context).copyWith(
         useMaterial3: false,
       ),
-      child: Scaffold(
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Theme(
-                  data: ThemeData(
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        flex: 4,
-                        child: TabBar(
-                          controller: _tabController,
-                          labelStyle:
-                              Theme.of(context).textTheme.headline3!.copyWith(
-                                    fontSize: 16,
-                                  ),
-                          tabs: const [
-                            Tab(text: 'Activity'),
-                            Tab(text: 'Discover'),
-                          ],
-                          indicatorPadding: const EdgeInsets.only(right: 10),
-                          labelColor: kOrangeColorTint,
-                          unselectedLabelColor: Colors.white,
-                          indicatorColor: kOrangeColor,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            IconButton(
-                              splashRadius: 20,
-                              onPressed: () {},
-                              icon: const FaIcon(
-                                FontAwesomeIcons.userGroup,
-                                color: Colors.white,
-                                size: 21,
+      child: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: TabBar(
+                      controller: _tabController,
+                      labelStyle:
+                          Theme.of(context).textTheme.headline3!.copyWith(
+                                fontSize: 16,
                               ),
-                            ),
-                            const SizedBox(width: 10),
-                            GestureDetector(
-                              onTap: () {
-                                appProvider.gotToTab(4);
-                              },
-                              child: SizedBox(
-                                width: 35,
-                                height: 35,
-                                child: user == null
-                                    ? const Center(
-                                        child: LinearProgressIndicator(
-                                          color: kOrangeColor,
-                                          backgroundColor: Colors.white,
-                                        ),
-                                      )
-                                    : user.photoUrl == ""
-                                        ? SizedBox(
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(100),
-                                              child: Container(
-                                                decoration: const BoxDecoration(
-                                                  image: DecorationImage(
-                                                    image: AssetImage(
-                                                        'assets/default_image.jpg'),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        : SizedBox(
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(100),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                    image: NetworkImage(
-                                                        user.photoUrl),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
+                      tabs: const [
+                        Tab(text: 'Activity'),
+                        Tab(text: 'Discover'),
+                      ],
+                      indicatorPadding: const EdgeInsets.only(right: 10),
+                      labelColor: kOrangeColorTint,
+                      unselectedLabelColor: Colors.white,
+                      indicatorColor: kOrangeColor,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        IconButton(
+                          splashRadius: 20,
+                          onPressed: () {},
+                          icon: const FaIcon(
+                            FontAwesomeIcons.userGroup,
+                            color: Colors.white,
+                            size: 21,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        GestureDetector(
+                          onTap: () {
+                            appProvider.gotToTab(4);
+                          },
+                          child: SizedBox(
+                            width: 35,
+                            height: 35,
+                            child: user == null
+                                ? const Center(
+                                    child: LinearProgressIndicator(
+                                      color: kOrangeColor,
+                                      backgroundColor: Colors.white,
+                                    ),
+                                  )
+                                : user.photoUrl == ""
+                                    ? SizedBox(
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          child: Container(
+                                            decoration: const BoxDecoration(
+                                              image: DecorationImage(
+                                                image: AssetImage(
+                                                    'assets/default_image.jpg'),
+                                                fit: BoxFit.cover,
                                               ),
                                             ),
                                           ),
-                              ),
-                            ),
-                          ],
+                                        ),
+                                      )
+                                    : SizedBox(
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                image:
+                                                    NetworkImage(user.photoUrl),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                        child: SizedBox(
-                      height: double.maxFinite,
-                      width: MediaQuery.of(context).size.width,
-                      child: TabBarView(
-                        controller: _tabController,
-                        children: const [
-                          ActivityTab(),
-                          DiscoverTab(),
-                        ],
-                      ),
-                    )),
-                  ],
-                ),
-              ],
-            ),
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                      child: SizedBox(
+                    height: double.maxFinite,
+                    width: MediaQuery.of(context).size.width,
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: const [
+                        ActivityTab(),
+                        DiscoverTab(),
+                      ],
+                    ),
+                  )),
+                ],
+              ),
+            ],
           ),
         ),
       ),

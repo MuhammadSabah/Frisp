@@ -97,8 +97,9 @@ class AppTheme {
         seedColor: kOrangeColor,
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        iconSize: 16,
         elevation: 4,
-        backgroundColor: kOrangeColorTint,
+        backgroundColor: kOrangeColorTint2,
         foregroundColor: Colors.white,
       ),
       splashColor: Colors.white.withOpacity(0.5),

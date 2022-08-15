@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
@@ -34,8 +35,12 @@ class _ActivityTabState extends State<ActivityTab>
         stream: streamResult,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return const Padding(
+              padding: EdgeInsets.only(top: 8.0),
+              child: LinearProgressIndicator(
+                color: kOrangeColor,
+                backgroundColor: Colors.white,
+              ),
             );
           } else if (snapshot.hasError) {
             return const Center(
@@ -51,6 +56,9 @@ class _ActivityTabState extends State<ActivityTab>
             );
           } else {
             return ListView.builder(
+              primary: false,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: ((context, index) {
                 return RecipePostCard(

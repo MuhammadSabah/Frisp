@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProfilePostSection extends StatefulWidget {
   const ProfilePostSection({Key? key}) : super(key: key);
@@ -64,19 +66,17 @@ class _ProfilePostSectionState extends State<ProfilePostSection> {
                           Expanded(
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Material(
-                                elevation: 8,
-                                color: Colors.transparent,
-                                shadowColor: Colors.white.withOpacity(0.1),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(10),
-                                    ),
-                                    image: DecorationImage(
-                                      image: NetworkImage(recipePost.postUrl),
-                                      fit: BoxFit.cover,
-                                    ),
+                              child: CachedNetworkImage(
+                                imageUrl: recipePost.postUrl,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) =>
+                                    Shimmer.fromColors(
+                                  baseColor: Colors.grey.shade400,
+                                  highlightColor: Colors.grey.shade300,
+                                  child: SizedBox(
+                                    height: MediaQuery.of(context).size.height /
+                                        3.3,
+                                    width: double.infinity,
                                   ),
                                 ),
                               ),

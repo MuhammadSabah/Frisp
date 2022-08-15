@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:typed_data';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -131,35 +132,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       ),
                                     ),
                                   )
-                                : _isLoading == true
-                                    ? Shimmer.fromColors(
-                                        // enabled: true,
+                                : SizedBox(
+                                    height: MediaQuery.of(context).size.height /
+                                        3.3,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: CachedNetworkImage(
+                                      imageUrl: user.photoUrl,
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) =>
+                                          Shimmer.fromColors(
                                         baseColor: Colors.grey.shade400,
                                         highlightColor: Colors.grey.shade300,
-                                        child: Container(
+                                        child: SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height /
                                               3.3,
                                           width: double.infinity,
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                            image: NetworkImage(user.photoUrl),
-                                            fit: BoxFit.cover,
-                                          )),
                                         ),
-                                      )
-                                    : Container(
-                                        height:
-                                            MediaQuery.of(context).size.height /
-                                                3.3,
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                          image: NetworkImage(user.photoUrl),
-                                          fit: BoxFit.cover,
-                                        )),
                                       ),
+                                    ),
+                                  ),
                             Positioned(
                                 top: 0,
                                 right: 5,
@@ -363,7 +356,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ],
                         ),
                       ),
-                      //!: Posts Section:
+                      //!: Recipe Post Section:
                       const ProfilePostSection(),
                     ],
                   ),
