@@ -48,8 +48,8 @@ class _AnimatedLikeButtonState extends State<AnimatedLikeButton>
 
   @override
   void dispose() {
-    super.dispose();
     _likeController.dispose();
+    super.dispose();
   }
 
   @override

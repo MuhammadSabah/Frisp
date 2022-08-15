@@ -63,8 +63,8 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
 
   @override
   void dispose() {
-    super.dispose();
     _searchController.dispose();
+    super.dispose();
   }
 
   @override
@@ -129,7 +129,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
 
   Widget _buildSearchCard() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0).copyWith(top: 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

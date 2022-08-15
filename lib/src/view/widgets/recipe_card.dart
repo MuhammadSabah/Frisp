@@ -102,63 +102,54 @@ class _RecipeCardState extends State<RecipeCard> {
               ),
             ),
             // const SizedBox(height: 10),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 12.0, horizontal: 6),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              widget.recipe.title ?? " ",
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline3!
-                                  .copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 12.0, horizontal: 6),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            widget.recipe.title ?? " ",
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style:
+                                Theme.of(context).textTheme.headline3!.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                    Expanded(
-                      child: widget.recipe.sourceName == null
-                          ? Text(
-                              'Unknown source',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(
-                                    color: Colors.grey,
-                                    fontSize: 14,
-                                  ),
-                              maxLines: 2,
-                            )
-                          : Text(
-                              'By ${widget.recipe.sourceName}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(
-                                    color: Colors.grey,
-                                    fontSize: 14,
-                                  ),
-                              maxLines: 2,
-                            ),
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 8),
+                  Expanded(
+                    child: widget.recipe.sourceName == null
+                        ? Text(
+                            'Unknown source',
+                            style:
+                                Theme.of(context).textTheme.headline4!.copyWith(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                    ),
+                            maxLines: 2,
+                          )
+                        : Text(
+                            'By ${widget.recipe.sourceName}',
+                            style:
+                                Theme.of(context).textTheme.headline4!.copyWith(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                    ),
+                            maxLines: 2,
+                          ),
+                  ),
+                ],
               ),
             ),
           ],

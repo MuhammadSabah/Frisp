@@ -280,88 +280,86 @@ class RecipePostCard extends StatelessWidget {
                     left: 15,
                     bottom: 8,
                   ),
-                  child: Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              '${post.likes.length.toString()} Likes',
+                              maxLines: 1,
+                              style: TextStyle(
+                                color: Colors.grey.shade300,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 14.0)
+                            .copyWith(bottom: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(
-                              child: Text(
-                                '${post.likes.length.toString()} Likes',
-                                maxLines: 1,
-                                style: TextStyle(
-                                  color: Colors.grey.shade300,
-                                ),
+                            //!: Like button:
+                            AnimatedLikeButton(
+                              isAnimating: user == null
+                                  ? false
+                                  : post.likes.contains(user.id),
+                              child: IconButton(
+                                splashRadius: 20,
+                                onPressed: () async {
+                                  await postProvider.likePost(
+                                    postId: post.postId,
+                                    userId: user!.id,
+                                    likes: post.likes,
+                                  );
+                                },
+                                icon: user == null
+                                    ? Icon(
+                                        Icons.favorite_border_outlined,
+                                        color: Colors.grey.shade300,
+                                      )
+                                    : post.likes.contains(user.id)
+                                        ? const Icon(
+                                            Icons.favorite,
+                                            color: Colors.red,
+                                          )
+                                        : Icon(
+                                            Icons.favorite_border_outlined,
+                                            color: Colors.grey.shade300,
+                                          ),
+                              ),
+                            ),
+                            IconButton(
+                              splashRadius: 20,
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CommentsScreen(
+                                            recipePost: post,
+                                          )),
+                                );
+                              },
+                              icon: Icon(
+                                Icons.comment,
+                                color: Colors.grey.shade300,
+                              ),
+                            ),
+                            IconButton(
+                              splashRadius: 20,
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.share_outlined,
+                                color: Colors.grey.shade300,
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 14.0)
-                              .copyWith(bottom: 8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              //!: Like button:
-                              AnimatedLikeButton(
-                                isAnimating: user == null
-                                    ? false
-                                    : post.likes.contains(user.id),
-                                child: IconButton(
-                                  splashRadius: 20,
-                                  onPressed: () async {
-                                    await postProvider.likePost(
-                                      postId: post.postId,
-                                      userId: user!.id,
-                                      likes: post.likes,
-                                    );
-                                  },
-                                  icon: user == null
-                                      ? Icon(
-                                          Icons.favorite_border_outlined,
-                                          color: Colors.grey.shade300,
-                                        )
-                                      : post.likes.contains(user.id)
-                                          ? const Icon(
-                                              Icons.favorite,
-                                              color: Colors.red,
-                                            )
-                                          : Icon(
-                                              Icons.favorite_border_outlined,
-                                              color: Colors.grey.shade300,
-                                            ),
-                                ),
-                              ),
-                              IconButton(
-                                splashRadius: 20,
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => CommentsScreen(
-                                              recipePost: post,
-                                            )),
-                                  );
-                                },
-                                icon: Icon(
-                                  Icons.comment,
-                                  color: Colors.grey.shade300,
-                                ),
-                              ),
-                              IconButton(
-                                splashRadius: 20,
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.share_outlined,
-                                  color: Colors.grey.shade300,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ],

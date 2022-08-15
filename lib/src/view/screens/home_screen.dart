@@ -36,22 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ProfileScreen(
       userId: FirebaseAuth.instance.currentUser!.uid,
     ),
-    // SettingsScreen(),
   ];
-
-  // Future<void> getUserData() async {
-  //   UserProvider userProvider =
-  //       Provider.of<UserProvider>(context, listen: false);
-  //   await Future.delayed(const Duration(milliseconds: 2500), () {
-  //     userProvider.refreshUser();
-  //   });
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getUserData();
-  // }
 
   @override
   Widget build(BuildContext context) {

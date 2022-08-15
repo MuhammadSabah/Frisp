@@ -35,7 +35,8 @@ class _SplashScreenState extends State<SplashScreen> {
         } else if (snapshot.hasData) {
           userState.initializeApp(true, true);
           return const HomeScreen(currentTabIndex: 0);
-        } else {
+          //!: I added these
+        } else if (!snapshot.hasData || snapshot.data == null) {
           userState.initializeApp(false, false);
         }
         return const Center(
