@@ -125,307 +125,340 @@ class _ProfileScreenState extends State<ProfileScreen> {
               backgroundColor: Colors.white,
               displacement: 40,
               onRefresh: _refresh,
-              child: SafeArea(
-                child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                  future: futureResult,
-                  builder: (context, AsyncSnapshot snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (snapshot.hasError) {
-                      return const Center(
-                        child: Text('Error occurred!'),
-                      );
-                    } else {
-                      final user = UserModel.fromSnapshot(snapshot.data);
+              child: Scaffold(
+                body: SafeArea(
+                  child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                    future: futureResult,
+                    builder: (context, AsyncSnapshot snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (snapshot.hasError) {
+                        return const Center(
+                          child: Text('Error occurred!'),
+                        );
+                      } else {
+                        final user = UserModel.fromSnapshot(snapshot.data);
 
-                      return SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height / 2,
-                              child: Stack(
-                                children: [
-                                  user.photoUrl == ""
-                                      ? Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                              3.3,
-                                          decoration: const BoxDecoration(
-                                            color: Colors.grey,
-                                            image: DecorationImage(
-                                              image: AssetImage(
-                                                  'assets/default_image.jpg'),
+                        return SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height / 2,
+                                child: Stack(
+                                  children: [
+                                    user.photoUrl == ""
+                                        ? Container(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
+                                                3.3,
+                                            decoration: const BoxDecoration(
+                                              color: Colors.grey,
+                                              image: DecorationImage(
+                                                image: AssetImage(
+                                                    'assets/default_image.jpg'),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          )
+                                        : SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
+                                                3.3,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            child: CachedNetworkImage(
+                                              imageUrl: user.photoUrl,
                                               fit: BoxFit.cover,
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Center(
+                                                child: FaIcon(FontAwesomeIcons
+                                                    .circleExclamation),
+                                              ),
+                                              placeholder: (context, url) =>
+                                                  Shimmer.fromColors(
+                                                baseColor: Colors.grey.shade400,
+                                                highlightColor:
+                                                    Colors.grey.shade300,
+                                                child: SizedBox(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      3.3,
+                                                  width: double.infinity,
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        )
-                                      : SizedBox(
+                                    Positioned(
+                                        top: 0,
+                                        right: 5,
+                                        child: IconButton(
+                                          onPressed: () {
+                                            Provider.of<AppStateManager>(
+                                                    context,
+                                                    listen: false)
+                                                .settingsClicked(true);
+                                          },
+                                          splashRadius: 20,
+                                          icon: CircleAvatar(
+                                            backgroundColor:
+                                                Colors.white.withOpacity(0.9),
+                                            child: const FaIcon(
+                                              FontAwesomeIcons.gear,
+                                              color: kGreyColor,
+                                              size: 20,
+                                            ),
+                                          ),
+                                        )),
+                                    FirebaseAuth.instance.currentUser!.uid !=
+                                            widget.userId
+                                        ? Positioned(
+                                            top: 0,
+                                            left: 5,
+                                            child: IconButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              splashRadius: 20,
+                                              icon: CircleAvatar(
+                                                backgroundColor: Colors.white
+                                                    .withOpacity(0.9),
+                                                child: const FaIcon(
+                                                  FontAwesomeIcons.arrowLeft,
+                                                  color: kGreyColor,
+                                                  size: 20,
+                                                ),
+                                              ),
+                                            ))
+                                        : const SizedBox(),
+                                    Positioned(
+                                      bottom: 0,
+                                      left: 0,
+                                      right: 0,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16.0),
+                                        child: Container(
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height /
-                                              3.3,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          child: CachedNetworkImage(
-                                            imageUrl: user.photoUrl,
-                                            fit: BoxFit.cover,
-                                            errorWidget:
-                                                (context, url, error) =>
-                                                    const Center(
-                                              child: FaIcon(FontAwesomeIcons
-                                                  .circleExclamation),
-                                            ),
-                                            placeholder: (context, url) =>
-                                                Shimmer.fromColors(
-                                              baseColor: Colors.grey.shade400,
-                                              highlightColor:
-                                                  Colors.grey.shade300,
-                                              child: SizedBox(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height /
-                                                    3.3,
-                                                width: double.infinity,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                  Positioned(
-                                      top: 0,
-                                      right: 5,
-                                      child: IconButton(
-                                        onPressed: () {
-                                          Provider.of<AppStateManager>(context,
-                                                  listen: false)
-                                              .settingsClicked(true);
-                                        },
-                                        splashRadius: 20,
-                                        icon: CircleAvatar(
-                                          backgroundColor:
-                                              Colors.white.withOpacity(0.9),
-                                          child: const FaIcon(
-                                            FontAwesomeIcons.gear,
+                                              3.2,
+                                          decoration: const BoxDecoration(
                                             color: kGreyColor,
-                                            size: 20,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(10),
+                                            ),
                                           ),
-                                        ),
-                                      )),
-                                  Positioned(
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 16.0),
-                                      child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.height /
-                                                3.2,
-                                        decoration: const BoxDecoration(
-                                          color: kGreyColor,
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10),
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(18.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Text(user.userName,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline2),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 16.0,
-                                                        vertical: 10),
-                                                child: Text(
-                                                  'Delightful homemade tasty healthy recipes for your family',
-                                                  textAlign: TextAlign.center,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText2!
-                                                      .copyWith(
-                                                          color: Colors.grey,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w500),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(18.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Text(user.userName,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline2),
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 16.0,
+                                                      vertical: 10),
+                                                  child: Text(
+                                                    'Delightful homemade tasty healthy recipes for your family',
+                                                    textAlign: TextAlign.center,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText2!
+                                                        .copyWith(
+                                                            color: Colors.grey,
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                  ),
                                                 ),
-                                              ),
-                                              FirebaseAuth.instance.currentUser!
-                                                          .uid ==
-                                                      widget.userId
-                                                  ? Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 5.0),
-                                                      child: GestureDetector(
-                                                        onTap: () {
-                                                          selectAnImage(
-                                                              context);
-                                                        },
-                                                        child: Container(
-                                                          width: 130,
-                                                          height: 36,
-                                                          decoration:
-                                                              const BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            50)),
-                                                          ),
-                                                          child: Center(
-                                                              child: Text(
-                                                            'Edit Profile',
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .headline3!
-                                                                .copyWith(
-                                                                    color:
-                                                                        kGreyColor,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600),
-                                                          )),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  : Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 5.0),
-                                                      child: GestureDetector(
-                                                        onTap: () {},
-                                                        child: Container(
-                                                          width: 110,
-                                                          height: 36,
-                                                          decoration:
-                                                              const BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(
-                                                              Radius.circular(
-                                                                  50),
+                                                FirebaseAuth.instance
+                                                            .currentUser!.uid ==
+                                                        widget.userId
+                                                    ? Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(top: 5.0),
+                                                        child: GestureDetector(
+                                                          onTap: () {
+                                                            selectAnImage(
+                                                                context);
+                                                          },
+                                                          child: Container(
+                                                            width: 130,
+                                                            height: 36,
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              color:
+                                                                  Colors.white,
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
+                                                                      .circular(
+                                                                          50)),
                                                             ),
+                                                            child: Center(
+                                                                child: Text(
+                                                              'Edit Profile',
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .headline3!
+                                                                  .copyWith(
+                                                                      color:
+                                                                          kGreyColor,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
+                                                            )),
                                                           ),
-                                                          child: Center(
-                                                              child: Text(
-                                                            'Follow',
+                                                        ),
+                                                      )
+                                                    : Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(top: 5.0),
+                                                        child: GestureDetector(
+                                                          onTap: () {},
+                                                          child: Container(
+                                                            width: 110,
+                                                            height: 36,
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              color:
+                                                                  Colors.white,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .all(
+                                                                Radius.circular(
+                                                                    50),
+                                                              ),
+                                                            ),
+                                                            child: Center(
+                                                                child: Text(
+                                                              'Follow',
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .headline3!
+                                                                  .copyWith(
+                                                                      color:
+                                                                          kGreyColor,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold),
+                                                            )),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 20.0),
+                                                  child: Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: [
+                                                      Column(
+                                                        children: [
+                                                          Text(
+                                                            'Recipes',
                                                             style: Theme.of(
                                                                     context)
                                                                 .textTheme
-                                                                .headline3!
+                                                                .bodyText2!
                                                                 .copyWith(
-                                                                    color:
-                                                                        kGreyColor,
+                                                                    color: Colors
+                                                                        .grey,
+                                                                    fontSize:
+                                                                        14,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .bold),
-                                                          )),
-                                                        ),
+                                                                            .w500),
+                                                          ),
+                                                          Text(postLength
+                                                              .toString()),
+                                                        ],
                                                       ),
-                                                    ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 20.0),
-                                                child: Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    Column(
-                                                      children: [
-                                                        Text(
-                                                          'Recipes',
-                                                          style: Theme.of(
-                                                                  context)
-                                                              .textTheme
-                                                              .bodyText2!
-                                                              .copyWith(
-                                                                  color: Colors
-                                                                      .grey,
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                        ),
-                                                        Text(postLength
-                                                            .toString()),
-                                                      ],
-                                                    ),
-                                                    Column(
-                                                      children: [
-                                                        Text(
-                                                          'Followers',
-                                                          style: Theme.of(
-                                                                  context)
-                                                              .textTheme
-                                                              .bodyText2!
-                                                              .copyWith(
-                                                                  color: Colors
-                                                                      .grey,
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                        ),
-                                                        Text(user
-                                                            .followers.length
-                                                            .toString()),
-                                                      ],
-                                                    ),
-                                                    Column(
-                                                      children: [
-                                                        Text(
-                                                          'Following',
-                                                          style: Theme.of(
-                                                                  context)
-                                                              .textTheme
-                                                              .bodyText2!
-                                                              .copyWith(
-                                                                  color: Colors
-                                                                      .grey,
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                        ),
-                                                        Text(user
-                                                            .following.length
-                                                            .toString()),
-                                                      ],
-                                                    ),
-                                                  ],
+                                                      Column(
+                                                        children: [
+                                                          Text(
+                                                            'Followers',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyText2!
+                                                                .copyWith(
+                                                                    color: Colors
+                                                                        .grey,
+                                                                    fontSize:
+                                                                        14,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500),
+                                                          ),
+                                                          Text(user
+                                                              .followers.length
+                                                              .toString()),
+                                                        ],
+                                                      ),
+                                                      Column(
+                                                        children: [
+                                                          Text(
+                                                            'Following',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyText2!
+                                                                .copyWith(
+                                                                    color: Colors
+                                                                        .grey,
+                                                                    fontSize:
+                                                                        14,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500),
+                                                          ),
+                                                          Text(user
+                                                              .following.length
+                                                              .toString()),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            //!: Recipe Post Section:
-                            const ProfilePostSection(),
-                          ],
-                        ),
-                      );
-                    }
-                  },
+                              //!: Recipe Post Section:
+                              const ProfilePostSection(),
+                            ],
+                          ),
+                        );
+                      }
+                    },
+                  ),
                 ),
               ),
             ),
