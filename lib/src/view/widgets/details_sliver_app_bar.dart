@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
@@ -20,12 +21,18 @@ class DetailsSliverAppBar extends StatelessWidget {
       expandedHeight: MediaQuery.of(context).size.height / 3,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
-        background: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(imgUrl),
-              fit: BoxFit.cover,
+        background: CachedNetworkImage(
+          fit: BoxFit.cover,
+          imageUrl: imgUrl,
+          placeholder: (context, url) => const Center(
+            child: FaIcon(
+              FontAwesomeIcons.spinner,
+              color: Colors.white,
             ),
+          ),
+          errorWidget: (context, url, error) => const FaIcon(
+            FontAwesomeIcons.circleExclamation,
+            color: Colors.white,
           ),
         ),
       ),

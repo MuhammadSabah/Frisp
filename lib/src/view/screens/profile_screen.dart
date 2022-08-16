@@ -196,7 +196,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             ),
                                           ),
                                     Positioned(
-                                        top: 0,
+                                        top: 3,
                                         right: 5,
                                         child: IconButton(
                                           onPressed: () {
@@ -219,7 +219,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     FirebaseAuth.instance.currentUser!.uid !=
                                             widget.userId
                                         ? Positioned(
-                                            top: 0,
+                                            top: 3,
                                             left: 5,
                                             child: IconButton(
                                               onPressed: () {

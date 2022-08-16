@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
@@ -40,12 +41,18 @@ class _BookmarkCardState extends State<BookmarkCard> {
                   child: SizedBox(
                     height: 120,
                     width: double.maxFinite,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(widget.recipe.image!),
-                          fit: BoxFit.cover,
+                    child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: widget.recipe.image!,
+                      placeholder: (context, url) => const Center(
+                        child: FaIcon(
+                          FontAwesomeIcons.spinner,
+                          color: Colors.white,
                         ),
+                      ),
+                      errorWidget: (context, url, error) => const FaIcon(
+                        FontAwesomeIcons.circleExclamation,
+                        color: Colors.white,
                       ),
                     ),
                   ),
