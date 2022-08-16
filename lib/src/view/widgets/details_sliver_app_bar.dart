@@ -3,17 +3,23 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 
 class DetailsSliverAppBar extends StatelessWidget {
-  const DetailsSliverAppBar({Key? key, required this.imgUrl}) : super(key: key);
+  const DetailsSliverAppBar({
+    Key? key,
+    required this.imgUrl,
+    required this.title,
+  }) : super(key: key);
   final String imgUrl;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
       backgroundColor: kBlackColor,
       stretch: true,
-      // pinned: true,
+      pinned: true,
       floating: false,
       expandedHeight: MediaQuery.of(context).size.height / 3,
       flexibleSpace: FlexibleSpaceBar(
+        centerTitle: true,
         background: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -42,7 +48,7 @@ class DetailsSliverAppBar extends StatelessWidget {
       actions: [
         GestureDetector(
           onTap: () {
-            print("Nothing for now.");
+            debugPrint("Nothing for now.");
           },
           child: Padding(
             padding: const EdgeInsets.only(right: 12.0),

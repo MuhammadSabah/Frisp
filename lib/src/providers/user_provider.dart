@@ -6,17 +6,28 @@ import 'package:food_recipe_final/src/models/user_model.dart';
 class UserProvider extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   UserModel? _user;
   UserModel? get getUser => _user;
+  String? _userAuthId;
+  String? get getUserAuthId => _userAuthId;
+  Future<void> setUserAuthId() async {
+    _userAuthId = _auth.currentUser!.uid;
+    notifyListeners();
+  }
 
   Future<UserModel?> getUserFromDocument() async {
-    DocumentSnapshot userSnapshot =
-        await _firestore.collection('users').doc(_auth.currentUser!.uid).get();
     UserModel? userModel;
-    if (userSnapshot.exists) {
-      userModel = UserModel.fromSnapshot(userSnapshot);
+    final currentUser = _auth.currentUser;
+    if (currentUser != null) {
+      DocumentSnapshot userSnapshot = await _firestore
+          .collection('users')
+          .doc(_auth.currentUser!.uid)
+          .get();
+      if (userSnapshot.exists) {
+        userModel = UserModel.fromSnapshot(userSnapshot);
+      }
     }
-
     return userModel;
   }
 

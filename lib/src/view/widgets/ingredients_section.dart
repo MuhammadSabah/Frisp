@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/data_class_models/ingredient_model.dart';
 
 class IngredientsSection extends StatelessWidget {
@@ -25,15 +26,47 @@ class IngredientsSection extends StatelessWidget {
             child: ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               separatorBuilder: (_, index) {
-                return const SizedBox(height: 6);
+                return const SizedBox(height: 10);
               },
               primary: false,
               shrinkWrap: true,
               itemCount: ingredients.length,
               itemBuilder: (context, index) {
-                return Text(
-                  '${ingredients[index].name}',
-                  style: Theme.of(context).textTheme.headline3,
+                int i = index + 1;
+                return Row(
+                  textBaseline: TextBaseline.alphabetic,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  children: [
+                    // Container(
+                    //   width: 20,
+                    //   height: 20,
+                    //   decoration: const BoxDecoration(
+                    //     borderRadius: BorderRadius.all(
+                    //       Radius.circular(4),
+                    //     ),
+                    //     color: Colors.white,
+                    //   ),
+                    //   child: Center(
+                    //     child: Text(
+                    //       '$i',
+                    //       style: const TextStyle(
+                    //         color: kBlackColor,
+                    //         fontSize: 15,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        '${ingredients[index].name}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline3!
+                            .copyWith(fontSize: 15, height: 1.6),
+                      ),
+                    ),
+                  ],
                 );
               },
             ),

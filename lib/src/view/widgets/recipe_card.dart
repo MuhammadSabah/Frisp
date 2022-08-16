@@ -13,12 +13,6 @@ class RecipeCard extends StatefulWidget {
 }
 
 class _RecipeCardState extends State<RecipeCard> {
-  // double calcRandom() {
-  //   Random random = Random();
-  //   double randomNum = ((random.nextDouble() * 5) + 5);
-  //   return randomNum;
-  // }
-
   bool _isSelected = false;
   @override
   Widget build(BuildContext context) {
@@ -110,7 +104,7 @@ class _RecipeCardState extends State<RecipeCard> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 12.0, horizontal: 6),
+                        vertical: 10.0, horizontal: 6),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +122,8 @@ class _RecipeCardState extends State<RecipeCard> {
                                       .textTheme
                                       .headline3!
                                       .copyWith(
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w600,
+                                        height: 1.4,
                                       ),
                                 ),
                               ),
@@ -145,7 +140,7 @@ class _RecipeCardState extends State<RecipeCard> {
                                       .headline4!
                                       .copyWith(
                                         color: Colors.grey,
-                                        fontSize: 14,
+                                        fontSize: 13,
                                       ),
                                   maxLines: 2,
                                 )
@@ -156,7 +151,7 @@ class _RecipeCardState extends State<RecipeCard> {
                                       .headline4!
                                       .copyWith(
                                         color: Colors.grey,
-                                        fontSize: 14,
+                                        fontSize: 13,
                                       ),
                                   maxLines: 2,
                                 ),

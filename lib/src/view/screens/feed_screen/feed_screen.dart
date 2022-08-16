@@ -6,6 +6,7 @@ import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/screens/feed_screen/tab_bars/discover_tab.dart';
 import 'package:food_recipe_final/src/view/screens/feed_screen/tab_bars/activity_tab.dart';
+import 'package:food_recipe_final/src/view/screens/search_user_screen.dart';
 import 'package:provider/provider.dart';
 
 class FeedScreen extends StatefulWidget {
@@ -25,14 +26,6 @@ class _FeedScreenState extends State<FeedScreen>
     // getUserData();
   }
 
-  // Future<void> getUserData() async {
-  //   UserProvider userProvider =
-  //       Provider.of<UserProvider>(context, listen: false);
-  //   await Future.delayed(const Duration(milliseconds: 2500), () {
-  //     userProvider.refreshUser();
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     UserModel? user = Provider.of<UserProvider>(context).getUser;
@@ -43,100 +36,109 @@ class _FeedScreenState extends State<FeedScreen>
         useMaterial3: false,
       ),
       child: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
+        child: Flex(
+          direction: Axis.vertical,
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Expanded(
-                    flex: 4,
-                    child: TabBar(
-                      controller: _tabController,
-                      labelStyle:
-                          Theme.of(context).textTheme.headline3!.copyWith(
-                                fontSize: 16,
-                              ),
-                      tabs: const [
-                        Tab(text: 'Activity'),
-                        Tab(text: 'Discover'),
-                      ],
-                      indicatorPadding: const EdgeInsets.only(right: 10),
-                      labelColor: kOrangeColorTint,
-                      unselectedLabelColor: Colors.white,
-                      indicatorColor: kOrangeColor,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        IconButton(
-                          splashRadius: 20,
-                          onPressed: () {},
-                          icon: const FaIcon(
-                            FontAwesomeIcons.userGroup,
-                            color: Colors.white,
-                            size: 21,
-                          ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        flex: 4,
+                        child: TabBar(
+                          controller: _tabController,
+                          labelStyle:
+                              Theme.of(context).textTheme.headline3!.copyWith(
+                                    fontSize: 16,
+                                  ),
+                          tabs: const [
+                            Tab(text: 'Activity'),
+                            Tab(text: 'Discover'),
+                          ],
+                          indicatorPadding: const EdgeInsets.only(right: 10),
+                          labelColor: kOrangeColorTint,
+                          unselectedLabelColor: Colors.white,
+                          indicatorColor: kOrangeColor,
                         ),
-                        const SizedBox(width: 10),
-                        GestureDetector(
-                          onTap: () {
-                            appProvider.gotToTab(4);
-                          },
-                          child: SizedBox(
-                            width: 35,
-                            height: 35,
-                            child: user == null
-                                ? const Center(
-                                    child: LinearProgressIndicator(
-                                      color: kOrangeColor,
-                                      backgroundColor: Colors.white,
-                                    ),
-                                  )
-                                : user.photoUrl == ""
-                                    ? SizedBox(
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(100),
-                                          child: Container(
-                                            decoration: const BoxDecoration(
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    'assets/default_image.jpg'),
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            IconButton(
+                              splashRadius: 20,
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const SearchUserScreen(),
+                                  ),
+                                );
+                              },
+                              icon: const FaIcon(
+                                FontAwesomeIcons.userGroup,
+                                color: Colors.white,
+                                size: 21,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            GestureDetector(
+                              onTap: () {
+                                appProvider.gotToTab(4);
+                              },
+                              child: SizedBox(
+                                width: 35,
+                                height: 35,
+                                child: user == null
+                                    ? const Center(
+                                        child: LinearProgressIndicator(
+                                          color: kOrangeColor,
+                                          backgroundColor: Colors.white,
                                         ),
                                       )
-                                    : SizedBox(
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(100),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                image:
-                                                    NetworkImage(user.photoUrl),
-                                                fit: BoxFit.cover,
+                                    : user.photoUrl == ""
+                                        ? SizedBox(
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                              child: Container(
+                                                decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: AssetImage(
+                                                        'assets/default_image.jpg'),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        : SizedBox(
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(
+                                                        user.photoUrl),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ),
-                          ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              Row(
-                children: [
                   Expanded(
                       child: SizedBox(
                     height: double.maxFinite,
@@ -151,8 +153,8 @@ class _FeedScreenState extends State<FeedScreen>
                   )),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

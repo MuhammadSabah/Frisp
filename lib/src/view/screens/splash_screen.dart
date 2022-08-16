@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
-import 'package:food_recipe_final/src/view/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,7 +22,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    final userState = Provider.of<AppStateManager>(context, listen: false);
+    final userState = Provider.of<AppStateManager>(context, listen: true);
     return Scaffold(
         body: StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
@@ -34,8 +33,6 @@ class _SplashScreenState extends State<SplashScreen> {
           );
         } else if (snapshot.hasData) {
           userState.initializeApp(true, true);
-          return const HomeScreen(currentTabIndex: 0);
-          //!: I added these
         } else if (!snapshot.hasData || snapshot.data == null) {
           userState.initializeApp(false, false);
         }

@@ -67,7 +67,10 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
           children: [
             CustomScrollView(
               slivers: [
-                DetailsSliverAppBar(imgUrl: widget.recipe.image!),
+                DetailsSliverAppBar(
+                  imgUrl: widget.recipe.image ?? "",
+                  title: widget.recipe.title ?? '',
+                ),
                 SliverToBoxAdapter(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -137,7 +140,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                     backgroundColor: kOrangeColorTint,
                     action: SnackBarAction(
                       label: 'Undo',
-                      textColor: Colors.grey,
+                      textColor: kBlackColor,
                       onPressed: () {
                         bookmark.deleteRecipe(widget.recipe);
                       },

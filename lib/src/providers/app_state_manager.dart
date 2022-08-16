@@ -21,6 +21,8 @@ class AppStateManager extends ChangeNotifier {
   bool _signedUp = false;
   bool _onboardingComplete = false;
   bool _settings = false;
+  bool _logOut = false;
+
   bool _createRecipePost = false;
   int _selectedTab = AppTab.discover;
   final _appCache = AppCache();
@@ -29,6 +31,7 @@ class AppStateManager extends ChangeNotifier {
   bool get isInitialized => _initialized;
   bool get isLoggedIn => _loggedIn;
   bool get isSignedUp => _signedUp;
+  bool get didLogout => _logOut;
   bool get isOnboardingComplete => _onboardingComplete;
   int get selectedTab => _selectedTab;
   bool get isSettingsClicked => _settings;
@@ -62,6 +65,11 @@ class AppStateManager extends ChangeNotifier {
 
   void createRecipePostClicked(bool value) {
     _createRecipePost = value;
+    notifyListeners();
+  }
+
+  void loggedOutState(bool value) {
+    _logOut = value;
     notifyListeners();
   }
 
@@ -187,8 +195,8 @@ class AppStateManager extends ChangeNotifier {
     _initialized = false;
     _createRecipePost = false;
     _selectedTab = 0;
+    _logOut = true;
     await _appCache.invalidate();
-
     initializeApp(false, false);
     notifyListeners();
   }

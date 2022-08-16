@@ -25,52 +25,56 @@ class _ActivityTabState extends State<ActivityTab>
     streamResult = FirebaseFirestore.instance.collection('posts').snapshots();
   }
 
+  Future<void> refreshTab() async {
+    await Future.delayed(const Duration(milliseconds: 2500), () {
+      streamResult = FirebaseFirestore.instance.collection('posts').snapshots();
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final commentsProvider =
         Provider.of<AppStateManager>(context, listen: false);
     UserModel? userProvider =
         Provider.of<UserProvider>(context, listen: false).getUser;
-    return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        stream: streamResult,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: LinearProgressIndicator(
-                color: kOrangeColor,
-                backgroundColor: Colors.white,
-              ),
-            );
-          } else if (snapshot.hasError) {
-            return const Center(
-              child: Text('Some error occurred'),
-            );
-          } else if (!snapshot.hasData) {
-            return const Center(
-              child: Text(''),
-            );
-          } else if (snapshot.data == null) {
-            return const Center(
-              child: Text(''),
-            );
-          } else {
-            return ListView.builder(
-              primary: false,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: snapshot.data!.docs.length,
-              itemBuilder: ((context, index) {
-                return RecipePostCard(
-                  user: userProvider,
-                  post: RecipePostModel.fromSnapshot(
-                    snapshot.data!.docs[index],
-                  ),
-                );
-              }),
-            );
-          }
-        });
+    return RefreshIndicator(
+      onRefresh: refreshTab,
+      color: kOrangeColor,
+      backgroundColor: Colors.white,
+      child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+          stream: streamResult,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const SizedBox();
+            } else if (snapshot.hasError) {
+              return const Center(
+                child: Text('Some error occurred'),
+              );
+            } else if (!snapshot.hasData) {
+              return const Center(
+                child: Text('9993993'),
+              );
+            } else if (snapshot.data == null) {
+              return const Center(
+                child: Text('No data'),
+              );
+            } else {
+              return ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: ((context, index) {
+                  return RecipePostCard(
+                    user: userProvider,
+                    post: RecipePostModel.fromSnapshot(
+                      snapshot.data!.docs[index],
+                    ),
+                  );
+                }),
+              );
+            }
+          }),
+    );
   }
 
   @override

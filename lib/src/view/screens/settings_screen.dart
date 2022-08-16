@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
 Color kGreyColorShade = Colors.grey.shade300;
@@ -20,6 +21,7 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final appStateProvider =
         Provider.of<AppStateManager>(context, listen: false);
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

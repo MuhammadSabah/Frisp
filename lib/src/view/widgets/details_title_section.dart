@@ -38,7 +38,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
                   'By ${widget.sourceName}',
                   style: Theme.of(context).textTheme.headline3!.copyWith(
                         color: Colors.grey,
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
                   maxLines: 2,
                 ),
@@ -84,7 +84,10 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
                             child: Text(
                               'More Info',
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.headline3,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline3!
+                                  .copyWith(fontSize: 14),
                             ),
                           ),
                         ),
@@ -101,7 +104,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
             child: Text(
               widget.title,
               style: Theme.of(context).textTheme.headline1!.copyWith(
-                    fontSize: 28,
+                    fontSize: 24,
                   ),
               maxLines: 4,
             ),
@@ -120,23 +123,25 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
                         color: Colors.grey.shade300,
                       ),
                 ),
-                ListView.separated(
-                  primary: false,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: widget.dishTypes.length,
-                  itemBuilder: (context, index) {
-                    return Text(
-                      widget.dishTypes[index],
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                            fontSize: 14,
-                            color: Colors.grey,
-                          ),
-                    );
-                  },
-                  separatorBuilder: (_, index) {
-                    return const SizedBox(width: 6);
-                  },
+                Expanded(
+                  child: ListView.separated(
+                    primary: false,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: widget.dishTypes.length,
+                    itemBuilder: (context, index) {
+                      return Text(
+                        widget.dishTypes[index],
+                        style: Theme.of(context).textTheme.headline4!.copyWith(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                      );
+                    },
+                    separatorBuilder: (_, index) {
+                      return const SizedBox(width: 6);
+                    },
+                  ),
                 ),
               ],
             ),

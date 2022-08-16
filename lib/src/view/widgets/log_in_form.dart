@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/widgets/auth_bottom_rich_text.dart';
 import 'package:food_recipe_final/src/view/widgets/auth_confirm_button.dart';
 import 'package:provider/provider.dart';
@@ -15,9 +16,7 @@ class LoginForm extends StatefulWidget {
   }) : super(key: key);
 
   final GlobalKey<FormState> formKey;
-
   final TextEditingController emailController;
-
   final TextEditingController passwordController;
 
   @override
@@ -28,6 +27,10 @@ class _LoginFormState extends State<LoginForm> {
   bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
+    UserProvider userProvider =
+        Provider.of<UserProvider>(context, listen: false);
+    AppStateManager appState =
+        Provider.of<AppStateManager>(context, listen: false);
     return Form(
       key: widget.formKey,
       child: SingleChildScrollView(
@@ -177,12 +180,12 @@ class _LoginFormState extends State<LoginForm> {
                 FocusScope.of(context).unfocus();
                 final isValidForm = widget.formKey.currentState!.validate();
                 if (isValidForm) {
-                  final _output =
-                      await Provider.of<AppStateManager>(context, listen: false)
-                          .logInUser(
+                  final _output = await appState.logInUser(
                     userEmail: widget.emailController.text.trim(),
                     userPassword: widget.passwordController.text,
                   );
+                  await userProvider.refreshUser();
+
                   if (_output != null) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text('$_output'),

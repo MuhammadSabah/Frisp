@@ -53,17 +53,17 @@ class AppTheme {
       color: Colors.white,
     ),
     headline1: GoogleFonts.poppins(
-      fontSize: 24,
-      fontWeight: FontWeight.w600,
-      color: Colors.white,
-    ),
-    headline2: GoogleFonts.poppins(
       fontSize: 22,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
+    headline2: GoogleFonts.poppins(
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+      color: Colors.white,
+    ),
     headline3: GoogleFonts.poppins(
-      fontSize: 16,
+      fontSize: 15,
       fontWeight: FontWeight.w500,
       color: Colors.white,
     ),

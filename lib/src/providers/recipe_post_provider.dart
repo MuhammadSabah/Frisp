@@ -8,6 +8,14 @@ import 'package:uuid/uuid.dart';
 
 class RecipePostProvider extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  int _recipePostLength = 0;
+  int get getRecipePostLength => _recipePostLength;
+  void setRecipePostLength(int length) {
+    _recipePostLength = length;
+    notifyListeners();
+  }
+
   Future<String?> uploadRecipePost({
     required String uid,
     required String userName,

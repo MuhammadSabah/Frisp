@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/core/constants.dart';
 
 class NutritionsSection extends StatelessWidget {
   const NutritionsSection({
@@ -22,16 +23,23 @@ class NutritionsSection extends StatelessWidget {
             removeTop: true,
             context: context,
             child: ListView.separated(
-              separatorBuilder: ((context, index) => const SizedBox(height: 6)),
+              separatorBuilder: ((context, index) =>
+                  const SizedBox(height: 10)),
               itemCount: nutritionsList.length,
               itemBuilder: (context, index) {
                 return Row(
                   children: [
-                    Text("${nutritionsList[index].name}: ",
-                        style: Theme.of(context).textTheme.headline3),
+                    Text(
+                      "${nutritionsList[index].name}: ",
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                            fontSize: 15,
+                          ),
+                    ),
                     Text(
                       "${nutritionsList[index].amount?.toStringAsFixed(1)}${nutritionsList[index].unit}",
-                      style: Theme.of(context).textTheme.headline3,
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                            fontSize: 15,
+                          ),
                     ),
                   ],
                 );

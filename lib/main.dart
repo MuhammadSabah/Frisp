@@ -37,12 +37,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _appStateManager = AppStateManager();
   final _shoppingManager = ShoppingManager();
+  final _userProvider = UserProvider();
   late AppRouter _appRouter;
 
   @override
   void initState() {
     super.initState();
     _appRouter = AppRouter(
+      userProvider: _userProvider,
       appStateManager: _appStateManager,
       shoppingManager: _shoppingManager,
     );
@@ -58,7 +60,7 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider<UserProvider>(
           lazy: false,
-          create: (context) => UserProvider(),
+          create: (context) => _userProvider,
         ),
         ChangeNotifierProvider<UserImageProvider>(
           create: (context) => UserImageProvider(),
