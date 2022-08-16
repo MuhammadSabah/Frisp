@@ -5,7 +5,6 @@ import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
-import 'package:food_recipe_final/src/view/screens/comments_screen/comments_screen.dart';
 import 'package:food_recipe_final/src/view/widgets/recipe_post_card.dart';
 import 'package:provider/provider.dart';
 

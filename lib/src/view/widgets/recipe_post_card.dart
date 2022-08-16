@@ -54,8 +54,8 @@ class RecipePostCard extends StatelessWidget {
                     elevation: 8,
                     shadowColor: Colors.grey.withOpacity(0.2),
                     child: SizedBox(
-                      width: 48,
-                      height: 48,
+                      width: 44,
+                      height: 44,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: user == null

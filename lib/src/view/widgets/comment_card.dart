@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/src/models/comment_model.dart';
 import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CommentCard extends StatefulWidget {
   const CommentCard({
@@ -24,13 +27,36 @@ class _CommentCardState extends State<CommentCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           widget.comment.profilePicture == ""
-              ? const CircleAvatar(
-                  backgroundImage: AssetImage("assets/default_image.jpg"),
-                  radius: 18,
+              ? ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: CircleAvatar(
+                    radius: 18,
+                    child: Image.asset(
+                      'assets/default_image.jpg',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 )
-              : CircleAvatar(
-                  backgroundImage: NetworkImage(widget.comment.profilePicture),
-                  radius: 18,
+              : ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: CircleAvatar(
+                    radius: 18,
+                    child: CachedNetworkImage(
+                      imageUrl: widget.comment.profilePicture,
+                      fit: BoxFit.cover,
+                      errorWidget: (context, url, error) => const Center(
+                        child: FaIcon(FontAwesomeIcons.circleExclamation),
+                      ),
+                      placeholder: (context, url) => Shimmer.fromColors(
+                        baseColor: Colors.grey.shade400,
+                        highlightColor: Colors.grey.shade300,
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height / 3.3,
+                          width: double.infinity,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
           Expanded(
             child: Padding(

@@ -16,13 +16,6 @@ class CommentsScreen extends StatefulWidget {
     required this.recipePost,
   }) : super(key: key);
   final RecipePostModel? recipePost;
-  // static MaterialPage page() {
-  //   return MaterialPage(
-  //     name: AppPages.commentsPath,
-  //     key: ValueKey(AppPages.commentsPath),
-  //     child: const CommentsScreen(),
-  //   );
-  // }
 
   @override
   State<CommentsScreen> createState() => _CommentsScreenState();
