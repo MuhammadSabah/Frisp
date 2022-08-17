@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
@@ -7,9 +8,10 @@ import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/screens/comments_screen/comments_screen.dart';
 import 'package:food_recipe_final/src/view/widgets/animated_like_button.dart';
+import 'package:food_recipe_final/src/view/widgets/custom_drop_down.dart';
 import 'package:provider/provider.dart';
 
-class RecipePostCard extends StatelessWidget {
+class RecipePostCard extends StatefulWidget {
   const RecipePostCard({
     Key? key,
     required this.post,
@@ -17,6 +19,14 @@ class RecipePostCard extends StatelessWidget {
   }) : super(key: key);
   final UserModel? user;
   final RecipePostModel post;
+
+  @override
+  State<RecipePostCard> createState() => _RecipePostCardState();
+}
+
+class _RecipePostCardState extends State<RecipePostCard> {
+  List<String> popUpMenuItems = ['Delete'];
+
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
@@ -65,7 +75,7 @@ class RecipePostCard extends StatelessWidget {
                                   backgroundColor: Colors.white,
                                 ),
                               )
-                            : post.profImage == ""
+                            : widget.post.profImage == ""
                                 ? Container(
                                     decoration: const BoxDecoration(
                                       image: DecorationImage(
@@ -78,7 +88,8 @@ class RecipePostCard extends StatelessWidget {
                                 : Container(
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
-                                        image: NetworkImage(post.profImage),
+                                        image:
+                                            NetworkImage(widget.post.profImage),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -97,7 +108,7 @@ class RecipePostCard extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  post.userName,
+                                  widget.post.userName,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -106,7 +117,7 @@ class RecipePostCard extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  post.userEmail,
+                                  widget.post.userEmail,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: Theme.of(context)
@@ -125,14 +136,44 @@ class RecipePostCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  IconButton(
-                    splashRadius: 20,
-                    onPressed: () {},
-                    icon: FaIcon(
-                      FontAwesomeIcons.ellipsisVertical,
-                      color: Colors.grey.shade300,
-                    ),
-                  ),
+                  // !: PopUpMenu
+                  FirebaseAuth.instance.currentUser!.uid != widget.post.uid
+                      ? const SizedBox()
+                      : PopupMenuButton(
+                          splashRadius: 20,
+                          icon: const FaIcon(
+                            FontAwesomeIcons.ellipsisVertical,
+                            size: 18,
+                            color: Colors.white,
+                          ),
+                          onSelected: (String value) {
+                            if (value == 'Delete') {
+                              Provider.of<RecipePostProvider>(context,
+                                      listen: false)
+                                  .deletePost(widget.post.postId);
+                            }
+                          },
+                          itemBuilder: (BuildContext context) {
+                            return popUpMenuItems
+                                .map<CustomDropDownMenu<String>>(
+                                  (String value) => CustomDropDownMenu(
+                                    value: value,
+                                    text: value,
+                                    isRemovable: false,
+                                    callback: () {
+                                      setState(
+                                        () {
+                                          FocusScope.of(context).unfocus();
+                                          popUpMenuItems.remove(value);
+                                          Navigator.pop(context);
+                                        },
+                                      );
+                                    },
+                                  ),
+                                )
+                                .toList();
+                          },
+                        ),
                 ],
               ),
             ),
@@ -147,7 +188,7 @@ class RecipePostCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      post.description,
+                      widget.post.description,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 5,
                       style: Theme.of(context).textTheme.headline3!.copyWith(
@@ -184,7 +225,7 @@ class RecipePostCard extends StatelessWidget {
                               child: Container(
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: NetworkImage(post.postUrl),
+                                    image: NetworkImage(widget.post.postUrl),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -226,7 +267,7 @@ class RecipePostCard extends StatelessWidget {
                                             children: [
                                               Expanded(
                                                 child: Text(
-                                                  post.title,
+                                                  widget.post.title,
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   maxLines: 1,
@@ -287,7 +328,7 @@ class RecipePostCard extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              '${post.likes.length.toString()} Likes',
+                              '${widget.post.likes.length.toString()} Likes',
                               maxLines: 1,
                               style: TextStyle(
                                 color: Colors.grey.shade300,
@@ -306,14 +347,14 @@ class RecipePostCard extends StatelessWidget {
                             AnimatedLikeButton(
                               isAnimating: user == null
                                   ? false
-                                  : post.likes.contains(user.id),
+                                  : widget.post.likes.contains(user.id),
                               child: IconButton(
                                 splashRadius: 20,
                                 onPressed: () async {
                                   await postProvider.likePost(
-                                    postId: post.postId,
+                                    postId: widget.post.postId,
                                     userId: user!.id,
-                                    likes: post.likes,
+                                    likes: widget.post.likes,
                                   );
                                 },
                                 icon: user == null
@@ -321,7 +362,7 @@ class RecipePostCard extends StatelessWidget {
                                         Icons.favorite_border_outlined,
                                         color: Colors.grey.shade300,
                                       )
-                                    : post.likes.contains(user.id)
+                                    : widget.post.likes.contains(user.id)
                                         ? const Icon(
                                             Icons.favorite,
                                             color: Colors.red,
@@ -339,7 +380,7 @@ class RecipePostCard extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => CommentsScreen(
-                                            recipePost: post,
+                                            recipePost: widget.post,
                                           )),
                                 );
                               },

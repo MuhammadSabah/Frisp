@@ -18,9 +18,21 @@ class SearchUserScreen extends StatefulWidget {
 class _SearchUserScreenState extends State<SearchUserScreen> {
   final TextEditingController _searchUserController = TextEditingController();
   bool _showUser = false;
+  Future<QuerySnapshot<Map<String, dynamic>>>? futureResult;
   @override
   void initState() {
     super.initState();
+    futureResult = FirebaseFirestore.instance
+        .collection('users')
+        .where('userName', isGreaterThanOrEqualTo: _searchUserController.text)
+        .get();
+  }
+
+  void updateSearchResult() async {
+    futureResult = FirebaseFirestore.instance
+        .collection('users')
+        .where('userName', isGreaterThanOrEqualTo: _searchUserController.text)
+        .get();
   }
 
   @override
@@ -31,6 +43,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leading: IconButton(
             splashRadius: 20,
@@ -105,6 +118,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                               setState(() {
                                 _showUser = true;
                               });
+                              updateSearchResult();
                             }
                           },
                           child: Align(
@@ -134,12 +148,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                       ? Expanded(
                           child: FutureBuilder<
                                   QuerySnapshot<Map<String, dynamic>>>(
-                              future: FirebaseFirestore.instance
-                                  .collection('users')
-                                  .where('userName',
-                                      isGreaterThanOrEqualTo:
-                                          _searchUserController.text)
-                                  .get(),
+                              future: futureResult,
                               builder: (context, AsyncSnapshot snapshot) {
                                 if (_searchUserController.text.isEmpty) {
                                   return const SizedBox();
@@ -217,20 +226,20 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                                                       placeholder: (context,
                                                               url) =>
                                                           Shimmer.fromColors(
-                                                        baseColor: Colors
-                                                            .grey.shade400,
-                                                        highlightColor: Colors
-                                                            .grey.shade300,
-                                                        child: SizedBox(
-                                                          height: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height /
-                                                              3.3,
-                                                          width:
-                                                              double.infinity,
-                                                        ),
-                                                      ),
+                                                              baseColor: Colors
+                                                                  .grey
+                                                                  .shade400,
+                                                              highlightColor:
+                                                                  Colors.grey
+                                                                      .shade300,
+                                                              child: SizedBox(
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height /
+                                                                      3.3,
+                                                                  width: double
+                                                                      .infinity)),
                                                     ),
                                                   ),
                                           ),

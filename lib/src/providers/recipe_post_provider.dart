@@ -61,6 +61,14 @@ class RecipePostProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> deletePost(String recipePostId) async {
+    try {
+      await _firestore.collection('posts').doc(recipePostId).delete();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
   Future<void> postComment({
     required String userName,
     required String profileImage,

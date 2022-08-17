@@ -32,7 +32,7 @@ class _CustomDropDownMenuState<T> extends State<CustomDropDownMenu<T>> {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 60, minWidth: 100),
+      constraints: const BoxConstraints(minHeight: 35, minWidth: 100),
       child: InkWell(
         onTap: () {
           Navigator.of(context).pop<T>(widget.value);
