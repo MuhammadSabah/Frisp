@@ -1,20 +1,51 @@
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_recipe_final/src/models/comment_model.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
+import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:uuid/uuid.dart';
 
 class RecipePostProvider extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   int _recipePostLength = 0;
+  // late bool _isFollowing;
+
   int get getRecipePostLength => _recipePostLength;
-  void setRecipePostLength(int length) {
-    _recipePostLength = length;
+  // bool get getIsFollowing => _isFollowing;
+  //
+  void updateRecipePostInfo(String? userId) async {
+    QuerySnapshot<Map<String, dynamic>> recipePostSnapshots =
+        await FirebaseFirestore.instance
+            .collection('posts')
+            .where('uid', isEqualTo: userId)
+            .get();
+    if (recipePostSnapshots.docs.isNotEmpty) {
+      _recipePostLength = recipePostSnapshots.docs.length;
+    }
     notifyListeners();
   }
+
+  //
+  // Future<void> checkIsFollowing(String? userId) async {
+  //   UserModel? user;
+  //   DocumentSnapshot<Map<String, dynamic>> userSnapshot =
+  //       await _firestore.collection('users').doc(userId).get();
+  //   if (userSnapshot.exists) {
+  //     user = UserModel.fromSnapshot(userSnapshot);
+  //   }
+  //   if (user != null) {
+  //     if (user.followers.contains(_auth.currentUser!.uid)) {
+  //       _isFollowing = true;
+  //     } else {
+  //       _isFollowing = false;
+  //     }
+  //     notifyListeners();
+  //   }
+  // }
 
   Future<String?> uploadRecipePost({
     required String uid,
@@ -99,10 +130,11 @@ class RecipePostProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> likePost(
-      {required String postId,
-      required String userId,
-      required List likes}) async {
+  Future<void> likePost({
+    required String postId,
+    required String userId,
+    required List likes,
+  }) async {
     try {
       if (likes.contains(userId)) {
         await _firestore.collection('posts').doc(postId).update(
@@ -117,6 +149,42 @@ class RecipePostProvider extends ChangeNotifier {
           },
         );
       }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> followOrUnfollowUser({
+    required String userId,
+    required String followId,
+    required UserModel currentUser,
+  }) async {
+    try {
+      //
+      DocumentSnapshot currentUserSnapshot =
+          await _firestore.collection('users').doc(userId).get();
+      currentUser = UserModel.fromSnapshot(currentUserSnapshot);
+      //
+      DocumentSnapshot followedUserSnapshot =
+          await _firestore.collection('users').doc(followId).get();
+      UserModel followedUser = UserModel.fromSnapshot(followedUserSnapshot);
+      //
+      if (currentUser.following.contains(followId)) {
+        await followedUser.reference?.update({
+          'followers': FieldValue.arrayRemove([userId]),
+        });
+        await currentUser.reference?.update({
+          'following': FieldValue.arrayRemove([followId])
+        });
+      } else {
+        await followedUser.reference?.update({
+          'followers': FieldValue.arrayUnion([userId])
+        });
+        await currentUser.reference?.update({
+          'following': FieldValue.arrayUnion([followId])
+        });
+      }
+      notifyListeners();
     } catch (e) {
       debugPrint(e.toString());
     }

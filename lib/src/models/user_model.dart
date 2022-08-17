@@ -8,6 +8,7 @@ class UserModel {
   final String bio;
   final List followers;
   final List following;
+  DocumentReference? reference;
 
   UserModel({
     required this.id,
@@ -17,6 +18,7 @@ class UserModel {
     required this.bio,
     required this.followers,
     required this.following,
+    this.reference,
   });
 
   UserModel copyWith({
@@ -39,15 +41,17 @@ class UserModel {
     );
   }
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
+  factory UserModel.fromJson(
+      Map<String, dynamic> json, DocumentReference? reference) {
     return UserModel(
       id: json['id'],
       userName: json['userName'],
       email: json['email'],
       photoUrl: json['photoUrl'] ?? "",
       bio: json['bio'] ?? "",
-      followers: json[' followers'] ?? [],
+      followers: json['followers'] ?? [],
       following: json['following'] ?? [],
+      reference: reference,
     );
   }
   Map<String, dynamic> toJson() {
@@ -63,8 +67,8 @@ class UserModel {
   }
 
   factory UserModel.fromSnapshot(DocumentSnapshot snapshot) {
-    final userModel =
-        UserModel.fromJson(snapshot.data() as Map<String, dynamic>);
+    final userModel = UserModel.fromJson(
+        snapshot.data() as Map<String, dynamic>, snapshot.reference);
     return userModel;
   }
 }

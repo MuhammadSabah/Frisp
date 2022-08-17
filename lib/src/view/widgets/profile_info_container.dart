@@ -1,0 +1,317 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/models/user_model.dart';
+import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
+import 'package:provider/provider.dart';
+
+class ProfileInfoContainer extends StatefulWidget {
+  const ProfileInfoContainer({
+    Key? key,
+    required this.user,
+    required this.userId,
+    required this.onEdit,
+  }) : super(key: key);
+  final UserModel user;
+  final String? userId;
+  final Function()? onEdit;
+
+  @override
+  State<ProfileInfoContainer> createState() => _ProfileInfoContainerState();
+}
+
+class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
+  bool _isFollowing = false;
+  bool _isLoading = false;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  Future<void> checkIsFollowing(String? userId) async {
+    setState(() {
+      _isLoading = true;
+    });
+    UserModel? user;
+    DocumentSnapshot<Map<String, dynamic>> userSnapshot =
+        await _firestore.collection('users').doc(userId).get();
+    if (userSnapshot.exists) {
+      user = UserModel.fromSnapshot(userSnapshot);
+    }
+    if (user != null) {
+      if (user.followers.contains(_auth.currentUser!.uid)) {
+        _isFollowing = true;
+      } else {
+        _isFollowing = false;
+      }
+    }
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    checkIsFollowing(widget.userId);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final recipePostProvider =
+        Provider.of<RecipePostProvider>(context, listen: false);
+
+    // recipePostProvider.checkIsFollowing(widget.userId);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height / 3.2,
+            decoration: const BoxDecoration(
+              color: kGreyColor,
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Flex(
+                direction: Axis.vertical,
+                children: [
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                          child: Text(
+                            widget.user.userName,
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            style: Theme.of(context).textTheme.headline2,
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 14.0),
+                                  child: Text(
+                                    "jkasd hadjjalsjdfkl ajskdfja jsdkfja k sdjljasd kasjdfka sdfjakdf ahdsa",
+                                    textAlign: TextAlign.center,
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(
+                                          color: Colors.grey,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          height: 1.4,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        FirebaseAuth.instance.currentUser!.uid == widget.userId
+                            ? Padding(
+                                padding: const EdgeInsets.only(top: 2.0),
+                                child: GestureDetector(
+                                  onTap: widget.onEdit,
+                                  child: Container(
+                                    width: 130,
+                                    height: 36,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(50),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Edit Profile',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline3!
+                                            .copyWith(
+                                                color: kGreyColor,
+                                                fontWeight: FontWeight.w600),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : _isFollowing == false
+                                ? Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        await recipePostProvider
+                                            .followOrUnfollowUser(
+                                          userId: FirebaseAuth
+                                              .instance.currentUser!.uid,
+                                          followId: widget.userId!,
+                                          currentUser: widget.user,
+                                        );
+                                        setState(() {
+                                          _isFollowing = true;
+                                        });
+                                      },
+                                      child: Container(
+                                        width: 110,
+                                        height: 36,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(50),
+                                          ),
+                                        ),
+                                        child: Center(
+                                          child: _isLoading
+                                              ? const SizedBox(
+                                                  height: 15,
+                                                  width: 15,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: Colors.black,
+                                                  ),
+                                                )
+                                              : Text(
+                                                  "Follow",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3!
+                                                      .copyWith(
+                                                          color: kGreyColor,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        await recipePostProvider
+                                            .followOrUnfollowUser(
+                                          userId: FirebaseAuth
+                                              .instance.currentUser!.uid,
+                                          followId: widget.userId!,
+                                          currentUser: widget.user,
+                                        );
+                                        setState(() {
+                                          _isFollowing = false;
+                                        });
+                                      },
+                                      child: Container(
+                                        width: 110,
+                                        height: 36,
+                                        decoration: const BoxDecoration(
+                                          color: kOrangeColor,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(50),
+                                          ),
+                                        ),
+                                        child: Center(
+                                          child: _isLoading
+                                              ? const SizedBox(
+                                                  height: 15,
+                                                  width: 15,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: kOrangeColor,
+                                                  ),
+                                                )
+                                              : Text(
+                                                  "Unfollow",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline3!
+                                                      .copyWith(
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    'Recipes',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    recipePostProvider.getRecipePostLength
+                                        .toString(),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Followers',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(widget.user.followers.length.toString()),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Following',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(widget.user.following.length.toString()),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+    ;
+  }
+}

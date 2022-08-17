@@ -7,20 +7,22 @@ class AddRecipePostScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Center(
-      child: ElevatedButton(
-        onPressed: () {
-          Provider.of<AppStateManager>(context, listen: false)
-              .createRecipePostClicked(true);
-        },
-        child: const Text(
-          'Share your recipe',
-          style: TextStyle(
-            fontSize: 18,
+    return Scaffold(
+      body: SafeArea(
+          child: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Provider.of<AppStateManager>(context, listen: false)
+                .createRecipePostClicked(true);
+          },
+          child: const Text(
+            'Share your recipe',
+            style: TextStyle(
+              fontSize: 18,
+            ),
           ),
         ),
-      ),
-    ));
+      )),
+    );
   }
 }

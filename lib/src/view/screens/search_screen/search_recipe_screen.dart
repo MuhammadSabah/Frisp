@@ -73,61 +73,63 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Theme(
         data: Theme.of(context).copyWith(useMaterial3: false),
-        child: SafeArea(
-          child: Flex(
-            direction: Axis.vertical,
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    _buildSearchCard(),
-                    Theme(
-                      data: ThemeData(
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                      ),
-                      child: TabBar(
-                        controller: _tabController,
-                        labelStyle:
-                            Theme.of(context).textTheme.headline3!.copyWith(
-                                  fontSize: 14,
-                                ),
-                        tabs: const [
-                          Tab(text: "Search"),
-                          Tab(text: "Bookmarks"),
-                        ],
-                        indicatorPadding:
-                            const EdgeInsets.symmetric(horizontal: 8),
-                        indicatorColor: Colors.grey.shade600,
-                        // indicator: CircleTabIndicator(
-                        //   radius: 4.1,
-                        //   color: Colors.grey.shade600,
-                        // ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 6),
-                        height: double.maxFinite,
-                        width: MediaQuery.of(context).size.width,
-                        child: TabBarView(
+        child: Scaffold(
+          body: SafeArea(
+            child: Flex(
+              direction: Axis.vertical,
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      _buildSearchCard(),
+                      Theme(
+                        data: ThemeData(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                        ),
+                        child: TabBar(
                           controller: _tabController,
-                          children: [
-                            SearchTab(
-                              controller: _searchController,
-                              currentSearches: _currentSearches,
-                              count: currentCount,
-                              futureMethod: _searchResult,
-                            ),
-                            const BookmarkTab(),
+                          labelStyle:
+                              Theme.of(context).textTheme.headline3!.copyWith(
+                                    fontSize: 14,
+                                  ),
+                          tabs: const [
+                            Tab(text: "Search"),
+                            Tab(text: "Bookmarks"),
                           ],
+                          indicatorPadding:
+                              const EdgeInsets.symmetric(horizontal: 8),
+                          indicatorColor: Colors.grey.shade600,
+                          // indicator: CircleTabIndicator(
+                          //   radius: 4.1,
+                          //   color: Colors.grey.shade600,
+                          // ),
                         ),
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.only(top: 6),
+                          height: double.maxFinite,
+                          width: MediaQuery.of(context).size.width,
+                          child: TabBarView(
+                            controller: _tabController,
+                            children: [
+                              SearchTab(
+                                controller: _searchController,
+                                currentSearches: _currentSearches,
+                                count: currentCount,
+                                futureMethod: _searchResult,
+                              ),
+                              const BookmarkTab(),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

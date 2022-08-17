@@ -26,6 +26,8 @@ class UserProvider extends ChangeNotifier {
           .get();
       if (userSnapshot.exists) {
         userModel = UserModel.fromSnapshot(userSnapshot);
+      } else {
+        return null;
       }
     }
     return userModel;

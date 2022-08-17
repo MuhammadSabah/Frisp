@@ -6,8 +6,11 @@ import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ProfilePostSection extends StatefulWidget {
-  const ProfilePostSection({Key? key}) : super(key: key);
-
+  const ProfilePostSection({
+    Key? key,
+    required this.userId,
+  }) : super(key: key);
+  final String? userId;
   @override
   State<ProfilePostSection> createState() => _ProfilePostSectionState();
 }
@@ -20,7 +23,7 @@ class _ProfilePostSectionState extends State<ProfilePostSection> {
     super.initState();
     futureResult = FirebaseFirestore.instance
         .collection('posts')
-        .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .where('uid', isEqualTo: widget.userId)
         .get();
   }
 

@@ -26,6 +26,7 @@ class RecipePostCard extends StatefulWidget {
 
 class _RecipePostCardState extends State<RecipePostCard> {
   List<String> popUpMenuItems = ['Delete'];
+  User? currentUser = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +138,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                     ),
                   ),
                   // !: PopUpMenu
-                  FirebaseAuth.instance.currentUser!.uid != widget.post.uid
+                  currentUser?.uid != widget.post.uid
                       ? const SizedBox()
                       : PopupMenuButton(
                           splashRadius: 20,

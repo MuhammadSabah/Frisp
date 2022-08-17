@@ -1,20 +1,21 @@
 import 'dart:async';
 import 'dart:typed_data';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
-import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
+import 'package:food_recipe_final/src/providers/user_provider.dart';
+import 'package:food_recipe_final/src/view/widgets/profile_back_button.dart';
+import 'package:food_recipe_final/src/view/widgets/profile_cached_background_photo.dart';
+import 'package:food_recipe_final/src/view/widgets/profile_default_background_photo.dart';
+import 'package:food_recipe_final/src/view/widgets/profile_info_container.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_post_section.dart';
+import 'package:food_recipe_final/src/view/widgets/profile_settings_button.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({Key? key, required this.userId}) : super(key: key);
@@ -25,17 +26,18 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   Uint8List? _image;
-  bool _isLoading = false;
   bool _isLoadingProfile = false;
   String imageUrl = 'assets/default_image.jpg';
-  int postLength = 0;
   Future<DocumentSnapshot<Map<String, dynamic>>>? futureResult;
 
+  //
   void selectAnImage(BuildContext context) async {
     final imageProvider =
         Provider.of<UserImageProvider>(context, listen: false);
 
-    _isLoading = true;
+    setState(() {
+      _isLoadingProfile = true;
+    });
 
     final result = await imageProvider.pickAnImage(ImageSource.gallery);
 
@@ -47,24 +49,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           fileName: 'profilePictures', file: _image!, isPost: false);
       await imageProvider.updateUserProfilePhoto(downloadUrl);
       setState(() {
-        _isLoading = false;
+        _isLoadingProfile = false;
       });
     }, (r) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(r.toString()),
-          duration: const Duration(
-            milliseconds: 2300,
-          ),
-          backgroundColor: Colors.grey.shade700,
-        ),
-      );
       setState(() {
-        _isLoading = false;
+        _isLoadingProfile = false;
       });
     });
   }
 
+  //
   @override
   void initState() {
     super.initState();
@@ -75,56 +69,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> getUserData() async {
     setState(() {
-      _isLoading = true;
+      _isLoadingProfile = true;
     });
     try {
-      QuerySnapshot<Map<String, dynamic>> recipePostSnapshots =
-          await FirebaseFirestore.instance
-              .collection('posts')
-              .where('uid', isEqualTo: widget.userId)
-              .get();
-      postLength = recipePostSnapshots.docs.length;
+      final recipePostProvider =
+          Provider.of<RecipePostProvider>(context, listen: false);
+      recipePostProvider.updateRecipePostInfo(widget.userId);
+
       setState(() {});
     } catch (e) {
       debugPrint(e.toString());
     }
     setState(() {
-      _isLoading = false;
+      _isLoadingProfile = false;
     });
   }
 
-  // void getUserData() async {
-  //   UserProvider userProvider =
-  //       Provider.of<UserProvider>(context, listen: false);
-  //   await userProvider.refreshUser();
-  //   setState(() {});
-  // }
   Future<void> _refresh() async {
     await Future.delayed(const Duration(milliseconds: 2500), () {
       futureResult = FirebaseFirestore.instance
           .collection('users')
           .doc(widget.userId)
           .get();
+      getUserData();
       setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // final userProvider = Provider.of<UserProvider>(context, listen: false);
-    // UserModel? user = userProvider.getUser;
-
-    return _isLoading
+    return _isLoadingProfile
         ? const Center(
             child: CircularProgressIndicator(),
           )
-        : Theme(
-            data: Theme.of(context).copyWith(useMaterial3: false),
-            child: RefreshIndicator(
-              color: kOrangeColor,
-              backgroundColor: Colors.white,
-              displacement: 40,
-              onRefresh: _refresh,
+        : RefreshIndicator(
+            color: kOrangeColor,
+            backgroundColor: Colors.white,
+            displacement: 40,
+            onRefresh: _refresh,
+            child: Theme(
+              data: Theme.of(context).copyWith(useMaterial3: false),
               child: Scaffold(
                 body: SafeArea(
                   child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
@@ -138,9 +122,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         return const Center(
                           child: Text('Error occurred!'),
                         );
+                      } else if (snapshot.data == null) {
+                        return const Center(
+                          child: Text('No Data!'),
+                        );
                       } else {
-                        final user = UserModel.fromSnapshot(snapshot.data);
-
+                        UserModel user = UserModel.fromSnapshot(snapshot.data);
                         return SingleChildScrollView(
                           child: Column(
                             children: [
@@ -149,310 +136,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Stack(
                                   children: [
                                     user.photoUrl == ""
-                                        ? Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                3.3,
-                                            decoration: const BoxDecoration(
-                                              color: Colors.grey,
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    'assets/default_image.jpg'),
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          )
-                                        : SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                3.3,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            child: CachedNetworkImage(
-                                              imageUrl: user.photoUrl,
-                                              fit: BoxFit.cover,
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      const Center(
-                                                child: FaIcon(FontAwesomeIcons
-                                                    .circleExclamation),
-                                              ),
-                                              placeholder: (context, url) =>
-                                                  Shimmer.fromColors(
-                                                baseColor: Colors.grey.shade400,
-                                                highlightColor:
-                                                    Colors.grey.shade300,
-                                                child: SizedBox(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      3.3,
-                                                  width: double.infinity,
-                                                ),
-                                              ),
-                                            ),
+                                        ? const ProfileDefaultBackgroundPhoto()
+                                        : ProfileCachedBackgroundPhoto(
+                                            user: user,
                                           ),
-                                    Positioned(
-                                        top: 3,
-                                        right: 5,
-                                        child: IconButton(
-                                          onPressed: () {
-                                            Provider.of<AppStateManager>(
-                                                    context,
-                                                    listen: false)
-                                                .settingsClicked(true);
-                                          },
-                                          splashRadius: 20,
-                                          icon: CircleAvatar(
-                                            backgroundColor:
-                                                Colors.white.withOpacity(0.9),
-                                            child: const FaIcon(
-                                              FontAwesomeIcons.gear,
-                                              color: kGreyColor,
-                                              size: 20,
-                                            ),
-                                          ),
-                                        )),
+                                    const Positioned(
+                                      top: 3,
+                                      right: 5,
+                                      child: ProfileSettingsButton(),
+                                    ),
                                     FirebaseAuth.instance.currentUser!.uid !=
                                             widget.userId
-                                        ? Positioned(
+                                        ? const Positioned(
                                             top: 3,
                                             left: 5,
-                                            child: IconButton(
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                              splashRadius: 20,
-                                              icon: CircleAvatar(
-                                                backgroundColor: Colors.white
-                                                    .withOpacity(0.9),
-                                                child: const FaIcon(
-                                                  FontAwesomeIcons.arrowLeft,
-                                                  color: kGreyColor,
-                                                  size: 20,
-                                                ),
-                                              ),
-                                            ))
+                                            child: ProfileBackButton(),
+                                          )
                                         : const SizedBox(),
                                     Positioned(
                                       bottom: 0,
                                       left: 0,
                                       right: 0,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 16.0),
-                                        child: Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                              3.2,
-                                          decoration: const BoxDecoration(
-                                            color: kGreyColor,
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(10),
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(18.0),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(user.userName,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline2),
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 16.0,
-                                                      vertical: 10),
-                                                  child: Text(
-                                                    'Delightful homemade tasty healthy recipes for your family',
-                                                    textAlign: TextAlign.center,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyText2!
-                                                        .copyWith(
-                                                            color: Colors.grey,
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                  ),
-                                                ),
-                                                FirebaseAuth.instance
-                                                            .currentUser!.uid ==
-                                                        widget.userId
-                                                    ? Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(top: 5.0),
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            selectAnImage(
-                                                                context);
-                                                          },
-                                                          child: Container(
-                                                            width: 130,
-                                                            height: 36,
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              color:
-                                                                  Colors.white,
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          50)),
-                                                            ),
-                                                            child: Center(
-                                                                child: Text(
-                                                              'Edit Profile',
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .headline3!
-                                                                  .copyWith(
-                                                                      color:
-                                                                          kGreyColor,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600),
-                                                            )),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    : Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(top: 5.0),
-                                                        child: GestureDetector(
-                                                          onTap: () {},
-                                                          child: Container(
-                                                            width: 110,
-                                                            height: 36,
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              color:
-                                                                  Colors.white,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .all(
-                                                                Radius.circular(
-                                                                    50),
-                                                              ),
-                                                            ),
-                                                            child: Center(
-                                                                child: Text(
-                                                              'Follow',
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .headline3!
-                                                                  .copyWith(
-                                                                      color:
-                                                                          kGreyColor,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                            )),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 20.0),
-                                                  child: Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceAround,
-                                                    children: [
-                                                      Column(
-                                                        children: [
-                                                          Text(
-                                                            'Recipes',
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyText2!
-                                                                .copyWith(
-                                                                    color: Colors
-                                                                        .grey,
-                                                                    fontSize:
-                                                                        14,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500),
-                                                          ),
-                                                          Text(postLength
-                                                              .toString()),
-                                                        ],
-                                                      ),
-                                                      Column(
-                                                        children: [
-                                                          Text(
-                                                            'Followers',
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyText2!
-                                                                .copyWith(
-                                                                    color: Colors
-                                                                        .grey,
-                                                                    fontSize:
-                                                                        14,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500),
-                                                          ),
-                                                          Text(user
-                                                              .followers.length
-                                                              .toString()),
-                                                        ],
-                                                      ),
-                                                      Column(
-                                                        children: [
-                                                          Text(
-                                                            'Following',
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyText2!
-                                                                .copyWith(
-                                                                    color: Colors
-                                                                        .grey,
-                                                                    fontSize:
-                                                                        14,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500),
-                                                          ),
-                                                          Text(user
-                                                              .following.length
-                                                              .toString()),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
+                                      child: ProfileInfoContainer(
+                                        user: user,
+                                        userId: widget.userId,
+                                        onEdit: () {
+                                          selectAnImage(context);
+                                        },
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
                               //!: Recipe Post Section:
-                              const ProfilePostSection(),
+                              ProfilePostSection(userId: widget.userId!),
                             ],
                           ),
                         );

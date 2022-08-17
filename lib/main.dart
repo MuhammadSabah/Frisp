@@ -77,6 +77,7 @@ class _MyAppState extends State<MyApp> {
           lazy: false,
           create: (context) => _appStateManager,
         ),
+      
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
