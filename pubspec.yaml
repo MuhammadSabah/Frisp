@@ -59,6 +59,7 @@ dependencies:
   image_picker: ^0.8.5+3
   dartz: ^0.10.1
   after_layout: ^1.2.0
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:

@@ -3,6 +3,7 @@ import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -257,7 +258,17 @@ class SettingsScreen extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
+                FocusManager.instance.primaryFocus?.unfocus();
                 appStateProvider.logOutUser();
+                Get.snackbar(
+                  '⚠️',
+                  'Logged Out',
+                  snackPosition: SnackPosition.TOP,
+                  forwardAnimationCurve: Curves.elasticInOut,
+                  reverseAnimationCurve: Curves.easeOut,
+                  colorText:
+                      settingsManager.darkMode ? Colors.white : Colors.black,
+                );
               },
               child: Ink(
                 height: MediaQuery.of(context).size.height / 14,

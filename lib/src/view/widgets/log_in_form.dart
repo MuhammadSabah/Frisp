@@ -6,6 +6,7 @@ import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/widgets/auth_bottom_rich_text.dart';
 import 'package:food_recipe_final/src/view/widgets/auth_confirm_button.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
@@ -186,7 +187,7 @@ class _LoginFormState extends State<LoginForm> {
             AuthConfirmButton(
               title: 'Log in',
               callBack: () async {
-                FocusScope.of(context).unfocus();
+                FocusManager.instance.primaryFocus?.unfocus();
                 final isValidForm = widget.formKey.currentState!.validate();
                 if (isValidForm) {
                   final _output = await appState.logInUser(
@@ -196,13 +197,16 @@ class _LoginFormState extends State<LoginForm> {
                   await userProvider.refreshUser();
 
                   if (_output != null) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('$_output'),
-                      duration: const Duration(
-                        milliseconds: 2300,
-                      ),
-                      backgroundColor: Colors.red.shade500,
-                    ));
+                    Get.snackbar(
+                      'Error',
+                      _output,
+                      snackPosition: SnackPosition.TOP,
+                      forwardAnimationCurve: Curves.elasticInOut,
+                      reverseAnimationCurve: Curves.easeOut,
+                      colorText: settingsManager.darkMode
+                          ? Colors.white
+                          : Colors.black,
+                    );
                   }
                 }
               },

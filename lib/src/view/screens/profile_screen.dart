@@ -7,7 +7,6 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
-import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_back_button.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_cached_background_photo.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_default_background_photo.dart';
@@ -102,79 +101,86 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ? const Center(
             child: CircularProgressIndicator(),
           )
-        : RefreshIndicator(
-            color: kOrangeColor,
-            backgroundColor: Colors.white,
-            displacement: 40,
-            onRefresh: _refresh,
-            child: Theme(
-              data: Theme.of(context).copyWith(useMaterial3: false),
+        : Theme(
+            data: Theme.of(context).copyWith(useMaterial3: false),
+            child: RefreshIndicator(
+              color: kOrangeColor,
+              backgroundColor: Colors.white,
+              displacement: 50,
+              onRefresh: _refresh,
               child: Scaffold(
-                body: SafeArea(
-                  child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-                    future: futureResult,
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else if (snapshot.hasError) {
-                        return const Center(
-                          child: Text('Error occurred!'),
-                        );
-                      } else if (snapshot.data == null) {
-                        return const Center(
-                          child: Text('No Data!'),
-                        );
-                      } else {
-                        UserModel user = UserModel.fromSnapshot(snapshot.data);
-                        return SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height / 2,
-                                child: Stack(
-                                  children: [
-                                    user.photoUrl == ""
-                                        ? const ProfileDefaultBackgroundPhoto()
-                                        : ProfileCachedBackgroundPhoto(
-                                            user: user,
-                                          ),
-                                    const Positioned(
-                                      top: 3,
-                                      right: 5,
-                                      child: ProfileSettingsButton(),
-                                    ),
-                                    FirebaseAuth.instance.currentUser!.uid !=
-                                            widget.userId
-                                        ? const Positioned(
-                                            top: 3,
-                                            left: 5,
-                                            child: ProfileBackButton(),
-                                          )
-                                        : const SizedBox(),
-                                    Positioned(
-                                      bottom: 0,
-                                      left: 0,
-                                      right: 0,
-                                      child: ProfileInfoContainer(
-                                        user: user,
-                                        userId: widget.userId,
-                                        onEdit: () {
-                                          selectAnImage(context);
-                                        },
+                body: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: SafeArea(
+                    child:
+                        FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                      future: futureResult,
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (snapshot.hasError) {
+                          return const Center(
+                            child: Text('Error occurred!'),
+                          );
+                        } else if (snapshot.data == null) {
+                          return const Center(
+                            child: Text('No Data!'),
+                          );
+                        } else {
+                          UserModel user =
+                              UserModel.fromSnapshot(snapshot.data);
+                          return SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 2,
+                                  child: Stack(
+                                    children: [
+                                      user.photoUrl == ""
+                                          ? const ProfileDefaultBackgroundPhoto()
+                                          : ProfileCachedBackgroundPhoto(
+                                              user: user,
+                                            ),
+                                      const Positioned(
+                                        top: 3,
+                                        right: 5,
+                                        child: ProfileSettingsButton(),
                                       ),
-                                    ),
-                                  ],
+                                      FirebaseAuth.instance.currentUser!.uid !=
+                                              widget.userId
+                                          ? const Positioned(
+                                              top: 3,
+                                              left: 5,
+                                              child: ProfileBackButton(),
+                                            )
+                                          : const SizedBox(),
+                                      Positioned(
+                                        bottom: 0,
+                                        left: 0,
+                                        right: 0,
+                                        child: ProfileInfoContainer(
+                                          user: user,
+                                          userId: widget.userId,
+                                          onEdit: () {
+                                            selectAnImage(context);
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              //!: Recipe Post Section:
-                              ProfilePostSection(userId: widget.userId!),
-                            ],
-                          ),
-                        );
-                      }
-                    },
+                                //!: Recipe Post Section:
+                                ProfilePostSection(userId: widget.userId!),
+                              ],
+                            ),
+                          );
+                        }
+                      },
+                    ),
                   ),
                 ),
               ),

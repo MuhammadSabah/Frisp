@@ -40,7 +40,8 @@ class _ProfilePostSectionState extends State<ProfilePostSection> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return GridView.builder(
                 shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
+                primary: false,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 4,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
