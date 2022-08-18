@@ -43,7 +43,7 @@ run app on an emulator ``flutter run``
 
 • Bookmarking your favorite recipes.
 
-• Ability to Post and Comment on what other people have shared.
+• Ability to Post, and Comment on what other people have shared.
 
 • A list for saving ingredients while going to grocery store.
 ```
