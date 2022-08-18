@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:provider/provider.dart';
 
 class AuthConfirmButton extends StatelessWidget {
   const AuthConfirmButton({
@@ -25,7 +27,6 @@ class AuthConfirmButton extends StatelessWidget {
               borderRadius: BorderRadius.all(
                 Radius.circular(10),
               ),
-              
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,6 +37,7 @@ class AuthConfirmButton extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline2!.copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
+                        color: Colors.white,
                       ),
                 ),
               ],

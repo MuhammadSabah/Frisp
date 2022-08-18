@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailsTitleSection extends StatefulWidget {
@@ -25,6 +27,8 @@ class DetailsTitleSection extends StatefulWidget {
 class _DetailsTitleSectionState extends State<DetailsTitleSection> {
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: Column(
@@ -74,7 +78,9 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
                               Radius.circular(10),
                             ),
                             border: Border.all(
-                              color: Colors.white60,
+                              color: settingsManager.darkMode
+                                  ? Colors.white60
+                                  : Colors.grey,
                               width: 1,
                             ),
                           ),
@@ -120,7 +126,9 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
                   'Dish Types: ',
                   style: Theme.of(context).textTheme.headline4!.copyWith(
                         fontSize: 14,
-                        color: Colors.grey.shade300,
+                        color: settingsManager.darkMode
+                            ? Colors.grey.shade300
+                            : Colors.grey.shade700,
                       ),
                 ),
                 Expanded(
@@ -157,7 +165,9 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
                   'Diets: ',
                   style: Theme.of(context).textTheme.headline4!.copyWith(
                         fontSize: 14,
-                        color: Colors.grey.shade300,
+                        color: settingsManager.darkMode
+                            ? Colors.grey.shade300
+                            : Colors.grey.shade700,
                       ),
                 ),
                 Expanded(
@@ -197,7 +207,9 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
               itemBuilder: (BuildContext context, int index) {
                 return Chip(
                   elevation: 4,
-                  backgroundColor: Colors.white,
+                  backgroundColor: settingsManager.darkMode
+                      ? Colors.white
+                      : Colors.grey.shade100,
                   label: Text(
                     widget.keysList[index].toString(),
                     style: Theme.of(context).textTheme.headline4!.copyWith(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:provider/provider.dart';
 
 class BottomSaveButton extends StatefulWidget {
   const BottomSaveButton({Key? key, this.saveRecipe}) : super(key: key);
@@ -14,6 +15,8 @@ class BottomSaveButton extends StatefulWidget {
 class _BottomSaveButtonState extends State<BottomSaveButton> {
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Positioned(
       bottom: 10,
       right: MediaQuery.of(context).size.width -
@@ -46,6 +49,7 @@ class _BottomSaveButtonState extends State<BottomSaveButton> {
                     style: Theme.of(context).textTheme.headline2!.copyWith(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
+                          color: Colors.white,
                         ),
                   ),
                 ],

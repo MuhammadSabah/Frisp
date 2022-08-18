@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:provider/provider.dart';
 
 class ProfileInfoContainer extends StatefulWidget {
@@ -26,7 +27,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
   bool _isLoading = false;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  Future<void> checkIsFollowing(String? userId) async {
+  Future<void> checkFollowingState(String? userId) async {
     setState(() {
       _isLoading = true;
     });
@@ -50,7 +51,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
 
   @override
   void initState() {
-    checkIsFollowing(widget.userId);
+    checkFollowingState(widget.userId);
     super.initState();
   }
 
@@ -58,9 +59,8 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
   Widget build(BuildContext context) {
     final recipePostProvider =
         Provider.of<RecipePostProvider>(context, listen: false);
-
-    // recipePostProvider.checkIsFollowing(widget.userId);
-
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
@@ -68,9 +68,11 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
         children: [
           Container(
             height: MediaQuery.of(context).size.height / 3.2,
-            decoration: const BoxDecoration(
-              color: kGreyColor,
-              borderRadius: BorderRadius.all(
+            decoration: BoxDecoration(
+              color: settingsManager.darkMode
+                  ? kGreyColor
+                  : Color.fromRGBO(218, 218, 218, 1),
+              borderRadius: const BorderRadius.all(
                 Radius.circular(10),
               ),
             ),
@@ -109,7 +111,9 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                         .textTheme
                                         .bodyText2!
                                         .copyWith(
-                                          color: Colors.grey,
+                                          color: settingsManager.darkMode
+                                              ? Colors.grey
+                                              : Colors.grey.shade800,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500,
                                           height: 1.4,
@@ -128,9 +132,11 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                   child: Container(
                                     width: 130,
                                     height: 36,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.all(
+                                    decoration: BoxDecoration(
+                                      color: settingsManager.darkMode
+                                          ? Colors.white
+                                          : Colors.grey.shade900,
+                                      borderRadius: const BorderRadius.all(
                                         Radius.circular(50),
                                       ),
                                     ),
@@ -141,7 +147,9 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                             .textTheme
                                             .headline3!
                                             .copyWith(
-                                                color: kGreyColor,
+                                                color: settingsManager.darkMode
+                                                    ? kGreyColor
+                                                    : Colors.white,
                                                 fontWeight: FontWeight.w600),
                                       ),
                                     ),
@@ -259,7 +267,9 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                         .textTheme
                                         .bodyText2!
                                         .copyWith(
-                                            color: Colors.grey,
+                                            color: settingsManager.darkMode
+                                                ? Colors.grey
+                                                : Colors.grey.shade800,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500),
                                   ),
@@ -277,7 +287,9 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                         .textTheme
                                         .bodyText2!
                                         .copyWith(
-                                            color: Colors.grey,
+                                            color: settingsManager.darkMode
+                                                ? Colors.grey
+                                                : Colors.grey.shade800,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500),
                                   ),
@@ -292,7 +304,9 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                         .textTheme
                                         .bodyText2!
                                         .copyWith(
-                                            color: Colors.grey,
+                                            color: settingsManager.darkMode
+                                                ? Colors.grey
+                                                : Colors.grey.shade800,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500),
                                   ),

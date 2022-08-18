@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
+import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
-import 'package:food_recipe_final/src/providers/user_provider.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:provider/provider.dart';
 
-Color kGreyColorShade = Colors.grey.shade300;
-
 class SettingsScreen extends StatelessWidget {
+  SettingsScreen({Key? key}) : super(key: key);
   static MaterialPage page() {
     return MaterialPage(
       name: AppPages.settingsPath,
       key: ValueKey(AppPages.settingsPath),
-      child: const SettingsScreen(),
+      child: SettingsScreen(),
     );
   }
 
-  const SettingsScreen({Key? key}) : super(key: key);
-
+  bool switchValue = true;
   @override
   Widget build(BuildContext context) {
     final appStateProvider =
         Provider.of<AppStateManager>(context, listen: false);
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
+    Color kGreyColorShade =
+        settingsManager.darkMode ? Colors.grey.shade300 : Colors.black;
+    Color kDividerColor =
+        settingsManager.darkMode ? Colors.grey.shade700 : Colors.grey.shade800;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -30,9 +34,9 @@ class SettingsScreen extends StatelessWidget {
             Provider.of<AppStateManager>(context, listen: false)
                 .settingsClicked(false);
           },
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back,
-            color: Colors.white,
+            color: settingsManager.darkMode ? Colors.white : Colors.black,
             size: 24,
           ),
         ),
@@ -46,9 +50,9 @@ class SettingsScreen extends StatelessWidget {
         actions: [
           IconButton(
             splashRadius: 20,
-            icon: const Icon(
+            icon: Icon(
               Icons.more_horiz,
-              color: Colors.white,
+              color: settingsManager.darkMode ? Colors.white : Colors.black,
             ),
             onPressed: () {},
           )
@@ -58,6 +62,33 @@ class SettingsScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
+            InkWell(
+              onTap: () {},
+              child: Ink(
+                height: MediaQuery.of(context).size.height / 14,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Theme',
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                            color: kGreyColorShade,
+                          ),
+                    ),
+                    Switch.adaptive(
+                      value: settingsManager.darkMode,
+                      onChanged: (bool value) {
+                        settingsManager.setDarkMode(value);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Divider(
+              color: kDividerColor,
+              thickness: 1.1,
+            ),
             InkWell(
               onTap: () {},
               child: Ink(
@@ -81,7 +112,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             Divider(
-              color: Colors.grey.shade700,
+              color: kDividerColor,
               thickness: 1.1,
             ),
             InkWell(
@@ -108,7 +139,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             Divider(
-              color: Colors.grey.shade700,
+              color: kDividerColor,
               thickness: 1.1,
             ),
             InkWell(
@@ -140,7 +171,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             Divider(
-              color: Colors.grey.shade700,
+              color: kDividerColor,
               thickness: 1.1,
             ),
             InkWell(
@@ -167,7 +198,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             Divider(
-              color: Colors.grey.shade700,
+              color: kDividerColor,
               thickness: 1.1,
             ),
             InkWell(
@@ -194,7 +225,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             Divider(
-              color: Colors.grey.shade700,
+              color: kDividerColor,
               thickness: 1.1,
             ),
             InkWell(
@@ -221,7 +252,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             Divider(
-              color: Colors.grey.shade700,
+              color: kDividerColor,
               thickness: 1.1,
             ),
             InkWell(
@@ -250,7 +281,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             Divider(
-              color: Colors.grey.shade700,
+              color: kDividerColor,
               thickness: 1.1,
             ),
           ],

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/firebase_options.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/repository/bookmark_interface.dart';
 import 'package:food_recipe_final/src/providers/bookmark_manager.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
@@ -50,7 +51,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  ThemeData theme = AppTheme.dark();
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -77,15 +77,28 @@ class _MyAppState extends State<MyApp> {
           lazy: false,
           create: (context) => _appStateManager,
         ),
-      
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: theme,
-        home: Router(
-          routerDelegate: _appRouter,
-          backButtonDispatcher: RootBackButtonDispatcher(),
+        ChangeNotifierProvider(
+          lazy: false,
+          create: (context) => SettingsManager(),
         ),
+      ],
+      child: Consumer<SettingsManager>(
+        builder: (context, settingsManager, _) {
+          ThemeData theme;
+          if (settingsManager.darkMode) {
+            theme = AppTheme.dark();
+          } else {
+            theme = AppTheme.light();
+          }
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: theme,
+            home: Router(
+              routerDelegate: _appRouter,
+              backButtonDispatcher: RootBackButtonDispatcher(),
+            ),
+          );
+        },
       ),
     );
   }

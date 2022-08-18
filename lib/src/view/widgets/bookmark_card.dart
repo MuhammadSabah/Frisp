@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/view/screens/recipe_detail_screen.dart';
+import 'package:provider/provider.dart';
 
 class BookmarkCard extends StatefulWidget {
   const BookmarkCard(
@@ -20,6 +22,8 @@ class _BookmarkCardState extends State<BookmarkCard> {
   bool value = false;
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: ClipRRect(
@@ -76,8 +80,8 @@ class _BookmarkCardState extends State<BookmarkCard> {
               ],
             ),
             Container(
-              decoration: const BoxDecoration(
-                color: kGreyColor,
+              decoration: BoxDecoration(
+                color: settingsManager.darkMode ? kGreyColor : kGreyColor5,
               ),
               child: ListView.builder(
                 shrinkWrap: true,

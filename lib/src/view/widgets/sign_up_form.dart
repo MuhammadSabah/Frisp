@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/view/widgets/auth_bottom_rich_text.dart';
 import 'package:food_recipe_final/src/view/widgets/auth_confirm_button.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +29,6 @@ class SignupForm extends StatefulWidget {
 class _SignupFormState extends State<SignupForm> {
   bool _obscureText = true;
   bool _isLoading = false;
-  ByteData? _imageData;
 
   @override
   void initState() {
@@ -38,6 +37,8 @@ class _SignupFormState extends State<SignupForm> {
 
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Form(
       key: widget.formKey,
       child: SingleChildScrollView(
@@ -74,7 +75,7 @@ class _SignupFormState extends State<SignupForm> {
                       fontWeight: FontWeight.w600,
                     ),
                 controller: widget.userNameController,
-                cursorColor: Colors.white,
+                cursorColor: kOrangeColor,
                 autofocus: false,
                 autocorrect: false,
                 keyboardType: TextInputType.text,
@@ -82,7 +83,8 @@ class _SignupFormState extends State<SignupForm> {
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
                   counterText: ' ',
-                  fillColor: kGreyColor,
+                  fillColor:
+                      settingsManager.darkMode ? kGreyColor : kGreyColor4,
                   filled: true,
                   isCollapsed: true,
                   contentPadding: const EdgeInsets.all(18),
@@ -120,7 +122,7 @@ class _SignupFormState extends State<SignupForm> {
                       fontWeight: FontWeight.w600,
                     ),
                 controller: widget.emailController,
-                cursorColor: Colors.white,
+                cursorColor: kOrangeColor,
                 autofocus: false,
                 autocorrect: false,
                 keyboardType: TextInputType.emailAddress,
@@ -128,7 +130,8 @@ class _SignupFormState extends State<SignupForm> {
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
                   counterText: ' ',
-                  fillColor: kGreyColor,
+                  fillColor:
+                      settingsManager.darkMode ? kGreyColor : kGreyColor4,
                   filled: true,
                   isCollapsed: true,
                   contentPadding: const EdgeInsets.all(18),
@@ -166,7 +169,7 @@ class _SignupFormState extends State<SignupForm> {
                       fontWeight: FontWeight.w600,
                     ),
                 controller: widget.passwordController,
-                cursorColor: Colors.white,
+                cursorColor: kOrangeColor,
                 autofocus: false,
                 autocorrect: false,
                 keyboardType: TextInputType.visiblePassword,
@@ -174,7 +177,8 @@ class _SignupFormState extends State<SignupForm> {
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
                   counterText: ' ',
-                  fillColor: kGreyColor,
+                  fillColor:
+                      settingsManager.darkMode ? kGreyColor : kGreyColor4,
                   filled: true,
                   isCollapsed: true,
                   suffixIcon: Column(
@@ -191,13 +195,17 @@ class _SignupFormState extends State<SignupForm> {
                         icon: _obscureText
                             ? FaIcon(
                                 FontAwesomeIcons.eyeSlash,
-                                color: Colors.grey.shade400,
-                                size: 20,
+                                color: settingsManager.darkMode
+                                    ? Colors.grey.shade400
+                                    : Colors.grey.shade800,
+                                size: 18,
                               )
                             : FaIcon(
                                 FontAwesomeIcons.eye,
-                                color: Colors.grey.shade400,
-                                size: 20,
+                                color: settingsManager.darkMode
+                                    ? Colors.grey.shade400
+                                    : Colors.grey.shade800,
+                                size: 18,
                               ),
                       ),
                     ],

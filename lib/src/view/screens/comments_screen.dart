@@ -6,6 +6,7 @@ import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/widgets/comment_card.dart';
 import 'package:provider/provider.dart';
@@ -46,8 +47,8 @@ class _CommentsScreenState extends State<CommentsScreen> {
   Widget build(BuildContext context) {
     final UserModel? user =
         Provider.of<UserProvider>(context, listen: false).getUser;
-    final commentsProvider =
-        Provider.of<AppStateManager>(context, listen: false);
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     final postProvider =
         Provider.of<RecipePostProvider>(context, listen: false);
     return GestureDetector(
@@ -63,9 +64,9 @@ class _CommentsScreenState extends State<CommentsScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.arrow_back,
-                color: Colors.white,
+                color: settingsManager.darkMode ? Colors.white : Colors.black,
                 size: 24,
               ),
             ),
@@ -73,9 +74,9 @@ class _CommentsScreenState extends State<CommentsScreen> {
               IconButton(
                 splashRadius: 20,
                 onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
                   Icons.more_horiz,
-                  color: Colors.white,
+                  color: settingsManager.darkMode ? Colors.white : Colors.black,
                   size: 24,
                 ),
               ),
@@ -173,7 +174,9 @@ class _CommentsScreenState extends State<CommentsScreen> {
                               ),
                             ),
                             counterText: ' ',
-                            fillColor: kGreyColor,
+                            fillColor: settingsManager.darkMode
+                                ? kGreyColor
+                                : kGreyColor4,
                             filled: true,
                             isCollapsed: true,
                             contentPadding: const EdgeInsets.all(18),
@@ -181,7 +184,9 @@ class _CommentsScreenState extends State<CommentsScreen> {
                             hintStyle:
                                 Theme.of(context).textTheme.headline4!.copyWith(
                                       fontSize: 15,
-                                      color: Colors.grey.shade600,
+                                      color: settingsManager.darkMode
+                                          ? Colors.grey.shade600
+                                          : Colors.grey.shade700,
                                       fontWeight: FontWeight.bold,
                                     ),
                             focusedErrorBorder: kFocusedErrorBorder,

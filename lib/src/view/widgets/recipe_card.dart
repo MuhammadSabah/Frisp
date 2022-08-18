@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:provider/provider.dart';
 
 class RecipeCard extends StatefulWidget {
   const RecipeCard({Key? key, required this.recipe}) : super(key: key);
@@ -16,8 +18,10 @@ class _RecipeCardState extends State<RecipeCard> {
   bool _isSelected = false;
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Container(
-      color: kGreyColor,
+      color: settingsManager.darkMode ? kGreyColor : kGreyColor5,
       child: Flex(
         direction: Axis.vertical,
         children: [
@@ -139,7 +143,7 @@ class _RecipeCardState extends State<RecipeCard> {
                                       .textTheme
                                       .headline4!
                                       .copyWith(
-                                        color: Colors.grey,
+                                        color: Colors.grey.shade600,
                                         fontSize: 13,
                                       ),
                                   maxLines: 2,
@@ -150,7 +154,7 @@ class _RecipeCardState extends State<RecipeCard> {
                                       .textTheme
                                       .headline4!
                                       .copyWith(
-                                        color: Colors.grey,
+                                        color: Colors.grey.shade600,
                                         fontSize: 13,
                                       ),
                                   maxLines: 2,

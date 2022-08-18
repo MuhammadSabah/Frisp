@@ -5,8 +5,9 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
-import 'package:food_recipe_final/src/view/screens/comments_screen/comments_screen.dart';
+import 'package:food_recipe_final/src/view/screens/comments_screen.dart';
 import 'package:food_recipe_final/src/view/widgets/animated_like_button.dart';
 import 'package:food_recipe_final/src/view/widgets/custom_drop_down.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,8 @@ class _RecipePostCardState extends State<RecipePostCard> {
 
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     final userProvider = Provider.of<UserProvider>(context);
     Provider.of<UserProvider>(context, listen: false).refreshUser();
     UserModel? user = userProvider.getUser;
@@ -38,11 +41,12 @@ class _RecipePostCardState extends State<RecipePostCard> {
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       width: screenWidth,
-      decoration: const BoxDecoration(
-          color: kGreyColor2,
+      decoration: BoxDecoration(
+          color: settingsManager.darkMode ? kGreyColor2 : kGreyColor4,
           border: Border.symmetric(
             horizontal: BorderSide(
-              color: kBlackColor,
+              color:
+                  settingsManager.darkMode ? kBlackColor : Colors.grey.shade400,
               width: 3,
             ),
           )),
@@ -70,10 +74,12 @@ class _RecipePostCardState extends State<RecipePostCard> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: user == null
-                            ? const Center(
+                            ? Center(
                                 child: LinearProgressIndicator(
                                   color: kOrangeColor,
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: settingsManager.darkMode
+                                      ? Colors.white
+                                      : Colors.grey.shade300,
                                 ),
                               )
                             : widget.post.profImage == ""
@@ -112,6 +118,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                   widget.post.userName,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.bodyText2,
                                 ),
                               ],
                             ),
@@ -126,7 +133,9 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                       .headline3!
                                       .copyWith(
                                         fontWeight: FontWeight.w400,
-                                        color: Colors.grey,
+                                        color: settingsManager.darkMode
+                                            ? Colors.grey
+                                            : Colors.grey.shade800,
                                         fontSize: 14,
                                       ),
                                 ),
@@ -142,10 +151,12 @@ class _RecipePostCardState extends State<RecipePostCard> {
                       ? const SizedBox()
                       : PopupMenuButton(
                           splashRadius: 20,
-                          icon: const FaIcon(
+                          icon: FaIcon(
                             FontAwesomeIcons.ellipsisVertical,
                             size: 18,
-                            color: Colors.white,
+                            color: settingsManager.darkMode
+                                ? Colors.white
+                                : Colors.grey.shade300,
                           ),
                           onSelected: (String value) {
                             if (value == 'Delete') {
@@ -215,9 +226,11 @@ class _RecipePostCardState extends State<RecipePostCard> {
                           Container(
                             height: screenHeight / 3,
                             width: screenWidth - 24,
-                            decoration: const BoxDecoration(
-                              color: kGreyColor,
-                              borderRadius: BorderRadius.all(
+                            decoration: BoxDecoration(
+                              color: settingsManager.darkMode
+                                  ? kGreyColor
+                                  : Colors.grey.shade400,
+                              borderRadius: const BorderRadius.all(
                                 Radius.circular(10),
                               ),
                             ),
@@ -331,9 +344,6 @@ class _RecipePostCardState extends State<RecipePostCard> {
                             child: Text(
                               '${widget.post.likes.length.toString()} Likes',
                               maxLines: 1,
-                              style: TextStyle(
-                                color: Colors.grey.shade300,
-                              ),
                             ),
                           ),
                         ],
@@ -370,7 +380,9 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                           )
                                         : Icon(
                                             Icons.favorite_border_outlined,
-                                            color: Colors.grey.shade300,
+                                            color: settingsManager.darkMode
+                                                ? Colors.grey.shade300
+                                                : Colors.grey.shade800,
                                           ),
                               ),
                             ),
@@ -387,7 +399,9 @@ class _RecipePostCardState extends State<RecipePostCard> {
                               },
                               icon: Icon(
                                 Icons.comment,
-                                color: Colors.grey.shade300,
+                                color: settingsManager.darkMode
+                                    ? Colors.grey.shade300
+                                    : Colors.grey.shade800,
                               ),
                             ),
                             IconButton(
@@ -395,7 +409,9 @@ class _RecipePostCardState extends State<RecipePostCard> {
                               onPressed: () {},
                               icon: Icon(
                                 Icons.share_outlined,
-                                color: Colors.grey.shade300,
+                                color: settingsManager.darkMode
+                                    ? Colors.grey.shade300
+                                    : Colors.grey.shade900,
                               ),
                             ),
                           ],

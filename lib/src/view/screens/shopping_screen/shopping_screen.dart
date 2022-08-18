@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
 import 'package:food_recipe_final/src/view/screens/shopping_screen/empty_shopping_screen.dart';
 import 'package:food_recipe_final/src/view/screens/shopping_screen/shopping_list_screen.dart';
@@ -15,6 +16,9 @@ class ShoppingScreen extends StatefulWidget {
 class _ShoppingScreenState extends State<ShoppingScreen> {
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
+    final manager = Provider.of<ShoppingManager>(context, listen: false);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton.extended(
@@ -23,10 +27,12 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         ),
         label: Text(
           "Add Item",
-          style: Theme.of(context).textTheme.bodyText2!.copyWith(fontSize: 14),
+          style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                fontSize: 14,
+                color: Colors.white,
+              ),
         ),
         onPressed: () {
-          final manager = Provider.of<ShoppingManager>(context, listen: false);
           manager.createNewItem();
         },
         icon: const FaIcon(

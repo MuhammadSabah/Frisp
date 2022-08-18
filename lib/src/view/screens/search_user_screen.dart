@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/view/screens/profile_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SearchUserScreen extends StatefulWidget {
@@ -37,9 +39,8 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    double itemWidth = (size.width / 2) - 10;
-    double itemHeight = 256;
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -50,9 +51,9 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back,
-              color: Colors.white,
+              color: settingsManager.darkMode ? Colors.white : Colors.black,
               size: 24,
             ),
           ),
@@ -85,12 +86,16 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                                       fontWeight: FontWeight.w600,
                                     ),
                             controller: _searchUserController,
-                            cursorColor: Colors.white,
+                            cursorColor: settingsManager.darkMode
+                                ? Colors.white
+                                : Colors.black,
                             autofocus: false,
                             autocorrect: false,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
-                              fillColor: kGreyColor,
+                              fillColor: settingsManager.darkMode
+                                  ? kGreyColor
+                                  : kGreyColor4,
                               filled: true,
                               isCollapsed: true,
                               contentPadding: const EdgeInsets.all(18),
@@ -126,16 +131,21 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                             child: Container(
                               width: 40,
                               height: 50,
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.all(
                                   Radius.circular(10),
                                 ),
-                                color: Colors.white,
+                                color: settingsManager.darkMode
+                                    ? Colors.white
+                                    : Colors.black,
                               ),
-                              child: const Center(
+                              child: Center(
                                 child: FaIcon(
                                   FontAwesomeIcons.magnifyingGlass,
                                   size: 20,
+                                  color: settingsManager.darkMode
+                                      ? Colors.black
+                                      : Colors.white,
                                 ),
                               ),
                             ),
@@ -258,15 +268,19 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                                                 .textTheme
                                                 .headline4!
                                                 .copyWith(
-                                                    color:
-                                                        Colors.grey.shade300),
+                                                    color: settingsManager
+                                                            .darkMode
+                                                        ? Colors.grey.shade300
+                                                        : Colors.grey.shade700),
                                           ),
-                                          trailing: const Padding(
-                                            padding:
-                                                EdgeInsets.only(right: 8.0),
+                                          trailing: Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 8.0),
                                             child: Icon(
                                               Icons.arrow_forward_ios,
-                                              color: Colors.white,
+                                              color: settingsManager.darkMode
+                                                  ? Colors.white
+                                                  : Colors.black,
                                               size: 18,
                                             ),
                                           ),

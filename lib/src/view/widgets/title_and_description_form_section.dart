@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:provider/provider.dart';
 
 class TitleAndDescriptionFormSection extends StatelessWidget {
   const TitleAndDescriptionFormSection({
@@ -17,6 +19,8 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
   final TextEditingController cookTimeController;
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Form(
@@ -43,7 +47,7 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
               obscureText: false,
               decoration: InputDecoration(
                 counterText: ' ',
-                fillColor: kGreyColor,
+                fillColor: settingsManager.darkMode ? kGreyColor : kGreyColor4,
                 filled: true,
                 isCollapsed: true,
                 contentPadding: const EdgeInsets.all(18),
@@ -80,7 +84,7 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
               obscureText: false,
               decoration: InputDecoration(
                 counterText: ' ',
-                fillColor: kGreyColor,
+                fillColor: settingsManager.darkMode ? kGreyColor : kGreyColor4,
                 filled: true,
                 isCollapsed: true,
                 contentPadding: const EdgeInsets.all(18),
@@ -144,7 +148,9 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
                                         fontWeight: FontWeight.w400,
                                         height: 1.6),
                                 hintText: '2 people',
-                                fillColor: kGreyColor,
+                                fillColor: settingsManager.darkMode
+                                    ? kGreyColor
+                                    : kGreyColor4,
                                 filled: true,
                                 counterText: ' ',
                                 contentPadding: const EdgeInsets.all(8),
@@ -201,7 +207,9 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
                                       fontWeight: FontWeight.w400,
                                       height: 1.6),
                               hintText: '1 hr 30 mins',
-                              fillColor: kGreyColor,
+                              fillColor: settingsManager.darkMode
+                                  ? kGreyColor
+                                  : kGreyColor4,
                               filled: true,
                               counterText: ' ',
                               contentPadding: const EdgeInsets.all(8),

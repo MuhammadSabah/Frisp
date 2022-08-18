@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/data_class_models/instruction_model.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:provider/provider.dart';
 
 class InstructionsSection extends StatelessWidget {
   const InstructionsSection({
@@ -10,6 +12,8 @@ class InstructionsSection extends StatelessWidget {
   final List<InstructionModel>? instructions;
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: Column(
@@ -36,17 +40,21 @@ class InstructionsSection extends StatelessWidget {
                     Container(
                       width: 20,
                       height: 24,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
                           Radius.circular(4),
                         ),
-                        color: Colors.white,
+                        color: settingsManager.darkMode
+                            ? Colors.white
+                            : kOrangeColor,
                       ),
                       child: Center(
                         child: Text(
                           '$i',
-                          style: const TextStyle(
-                            color: kOrangeColor,
+                          style: TextStyle(
+                            color: settingsManager.darkMode
+                                ? kOrangeColor
+                                : Colors.white,
                             fontSize: 15,
                           ),
                         ),

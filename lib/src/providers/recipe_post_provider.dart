@@ -12,11 +12,7 @@ class RecipePostProvider extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   int _recipePostLength = 0;
-  // late bool _isFollowing;
-
   int get getRecipePostLength => _recipePostLength;
-  // bool get getIsFollowing => _isFollowing;
-  //
   void updateRecipePostInfo(String? userId) async {
     QuerySnapshot<Map<String, dynamic>> recipePostSnapshots =
         await FirebaseFirestore.instance
@@ -28,24 +24,6 @@ class RecipePostProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
-
-  //
-  // Future<void> checkIsFollowing(String? userId) async {
-  //   UserModel? user;
-  //   DocumentSnapshot<Map<String, dynamic>> userSnapshot =
-  //       await _firestore.collection('users').doc(userId).get();
-  //   if (userSnapshot.exists) {
-  //     user = UserModel.fromSnapshot(userSnapshot);
-  //   }
-  //   if (user != null) {
-  //     if (user.followers.contains(_auth.currentUser!.uid)) {
-  //       _isFollowing = true;
-  //     } else {
-  //       _isFollowing = false;
-  //     }
-  //     notifyListeners();
-  //   }
-  // }
 
   Future<String?> uploadRecipePost({
     required String uid,

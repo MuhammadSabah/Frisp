@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/view/widgets/custom_drop_down.dart';
+import 'package:provider/provider.dart';
 
 class AddFieldsSection extends StatefulWidget {
   const AddFieldsSection({
@@ -40,6 +42,8 @@ class AddFieldsSection extends StatefulWidget {
 class _AddFieldsSectionState extends State<AddFieldsSection> {
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(14.0).copyWith(right: 0),
       child: Column(
@@ -119,7 +123,9 @@ class _AddFieldsSectionState extends State<AddFieldsSection> {
                           textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
                             counterText: ' ',
-                            fillColor: kGreyColor,
+                            fillColor: settingsManager.darkMode
+                                ? kGreyColor
+                                : kGreyColor4,
                             filled: true,
                             isCollapsed: true,
                             contentPadding: const EdgeInsets.all(18),
@@ -141,9 +147,11 @@ class _AddFieldsSectionState extends State<AddFieldsSection> {
                       ),
                       PopupMenuButton(
                         splashRadius: 20,
-                        icon: const FaIcon(
+                        icon: FaIcon(
                           FontAwesomeIcons.ellipsisVertical,
-                          color: Colors.white,
+                          color: settingsManager.darkMode
+                              ? Colors.white
+                              : Colors.black,
                           size: 22,
                         ),
                         onSelected: (String? value) {
@@ -193,14 +201,12 @@ class _AddFieldsSectionState extends State<AddFieldsSection> {
                           widget.formFieldsList.add(val);
                           val += val++;
                           widget.controllersList.add(TextEditingController());
-                          print(widget.formFieldsList.length);
-                          print(widget.controllersList.length);
                           setState(() {});
                         },
                         child: Ink(
                           height: 40,
                           decoration: const BoxDecoration(
-                              borderRadius:  BorderRadius.all(
+                              borderRadius: BorderRadius.all(
                             Radius.circular(10),
                           )),
                           child: Center(

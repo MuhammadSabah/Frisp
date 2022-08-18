@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/src/models/comment_model.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CommentCard extends StatefulWidget {
@@ -18,6 +20,8 @@ class CommentCard extends StatefulWidget {
 class _CommentCardState extends State<CommentCard> {
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 16,
@@ -85,7 +89,9 @@ class _CommentCardState extends State<CommentCard> {
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
                               fontSize: 12,
-                              color: Colors.grey,
+                              color: settingsManager.darkMode
+                                  ? Colors.grey
+                                  : Colors.grey.shade800,
                             ),
                       )
                     ],
@@ -103,7 +109,9 @@ class _CommentCardState extends State<CommentCard> {
                                   .bodyText2!
                                   .copyWith(
                                     fontSize: 14,
-                                    color: Colors.grey.shade300,
+                                    color: settingsManager.darkMode
+                                        ? Colors.grey.shade300
+                                        : Colors.grey.shade800,
                                     fontWeight: FontWeight.w400,
                                     height: 1.4,
                                   ),
@@ -129,7 +137,9 @@ class _CommentCardState extends State<CommentCard> {
                     text: TextSpan(
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(
                             fontSize: 13,
-                            color: Colors.grey,
+                            color: settingsManager.darkMode
+                                ? Colors.grey
+                                : Colors.grey.shade600,
                           ),
                       children: const [
                         TextSpan(text: ""),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/view/widgets/recipe_grid_view.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SearchTab extends StatefulWidget {
@@ -25,6 +27,8 @@ class _SearchTabState extends State<SearchTab>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     final size = MediaQuery.of(context).size;
     double itemWidth = (size.width / 2) - 10;
     double itemHeight = 292;

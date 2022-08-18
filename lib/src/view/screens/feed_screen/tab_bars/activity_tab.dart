@@ -4,6 +4,7 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/widgets/recipe_post_card.dart';
 import 'package:provider/provider.dart';
@@ -33,8 +34,7 @@ class _ActivityTabState extends State<ActivityTab>
 
   @override
   Widget build(BuildContext context) {
-    final commentsProvider =
-        Provider.of<AppStateManager>(context, listen: false);
+   
     UserModel? userProvider =
         Provider.of<UserProvider>(context, listen: false).getUser;
     return RefreshIndicator(

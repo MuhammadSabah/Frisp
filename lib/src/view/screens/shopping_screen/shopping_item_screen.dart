@@ -3,8 +3,10 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/view/widgets/shopping_tile.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class ShoppingItemScreen extends StatefulWidget {
@@ -85,6 +87,8 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Theme(
       data: Theme.of(context).copyWith(useMaterial3: false),
       child: GestureDetector(
@@ -103,9 +107,9 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_back,
-                  color: Colors.white,
+                  color: settingsManager.darkMode ? Colors.white : Colors.black,
                 )),
             title: Text(
               'Shopping Item',
@@ -115,9 +119,9 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             actions: [
               IconButton(
                 splashRadius: 20,
-                icon: const Icon(
+                icon: Icon(
                   Icons.check,
-                  color: Colors.white,
+                  color: settingsManager.darkMode ? Colors.white : Colors.black,
                 ),
                 onPressed: () {
                   final currentFocus = FocusScope.of(context);
@@ -199,6 +203,8 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
   }
 
   Widget _buildNameField() {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -218,17 +224,19 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
           style: Theme.of(context).textTheme.headline3,
           autofocus: false,
           controller: _nameController,
-          cursorColor: Colors.white,
+          cursorColor: settingsManager.darkMode ? Colors.white : Colors.black,
           autocorrect: false,
           textInputAction: TextInputAction.done,
           decoration: InputDecoration(
             filled: true,
-            fillColor: kGreyColor,
+            fillColor: settingsManager.darkMode ? kGreyColor : kGreyColor4,
             counterText: ' ',
             contentPadding: const EdgeInsets.only(left: 8),
             hintText: 'E.g. 1kg of Apples, A bag of Bananas, 500g of salt',
             hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
-                  color: Colors.white70,
+                  color: settingsManager.darkMode
+                      ? Colors.white70
+                      : Colors.grey.shade800,
                 ),
             enabledBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: kOrangeColorTint2),
@@ -246,6 +254,8 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
   }
 
   Widget _buildImportanceField() {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -257,8 +267,11 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
           spacing: 10.0,
           children: [
             ChoiceChip(
-              backgroundColor: Colors.grey,
-              selectedColor: Colors.grey.shade700,
+              backgroundColor:
+                  settingsManager.darkMode ? Colors.grey : Colors.grey.shade300,
+              selectedColor: settingsManager.darkMode
+                  ? Colors.grey.shade700
+                  : Colors.grey.shade500,
               selected: _importance == Importance.low,
               label: Text(
                 'low',
@@ -272,8 +285,11 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
               },
             ),
             ChoiceChip(
-              backgroundColor: Colors.grey,
-              selectedColor: Colors.grey.shade700,
+              backgroundColor:
+                  settingsManager.darkMode ? Colors.grey : Colors.grey.shade300,
+              selectedColor: settingsManager.darkMode
+                  ? Colors.grey.shade700
+                  : Colors.grey.shade500,
               selected: _importance == Importance.medium,
               label: Text(
                 'medium',
@@ -287,8 +303,11 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
               },
             ),
             ChoiceChip(
-              backgroundColor: Colors.grey,
-              selectedColor: Colors.grey.shade700,
+              backgroundColor:
+                  settingsManager.darkMode ? Colors.grey : Colors.grey.shade300,
+              selectedColor: settingsManager.darkMode
+                  ? Colors.grey.shade700
+                  : Colors.grey.shade500,
               selected: _importance == Importance.high,
               label: Text(
                 'high',
@@ -308,6 +327,8 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
   }
 
   Widget _buildDatePicker(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -322,7 +343,9 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
               child: Icon(
                 Icons.adjust,
                 size: 25,
-                color: Colors.grey.shade500,
+                color: settingsManager.darkMode
+                    ? Colors.grey.shade500
+                    : Colors.grey.shade700,
               ),
               onPressed: () async {
                 final currentDate = DateTime.now();
@@ -355,13 +378,19 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
         ),
         Text(
           DateFormat('yyyy-MM-dd').format(_dueDate),
-          style: TextStyle(color: Colors.grey.shade500),
+          style: TextStyle(
+            color: settingsManager.darkMode
+                ? Colors.grey.shade500
+                : Colors.grey.shade700,
+          ),
         ),
       ],
     );
   }
 
   Widget _buildTimePicker(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -376,7 +405,9 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
               child: Icon(
                 Icons.adjust,
                 size: 25,
-                color: Colors.grey.shade500,
+                color: settingsManager.darkMode
+                    ? Colors.grey.shade500
+                    : Colors.grey.shade700,
               ),
               onPressed: () async {
                 final timeOfDay = await showTimePicker(
@@ -406,13 +437,19 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
         ),
         Text(
           _timeOfDay.format(context),
-          style: TextStyle(color: Colors.grey.shade500),
+          style: TextStyle(
+            color: settingsManager.darkMode
+                ? Colors.grey.shade500
+                : Colors.grey.shade700,
+          ),
         ),
       ],
     );
   }
 
   Widget _buildColorPicker(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -434,7 +471,9 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
           child: Icon(
             Icons.adjust,
             size: 25,
-            color: Colors.grey.shade500,
+            color: settingsManager.darkMode
+                ? Colors.grey.shade500
+                : Colors.grey.shade700,
           ),
           onPressed: () {
             showDialog(
@@ -470,9 +509,12 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
   }
 
   Widget _buildQuantityField() {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      textBaseline: TextBaseline.ideographic,
       children: [
         Text(
           'Quantity',
@@ -494,19 +536,20 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
               autocorrect: false,
               textInputAction: TextInputAction.done,
               controller: _quantityController,
-              cursorColor: Colors.white,
-              decoration: const InputDecoration(
-                fillColor: kGreyColor,
+              cursorColor:
+                  settingsManager.darkMode ? Colors.white : Colors.black,
+              decoration: InputDecoration(
+                fillColor: settingsManager.darkMode ? kGreyColor : kGreyColor4,
                 filled: true,
                 counterText: ' ',
-                contentPadding: EdgeInsets.all(8),
-                enabledBorder: OutlineInputBorder(
+                contentPadding: const EdgeInsets.all(8),
+                enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: kOrangeColorTint2),
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: kOrangeColorTint),
                 ),
-                border: OutlineInputBorder(
+                border: const OutlineInputBorder(
                   borderSide: BorderSide(color: kOrangeColorTint),
                 ),
               ),

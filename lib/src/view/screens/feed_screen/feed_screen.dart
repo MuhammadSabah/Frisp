@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/screens/feed_screen/tab_bars/discover_tab.dart';
 import 'package:food_recipe_final/src/view/screens/feed_screen/tab_bars/activity_tab.dart';
@@ -30,6 +31,7 @@ class _FeedScreenState extends State<FeedScreen>
   Widget build(BuildContext context) {
     UserModel? user = Provider.of<UserProvider>(context).getUser;
     final appProvider = Provider.of<AppStateManager>(context);
+    final settingsManager = Provider.of<SettingsManager>(context,listen: false);
 
     return Theme(
       data: Theme.of(context).copyWith(
@@ -61,7 +63,9 @@ class _FeedScreenState extends State<FeedScreen>
                             ],
                             indicatorPadding: const EdgeInsets.only(right: 10),
                             labelColor: kOrangeColorTint,
-                            unselectedLabelColor: Colors.white,
+                            unselectedLabelColor: settingsManager.darkMode
+                                ? Colors.white
+                                : kGreyColor3,
                             indicatorColor: kOrangeColor,
                           ),
                         ),
@@ -81,9 +85,11 @@ class _FeedScreenState extends State<FeedScreen>
                                     ),
                                   );
                                 },
-                                icon: const FaIcon(
+                                icon: FaIcon(
                                   FontAwesomeIcons.userGroup,
-                                  color: Colors.white,
+                                  color: settingsManager.darkMode
+                                      ? Colors.white
+                                      : kGreyColor3,
                                   size: 21,
                                 ),
                               ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/view/screens/search_screen/tabs_bars/bookmark_tab.dart';
 import 'package:food_recipe_final/src/view/screens/search_screen/tabs_bars/search_tab.dart';
 import 'package:food_recipe_final/src/view/widgets/custom_drop_down.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
 import 'package:food_recipe_final/src/services/recipe_service.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert' as convert;
 
@@ -69,11 +71,14 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
 
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Theme(
         data: Theme.of(context).copyWith(useMaterial3: false),
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           body: SafeArea(
             child: Flex(
               direction: Axis.vertical,
@@ -99,7 +104,15 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                           ],
                           indicatorPadding:
                               const EdgeInsets.symmetric(horizontal: 8),
-                          indicatorColor: Colors.grey.shade600,
+                          indicatorColor: settingsManager.darkMode
+                              ? Colors.grey.shade700
+                              : Colors.black,
+                          unselectedLabelColor: settingsManager.darkMode
+                              ? Colors.grey.shade400
+                              : Colors.grey.shade700,
+                          labelColor: settingsManager.darkMode
+                              ? Colors.white
+                              : Colors.black,
                           // indicator: CircleTabIndicator(
                           //   radius: 4.1,
                           //   color: Colors.grey.shade600,
@@ -137,6 +150,8 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
   }
 
   Widget _buildSearchCard() {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0).copyWith(top: 20),
       child: Row(
@@ -145,7 +160,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
           Expanded(
             child: Material(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
+              color: settingsManager.darkMode ? Colors.white : kGreyColor4,
               elevation: 2,
               child: Container(
                 decoration: const BoxDecoration(

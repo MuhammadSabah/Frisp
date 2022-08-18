@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class ShoppingTile extends StatelessWidget {
   const ShoppingTile({
@@ -15,10 +17,12 @@ class ShoppingTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Ink(
-      decoration: const BoxDecoration(
-        color: kGreyColor,
-        borderRadius: BorderRadius.all(
+      decoration: BoxDecoration(
+        color: settingsManager.darkMode ? kGreyColor : kGreyColor4,
+        borderRadius: const BorderRadius.all(
           Radius.circular(10),
         ),
       ),

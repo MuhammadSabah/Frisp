@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:provider/provider.dart';
 
 class ServingsAndReadyInSection extends StatelessWidget {
   const ServingsAndReadyInSection(
@@ -8,6 +10,8 @@ class ServingsAndReadyInSection extends StatelessWidget {
   final int servings;
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return SizedBox(
       height: 90,
       child: Column(
@@ -23,7 +27,9 @@ class ServingsAndReadyInSection extends StatelessWidget {
                     'Servings  ',
                     style: Theme.of(context).textTheme.headline4!.copyWith(
                           fontSize: 14,
-                          color: Colors.grey,
+                          color: settingsManager.darkMode
+                              ? Colors.grey
+                              : Colors.grey.shade800,
                         ),
                   ),
                   Text(
@@ -41,7 +47,9 @@ class ServingsAndReadyInSection extends StatelessWidget {
                     'Ready In  ',
                     style: Theme.of(context).textTheme.headline4!.copyWith(
                           fontSize: 14,
-                          color: Colors.grey,
+                          color: settingsManager.darkMode
+                              ? Colors.grey
+                              : Colors.grey.shade800,
                         ),
                   ),
                   Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/repository/bookmark_interface.dart';
 import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
 import 'package:food_recipe_final/src/view/widgets/bottom_save_button.dart';
@@ -59,10 +60,12 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
 
     tagsMap!.removeWhere((key, value) => value == false);
     keysList = tagsMap!.keys.toList();
-
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Theme(
       data: Theme.of(context).copyWith(useMaterial3: false),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
             CustomScrollView(
@@ -140,7 +143,8 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                     backgroundColor: kOrangeColorTint,
                     action: SnackBarAction(
                       label: 'Undo',
-                      textColor: kBlackColor,
+                      textColor:
+                          settingsManager.darkMode ? kBlackColor : Colors.white,
                       onPressed: () {
                         bookmark.deleteRecipe(widget.recipe);
                       },

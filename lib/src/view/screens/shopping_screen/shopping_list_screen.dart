@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/view/widgets/shopping_tile.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
+import 'package:provider/provider.dart';
 
 class ShoppingListScreen extends StatelessWidget {
   const ShoppingListScreen({Key? key, required this.manager}) : super(key: key);
@@ -9,6 +11,8 @@ class ShoppingListScreen extends StatelessWidget {
   final ShoppingManager manager;
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     final shoppingItems = manager.shoppingItems;
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -57,7 +61,7 @@ class ShoppingListScreen extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Material(
-                color: kGreyColor,
+                color: settingsManager.darkMode ? kGreyColor : kGreyColor4,
                 child: InkWell(
                   onTap: () {
                     manager.shoppingItemTapped(index);

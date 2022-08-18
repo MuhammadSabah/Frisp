@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:provider/provider.dart';
 
 class AuthBottomRichText extends StatelessWidget {
   const AuthBottomRichText({
@@ -13,6 +15,8 @@ class AuthBottomRichText extends StatelessWidget {
   final String clickableText;
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -22,7 +26,9 @@ class AuthBottomRichText extends StatelessWidget {
               TextSpan(
                 text: detailText,
                 style: Theme.of(context).textTheme.headline4!.copyWith(
-                      color: Colors.white54,
+                      color: settingsManager.darkMode
+                          ? Colors.white54
+                          : Colors.grey.shade800,
                       fontSize: 14,
                     ),
               ),

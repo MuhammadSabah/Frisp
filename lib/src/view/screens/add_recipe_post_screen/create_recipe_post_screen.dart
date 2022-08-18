@@ -6,6 +6,7 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/widgets/add_fields_section.dart';
@@ -86,13 +87,16 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
 
   //
   void _selectAnImageDialog(BuildContext context) async {
+    () => FocusManager.instance.primaryFocus?.unfocus();
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return showDialog(
       context: context,
       builder: (context) {
         final imageProvider =
             Provider.of<UserImageProvider>(context, listen: false);
         return SimpleDialog(
-          backgroundColor: kGreyColor,
+          backgroundColor: settingsManager.darkMode ? kGreyColor : Colors.white,
           title: const Center(
             child: Text(
               'Select an Image',
@@ -188,6 +192,8 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
 
   @override
   Widget build(BuildContext context) {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     final userProvider = Provider.of<UserProvider>(context);
     UserModel? user;
     if (userProvider.getUser != null) {
@@ -208,9 +214,9 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                 Provider.of<AppStateManager>(context, listen: false)
                     .createRecipePostClicked(false);
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.arrow_back,
-                color: Colors.white,
+                color: settingsManager.darkMode ? Colors.white : Colors.black,
               ),
             ),
             actions: [
@@ -236,17 +242,20 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                       },
                       child: Ink(
                         width: 80,
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(
+                        decoration: BoxDecoration(
+                            color: settingsManager.darkMode
+                                ? Colors.white
+                                : kOrangeColor,
+                            borderRadius: const BorderRadius.all(
                               Radius.circular(10),
                             )),
-                        child: const Center(
+                        child: Center(
                           child: Text(
                             'Publish',
                             style: TextStyle(
-                              color: kOrangeColor,
-                            ),
+                                color: settingsManager.darkMode
+                                    ? kOrangeColor
+                                    : Colors.white),
                           ),
                         ),
                       ),
@@ -301,6 +310,9 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                                           .copyWith(
                                             fontWeight: FontWeight.normal,
                                             fontSize: 18,
+                                            color: settingsManager.darkMode
+                                                ? Colors.white
+                                                : Colors.grey.shade800,
                                           ),
                                     ),
                                   ],
@@ -320,8 +332,10 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                       servesController: _servesController,
                       cookTimeController: _cookTimeController,
                     ),
-                    const Divider(
-                      color: kGreyColor,
+                    Divider(
+                      color: settingsManager.darkMode
+                          ? kGreyColor
+                          : Colors.grey.shade300,
                       thickness: 10,
                     ),
                     // !: Sections:
@@ -341,8 +355,10 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                       leadingTextFieldTextColor: Colors.white,
                       cursorColor: kOrangeColor,
                     ),
-                    const Divider(
-                      color: kGreyColor,
+                    Divider(
+                      color: settingsManager.darkMode
+                          ? kGreyColor
+                          : Colors.grey.shade300,
                       thickness: 10,
                     ),
                     AddFieldsSection(
@@ -351,14 +367,23 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                       popUpItemsList: _popUpItemsList,
                       buttonText: '+ Step',
                       validatorText: 'Field Required',
-                      addButtonColor: Colors.white,
-                      leadingTextFieldColor: Colors.white,
+                      addButtonColor: settingsManager.darkMode
+                          ? Colors.white
+                          : Colors.black,
+                      leadingTextFieldColor: settingsManager.darkMode
+                          ? Colors.white
+                          : Colors.black,
                       sectionText: 'Instructions',
                       hintText: 'Mix the flour and water until they thicken',
-                      buttonTextColor: kBlackColor,
+                      buttonTextColor:
+                          settingsManager.darkMode ? kBlackColor : Colors.white,
                       maxLines: 2,
-                      leadingTextFieldTextColor: Colors.black,
-                      cursorColor: Colors.white,
+                      leadingTextFieldTextColor: settingsManager.darkMode
+                          ? Colors.black
+                          : Colors.white,
+                      cursorColor: settingsManager.darkMode
+                          ? Colors.white
+                          : Colors.black,
                     ),
                     const SizedBox(height: 120),
                   ],
@@ -369,7 +394,11 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                 left: 0,
                 right: 0,
                 child: _isLoading == true
-                    ? const LinearProgressIndicator()
+                    ? LinearProgressIndicator(
+                        backgroundColor: settingsManager.darkMode
+                            ? Colors.white
+                            : Colors.grey.shade300,
+                      )
                     : const Padding(
                         padding: EdgeInsets.only(top: 4),
                       ),

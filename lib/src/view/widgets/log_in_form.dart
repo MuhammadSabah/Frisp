@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/widgets/auth_bottom_rich_text.dart';
 import 'package:food_recipe_final/src/view/widgets/auth_confirm_button.dart';
@@ -31,6 +32,8 @@ class _LoginFormState extends State<LoginForm> {
         Provider.of<UserProvider>(context, listen: false);
     AppStateManager appState =
         Provider.of<AppStateManager>(context, listen: false);
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     return Form(
       key: widget.formKey,
       child: SingleChildScrollView(
@@ -63,7 +66,7 @@ class _LoginFormState extends State<LoginForm> {
                       fontWeight: FontWeight.w600,
                     ),
                 // controller: _nameController,
-                cursorColor: Colors.white,
+                cursorColor: kOrangeColor,
                 autofocus: false,
                 autocorrect: false,
                 keyboardType: TextInputType.emailAddress,
@@ -72,7 +75,8 @@ class _LoginFormState extends State<LoginForm> {
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
                   counterText: ' ',
-                  fillColor: kGreyColor,
+                  fillColor:
+                      settingsManager.darkMode ? kGreyColor : kGreyColor4,
                   filled: true,
                   isCollapsed: true,
                   contentPadding: const EdgeInsets.all(18),
@@ -111,7 +115,7 @@ class _LoginFormState extends State<LoginForm> {
                       fontWeight: FontWeight.w600,
                     ),
                 // controller: _nameController,
-                cursorColor: Colors.white,
+                cursorColor: kOrangeColor,
                 autofocus: false,
                 autocorrect: false,
                 keyboardType: TextInputType.visiblePassword,
@@ -119,7 +123,8 @@ class _LoginFormState extends State<LoginForm> {
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
                   counterText: ' ',
-                  fillColor: kGreyColor,
+                  fillColor:
+                      settingsManager.darkMode ? kGreyColor : kGreyColor4,
                   filled: true,
                   isCollapsed: true,
                   suffixIcon: Column(
@@ -136,12 +141,16 @@ class _LoginFormState extends State<LoginForm> {
                         icon: _obscureText
                             ? FaIcon(
                                 FontAwesomeIcons.eyeSlash,
-                                color: Colors.grey.shade400,
+                                color: settingsManager.darkMode
+                                    ? Colors.grey.shade400
+                                    : Colors.grey.shade800,
                                 size: 20,
                               )
                             : FaIcon(
                                 FontAwesomeIcons.eye,
-                                color: Colors.grey.shade400,
+                                color: settingsManager.darkMode
+                                    ? Colors.grey.shade400
+                                    : Colors.grey.shade800,
                                 size: 20,
                               ),
                       ),

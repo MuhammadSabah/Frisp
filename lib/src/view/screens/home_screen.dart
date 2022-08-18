@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: pages,
                 ),
                 bottomNavigationBar: Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
+                  padding: const EdgeInsets.only(top: 4.0),
                   child: BottomNavigationBar(
                     showSelectedLabels: false,
                     showUnselectedLabels: false,
@@ -94,35 +94,35 @@ class _HomeScreenState extends State<HomeScreen> {
                       BottomNavigationBarItem(
                         icon: FaIcon(
                           FontAwesomeIcons.house,
-                          size: 24,
+                          size: 22,
                         ),
                         label: '',
                       ),
                       BottomNavigationBarItem(
                         icon: FaIcon(
                           FontAwesomeIcons.magnifyingGlass,
-                          size: 24,
+                          size: 22,
                         ),
                         label: '',
                       ),
                       BottomNavigationBarItem(
                         icon: FaIcon(
                           FontAwesomeIcons.plus,
-                          size: 24,
+                          size: 22,
                         ),
                         label: '',
                       ),
                       BottomNavigationBarItem(
                         icon: FaIcon(
                           FontAwesomeIcons.clipboardList,
-                          size: 24,
+                          size: 22,
                         ),
                         label: '',
                       ),
                       BottomNavigationBarItem(
                         icon: FaIcon(
                           FontAwesomeIcons.solidUser,
-                          size: 23,
+                          size: 22,
                         ),
                         label: '',
                       ),
