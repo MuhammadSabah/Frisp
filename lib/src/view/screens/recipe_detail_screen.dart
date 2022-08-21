@@ -132,7 +132,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
               ],
             ),
             BottomSaveButton(
-              saveRecipe: () {
+              callBack: () {
                 bookmark.insertRecipe(widget.recipe);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(

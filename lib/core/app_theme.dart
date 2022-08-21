@@ -111,7 +111,9 @@ class AppTheme {
         foregroundColor: Colors.white,
       ),
       splashColor: Colors.white.withOpacity(0.5),
-      splashFactory: NoSplash.splashFactory,
+      // splashFactory: NoSplash.splashFactory,
+      splashFactory: InkSplash.splashFactory,
+
       checkboxTheme: CheckboxThemeData(
         checkColor: MaterialStateProperty.all(Colors.white),
         fillColor: MaterialStateProperty.all(kOrangeColor),
@@ -191,7 +193,7 @@ class AppTheme {
         foregroundColor: Colors.white,
       ),
       splashColor: Colors.white.withOpacity(0.5),
-      splashFactory: NoSplash.splashFactory,
+      splashFactory: InkSplash.splashFactory,
       checkboxTheme: CheckboxThemeData(
         checkColor: MaterialStateProperty.all(Colors.white),
         fillColor: MaterialStateProperty.all(kOrangeColor),

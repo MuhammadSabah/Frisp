@@ -31,7 +31,8 @@ class _FeedScreenState extends State<FeedScreen>
   Widget build(BuildContext context) {
     UserModel? user = Provider.of<UserProvider>(context).getUser;
     final appProvider = Provider.of<AppStateManager>(context);
-    final settingsManager = Provider.of<SettingsManager>(context,listen: false);
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
 
     return Theme(
       data: Theme.of(context).copyWith(
@@ -51,22 +52,31 @@ class _FeedScreenState extends State<FeedScreen>
                       children: [
                         Expanded(
                           flex: 4,
-                          child: TabBar(
-                            controller: _tabController,
-                            labelStyle:
-                                Theme.of(context).textTheme.headline3!.copyWith(
-                                      fontSize: 16,
-                                    ),
-                            tabs: const [
-                              Tab(text: 'Activity'),
-                              Tab(text: 'Discover'),
-                            ],
-                            indicatorPadding: const EdgeInsets.only(right: 10),
-                            labelColor: kOrangeColorTint,
-                            unselectedLabelColor: settingsManager.darkMode
-                                ? Colors.white
-                                : kGreyColor3,
-                            indicatorColor: kOrangeColor,
+                          child: Theme(
+                            data: ThemeData(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                            ),
+                            child: TabBar(
+                              controller: _tabController,
+                              labelStyle: Theme.of(context)
+                                  .textTheme
+                                  .headline3!
+                                  .copyWith(
+                                    fontSize: 16,
+                                  ),
+                              tabs: const [
+                                Tab(text: 'Activity'),
+                                Tab(text: 'Discover'),
+                              ],
+                              indicatorPadding:
+                                  const EdgeInsets.only(right: 10),
+                              labelColor: kOrangeColorTint,
+                              unselectedLabelColor: settingsManager.darkMode
+                                  ? Colors.white
+                                  : kGreyColor3,
+                              indicatorColor: kOrangeColor,
+                            ),
                           ),
                         ),
                         Padding(

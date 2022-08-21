@@ -41,14 +41,13 @@ class UserImageProvider with ChangeNotifier {
     return downloadUrl;
   }
 
-  Future updateUserProfilePhoto(String? photoUrl) async {
-    await _firestore.collection('users').doc(_userAuth.currentUser!.uid).update(
-      {
-        'photoUrl': "$photoUrl",
-      },
-    );
-    notifyListeners();
-  }
+  // Future updateUserProfilePhoto(String? photoUrl) async {
+  //   await _firestore.collection('users').doc(_userAuth.currentUser!.uid).update(
+  //     {
+  //       'photoUrl': "$photoUrl",
+  //     },
+  //   );
+  // }
 
   Future<String> getUserProfileImage() async {
     String photoUrl = '';

@@ -7,11 +7,14 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
+import 'package:food_recipe_final/src/view/screens/edit_profile_screen.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_back_button.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_cached_background_photo.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_default_background_photo.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_info_container.dart';
+import 'package:food_recipe_final/src/view/widgets/profile_messages_button.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_post_section.dart';
+import 'package:food_recipe_final/src/view/widgets/profile_send_message_button.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_settings_button.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -30,32 +33,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<DocumentSnapshot<Map<String, dynamic>>>? futureResult;
 
   //
-  void selectAnImage(BuildContext context) async {
-    final imageProvider =
-        Provider.of<UserImageProvider>(context, listen: false);
+  // void selectAnImage(BuildContext context) async {
+  //   final imageProvider =
+  //       Provider.of<UserImageProvider>(context, listen: false);
 
-    setState(() {
-      _isLoadingProfile = true;
-    });
+  //   setState(() {
+  //     _isLoadingProfile = true;
+  //   });
 
-    final result = await imageProvider.pickAnImage(ImageSource.gallery);
+  //   final result = await imageProvider.pickAnImage(ImageSource.gallery);
 
-    result.fold((l) async {
-      setState(() {
-        _image = l;
-      });
-      String downloadUrl = await imageProvider.uploadAnImageToStorage(
-          fileName: 'profilePictures', file: _image!, isPost: false);
-      await imageProvider.updateUserProfilePhoto(downloadUrl);
-      setState(() {
-        _isLoadingProfile = false;
-      });
-    }, (r) {
-      setState(() {
-        _isLoadingProfile = false;
-      });
-    });
-  }
+  //   result.fold((l) async {
+  //     setState(() {
+  //       _image = l;
+  //     });
+  //     String downloadUrl = await imageProvider.uploadAnImageToStorage(
+  //         fileName: 'profilePictures', file: _image!, isPost: false);
+  //     await imageProvider.updateUserProfilePhoto(downloadUrl);
+  //     setState(() {
+  //       _isLoadingProfile = false;
+  //     });
+  //   }, (r) {
+  //     setState(() {
+  //       _isLoadingProfile = false;
+  //     });
+  //   });
+  // }
 
   //
   @override
@@ -119,7 +122,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
                           return const Center(
-                            child: CircularProgressIndicator(),
+                            child: LinearProgressIndicator(
+                              color: kOrangeColor,
+                              backgroundColor: Colors.white,
+                            ),
                           );
                         } else if (snapshot.hasError) {
                           return const Center(
@@ -145,18 +151,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           : ProfileCachedBackgroundPhoto(
                                               user: user,
                                             ),
-                                      const Positioned(
+                                      Positioned(
                                         top: 3,
                                         right: 5,
-                                        child: ProfileSettingsButton(),
+                                        child: Row(
+                                          children: [
+                                            FirebaseAuth.instance.currentUser!
+                                                        .uid !=
+                                                    widget.userId
+                                                ? ProfileSendMessageButton(
+                                                    user: user,
+                                                    userId: widget.userId!,
+                                                  )
+                                                : ProfileMessageButton(
+                                                    userId: widget.userId!,
+                                                  ),
+                                            const ProfileSettingsButton(),
+                                          ],
+                                        ),
                                       ),
                                       FirebaseAuth.instance.currentUser!.uid !=
                                               widget.userId
-                                          ? const Positioned(
-                                              top: 3,
-                                              left: 5,
-                                              child: ProfileBackButton(),
-                                            )
+                                          ? const ProfileBackButton()
                                           : const SizedBox(),
                                       Positioned(
                                         bottom: 0,
@@ -166,7 +182,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           user: user,
                                           userId: widget.userId,
                                           onEdit: () {
-                                            selectAnImage(context);
+                                            // selectAnImage(context);
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    EditProfileScreen(
+                                                  user: user,
+                                                ),
+                                              ),
+                                            );
                                           },
                                         ),
                                       ),

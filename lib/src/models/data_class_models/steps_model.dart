@@ -1,10 +1,5 @@
-import 'package:equatable/equatable.dart';
-
-class StepsModel extends Equatable {
+class StepsModel {
   String? step;
 
   StepsModel({this.step});
-
-  @override
-  List<Object?> get props => [step];
 }

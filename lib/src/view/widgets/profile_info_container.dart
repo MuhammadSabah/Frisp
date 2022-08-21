@@ -103,7 +103,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 14.0),
                                   child: Text(
-                                    "jkasd hadjjalsjdfkl ajskdfja jsdkfja k sdjljasd kasjdfka sdfjakdf ahdsa",
+                                    widget.user.bio,
                                     textAlign: TextAlign.center,
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,

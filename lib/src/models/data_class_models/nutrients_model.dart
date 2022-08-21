@@ -1,6 +1,5 @@
-import 'package:equatable/equatable.dart';
 
-class NutrientsModel extends Equatable {
+class NutrientsModel  {
   String? name;
   double? amount;
   String? unit;
@@ -11,6 +10,5 @@ class NutrientsModel extends Equatable {
     this.unit,
   });
 
-  @override
-  List<Object?> get props => [name, amount, unit];
+ 
 }

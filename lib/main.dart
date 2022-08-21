@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/firebase_options.dart';
+import 'package:food_recipe_final/src/providers/message_provider.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/repository/bookmark_interface.dart';
 import 'package:food_recipe_final/src/providers/bookmark_manager.dart';
@@ -59,6 +60,10 @@ class _MyAppState extends State<MyApp> {
         Provider<BookmarkInterface>(
           create: (context) => BookmarkManager(),
         ),
+        ChangeNotifierProvider<MessageProvider>(
+          lazy: false,
+          create: (context) => MessageProvider(),
+        ),
         ChangeNotifierProvider<UserProvider>(
           lazy: false,
           create: (context) => _userProvider,
@@ -103,4 +108,6 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
+  
+ 
 }

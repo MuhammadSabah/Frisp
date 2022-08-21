@@ -1,9 +1,8 @@
-import 'package:equatable/equatable.dart';
 import 'package:food_recipe_final/src/models/data_class_models/ingredient_model.dart';
 import 'package:food_recipe_final/src/models/data_class_models/instruction_model.dart';
 import 'package:food_recipe_final/src/models/data_class_models/nutrition_model.dart';
 
-class RecipeModel extends Equatable {
+class RecipeModel  {
   int? id;
   bool? vegetarian;
   bool? vegan;
@@ -56,29 +55,5 @@ class RecipeModel extends Equatable {
     this.aggregateLikes,
   });
 
-  @override
-  List<Object?> get props => [
-        id,
-        vegetarian,
-        vegan,
-        glutenFree,
-        dairyFree,
-        veryHealthy,
-        cheap,
-        veryPopular,
-        healthScore,
-        ingredients,
-        title,
-        readyInMinutes,
-        servings,
-        sourceUrl,
-        image,
-        nutrition,
-        summary,
-        dishTypes,
-        diets,
-        occasions,
-        instructions,
-        spoonacularSourceUrl,
-      ];
+ 
 }

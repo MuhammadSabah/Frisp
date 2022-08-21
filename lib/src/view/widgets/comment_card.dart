@@ -102,19 +102,23 @@ class _CommentCardState extends State<CommentCard> {
                       Row(
                         children: [
                           Expanded(
-                            child: Text(
-                              widget.comment.commentText,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2!
-                                  .copyWith(
-                                    fontSize: 14,
-                                    color: settingsManager.darkMode
-                                        ? Colors.grey.shade300
-                                        : Colors.grey.shade800,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.4,
-                                  ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 10.0),
+                              child: Text(
+                                widget.comment.commentText,
+                                softWrap: true,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(
+                                      fontSize: 14,
+                                      color: settingsManager.darkMode
+                                          ? Colors.grey.shade300
+                                          : Colors.grey.shade800,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.4,
+                                    ),
+                              ),
                             ),
                           ),
                         ],
