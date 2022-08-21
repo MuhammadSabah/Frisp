@@ -10,6 +10,7 @@ import 'package:food_recipe_final/src/view/widgets/ingredients_section.dart';
 import 'package:food_recipe_final/src/view/widgets/instructions_section.dart';
 import 'package:food_recipe_final/src/view/widgets/nutritions_section.dart';
 import 'package:food_recipe_final/src/view/widgets/servings_and_ready_in_section.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class RecipeDetailScreen extends StatefulWidget {
@@ -131,27 +132,16 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
                 ),
               ],
             ),
-            BottomSaveButton(
-              callBack: () {
-                bookmark.insertRecipe(widget.recipe);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: const Text('Recipe Saved!'),
-                    duration: const Duration(
-                      milliseconds: 2300,
-                    ),
-                    backgroundColor: kOrangeColorTint,
-                    action: SnackBarAction(
-                      label: 'Undo',
-                      textColor:
-                          settingsManager.darkMode ? kBlackColor : Colors.white,
-                      onPressed: () {
-                        bookmark.deleteRecipe(widget.recipe);
-                      },
-                    ),
-                  ),
-                );
-              },
+            Positioned(
+              bottom: 10,
+              left: 18,
+              right: 18,
+              child: BottomSaveButton(
+                callBack: () {
+                  bookmark.insertRecipe(widget.recipe);
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+              ),
             ),
           ],
         ),

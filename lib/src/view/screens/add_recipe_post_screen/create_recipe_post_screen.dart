@@ -11,6 +11,7 @@ import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/widgets/add_fields_section.dart';
 import 'package:food_recipe_final/src/view/widgets/title_and_description_form_section.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -52,6 +53,8 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
     required String userEmail,
     required String profImage,
   }) async {
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
     final _navigator = Navigator.of(context);
     setState(() {
       _isLoading = true;
@@ -80,6 +83,15 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
         });
         _navigator.pop();
       }
+      FocusManager.instance.primaryFocus?.unfocus();
+      Get.snackbar(
+        '✅',
+        'Post Published',
+        snackPosition: SnackPosition.TOP,
+        forwardAnimationCurve: Curves.elasticInOut,
+        reverseAnimationCurve: Curves.easeOut,
+        colorText: settingsManager.darkMode ? Colors.white : Colors.black,
+      );
     } catch (e) {
       debugPrint(e.toString());
     }

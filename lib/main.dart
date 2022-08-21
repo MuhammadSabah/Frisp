@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/firebase_options.dart';
+import 'package:food_recipe_final/src/navigation/app_router.dart';
 import 'package:food_recipe_final/src/providers/message_provider.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/repository/bookmark_interface.dart';
@@ -9,11 +10,11 @@ import 'package:food_recipe_final/src/providers/bookmark_manager.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
-import 'package:food_recipe_final/src/navigation/app_router.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -22,6 +23,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Hive.initFlutter();
   // SystemChrome.setSystemUIOverlayStyle(
   // const SystemUiOverlayStyle(
   //   systemNavigationBarColor: kBlackColor2,
@@ -108,6 +110,4 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
-  
- 
 }

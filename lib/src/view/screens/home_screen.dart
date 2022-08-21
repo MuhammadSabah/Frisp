@@ -54,10 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   static User? auth = FirebaseAuth.instance.currentUser;
   List<Widget> pages = [
-    const FeedScreen(),
+    FeedScreen(),
     const SearchRecipeScreen(),
     const AddRecipePostScreen(),
-    const ShoppingScreen(),
+    ShoppingScreen(),
     ProfileScreen(
       userId: auth?.uid,
     ),

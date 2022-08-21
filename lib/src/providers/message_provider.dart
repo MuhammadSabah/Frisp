@@ -13,16 +13,50 @@ class MessageProvider extends ChangeNotifier {
     required UserModel user,
   }) async {
     try {
-      await _firestore
+      CollectionReference userContactsCollection =
+          _firestore.collection('users').doc(uid).collection('contacts');
+      //
+
+      final userContactsList = _firestore
           .collection('users')
           .doc(uid)
           .collection('contacts')
-          .add(user.toJson());
-      await _firestore
+          .doc(uid);
+
+      userContactsList.get().then(
+            (snapshot) => {
+              if (!snapshot.exists)
+                {
+                  userContactsCollection.doc(user.id).set(
+                        user.toJson(),
+                      ),
+                }
+            },
+          );
+
+      //!:*********************************
+      CollectionReference currentUserContactsCollection = _firestore
+          .collection('users')
+          .doc(_auth.currentUser!.uid)
+          .collection('contacts');
+      //
+
+      final currentUserContactsList = _firestore
           .collection('users')
           .doc(_auth.currentUser!.uid)
           .collection('contacts')
-          .add(user.toJson());
+          .doc(_auth.currentUser!.uid);
+
+      currentUserContactsList.get().then(
+            (snapshot) => {
+              if (!snapshot.exists)
+                {
+                  currentUserContactsCollection.doc(user.id).set(
+                        user.toJson(),
+                      ),
+                }
+            },
+          );
     } catch (e) {
       debugPrint(e.toString());
     }

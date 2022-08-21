@@ -118,6 +118,7 @@ class ContactsListScreen extends StatelessWidget {
                             ),
                           ),
                           leading: CircleAvatar(
+                            backgroundColor: Colors.white,
                             radius: 20,
                             child: contactUser.photoUrl == ""
                                 ? ClipRRect(

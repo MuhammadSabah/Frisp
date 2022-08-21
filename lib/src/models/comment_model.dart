@@ -6,6 +6,7 @@ class CommentModel {
   final String commentId;
   final String commentText;
   final String profilePicture;
+  final List likes;
   final DateTime dateCommented;
   CommentModel({
     required this.userId,
@@ -13,6 +14,7 @@ class CommentModel {
     required this.commentId,
     required this.commentText,
     required this.profilePicture,
+    required this.likes,
     required this.dateCommented,
   });
 
@@ -30,6 +32,7 @@ class CommentModel {
       commentId: commentId ?? this.commentId,
       commentText: commentText ?? this.commentText,
       profilePicture: profilePicture ?? this.profilePicture,
+      likes: likes,
       dateCommented: dateCommented ?? this.dateCommented,
     );
   }
@@ -42,6 +45,7 @@ class CommentModel {
     result.addAll({'commentId': commentId});
     result.addAll({'commentText': commentText});
     result.addAll({'profilePicture': profilePicture});
+    result.addAll({'likes': likes});
     result.addAll({'dateCommented': dateCommented.millisecondsSinceEpoch});
 
     return result;
@@ -54,6 +58,7 @@ class CommentModel {
       commentId: map['commentId'] ?? '',
       commentText: map['commentText'] ?? '',
       profilePicture: map['profilePicture'] ?? '',
+      likes: map['likes'] ?? [],
       dateCommented: DateTime.fromMillisecondsSinceEpoch(map['dateCommented']),
     );
   }

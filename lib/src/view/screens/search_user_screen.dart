@@ -208,22 +208,17 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                                           );
                                         },
                                         child: ListTile(
-                                          leading: CircleAvatar(
-                                            child: user.photoUrl == ""
-                                                ? ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            100),
-                                                    child: Image.asset(
+                                          leading: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            child: CircleAvatar(
+                                              backgroundColor: Colors.white,
+                                              child: user.photoUrl == ""
+                                                  ? Image.asset(
                                                       'assets/default_image.jpg',
                                                       fit: BoxFit.cover,
-                                                    ),
-                                                  )
-                                                : ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            100),
-                                                    child: CachedNetworkImage(
+                                                    )
+                                                  : CachedNetworkImage(
                                                       imageUrl: user.photoUrl,
                                                       fit: BoxFit.cover,
                                                       errorWidget: (context,
@@ -251,7 +246,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                                                                   width: double
                                                                       .infinity)),
                                                     ),
-                                                  ),
+                                            ),
                                           ),
                                           title: Text(
                                             user.userName,

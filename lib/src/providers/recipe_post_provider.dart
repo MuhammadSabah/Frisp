@@ -93,6 +93,7 @@ class RecipePostProvider extends ChangeNotifier {
         commentId: commentId,
         commentText: text,
         profilePicture: profileImage,
+        likes: [],
         dateCommented: DateTime.now(),
       );
       await _firestore
@@ -108,7 +109,7 @@ class RecipePostProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> likePost({
+  Future<void> likeOrUnlikePost({
     required String postId,
     required String userId,
     required List likes,
@@ -122,6 +123,41 @@ class RecipePostProvider extends ChangeNotifier {
         );
       } else {
         await _firestore.collection('posts').doc(postId).update(
+          {
+            'likes': FieldValue.arrayUnion([userId])
+          },
+        );
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> likeOrUnlikeComment({
+    required String postId,
+    required String userId,
+    required String commentId,
+    required List likes,
+  }) async {
+    try {
+      if (likes.contains(userId)) {
+        await _firestore
+            .collection('posts')
+            .doc(postId)
+            .collection('comments')
+            .doc(commentId)
+            .update(
+          {
+            'likes': FieldValue.arrayRemove([userId])
+          },
+        );
+      } else {
+        await _firestore
+            .collection('posts')
+            .doc(postId)
+            .collection('comments')
+            .doc(commentId)
+            .update(
           {
             'likes': FieldValue.arrayUnion([userId])
           },

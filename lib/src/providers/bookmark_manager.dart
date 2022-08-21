@@ -38,7 +38,6 @@ class BookmarkManager extends BookmarkInterface {
       _currentRecipes.add(recipe);
       _recipeStreamController.sink.add(_currentRecipes);
     }
-    Future.value();
   }
 
   @override

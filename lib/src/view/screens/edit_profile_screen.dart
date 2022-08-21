@@ -101,7 +101,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           leading: IconButton(
             splashRadius: 20,
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.pop(context);
             },
             icon: Icon(
               Icons.arrow_back,
@@ -128,208 +128,215 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             )
           ],
         ),
-        body: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+        body: Theme(
+          data: Theme.of(context).copyWith(useMaterial3: false),
+          child: SingleChildScrollView(
+            child: Stack(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Stack(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(200),
-                          child: CircleAvatar(
-                            radius: 75,
-                            child: widget.user.photoUrl == ""
-                                ? const ProfileDefaultBackgroundPhoto()
-                                : _image == null
-                                    ? ProfileCachedBackgroundPhoto(
-                                        user: widget.user,
-                                      )
-                                    : Container(
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            image: MemoryImage(_image!),
-                                            fit: BoxFit.cover,
+                        Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(200),
+                              child: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 75,
+                                child: widget.user.photoUrl == ""
+                                    ? const ProfileDefaultBackgroundPhoto()
+                                    : _image == null
+                                        ? ProfileCachedBackgroundPhoto(
+                                            user: widget.user,
+                                          )
+                                        : Container(
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                image: MemoryImage(_image!),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                          ),
-                        ),
-                        Positioned(
-                          right: 8,
-                          bottom: 8,
-                          child: GestureDetector(
-                            onTap: () {
-                              selectAnImage(context);
-                            },
-                            child: Container(
-                              width: 28,
-                              height: 28,
-                              decoration: const BoxDecoration(
-                                  color: kOrangeColor,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(50),
-                                  )),
-                              child: const Center(
-                                child: FaIcon(
-                                  FontAwesomeIcons.plus,
-                                  color: Colors.white,
-                                  size: 15,
+                              ),
+                            ),
+                            Positioned(
+                              right: 8,
+                              bottom: 8,
+                              child: GestureDetector(
+                                onTap: () {
+                                  selectAnImage(context);
+                                },
+                                child: Container(
+                                  width: 28,
+                                  height: 28,
+                                  decoration: const BoxDecoration(
+                                      color: kOrangeColor,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(50),
+                                      )),
+                                  child: const Center(
+                                    child: FaIcon(
+                                      FontAwesomeIcons.plus,
+                                      color: Colors.white,
+                                      size: 15,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
                       ],
                     ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 18.0, vertical: 40),
+                      child: Column(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Username',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline3!
+                                    .copyWith(fontSize: 16),
+                              ),
+                              const SizedBox(height: 10),
+                              TextField(
+                                textAlign: TextAlign.start,
+                                textAlignVertical: TextAlignVertical.center,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline3!
+                                    .copyWith(
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                controller: _userNameController,
+                                cursorColor: kOrangeColor,
+                                autofocus: false,
+                                autocorrect: false,
+                                keyboardType: TextInputType.text,
+                                obscureText: false,
+                                textInputAction: TextInputAction.done,
+                                decoration: InputDecoration(
+                                  counterText: ' ',
+                                  fillColor: settingsManager.darkMode
+                                      ? kGreyColor
+                                      : kGreyColor4,
+                                  filled: true,
+                                  isCollapsed: true,
+                                  contentPadding: const EdgeInsets.all(18),
+                                  hintText: '',
+                                  hintStyle: Theme.of(context)
+                                      .textTheme
+                                      .headline4!
+                                      .copyWith(
+                                        fontSize: 15,
+                                        color: Colors.grey.shade600,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                  focusedErrorBorder: kFocusedErrorBorder,
+                                  errorBorder: kErrorBorder,
+                                  enabledBorder: kEnabledBorder,
+                                  focusedBorder: kFocusedBorder,
+                                  border: kBorder,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'About',
+                                style: Theme.of(context).textTheme.headline3!
+                                  ..copyWith(fontSize: 16),
+                              ),
+                              const SizedBox(height: 10),
+                              TextField(
+                                textAlign: TextAlign.start,
+                                textAlignVertical: TextAlignVertical.center,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline3!
+                                    .copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      height: 1.6,
+                                    ),
+                                controller: _aboutController,
+                                cursorColor: kOrangeColor,
+                                autofocus: false,
+                                autocorrect: false,
+                                keyboardType: TextInputType.text,
+                                maxLines: 8,
+                                obscureText: false,
+                                textInputAction: TextInputAction.done,
+                                decoration: InputDecoration(
+                                  counterText: ' ',
+                                  fillColor: settingsManager.darkMode
+                                      ? kGreyColor
+                                      : kGreyColor4,
+                                  filled: true,
+                                  isCollapsed: true,
+                                  contentPadding: const EdgeInsets.all(18),
+                                  hintText: '',
+                                  hintStyle: Theme.of(context)
+                                      .textTheme
+                                      .headline4!
+                                      .copyWith(
+                                        fontSize: 15,
+                                        color: Colors.grey.shade600,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                  focusedErrorBorder: kFocusedErrorBorder,
+                                  errorBorder: kErrorBorder,
+                                  enabledBorder: kEnabledBorder,
+                                  focusedBorder: kFocusedBorder,
+                                  border: kBorder,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 24),
+                            child: BottomSaveButton(
+                              callBack: () async {
+                                await updateProfileInfo(context).then(
+                                  (value) => Navigator.pop(context, 'SaveData'),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 18.0, vertical: 40),
-                  child: Column(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Username',
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline3!
-                                .copyWith(fontSize: 16),
-                          ),
-                          const SizedBox(height: 10),
-                          TextField(
-                            textAlign: TextAlign.start,
-                            textAlignVertical: TextAlignVertical.center,
-                            style:
-                                Theme.of(context).textTheme.headline3!.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                            controller: _userNameController,
-                            cursorColor: kOrangeColor,
-                            autofocus: false,
-                            autocorrect: false,
-                            keyboardType: TextInputType.text,
-                            obscureText: false,
-                            textInputAction: TextInputAction.done,
-                            decoration: InputDecoration(
-                              counterText: ' ',
-                              fillColor: settingsManager.darkMode
-                                  ? kGreyColor
-                                  : kGreyColor4,
-                              filled: true,
-                              isCollapsed: true,
-                              contentPadding: const EdgeInsets.all(18),
-                              hintText: '',
-                              hintStyle: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(
-                                    fontSize: 15,
-                                    color: Colors.grey.shade600,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                              focusedErrorBorder: kFocusedErrorBorder,
-                              errorBorder: kErrorBorder,
-                              enabledBorder: kEnabledBorder,
-                              focusedBorder: kFocusedBorder,
-                              border: kBorder,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'About',
-                            style: Theme.of(context).textTheme.headline3!
-                              ..copyWith(fontSize: 16),
-                          ),
-                          const SizedBox(height: 10),
-                          TextField(
-                            textAlign: TextAlign.start,
-                            textAlignVertical: TextAlignVertical.center,
-                            style:
-                                Theme.of(context).textTheme.headline3!.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                            controller: _aboutController,
-                            cursorColor: kOrangeColor,
-                            autofocus: false,
-                            autocorrect: false,
-                            keyboardType: TextInputType.text,
-                            maxLines: 8,
-                            obscureText: false,
-                            textInputAction: TextInputAction.done,
-                            decoration: InputDecoration(
-                              counterText: ' ',
-                              fillColor: settingsManager.darkMode
-                                  ? kGreyColor
-                                  : kGreyColor4,
-                              filled: true,
-                              isCollapsed: true,
-                              contentPadding: const EdgeInsets.all(18),
-                              hintText: '',
-                              hintStyle: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(
-                                    fontSize: 15,
-                                    color: Colors.grey.shade600,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                              focusedErrorBorder: kFocusedErrorBorder,
-                              errorBorder: kErrorBorder,
-                              enabledBorder: kEnabledBorder,
-                              focusedBorder: kFocusedBorder,
-                              border: kBorder,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 24),
-                        child: BottomSaveButton(
-                          callBack: () async {
-                            updateProfileInfo(context);
-                          },
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: _isLoading == true
+                      ? LinearProgressIndicator(
+                          backgroundColor: settingsManager.darkMode
+                              ? Colors.white
+                              : Colors.grey.shade300,
+                        )
+                      : const Padding(
+                          padding: EdgeInsets.only(top: 4),
                         ),
-                      ),
-                    ],
-                  ),
                 ),
               ],
             ),
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: _isLoading == true
-                  ? LinearProgressIndicator(
-                      backgroundColor: settingsManager.darkMode
-                          ? Colors.white
-                          : Colors.grey.shade300,
-                    )
-                  : const Padding(
-                      padding: EdgeInsets.only(top: 4),
-                    ),
-            ),
-          ],
+          ),
         ),
       ),
     );
-  }
-  
-  @override
-  operator ==(Object other) {
-    // TODO: implement ==
-    throw UnimplementedError();
   }
 }

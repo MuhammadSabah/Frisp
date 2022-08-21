@@ -362,7 +362,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                               child: IconButton(
                                 splashRadius: 20,
                                 onPressed: () async {
-                                  await postProvider.likePost(
+                                  await postProvider.likeOrUnlikePost(
                                     postId: widget.post.postId,
                                     userId: user!.id,
                                     likes: widget.post.likes,

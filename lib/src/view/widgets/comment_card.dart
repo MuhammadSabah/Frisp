@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/src/models/comment_model.dart';
+import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -11,17 +14,46 @@ class CommentCard extends StatefulWidget {
   const CommentCard({
     Key? key,
     required this.comment,
+    required this.postId,
   }) : super(key: key);
   final CommentModel comment;
+  final String postId;
   @override
   State<CommentCard> createState() => _CommentCardState();
 }
 
 class _CommentCardState extends State<CommentCard> {
+  String daysBetween(DateTime commentedDate) {
+    var date;
+    if ((DateTime.now().difference(widget.comment.dateCommented).inHours / 24)
+            .round() ==
+        1) {
+      date = DateFormat('kk:mm').format(
+        widget.comment.dateCommented,
+      );
+      return 'Yesterday at $date';
+    }
+    if ((DateTime.now().difference(widget.comment.dateCommented).inHours / 24)
+            .round() >
+        1) {
+      date = DateFormat('dd MMMM, kk:mm').format(
+        widget.comment.dateCommented,
+      );
+      return '$date';
+    } else {
+      date = DateFormat('kk:mm').format(
+        widget.comment.dateCommented,
+      );
+      return 'Today at $date';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final settingsManager =
         Provider.of<SettingsManager>(context, listen: false);
+    final commentProvider =
+        Provider.of<RecipePostProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(
         vertical: 16,
@@ -34,6 +66,7 @@ class _CommentCardState extends State<CommentCard> {
               ? ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: CircleAvatar(
+                    backgroundColor: Colors.white,
                     radius: 18,
                     child: Image.asset(
                       'assets/default_image.jpg',
@@ -44,6 +77,7 @@ class _CommentCardState extends State<CommentCard> {
               : ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: CircleAvatar(
+                    backgroundColor: Colors.white,
                     radius: 18,
                     child: CachedNetworkImage(
                       imageUrl: widget.comment.profilePicture,
@@ -84,7 +118,7 @@ class _CommentCardState extends State<CommentCard> {
                         ),
                       ),
                       Text(
-                        'm',
+                        daysBetween(widget.comment.dateCommented),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
@@ -125,18 +159,7 @@ class _CommentCardState extends State<CommentCard> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 6, bottom: 6),
-                    child: Text(
-                      DateFormat.yMMMd().format(
-                        widget.comment.dateCommented,
-                      ),
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2!
-                          .copyWith(fontSize: 12),
-                    ),
-                  ),
+                  const SizedBox(height: 20),
                   RichText(
                     text: TextSpan(
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(
@@ -145,13 +168,30 @@ class _CommentCardState extends State<CommentCard> {
                                 ? Colors.grey
                                 : Colors.grey.shade600,
                           ),
-                      children: const [
-                        TextSpan(text: ""),
-                        TextSpan(text: 'Like'),
-                        TextSpan(text: '  ●  '),
-                        TextSpan(text: 'Reply'),
-                        TextSpan(text: '  ●  '),
-                        TextSpan(text: 'Report'),
+                      children: [
+                        TextSpan(
+                          text: '${widget.comment.likes.length} ',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        TextSpan(
+                          text: 'Like',
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () async {
+                              commentProvider.likeOrUnlikeComment(
+                                postId: widget.postId,
+                                userId: FirebaseAuth.instance.currentUser!.uid,
+                                commentId: widget.comment.commentId,
+                                likes: widget.comment.likes,
+                              );
+                            },
+                        ),
+                        const TextSpan(text: '  ●  '),
+                        const TextSpan(text: 'Reply'),
+                        const TextSpan(text: '  ●  '),
+                        const TextSpan(text: 'Report'),
                       ],
                     ),
                   ),

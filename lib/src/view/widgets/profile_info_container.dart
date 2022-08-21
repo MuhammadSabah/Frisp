@@ -87,7 +87,8 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 14.0)
+                              .copyWith(top: 6),
                           child: Text(
                             widget.user.userName,
                             textAlign: TextAlign.center,

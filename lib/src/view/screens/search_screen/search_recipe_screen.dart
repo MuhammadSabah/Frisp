@@ -174,6 +174,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                       icon: const Icon(Icons.search),
                       splashRadius: 20,
                       onPressed: () {
+                        FocusManager.instance.primaryFocus?.unfocus();
                         startSearch(_searchController.text);
                       },
                     ),
@@ -193,16 +194,19 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                               controller: _searchController,
                               cursorColor: const Color(0xffF94701),
                               decoration: InputDecoration(
-                                hintText: 'Search...',
+                                hintText: 'Chocolate, pasta, pizza etc...',
                                 hintStyle: GoogleFonts.poppins(
                                   fontSize: 14,
+                                  color: Colors.grey.shade500,
                                 ),
                                 border: InputBorder.none,
                               ),
                               autocorrect: false,
                               autofocus: false,
                               onSubmitted: (value) {
-                                if (!_previousSearches.contains(value)) {
+                                if (!_previousSearches.contains(value) &&
+                                    value.isNotEmpty &&
+                                    value != " ") {
                                   _previousSearches.add(value);
                                   savePreviousSearches();
                                 }

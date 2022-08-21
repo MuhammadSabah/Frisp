@@ -6,14 +6,16 @@ import 'package:food_recipe_final/src/view/screens/shopping_screen/empty_shoppin
 import 'package:food_recipe_final/src/view/screens/shopping_screen/shopping_list_screen.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class ShoppingScreen extends StatefulWidget {
-  const ShoppingScreen({Key? key}) : super(key: key);
+  ShoppingScreen({Key? key}) : super(key: key);
 
   @override
   State<ShoppingScreen> createState() => _ShoppingScreenState();
 }
 
 class _ShoppingScreenState extends State<ShoppingScreen> {
+  List<String> dropDownItem = [];
   @override
   Widget build(BuildContext context) {
     final settingsManager =
@@ -58,6 +60,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
           "Shopping List",
           style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
         ),
+        // actions: [DropdownButton(items: items, onChanged: onChanged),],
       ),
       body: _buildShoppingScreen(),
     );

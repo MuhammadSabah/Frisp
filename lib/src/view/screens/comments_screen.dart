@@ -4,7 +4,6 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/comment_model.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
-import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
@@ -113,6 +112,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                                 comment: CommentModel.fromSnapshot(
                                   snapshot.data!.docs[index],
                                 ),
+                                postId: widget.recipePost!.postId,
                               );
                             },
                           ),

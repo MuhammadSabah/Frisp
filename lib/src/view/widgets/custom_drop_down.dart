@@ -32,7 +32,7 @@ class _CustomDropDownMenuState<T> extends State<CustomDropDownMenu<T>> {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 35, minWidth: 100),
+      constraints: const BoxConstraints(minHeight: 45, minWidth: 100),
       child: InkWell(
         onTap: () {
           Navigator.of(context).pop<T>(widget.value);
@@ -49,7 +49,7 @@ class _CustomDropDownMenuState<T> extends State<CustomDropDownMenu<T>> {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: GoogleFonts.poppins(
-                      fontSize: 15,
+                      fontSize: 13,
                       fontWeight: FontWeight.w400,
                       color: kBlackColor,
                     ),
@@ -61,7 +61,7 @@ class _CustomDropDownMenuState<T> extends State<CustomDropDownMenu<T>> {
                         onTap: widget.callback,
                         child: SvgPicture.asset(
                           'assets/images/dismiss.svg',
-                          width: 20,
+                          width: 18,
                         ),
                       ),
               ],

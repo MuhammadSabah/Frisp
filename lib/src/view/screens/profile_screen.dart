@@ -181,9 +181,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         child: ProfileInfoContainer(
                                           user: user,
                                           userId: widget.userId,
-                                          onEdit: () {
-                                            // selectAnImage(context);
-                                            Navigator.of(context).push(
+                                          onEdit: () async {
+                                            final result =
+                                                await Navigator.of(context)
+                                                    .push(
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     EditProfileScreen(
@@ -191,6 +192,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 ),
                                               ),
                                             );
+                                            if (!mounted) return;
+                                            if (result == 'SaveData') {
+                                              await _refresh();
+                                            }
                                           },
                                         ),
                                       ),
