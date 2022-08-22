@@ -4,7 +4,9 @@ import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 
+// ignore: must_be_immutable
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
   static MaterialPage page() {
@@ -26,6 +28,9 @@ class SettingsScreen extends StatelessWidget {
         settingsManager.darkMode ? Colors.grey.shade300 : Colors.black;
     Color kDividerColor =
         settingsManager.darkMode ? Colors.grey.shade700 : Colors.grey.shade800;
+    Color arrowForwardColor =
+        settingsManager.darkMode ? Colors.white : Colors.black;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -63,7 +68,13 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           children: [
             InkWell(
-              onTap: () {},
+              onTap: () {
+                if (settingsManager.darkMode == true) {
+                  settingsManager.setDarkMode(false);
+                } else {
+                  settingsManager.setDarkMode(true);
+                }
+              },
               child: Ink(
                 height: MediaQuery.of(context).size.height / 14,
                 child: Row(
@@ -75,11 +86,28 @@ class SettingsScreen extends StatelessWidget {
                             color: kGreyColorShade,
                           ),
                     ),
-                    Switch.adaptive(
-                      value: settingsManager.darkMode,
-                      onChanged: (bool value) {
-                        settingsManager.setDarkMode(value);
-                      },
+                    // Switch.adaptive(
+                    //   value: settingsManager.darkMode,
+                    //   onChanged: (bool value) {
+                    //     settingsManager.setDarkMode(value);
+                    //   },
+                    // ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 4.0),
+                      child: AnimatedCrossFade(
+                        firstChild: WebsafeSvg.asset(
+                          'assets/sun.svg',
+                          color: Colors.white,
+                        ),
+                        secondChild: WebsafeSvg.asset(
+                          'assets/moon.svg',
+                          color: Colors.black,
+                        ),
+                        crossFadeState: settingsManager.darkMode == true
+                            ? CrossFadeState.showFirst
+                            : CrossFadeState.showSecond,
+                        duration: const Duration(milliseconds: 450),
+                      ),
                     ),
                   ],
                 ),
@@ -102,9 +130,9 @@ class SettingsScreen extends StatelessWidget {
                             color: kGreyColorShade,
                           ),
                     ),
-                    const Icon(
+                    Icon(
                       Icons.arrow_forward_ios,
-                      color: Colors.white,
+                      color: arrowForwardColor,
                       size: 20,
                     ),
                   ],
@@ -129,9 +157,9 @@ class SettingsScreen extends StatelessWidget {
                           .headline3!
                           .copyWith(color: kGreyColorShade),
                     ),
-                    const Icon(
+                    Icon(
                       Icons.arrow_forward_ios,
-                      color: Colors.white,
+                      color: arrowForwardColor,
                       size: 20,
                     ),
                   ],
@@ -188,9 +216,9 @@ class SettingsScreen extends StatelessWidget {
                           .headline3!
                           .copyWith(color: kGreyColorShade),
                     ),
-                    const Icon(
+                    Icon(
                       Icons.arrow_forward_ios,
-                      color: Colors.white,
+                      color: arrowForwardColor,
                       size: 20,
                     ),
                   ],
@@ -215,9 +243,9 @@ class SettingsScreen extends StatelessWidget {
                           .headline3!
                           .copyWith(color: kGreyColorShade),
                     ),
-                    const Icon(
+                    Icon(
                       Icons.arrow_forward_ios,
-                      color: Colors.white,
+                      color: arrowForwardColor,
                       size: 20,
                     ),
                   ],
@@ -242,9 +270,9 @@ class SettingsScreen extends StatelessWidget {
                           .headline3!
                           .copyWith(color: kGreyColorShade),
                     ),
-                    const Icon(
+                    Icon(
                       Icons.arrow_forward_ios,
-                      color: Colors.white,
+                      color: arrowForwardColor,
                       size: 20,
                     ),
                   ],
@@ -281,9 +309,9 @@ class SettingsScreen extends StatelessWidget {
                           .headline3!
                           .copyWith(color: kGreyColorShade),
                     ),
-                    const Icon(
+                    Icon(
                       Icons.logout,
-                      color: Colors.white,
+                      color: arrowForwardColor,
                       size: 20,
                     ),
                   ],

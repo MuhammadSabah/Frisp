@@ -48,6 +48,13 @@ class _CommentCardState extends State<CommentCard> {
     }
   }
 
+  String likeOrUnlikeText() {
+    if (widget.comment.likes.contains(FirebaseAuth.instance.currentUser!.uid)) {
+      return "Unlike";
+    }
+    return 'Like';
+  }
+
   @override
   Widget build(BuildContext context) {
     final settingsManager =
@@ -171,13 +178,15 @@ class _CommentCardState extends State<CommentCard> {
                       children: [
                         TextSpan(
                           text: '${widget.comment.likes.length} ',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: settingsManager.darkMode
+                                ? Colors.white
+                                : Colors.black,
                           ),
                         ),
                         TextSpan(
-                          text: 'Like',
+                          text: likeOrUnlikeText(),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () async {
                               commentProvider.likeOrUnlikeComment(
