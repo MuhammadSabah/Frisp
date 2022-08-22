@@ -3,32 +3,34 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_recipe_final/src/models/message.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
+import 'package:uuid/uuid.dart';
 
 class MessageProvider extends ChangeNotifier {
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   static final FirebaseAuth _auth = FirebaseAuth.instance;
+  CollectionReference? chatCollection;
 
   Future<void> createUserContactsCollection({
-    required String uid,
     required UserModel user,
+    required UserModel currentUser,
   }) async {
     try {
       CollectionReference userContactsCollection =
-          _firestore.collection('users').doc(uid).collection('contacts');
+          _firestore.collection('users').doc(user.id).collection('contacts');
       //
 
       final userContactsList = _firestore
           .collection('users')
-          .doc(uid)
+          .doc(user.id)
           .collection('contacts')
-          .doc(uid);
+          .doc(_auth.currentUser!.uid);
 
       userContactsList.get().then(
             (snapshot) => {
               if (!snapshot.exists)
                 {
-                  userContactsCollection.doc(user.id).set(
-                        user.toJson(),
+                  userContactsCollection.doc(_auth.currentUser!.uid).set(
+                        currentUser.toJson(),
                       ),
                 }
             },
@@ -45,7 +47,7 @@ class MessageProvider extends ChangeNotifier {
           .collection('users')
           .doc(_auth.currentUser!.uid)
           .collection('contacts')
-          .doc(_auth.currentUser!.uid);
+          .doc(user.id);
 
       currentUserContactsList.get().then(
             (snapshot) => {
@@ -57,16 +59,28 @@ class MessageProvider extends ChangeNotifier {
                 }
             },
           );
+
+      //********************************************* */
+      CollectionReference messagesCollection =
+          _firestore.collection('messages');
+      //
+      String messageId = const Uuid().v1();
+      chatCollection = _firestore
+          .collection('messages')
+          .doc(messageId)
+          .collection('chatMessages');
+      //
+      messagesCollection.doc(messageId).set({
+        'currentUserId': currentUser.id,
+        'oppositeUserId': user.id,
+      });
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
-  void sendMessage(Message message, String userId) {
-    _firestore
-        .collection('users')
-        .doc(userId)
-        .collection('messages')
-        .add(message.toJson());
+  void sendMessage(
+      Message message, String oppositeUserId, String currentUserId) {
+    chatCollection!.add(message.toJson());
   }
 }

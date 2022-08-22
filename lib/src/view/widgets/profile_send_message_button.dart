@@ -3,19 +3,20 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/message_provider.dart';
+import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/screens/chat_messages_screen.dart';
 import 'package:provider/provider.dart';
 
 class ProfileSendMessageButton extends StatelessWidget {
   const ProfileSendMessageButton({
     Key? key,
-    required this.userId,
     required this.user,
   }) : super(key: key);
-  final String userId;
   final UserModel user;
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    final UserModel? currentUser = userProvider.getUser;
     final messageProvider =
         Provider.of<MessageProvider>(context, listen: false);
     return IconButton(
@@ -24,14 +25,13 @@ class ProfileSendMessageButton extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => ChatMessagesScreen(
-              userId: userId,
               user: user,
             ),
           ),
         );
         await messageProvider.createUserContactsCollection(
-          uid: userId,
           user: user,
+          currentUser: currentUser!,
         );
       },
       splashRadius: 20,

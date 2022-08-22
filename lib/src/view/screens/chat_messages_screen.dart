@@ -10,9 +10,7 @@ import 'package:food_recipe_final/src/view/widgets/messages_list.dart';
 import 'package:provider/provider.dart';
 
 class ChatMessagesScreen extends StatefulWidget {
-  const ChatMessagesScreen({Key? key, required this.userId, required this.user})
-      : super(key: key);
-  final String userId;
+  const ChatMessagesScreen({Key? key, required this.user}) : super(key: key);
   final UserModel user;
   @override
   State<ChatMessagesScreen> createState() => _ChatMessagesScreenState();
@@ -21,16 +19,30 @@ class ChatMessagesScreen extends StatefulWidget {
 class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
   final TextEditingController _sendMessageController = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  Stream<QuerySnapshot<Map<String, dynamic>>>? streamResult;
+  // Future<QuerySnapshot<Map<String, dynamic>>>? futureResult;
+  Future<Set<Stream<QuerySnapshot<Map<String, dynamic>>>>>? streamResult;
   final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     streamResult = _firestore
-        .collection('users')
-        .doc(widget.userId)
         .collection('messages')
-        .orderBy('sentAt', descending: false)
-        .snapshots();
+        .where(
+          'currentUserId',
+          whereIn: [FirebaseAuth.instance.currentUser!.uid, widget.user.id],
+        )
+        // .where(
+        //   'oppositeUserId',
+        //   whereIn: [FirebaseAuth.instance.currentUser!.uid, widget.user.id],
+        // )
+        .get()
+        .then(
+          (snapshot) => {
+            snapshot.docs[0].reference
+                .collection('chatMessages')
+                .orderBy('sentAt', descending: false)
+                .snapshots(),
+          },
+        );
 
     super.initState();
   }
@@ -89,8 +101,9 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
       body: Column(
         children: [
           Expanded(
-            child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-              stream: streamResult,
+            child:
+                FutureBuilder<Set<Stream<QuerySnapshot<Map<String, dynamic>>>>>(
+              future: streamResult,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
@@ -111,7 +124,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
                     alignment: Alignment.center,
                     child: MessagesList(
                       scrollController: _scrollController,
-                      messagesSnapshots: snapshot.data!.docs,
+                      messagesSnapshots: [...snapshot.data!][0],
                     ),
                   );
                 }
@@ -149,7 +162,11 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
                       messageText: _sendMessageController.text,
                       sentAt: DateTime.now(),
                     );
-                    messageProvider.sendMessage(message, widget.userId);
+                    messageProvider.sendMessage(
+                      message,
+                      widget.user.id,
+                      FirebaseAuth.instance.currentUser!.uid,
+                    );
                     _sendMessageController.clear();
                     _scrollToBottom();
                   }

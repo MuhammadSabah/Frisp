@@ -18,7 +18,10 @@ import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class ProfileScreen extends StatefulWidget {
-  ProfileScreen({Key? key, required this.userId}) : super(key: key);
+  ProfileScreen({
+    Key? key,
+    required this.userId,
+  }) : super(key: key);
   String? userId;
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -29,7 +32,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String imageUrl = 'assets/default_image.jpg';
   Future<DocumentSnapshot<Map<String, dynamic>>>? futureResult;
 
-  
   @override
   void initState() {
     super.initState();
@@ -130,7 +132,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                     widget.userId
                                                 ? ProfileSendMessageButton(
                                                     user: user,
-                                                    userId: widget.userId!,
                                                   )
                                                 : ProfileMessageButton(
                                                     userId: widget.userId!,

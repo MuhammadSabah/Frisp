@@ -89,7 +89,6 @@ class ContactsListScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ChatMessagesScreen(
-                              userId: contactUser.id,
                               user: contactUser,
                             ),
                           ),
