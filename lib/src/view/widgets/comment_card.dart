@@ -137,6 +137,7 @@ class _CommentCardState extends State<CommentCard> {
                       )
                     ],
                   ),
+                  const SizedBox(height: 4),
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [

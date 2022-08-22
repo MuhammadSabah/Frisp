@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,9 +9,11 @@ import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/screens/comments_screen.dart';
+import 'package:food_recipe_final/src/view/screens/recipe_post_detail_screen.dart';
 import 'package:food_recipe_final/src/view/widgets/animated_like_button.dart';
 import 'package:food_recipe_final/src/view/widgets/custom_drop_down.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 class RecipePostCard extends StatefulWidget {
   const RecipePostCard({
@@ -92,14 +95,25 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                       ),
                                     ),
                                   )
-                                : Container(
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image:
-                                            NetworkImage(widget.post.profImage),
-                                        fit: BoxFit.cover,
-                                      ),
+                                : CachedNetworkImage(
+                                    imageUrl: widget.post.profImage,
+                                    fit: BoxFit.cover,
+                                    errorWidget: (context, url, error) =>
+                                        const Center(
+                                      child: FaIcon(
+                                          FontAwesomeIcons.circleExclamation),
                                     ),
+                                    placeholder: (context, url) =>
+                                        Shimmer.fromColors(
+                                            baseColor: Colors.grey.shade400,
+                                            highlightColor:
+                                                Colors.grey.shade300,
+                                            child: SizedBox(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    3.3,
+                                                width: double.infinity)),
                                   ),
                       ),
                     ),
@@ -217,112 +231,133 @@ class _RecipePostCardState extends State<RecipePostCard> {
               children: [
                 Column(
                   children: [
-                    Material(
-                      elevation: 8,
-                      borderRadius: BorderRadius.circular(10),
-                      shadowColor: Colors.grey.withOpacity(0.1),
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: screenHeight / 3,
-                            width: screenWidth - 24,
-                            decoration: BoxDecoration(
-                              color: settingsManager.darkMode
-                                  ? kGreyColor
-                                  : Colors.grey.shade400,
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => RecipePostDetailScreen(),
+                        //   ),
+                        // );
+                      },
+                      child: Material(
+                        elevation: 8,
+                        borderRadius: BorderRadius.circular(10),
+                        shadowColor: Colors.grey.withOpacity(0.1),
+                        child: Stack(
+                          children: [
+                            Container(
+                              height: screenHeight / 3,
+                              width: screenWidth - 24,
+                              decoration: BoxDecoration(
+                                color: settingsManager.darkMode
+                                    ? kGreyColor
+                                    : Colors.grey.shade400,
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
                               ),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(widget.post.postUrl),
-                                    fit: BoxFit.cover,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: CachedNetworkImage(
+                                  imageUrl: widget.post.postUrl,
+                                  fit: BoxFit.cover,
+                                  errorWidget: (context, url, error) =>
+                                      const Center(
+                                    child: FaIcon(
+                                        FontAwesomeIcons.circleExclamation),
+                                  ),
+                                  placeholder: (context, url) =>
+                                      Shimmer.fromColors(
+                                    baseColor: Colors.grey.shade400,
+                                    highlightColor: Colors.grey.shade300,
+                                    child: SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                3.3,
+                                        width: double.infinity),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              // 3.2 is the image height.
-                              height: (screenHeight / 3.2) / 4.1,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                  colors: [
-                                    Colors.white.withOpacity(0.5),
-                                    Colors.white.withOpacity(0.2),
-                                  ],
-                                  stops: const [0.0, 1.0],
+                            Positioned(
+                              bottom: 0,
+                              left: 0,
+                              right: 0,
+                              child: Container(
+                                // 3.2 is the image height.
+                                height: (screenHeight / 3.2) / 4.1,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                    colors: [
+                                      Colors.white.withOpacity(0.5),
+                                      Colors.white.withOpacity(0.2),
+                                    ],
+                                    stops: const [0.0, 1.0],
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10),
+                                  ),
+                                  // border:
+                                  //     Border.all(width: 2, color: Colors.white30),
                                 ),
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10),
-                                ),
-                                // border:
-                                //     Border.all(width: 2, color: Colors.white30),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: Text(
-                                                  widget.post.title,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  maxLines: 1,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline2!
-                                                      .copyWith(
-                                                        color: kBlackColor,
-                                                      ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    widget.post.title,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline2!
+                                                        .copyWith(
+                                                          color: kBlackColor,
+                                                        ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(height: 8),
-                                          // Row(
-                                          //   children: [
-                                          //     Expanded(
-                                          //       child: Text(
-                                          //         'Subtitle',
-                                          //         overflow:
-                                          //             TextOverflow.ellipsis,
-                                          //         maxLines: 1,
-                                          //         style: Theme.of(context)
-                                          //             .textTheme
-                                          //             .headline3!
-                                          //             .copyWith(
-                                          //                 color: Colors
-                                          //                     .grey.shade600),
-                                          //       ),
-                                          //     ),
-                                          //   ],
-                                          // ),
-                                        ],
+                                              ],
+                                            ),
+                                            const SizedBox(height: 8),
+                                            // Row(
+                                            //   children: [
+                                            //     Expanded(
+                                            //       child: Text(
+                                            //         'Subtitle',
+                                            //         overflow:
+                                            //             TextOverflow.ellipsis,
+                                            //         maxLines: 1,
+                                            //         style: Theme.of(context)
+                                            //             .textTheme
+                                            //             .headline3!
+                                            //             .copyWith(
+                                            //                 color: Colors
+                                            //                     .grey.shade600),
+                                            //       ),
+                                            //     ),
+                                            //   ],
+                                            // ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
