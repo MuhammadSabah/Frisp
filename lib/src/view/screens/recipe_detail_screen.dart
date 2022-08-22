@@ -71,7 +71,6 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
               slivers: [
                 DetailsSliverAppBar(
                   imgUrl: widget.recipe.image ?? "",
-                  title: widget.recipe.title ?? '',
                 ),
                 SliverToBoxAdapter(
                   child: Column(

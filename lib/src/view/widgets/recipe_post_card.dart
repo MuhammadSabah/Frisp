@@ -233,12 +233,14 @@ class _RecipePostCardState extends State<RecipePostCard> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => RecipePostDetailScreen(),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RecipePostDetailScreen(
+                              recipePost: widget.post,
+                            ),
+                          ),
+                        );
                       },
                       child: Material(
                         elevation: 8,

@@ -5,12 +5,13 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:provider/provider.dart';
 
-class DetailsSliverAppBar extends StatelessWidget {
-  const DetailsSliverAppBar({
+class PostDetailSliverAppBar extends StatelessWidget {
+  const PostDetailSliverAppBar({
     Key? key,
-    required this.imgUrl,
+    required this.postImageUrl,
   }) : super(key: key);
-  final String imgUrl;
+  final String postImageUrl;
+
   @override
   Widget build(BuildContext context) {
     final settingsManager =
@@ -25,7 +26,7 @@ class DetailsSliverAppBar extends StatelessWidget {
         centerTitle: true,
         background: CachedNetworkImage(
           fit: BoxFit.cover,
-          imageUrl: imgUrl,
+          imageUrl: postImageUrl,
           placeholder: (context, url) => const Center(
             child: FaIcon(
               FontAwesomeIcons.spinner,
@@ -48,7 +49,7 @@ class DetailsSliverAppBar extends StatelessWidget {
             backgroundColor: Colors.white.withOpacity(0.9),
             child: const FaIcon(
               FontAwesomeIcons.arrowLeft,
-              color: kGreyColor,
+              color: kOrangeColor,
               size: 20,
             ),
           ),
@@ -66,7 +67,7 @@ class DetailsSliverAppBar extends StatelessWidget {
               backgroundColor: Colors.white.withOpacity(0.9),
               child: const FaIcon(
                 FontAwesomeIcons.ellipsisVertical,
-                color: kGreyColor,
+                color: kOrangeColor,
                 size: 20,
               ),
             ),

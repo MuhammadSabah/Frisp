@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/message_provider.dart';
-import 'package:food_recipe_final/src/view/screens/messages_screen.dart';
+import 'package:food_recipe_final/src/view/screens/chat_messages_screen.dart';
 import 'package:provider/provider.dart';
 
 class ProfileSendMessageButton extends StatelessWidget {
@@ -23,7 +23,7 @@ class ProfileSendMessageButton extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => MessagesScreen(
+            builder: (context) => ChatMessagesScreen(
               userId: userId,
               user: user,
             ),

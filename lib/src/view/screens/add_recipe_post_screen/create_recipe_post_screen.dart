@@ -202,6 +202,8 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
     }
   }
 
+  GlobalKey<FormState> _formKey1 = GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey2 = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final settingsManager =
@@ -243,7 +245,12 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                       onTap: () {
                         //!: publish post.
                         final isValidForm = _formKey.currentState!.validate();
-                        if (isValidForm && _imageFile != null) {
+                        final isValidForm1 = _formKey1.currentState!.validate();
+                        final isValidForm2 = _formKey2.currentState!.validate();
+                        if (isValidForm &&
+                            _imageFile != null &&
+                            isValidForm1 &&
+                            isValidForm2) {
                           publishRecipePost(
                             uid: user!.id,
                             userName: user.userName,
@@ -353,6 +360,7 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                     // !: Sections:
                     const SizedBox(height: 14),
                     AddFieldsSection(
+                      formKey: _formKey1,
                       formFieldsList: _ingredientsFormList,
                       controllersList: _ingredientControllersList,
                       popUpItemsList: _popUpItemsList,
@@ -374,6 +382,7 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
                       thickness: 10,
                     ),
                     AddFieldsSection(
+                      formKey: _formKey2,
                       formFieldsList: _instructionsFormList,
                       controllersList: _instructionsControllersList,
                       popUpItemsList: _popUpItemsList,

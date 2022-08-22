@@ -9,16 +9,16 @@ import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/view/widgets/messages_list.dart';
 import 'package:provider/provider.dart';
 
-class MessagesScreen extends StatefulWidget {
-  const MessagesScreen({Key? key, required this.userId, required this.user})
+class ChatMessagesScreen extends StatefulWidget {
+  const ChatMessagesScreen({Key? key, required this.userId, required this.user})
       : super(key: key);
   final String userId;
   final UserModel user;
   @override
-  State<MessagesScreen> createState() => _MessagesScreenState();
+  State<ChatMessagesScreen> createState() => _ChatMessagesScreenState();
 }
 
-class _MessagesScreenState extends State<MessagesScreen> {
+class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
   final TextEditingController _sendMessageController = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Stream<QuerySnapshot<Map<String, dynamic>>>? streamResult;
@@ -75,7 +75,6 @@ class _MessagesScreenState extends State<MessagesScreen> {
                 fontSize: 18,
               ),
         ),
-        
         actions: [
           IconButton(
             splashRadius: 20,
@@ -153,7 +152,6 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     messageProvider.sendMessage(message, widget.userId);
                     _sendMessageController.clear();
                     _scrollToBottom();
-                    setState(() {});
                   }
                 },
                 icon: const Icon(

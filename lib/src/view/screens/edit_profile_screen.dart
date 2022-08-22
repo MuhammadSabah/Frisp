@@ -24,24 +24,98 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  Uint8List? _image;
+  Uint8List? _imageFile;
   bool _isLoading = false;
   late final TextEditingController _userNameController;
   late final TextEditingController _aboutController;
 //
-  void selectAnImage(BuildContext context) async {
-    final imageProvider =
-        Provider.of<UserImageProvider>(context, listen: false);
+  void _selectAnImageDialog(BuildContext context) async {
+    () => FocusManager.instance.primaryFocus?.unfocus();
+    final settingsManager =
+        Provider.of<SettingsManager>(context, listen: false);
+    return showDialog(
+      context: context,
+      builder: (context) {
+        final imageProvider =
+            Provider.of<UserImageProvider>(context, listen: false);
+        return SimpleDialog(
+          backgroundColor: settingsManager.darkMode ? kGreyColor : Colors.white,
+          title: const Center(
+            child: Text(
+              'Select an Image',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+          ),
+          children: [
+            SimpleDialogOption(
+                child: const Text(
+                  'Take a photo',
+                  style: TextStyle(
+                    color: kOrangeColor,
+                  ),
+                ),
+                onPressed: () async {
+                  Navigator.pop(context);
+                  final result =
+                      await imageProvider.pickAnImage(ImageSource.camera);
 
-    final result = await imageProvider.pickAnImage(ImageSource.gallery);
+                  result.fold((l) {
+                    setState(() {
+                      _imageFile = l;
+                    });
+                  }, (r) {
+                    // Do nothing.
+                    debugPrint(result.toString());
+                  });
+                }),
+            SimpleDialogOption(
+                child: const Text(
+                  'Choose from Gallery',
+                  style: TextStyle(
+                    color: kOrangeColor,
+                  ),
+                ),
+                onPressed: () async {
+                  Navigator.pop(context);
+                  final result =
+                      await imageProvider.pickAnImage(ImageSource.gallery);
 
-    result.fold((l) async {
-      setState(() {
-        _image = l;
-      });
-    }, (r) {
-      debugPrint(r.toString());
-    });
+                  result.fold((l) {
+                    setState(() {
+                      _imageFile = l;
+                    });
+                  }, (r) {
+                    // Do nothing.
+                    debugPrint(result.toString());
+                  });
+                }),
+            Padding(
+              padding: const EdgeInsets.all(20).copyWith(bottom: 0),
+              child: SimpleDialogOption(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: const [
+                    Text(
+                      'Cancel',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
 //
@@ -61,9 +135,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       _isLoading = true;
     });
     String? downloadUrl;
-    if (_image != null) {
+    if (_imageFile != null) {
       downloadUrl = await imageProvider.uploadAnImageToStorage(
-          fileName: 'profilePictures', file: _image!, isPost: false);
+          fileName: 'profilePictures', file: _imageFile!, isPost: false);
     }
     // await imageProvider.updateUserProfilePhoto(downloadUrl);
     await widget.user.reference!.update(
@@ -91,44 +165,41 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     final settingsManager =
         Provider.of<SettingsManager>(context, listen: false);
-    return GestureDetector(
-      onTap: () {
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          leading: IconButton(
-            splashRadius: 20,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back,
-              color: settingsManager.darkMode ? Colors.white : Colors.black,
-              size: 24,
-            ),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        leading: IconButton(
+          splashRadius: 20,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: settingsManager.darkMode ? Colors.white : Colors.black,
+            size: 24,
           ),
-          centerTitle: true,
-          elevation: 0.0,
-          bottomOpacity: 0.0,
-          title: Text(
-            'Account',
-            style:
-                Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
-          ),
-          actions: [
-            IconButton(
-              splashRadius: 20,
-              icon: Icon(
-                Icons.more_horiz,
-                color: settingsManager.darkMode ? Colors.white : Colors.black,
-              ),
-              onPressed: () {},
-            )
-          ],
         ),
-        body: Theme(
+        centerTitle: true,
+        elevation: 0.0,
+        bottomOpacity: 0.0,
+        title: Text(
+          'Account',
+          style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
+        ),
+        actions: [
+          IconButton(
+            splashRadius: 20,
+            icon: Icon(
+              Icons.more_horiz,
+              color: settingsManager.darkMode ? Colors.white : Colors.black,
+            ),
+            onPressed: () {},
+          )
+        ],
+      ),
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Theme(
           data: Theme.of(context).copyWith(useMaterial3: false),
           child: SingleChildScrollView(
             child: Stack(
@@ -146,19 +217,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               child: CircleAvatar(
                                 backgroundColor: Colors.white,
                                 radius: 75,
-                                child: widget.user.photoUrl == ""
+                                child: widget.user.photoUrl == "" &&
+                                        _imageFile == null
                                     ? const ProfileDefaultBackgroundPhoto()
-                                    : _image == null
-                                        ? ProfileCachedBackgroundPhoto(
-                                            user: widget.user,
-                                          )
-                                        : Container(
+                                    : _imageFile != null
+                                        ? Container(
                                             decoration: BoxDecoration(
                                               image: DecorationImage(
-                                                image: MemoryImage(_image!),
+                                                image: MemoryImage(_imageFile!),
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
+                                          )
+                                        : ProfileCachedBackgroundPhoto(
+                                            user: widget.user,
                                           ),
                               ),
                             ),
@@ -167,7 +239,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               bottom: 8,
                               child: GestureDetector(
                                 onTap: () {
-                                  selectAnImage(context);
+                                  _selectAnImageDialog(context);
                                 },
                                 child: Container(
                                   width: 28,
