@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
-import 'package:food_recipe_final/src/providers/app_state_manager.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/view/widgets/recipe_post_card.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +31,7 @@ class _ActivityTabState extends State<ActivityTab>
   }
 
   @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
    
     UserModel? userProvider =

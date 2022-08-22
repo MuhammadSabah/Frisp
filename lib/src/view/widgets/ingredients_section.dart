@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/data_class_models/ingredient_model.dart';
 
 class IngredientsSection extends StatelessWidget {

@@ -14,6 +14,7 @@ class BookmarkTab extends StatefulWidget {
 class _BookmarkTabState extends State<BookmarkTab>
     with AutomaticKeepAliveClientMixin {
   @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
     final bookmark = Provider.of<BookmarkInterface>(context, listen: false);
     return StreamBuilder<List<RecipeModel>>(
@@ -45,7 +46,7 @@ class _BookmarkTabState extends State<BookmarkTab>
       bookmark.deleteRecipe(recipe);
       setState(() {});
     } else {
-      print("Recipe ID is null");
+      debugPrint("Recipe ID is null");
     }
   }
 }

@@ -55,7 +55,7 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
   }) async {
     final settingsManager =
         Provider.of<SettingsManager>(context, listen: false);
-    final _navigator = Navigator.of(context);
+    final navigator = Navigator.of(context);
     setState(() {
       _isLoading = true;
     });
@@ -81,7 +81,7 @@ class _CreateRecipePostState extends State<CreateRecipePost> {
         setState(() {
           _isLoading = false;
         });
-        _navigator.pop();
+        navigator.pop();
       }
       FocusManager.instance.primaryFocus?.unfocus();
       Get.snackbar(

@@ -71,7 +71,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
             decoration: BoxDecoration(
               color: settingsManager.darkMode
                   ? kGreyColor
-                  : Color.fromRGBO(218, 218, 218, 1),
+                  : const Color.fromRGBO(218, 218, 218, 1),
               borderRadius: const BorderRadius.all(
                 Radius.circular(10),
               ),
@@ -327,6 +327,6 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
         ],
       ),
     );
-    ;
+    
   }
 }

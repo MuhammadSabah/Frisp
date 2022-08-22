@@ -11,7 +11,7 @@ import 'package:food_recipe_final/src/view/screens/search_user_screen.dart';
 import 'package:provider/provider.dart';
 
 class FeedScreen extends StatefulWidget {
-   FeedScreen({Key? key}) : super(key: key);
+  const FeedScreen({Key? key}) : super(key: key);
 
   @override
   State<FeedScreen> createState() => _FeedScreenState();

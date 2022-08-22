@@ -1,12 +1,10 @@
 import 'dart:async';
-import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
-import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:food_recipe_final/src/view/screens/edit_profile_screen.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_back_button.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_cached_background_photo.dart';
@@ -16,9 +14,9 @@ import 'package:food_recipe_final/src/view/widgets/profile_messages_button.dart'
 import 'package:food_recipe_final/src/view/widgets/profile_post_section.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_send_message_button.dart';
 import 'package:food_recipe_final/src/view/widgets/profile_settings_button.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({Key? key, required this.userId}) : super(key: key);
   String? userId;
@@ -27,40 +25,11 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  Uint8List? _image;
   bool _isLoadingProfile = false;
   String imageUrl = 'assets/default_image.jpg';
   Future<DocumentSnapshot<Map<String, dynamic>>>? futureResult;
 
-  //
-  // void selectAnImage(BuildContext context) async {
-  //   final imageProvider =
-  //       Provider.of<UserImageProvider>(context, listen: false);
-
-  //   setState(() {
-  //     _isLoadingProfile = true;
-  //   });
-
-  //   final result = await imageProvider.pickAnImage(ImageSource.gallery);
-
-  //   result.fold((l) async {
-  //     setState(() {
-  //       _image = l;
-  //     });
-  //     String downloadUrl = await imageProvider.uploadAnImageToStorage(
-  //         fileName: 'profilePictures', file: _image!, isPost: false);
-  //     await imageProvider.updateUserProfilePhoto(downloadUrl);
-  //     setState(() {
-  //       _isLoadingProfile = false;
-  //     });
-  //   }, (r) {
-  //     setState(() {
-  //       _isLoadingProfile = false;
-  //     });
-  //   });
-  // }
-
-  //
+  
   @override
   void initState() {
     super.initState();

@@ -40,7 +40,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         _image = l;
       });
     }, (r) {
-      print(r.toString());
+      debugPrint(r.toString());
     });
   }
 

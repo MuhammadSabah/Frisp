@@ -21,16 +21,6 @@ class BookmarkManager extends BookmarkInterface {
   }
 
   //
-  @override
-  Future<List<RecipeModel>> findAllRecipes() {
-    return Future.value(_currentRecipes);
-  }
-
-  @override
-  Future<RecipeModel> findRecipeById(int id) {
-    return Future.value(
-        _currentRecipes.firstWhere((recipe) => recipe.id == id));
-  }
 
   @override
   Future<void> insertRecipe(RecipeModel recipe) async {

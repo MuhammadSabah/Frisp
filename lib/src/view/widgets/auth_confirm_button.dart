@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
-import 'package:provider/provider.dart';
 
 class AuthConfirmButton extends StatelessWidget {
   const AuthConfirmButton({

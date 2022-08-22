@@ -68,7 +68,6 @@ class _SearchTabState extends State<SearchTab>
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         final query = snapshot.data;
         if (snapshot.connectionState == ConnectionState.waiting) {
-          print('SNAPSHOT DATA: $snapshot.data');
           return GridView.builder(
             physics: const BouncingScrollPhysics(),
             itemCount: 10,

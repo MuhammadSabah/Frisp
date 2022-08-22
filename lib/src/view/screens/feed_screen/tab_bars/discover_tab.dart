@@ -18,10 +18,10 @@ class _DiscoverTabState extends State<DiscoverTab>
     return ListView(
       scrollDirection: Axis.vertical,
       children: [
-        FeaturedRecipesListView(),
-        TodayRecipesListView(),
+        const FeaturedRecipesListView(),
+        const TodayRecipesListView(),
         CategoryListView(),
-        PopularRecipesListView(),
+        const PopularRecipesListView(),
       ],
     );
   }

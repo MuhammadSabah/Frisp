@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class ShoppingScreen extends StatefulWidget {
-  ShoppingScreen({Key? key}) : super(key: key);
+  const ShoppingScreen({Key? key}) : super(key: key);
 
   @override
   State<ShoppingScreen> createState() => _ShoppingScreenState();

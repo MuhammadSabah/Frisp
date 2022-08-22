@@ -1,4 +1,11 @@
 {
-  "cSpell.words": ["ARGB", "Cupertino", "Glassmorphic", "prefs", "signup"],
+  "cSpell.words": [
+    "ARGB",
+    "Cupertino",
+    "Glassmorphic",
+    "prefs",
+    "signup",
+    "sqlbrite"
+  ],
   "java.configuration.updateBuildConfiguration": "interactive"
 }

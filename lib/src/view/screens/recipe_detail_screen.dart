@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/repository/bookmark_interface.dart';
 import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
@@ -10,11 +9,10 @@ import 'package:food_recipe_final/src/view/widgets/ingredients_section.dart';
 import 'package:food_recipe_final/src/view/widgets/instructions_section.dart';
 import 'package:food_recipe_final/src/view/widgets/nutritions_section.dart';
 import 'package:food_recipe_final/src/view/widgets/servings_and_ready_in_section.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class RecipeDetailScreen extends StatefulWidget {
-  RecipeDetailScreen({Key? key, required this.recipe}) : super(key: key);
+  const RecipeDetailScreen({Key? key, required this.recipe}) : super(key: key);
   final RecipeModel recipe;
 
   @override

@@ -190,16 +190,16 @@ class _LoginFormState extends State<LoginForm> {
                 FocusManager.instance.primaryFocus?.unfocus();
                 final isValidForm = widget.formKey.currentState!.validate();
                 if (isValidForm) {
-                  final _output = await appState.logInUser(
+                  final output = await appState.logInUser(
                     userEmail: widget.emailController.text.trim(),
                     userPassword: widget.passwordController.text,
                   );
                   await userProvider.refreshUser();
 
-                  if (_output != null) {
+                  if (output != null) {
                     Get.snackbar(
                       'Error',
-                      _output,
+                      output,
                       snackPosition: SnackPosition.TOP,
                       forwardAnimationCurve: Curves.elasticInOut,
                       reverseAnimationCurve: Curves.easeOut,

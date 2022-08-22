@@ -44,6 +44,7 @@ class ShoppingItemScreen extends StatefulWidget {
         super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ShoppingItemScreenState createState() => _ShoppingItemScreenState();
 }
 
@@ -220,6 +221,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             if (value.length > 55) {
               return 'Name is too long';
             }
+            return null;
           },
           style: Theme.of(context).textTheme.headline3,
           autofocus: false,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/core/constants.dart';
 
 class NutritionsSection extends StatelessWidget {
   const NutritionsSection({

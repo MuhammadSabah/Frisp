@@ -125,6 +125,7 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
                                 if (value!.length >= 10) {
                                   return 'Too much';
                                 }
+                                return null;
                               },
                               style: Theme.of(context)
                                   .textTheme
