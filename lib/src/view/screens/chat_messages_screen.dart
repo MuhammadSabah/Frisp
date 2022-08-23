@@ -24,16 +24,18 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
   final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
+    String? currentUserEmail = FirebaseAuth.instance.currentUser!.email;
+    String? userEmail = widget.user.email;
     streamResult = _firestore
         .collection('messages')
         .where(
-          'currentUserId',
-          whereIn: [FirebaseAuth.instance.currentUser!.uid, widget.user.id],
+          userEmail,
+          isEqualTo: true,
         )
-        // .where(
-        //   'oppositeUserId',
-        //   whereIn: [FirebaseAuth.instance.currentUser!.uid, widget.user.id],
-        // )
+        .where(
+          currentUserEmail!,
+          isEqualTo: true,
+        )
         .get()
         .then(
           (snapshot) => {
@@ -101,34 +103,13 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
       body: Column(
         children: [
           Expanded(
-            child:
-                FutureBuilder<Set<Stream<QuerySnapshot<Map<String, dynamic>>>>>(
-              future: streamResult,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (snapshot.data == null || !snapshot.hasData) {
-                  return const Center(
-                    child: Text('No data!'),
-                  );
-                }
-                if (snapshot.hasError) {
-                  return const Center(
-                    child: Text('Error occurred!'),
-                  );
-                } else {
-                  return Align(
-                    alignment: Alignment.center,
-                    child: MessagesList(
-                      scrollController: _scrollController,
-                      messagesSnapshots: [...snapshot.data!][0],
-                    ),
-                  );
-                }
-              },
+            child: Align(
+              alignment: Alignment.center,
+              child: MessagesList(
+                scrollController: _scrollController,
+                userId: widget.user.id,
+                currentUserId: FirebaseAuth.instance.currentUser!.uid,
+              ),
             ),
           ),
           // Text Input

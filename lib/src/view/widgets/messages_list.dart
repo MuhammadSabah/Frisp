@@ -8,17 +8,21 @@ import 'package:food_recipe_final/src/view/widgets/sender_message_bubble.dart';
 class MessagesList extends StatefulWidget {
   const MessagesList({
     Key? key,
-    required this.messagesSnapshots,
     required this.scrollController,
+    required this.userId,
+    required this.currentUserId,
   }) : super(key: key);
-  final Stream<QuerySnapshot<Map<String, dynamic>>> messagesSnapshots;
   final ScrollController scrollController;
+  final String userId;
+  final String currentUserId;
 
   @override
   State<MessagesList> createState() => _MessagesListState();
 }
 
 class _MessagesListState extends State<MessagesList> {
+  static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  Stream<QuerySnapshot<Map<String, dynamic>>>? streamResult;
   void _scrollToBottom() {
     if (widget.scrollController.hasClients) {
       widget.scrollController
@@ -28,6 +32,14 @@ class _MessagesListState extends State<MessagesList> {
 
   @override
   void initState() {
+    streamResult = _firestore
+        .collection('users')
+        .doc(widget.currentUserId)
+        .collection('contacts')
+        .doc(widget.userId)
+        .collection('messages')
+        .orderBy('sentAt', descending: false)
+        .snapshots();
     WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
     super.initState();
   }
@@ -35,7 +47,7 @@ class _MessagesListState extends State<MessagesList> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-      stream: widget.messagesSnapshots,
+      stream: streamResult,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(

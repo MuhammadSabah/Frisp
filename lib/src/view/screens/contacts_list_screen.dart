@@ -61,13 +61,18 @@ class ContactsListScreen extends StatelessWidget {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (snapshot.data == null) {
+          } else if (snapshot.data == null || !snapshot.hasData) {
             return const Center(
               child: Text("You don't have any contact"),
             );
           } else if (snapshot.hasError) {
             return const Center(
               child: Text('Error occurred!'),
+            );
+          }
+          if (snapshot.data!.docs.isEmpty) {
+            return const Center(
+              child: Text("You don't have any contact"),
             );
           }
           final contactUsersList = snapshot.data!.docs;

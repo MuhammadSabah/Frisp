@@ -8,13 +8,14 @@ import 'package:uuid/uuid.dart';
 class MessageProvider extends ChangeNotifier {
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   static final FirebaseAuth _auth = FirebaseAuth.instance;
-  CollectionReference? chatCollection;
 
   Future<void> createUserContactsCollection({
     required UserModel user,
     required UserModel currentUser,
   }) async {
     try {
+      String userEmail = user.email;
+      String currentUserEmail = currentUser.email;
       CollectionReference userContactsCollection =
           _firestore.collection('users').doc(user.id).collection('contacts');
       //
@@ -61,26 +62,43 @@ class MessageProvider extends ChangeNotifier {
           );
 
       //********************************************* */
-      CollectionReference messagesCollection =
-          _firestore.collection('messages');
+
       //
-      String messageId = const Uuid().v1();
-      chatCollection = _firestore
-          .collection('messages')
-          .doc(messageId)
-          .collection('chatMessages');
-      //
-      messagesCollection.doc(messageId).set({
-        'currentUserId': currentUser.id,
-        'oppositeUserId': user.id,
-      });
+      // String messageId = const Uuid().v1();
+      // //
+      // final messagesDocuments = messagesCollection.doc(messageId);
+      // messagesDocuments.get().then(
+      //       (snapshot) => {
+      //         if (!snapshot.exists)
+      //           {
+      //             messagesCollection.doc(messageId).set({
+      //               userEmail: true,
+      //               currentUserEmail: true,
+      //             }),
+      //           }
+      //       },
+      //     );
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
   void sendMessage(
-      Message message, String oppositeUserId, String currentUserId) {
-    chatCollection!.add(message.toJson());
+      Message message, String oppositeUserId, String currentUserId) async {
+    await _firestore
+        .collection('users')
+        .doc(currentUserId)
+        .collection('contacts')
+        .doc(oppositeUserId)
+        .collection('messages')
+        .add(message.toJson());
+    //
+    await _firestore
+        .collection('users')
+        .doc(oppositeUserId)
+        .collection('contacts')
+        .doc(currentUserId)
+        .collection('messages')
+        .add(message.toJson());
   }
 }
