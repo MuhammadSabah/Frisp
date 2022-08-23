@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_recipe_final/src/models/message.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
-import 'package:uuid/uuid.dart';
 
 class MessageProvider extends ChangeNotifier {
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -14,8 +13,6 @@ class MessageProvider extends ChangeNotifier {
     required UserModel currentUser,
   }) async {
     try {
-      String userEmail = user.email;
-      String currentUserEmail = currentUser.email;
       CollectionReference userContactsCollection =
           _firestore.collection('users').doc(user.id).collection('contacts');
       //
@@ -60,24 +57,6 @@ class MessageProvider extends ChangeNotifier {
                 }
             },
           );
-
-      //********************************************* */
-
-      //
-      // String messageId = const Uuid().v1();
-      // //
-      // final messagesDocuments = messagesCollection.doc(messageId);
-      // messagesDocuments.get().then(
-      //       (snapshot) => {
-      //         if (!snapshot.exists)
-      //           {
-      //             messagesCollection.doc(messageId).set({
-      //               userEmail: true,
-      //               currentUserEmail: true,
-      //             }),
-      //           }
-      //       },
-      //     );
     } catch (e) {
       debugPrint(e.toString());
     }

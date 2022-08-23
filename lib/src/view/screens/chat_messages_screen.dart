@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
@@ -18,36 +17,7 @@ class ChatMessagesScreen extends StatefulWidget {
 
 class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
   final TextEditingController _sendMessageController = TextEditingController();
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  // Future<QuerySnapshot<Map<String, dynamic>>>? futureResult;
-  Future<Set<Stream<QuerySnapshot<Map<String, dynamic>>>>>? streamResult;
   final ScrollController _scrollController = ScrollController();
-  @override
-  void initState() {
-    String? currentUserEmail = FirebaseAuth.instance.currentUser!.email;
-    String? userEmail = widget.user.email;
-    streamResult = _firestore
-        .collection('messages')
-        .where(
-          userEmail,
-          isEqualTo: true,
-        )
-        .where(
-          currentUserEmail!,
-          isEqualTo: true,
-        )
-        .get()
-        .then(
-          (snapshot) => {
-            snapshot.docs[0].reference
-                .collection('chatMessages')
-                .orderBy('sentAt', descending: false)
-                .snapshots(),
-          },
-        );
-
-    super.initState();
-  }
 
   void _scrollToBottom() {
     if (_scrollController.hasClients) {
