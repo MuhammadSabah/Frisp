@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
@@ -235,13 +236,10 @@ class _RecipePostCardState extends State<RecipePostCard> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
+                        Navigator.pushNamed(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => RecipePostDetailScreen(
-                              recipePost: widget.post,
-                            ),
-                          ),
+                          AppPages.recipePostDetails,
+                          arguments: widget.post,
                         );
                       },
                       child: Material(
@@ -432,13 +430,12 @@ class _RecipePostCardState extends State<RecipePostCard> {
                             IconButton(
                               splashRadius: 20,
                               onPressed: () {
-                                Navigator.push(
+                                Navigator.pushNamed(
                                   context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CommentsScreen(
-                                            recipePost: widget.post,
-                                          )),
+                                  AppPages.commentsPath,
+                                  arguments: widget.post,
                                 );
+                              
                               },
                               icon: Icon(
                                 Icons.comment,

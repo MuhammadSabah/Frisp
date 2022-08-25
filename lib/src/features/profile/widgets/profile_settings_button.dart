@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/features/settings/screens/settings_screen.dart';
 
@@ -10,12 +11,11 @@ class ProfileSettingsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        Navigator.push(
+         Navigator.pushNamed(
           context,
-          MaterialPageRoute(
-            builder: (context) => SettingsScreen(),
-          ),
+          AppPages.settingsPath,
         );
+     
       },
       splashRadius: 20,
       icon: CircleAvatar(

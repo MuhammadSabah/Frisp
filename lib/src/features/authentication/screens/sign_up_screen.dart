@@ -4,13 +4,7 @@ import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/features/authentication/widgets/sign_up_form.dart';
 
 class SignUpScreen extends StatefulWidget {
-  static MaterialPage page() {
-    return MaterialPage(
-      name: AppPages.signupPath,
-      key: ValueKey(AppPages.signupPath),
-      child: const SignUpScreen(),
-    );
-  }
+
 
   const SignUpScreen({Key? key}) : super(key: key);
 

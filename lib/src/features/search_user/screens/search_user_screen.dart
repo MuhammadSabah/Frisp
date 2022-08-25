@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/features/profile/screens/profile_screen.dart';
@@ -199,13 +200,12 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                                 if (user.userName.isEmpty) {
                                   return InkWell(
                                     onTap: () {
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (context) => ProfileScreen(
-                                            userId: user.id,
-                                          ),
-                                        ),
+                                      Navigator.pushNamed(
+                                        context,
+                                        AppPages.profilePath,
+                                        arguments: user.id,
                                       );
+                                    
                                     },
                                     child: ListTile(
                                       leading: ClipRRect(

@@ -15,13 +15,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class CreateRecipePostScreen extends StatefulWidget {
-  static MaterialPage page() {
-    return MaterialPage(
-      name: AppPages.createPostRecipePath,
-      key: ValueKey(AppPages.createPostRecipePath),
-      child: const CreateRecipePostScreen(),
-    );
-  }
+
 
   const CreateRecipePostScreen({Key? key}) : super(key: key);
 

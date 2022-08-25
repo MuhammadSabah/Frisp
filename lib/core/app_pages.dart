@@ -1,13 +1,19 @@
 class AppPages {
-  static String home = '/';
-  static String splashPath = '/splash';
-  static String signupPath = '/signup';
-  static String loginPath = '/login';
-  static String onboardingPath = '/onboarding';
-  static String recipeDetails = '/detail';
-  static String shoppingItemDetails = '/item';
-  static String settingsPath = '/settings';
-  static String commentsPath = '/comments';
-  static String createPostRecipePath = '/createRecipePost';
-  static String loadingPath = '/loading';
+  static const String splashPath = '/splash';
+  static const String home = '/';
+  static const String onboardingPath = '/onboarding';
+  static const String signupPath = '/signup';
+  static const String loginPath = '/login';
+  static const String recipeDetails = '/recipeDetail';
+  static const String recipePostDetails = '/recipePostDetail';
+  static const String postDetails = '/postDetail';
+  static const String shoppingItemDetails = '/item';
+  static const String settingsPath = '/settings';
+  static const String commentsPath = '/comments';
+  static const String createPostRecipePath = '/createRecipePost';
+  static const String profilePath = '/profile';
+  static const String editProfilePath = '/editProfile';
+  static const String contactsPath = '/contacts';
+  static const String chatPath = '/chat';
+  static const String searchUserPath = '/searchUser';
 }

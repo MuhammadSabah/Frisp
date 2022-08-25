@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/features/chat/screens/contacts_list_screen.dart';
 
 class ProfileMessageButton extends StatelessWidget {
   const ProfileMessageButton({Key? key, required this.userId})
@@ -12,11 +12,9 @@ class ProfileMessageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        Navigator.push(
+        Navigator.pushNamed(
           context,
-          MaterialPageRoute(
-            builder: (context) => const ContactsListScreen(),
-          ),
+          AppPages.contactsPath,
         );
       },
       splashRadius: 20,

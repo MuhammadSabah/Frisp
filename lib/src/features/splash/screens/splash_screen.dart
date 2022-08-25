@@ -8,13 +8,7 @@ import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
-  // static MaterialPage page() {
-  //   return MaterialPage(
-  //     name: AppPages.splashPath,
-  //     key: ValueKey(AppPages.splashPath),
-  //     child: const SplashScreen(),
-  //   );
-  // }
+
 
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -25,10 +19,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
-    final appStateManager =
-        Provider.of<AppStateManager>(context, listen: false);
     final userState = Provider.of<AppStateManager>(context, listen: false);
     return Scaffold(
         body: StreamBuilder<User?>(

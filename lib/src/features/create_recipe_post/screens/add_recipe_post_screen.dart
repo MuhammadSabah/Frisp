@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/src/features/create_recipe_post/screens/create_recipe_post_screen.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 
 class AddRecipePostScreen extends StatelessWidget {
   const AddRecipePostScreen({Key? key}) : super(key: key);
@@ -11,13 +11,8 @@ class AddRecipePostScreen extends StatelessWidget {
           child: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CreateRecipePostScreen(),
-                        ),
-                      );
-
+            Navigator.pushNamed(context, AppPages.createPostRecipePath);
+       
           },
           child: const Text(
             'Share your recipe',

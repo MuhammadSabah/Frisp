@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/firebase_options.dart';
 import 'package:food_recipe_final/src/features/bookmark/repository/bookmark_interface.dart';
@@ -12,6 +13,7 @@ import 'package:food_recipe_final/src/providers/shopping_manager.dart';
 import 'package:food_recipe_final/src/features/splash/screens/splash_screen.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
+import 'package:food_recipe_final/src/route/route_generator.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -43,16 +45,10 @@ class _MyAppState extends State<MyApp> {
   final _appStateManager = AppStateManager();
   final _shoppingManager = ShoppingManager();
   final _userProvider = UserProvider();
-  // late AppRouter _appRouter;
 
   @override
   void initState() {
     super.initState();
-    // _appRouter = AppRouter(
-    //   userProvider: _userProvider,
-    //   appStateManager: _appStateManager,
-    //   shoppingManager: _shoppingManager,
-    // );
   }
 
   @override
@@ -101,6 +97,8 @@ class _MyAppState extends State<MyApp> {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             theme: theme,
+            initialRoute: AppPages.splashPath,
+            onGenerateRoute: RouteGenerator.generateRoute,
             home: const SplashScreen(),
           );
         },

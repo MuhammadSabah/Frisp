@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/log_in_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/widgets/auth_bottom_rich_text.dart';
@@ -275,11 +276,7 @@ class _SignupFormState extends State<SignupForm> {
                             userPassword: widget.passwordController.text,
                           );
                           if (output == null) {
-                            navigator.push(
-                              MaterialPageRoute(
-                                builder: (context) => const LogInScreen(),
-                              ),
-                            );
+                            navigator.pushNamed(AppPages.loginPath);
                           }
                           setState(() {
                             _isLoading = false;
@@ -304,12 +301,7 @@ class _SignupFormState extends State<SignupForm> {
                       detailText: 'Already have account? ',
                       clickableText: 'Log in',
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LogInScreen(),
-                          ),
-                        );
+                        Navigator.pushNamed(context, AppPages.loginPath);
                       },
                     ),
                   ],

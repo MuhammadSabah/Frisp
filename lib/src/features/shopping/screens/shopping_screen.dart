@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
 import 'package:food_recipe_final/src/features/shopping/screens/empty_shopping_screen.dart';
 import 'package:food_recipe_final/src/features/shopping/screens/shopping_item_screen.dart';
@@ -35,11 +36,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         ),
         onPressed: () {
           shoppingManager.createNewItem();
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ShoppingItemScreen(),
-              ));
+          Navigator.pushNamed(context, AppPages.shoppingItemDetails);
         },
         icon: const FaIcon(
           FontAwesomeIcons.plus,

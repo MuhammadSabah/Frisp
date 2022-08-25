@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/features/recipe_feed/screens/discover_tab.dart';
@@ -89,12 +90,9 @@ class _FeedScreenState extends State<FeedScreen>
                               IconButton(
                                 splashRadius: 20,
                                 onPressed: () {
-                                  Navigator.push(
+                                  Navigator.pushNamed(
                                     context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SearchUserScreen(),
-                                    ),
+                                    AppPages.searchUserPath,
                                   );
                                 },
                                 icon: FaIcon(

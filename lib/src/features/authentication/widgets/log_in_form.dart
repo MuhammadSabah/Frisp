@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 
 import 'package:food_recipe_final/src/features/home/screens/home_screen.dart';
@@ -42,7 +43,7 @@ class _LoginFormState extends State<LoginForm> {
       children: [
         SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(18.0).copyWith(top:0),
+            padding: const EdgeInsets.all(18.0).copyWith(top: 0),
             child: Form(
               key: widget.formKey,
               child: SingleChildScrollView(
@@ -215,12 +216,7 @@ class _LoginFormState extends State<LoginForm> {
                           );
                           await userProvider.refreshUser();
                           if (output == null) {
-                            navigator.push(
-                              MaterialPageRoute(
-                                builder: (context) =>const  HomeScreen(
-                                ),
-                              ),
-                            );
+                            navigator.pushNamed(AppPages.home);
                           }
                           setState(() {
                             _isLoading = false;

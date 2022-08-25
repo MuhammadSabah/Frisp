@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/message_provider.dart';
@@ -21,14 +22,11 @@ class ProfileSendMessageButton extends StatelessWidget {
         Provider.of<MessageProvider>(context, listen: false);
     return IconButton(
       onPressed: () async {
-        Navigator.push(
+        Navigator.pushNamed(
           context,
-          MaterialPageRoute(
-            builder: (context) => ChatMessagesScreen(
-              user: user,
-            ),
-          ),
+          AppPages.chatPath,
         );
+     
         await messageProvider.createUserContactsCollection(
           user: user,
           currentUser: currentUser!,

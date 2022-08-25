@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/features/chat/screens/chat_messages_screen.dart';
@@ -90,14 +91,12 @@ class ContactsListScreen extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.push(
+                        Navigator.pushNamed(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => ChatMessagesScreen(
-                              user: contactUser,
-                            ),
-                          ),
+                          AppPages.chatPath,
+                          arguments: contactUser,
                         );
+                     
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 4.0),

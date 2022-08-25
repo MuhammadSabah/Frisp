@@ -4,13 +4,7 @@ import 'package:food_recipe_final/src/features/authentication/widgets/log_in_for
 import 'package:food_recipe_final/core/app_pages.dart';
 
 class LogInScreen extends StatefulWidget {
-  static MaterialPage page() {
-    return MaterialPage(
-      name: AppPages.loginPath,
-      key: ValueKey(AppPages.loginPath),
-      child: const LogInScreen(),
-    );
-  }
+
 
   const LogInScreen({Key? key}) : super(key: key);
 

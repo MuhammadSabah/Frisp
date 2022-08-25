@@ -10,13 +10,7 @@ import 'package:websafe_svg/websafe_svg.dart';
 // ignore: must_be_immutable
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
-  static MaterialPage page() {
-    return MaterialPage(
-      name: AppPages.settingsPath,
-      key: ValueKey(AppPages.settingsPath),
-      child: SettingsScreen(),
-    );
-  }
+
 
   bool switchValue = true;
   @override
@@ -37,7 +31,7 @@ class SettingsScreen extends StatelessWidget {
         leading: IconButton(
           splashRadius: 20,
           onPressed: () {
-          Navigator.pop(context);
+            Navigator.pop(context);
           },
           icon: Icon(
             Icons.arrow_back,
@@ -287,12 +281,8 @@ class SettingsScreen extends StatelessWidget {
               onTap: () {
                 FocusManager.instance.primaryFocus?.unfocus();
                 appStateProvider.logOutUser();
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LogInScreen(),
-                  ),
-                );
+                Navigator.pushReplacementNamed(context, AppPages.loginPath);
+              
                 Get.snackbar(
                   '⚠️',
                   'Logged Out',

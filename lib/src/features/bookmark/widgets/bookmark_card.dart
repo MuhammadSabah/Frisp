@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
 import 'package:food_recipe_final/src/features/bookmark/screens/recipe_detail_screen.dart';
@@ -34,13 +35,9 @@ class _BookmarkCardState extends State<BookmarkCard> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return RecipeDetailScreen(
-                          recipe: widget.recipe,
-                        );
-                      },
-                    ));
+                    Navigator.pushNamed(context, AppPages.recipeDetails,
+                        arguments: widget.recipe);
+                 
                   },
                   child: SizedBox(
                     height: 120,

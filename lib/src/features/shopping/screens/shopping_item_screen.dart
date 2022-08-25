@@ -5,41 +5,19 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
-import 'package:food_recipe_final/src/features/shopping/screens/shopping_screen.dart';
 import 'package:food_recipe_final/src/features/shopping/widgets/shopping_tile.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class ShoppingItemScreen extends StatefulWidget {
-  // final Function(ShoppingItem) onCreate;
-  // final Function(ShoppingItem, int) onUpdate;
   final ShoppingItem? originalItem;
   final int index;
   final bool isUpdating;
 
-  // static MaterialPage page({
-  //   ShoppingItem? item,
-  //   int index = -1,
-  //   required Function(ShoppingItem) onCreate,
-  //   required Function(ShoppingItem, int) onUpdate,
-  // }) {
-  //   return MaterialPage(
-  //     name: AppPages.shoppingItemDetails,
-  //     key: ValueKey(AppPages.shoppingItemDetails),
-  //     child: ShoppingItemScreen(
-  //       originalItem: item,
-  //       index: index,
-  //       onCreate: onCreate,
-  //       onUpdate: onUpdate,
-  //     ),
-  //   );
-  // }
 
   const ShoppingItemScreen({
     Key? key,
-    // required this.onCreate,
-    // required this.onUpdate,
     this.originalItem,
     this.index = -1,
   })  : isUpdating = (originalItem != null),
