@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import 'package:food_recipe_final/src/models/data_class_models/steps_model.dart';
 
+// ignore: must_be_immutable
 class InstructionModel extends Equatable {
   List<StepsModel>? steps;
   InstructionModel({

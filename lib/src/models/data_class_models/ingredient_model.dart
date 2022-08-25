@@ -1,6 +1,7 @@
 
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class IngredientModel extends Equatable {
   int? id;
   String? name;

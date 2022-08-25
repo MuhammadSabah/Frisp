@@ -9,7 +9,6 @@ import 'package:uuid/uuid.dart';
 
 class UserImageProvider with ChangeNotifier {
   final FirebaseAuth _userAuth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
   Future<Either<Uint8List, String>> pickAnImage(ImageSource source) async {

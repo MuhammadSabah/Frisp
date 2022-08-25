@@ -9,8 +9,6 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
-import 'package:food_recipe_final/src/features/comment/screens/comments_screen.dart';
-import 'package:food_recipe_final/src/features/recipe_feed/widgets/recipe_post_detail_screen.dart';
 import 'package:food_recipe_final/src/features/recipe_feed/widgets/animated_like_button.dart';
 import 'package:food_recipe_final/src/features/search_recipe/widgets/custom_drop_down.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';

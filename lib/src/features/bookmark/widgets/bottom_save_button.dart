@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
-import 'package:provider/provider.dart';
 
 class BottomSaveButton extends StatefulWidget {
   const BottomSaveButton({Key? key, this.callBack}) : super(key: key);
@@ -15,8 +13,6 @@ class BottomSaveButton extends StatefulWidget {
 class _BottomSaveButtonState extends State<BottomSaveButton> {
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: Material(

@@ -287,7 +287,6 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
       value = value.trim();
       if (!_previousSearches.contains(value) &&
           value.isNotEmpty &&
-          value != null &&
           value != '' &&
           value != ' ') {
         FocusScope.of(context).unfocus();

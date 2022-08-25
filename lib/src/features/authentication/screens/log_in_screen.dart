@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/src/features/authentication/widgets/log_in_form.dart';
-import 'package:food_recipe_final/core/app_pages.dart';
 
 class LogInScreen extends StatefulWidget {
 

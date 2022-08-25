@@ -1,6 +1,7 @@
 
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class NutrientsModel extends Equatable {
   String? name;
   double? amount;

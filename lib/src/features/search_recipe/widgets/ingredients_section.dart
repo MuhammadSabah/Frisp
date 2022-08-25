@@ -31,7 +31,7 @@ class IngredientsSection extends StatelessWidget {
               shrinkWrap: true,
               itemCount: ingredients.length,
               itemBuilder: (context, index) {
-                int i = index + 1;
+                // int i = index + 1;
                 return Row(
                   textBaseline: TextBaseline.alphabetic,
                   crossAxisAlignment: CrossAxisAlignment.baseline,

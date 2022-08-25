@@ -3,7 +3,6 @@ import 'package:food_recipe_final/core/app_pages.dart';
 
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
 import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
-import 'package:food_recipe_final/src/features/bookmark/screens/recipe_detail_screen.dart';
 import 'package:food_recipe_final/src/features/search_recipe/widgets/recipe_card.dart';
 
 class RecipeGridView extends StatefulWidget {

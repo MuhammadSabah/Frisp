@@ -5,7 +5,6 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/message_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
-import 'package:food_recipe_final/src/features/chat/screens/chat_messages_screen.dart';
 import 'package:provider/provider.dart';
 
 class ProfileSendMessageButton extends StatelessWidget {

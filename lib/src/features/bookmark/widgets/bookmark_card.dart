@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
-import 'package:food_recipe_final/src/features/bookmark/screens/recipe_detail_screen.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:provider/provider.dart';
 

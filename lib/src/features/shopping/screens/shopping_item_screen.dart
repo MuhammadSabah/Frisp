@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
@@ -515,6 +514,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                 if (value!.length >= 5) {
                   return 'Too much';
                 }
+                return null;
               },
               keyboardType: TextInputType.number,
               style: Theme.of(context).textTheme.headline3,

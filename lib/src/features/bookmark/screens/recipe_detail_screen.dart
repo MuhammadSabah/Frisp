@@ -8,7 +8,6 @@ import 'package:food_recipe_final/src/features/search_recipe/widgets/ingredients
 import 'package:food_recipe_final/src/features/search_recipe/widgets/instructions_section.dart';
 import 'package:food_recipe_final/src/features/search_recipe/widgets/nutritions_section.dart';
 import 'package:food_recipe_final/src/features/search_recipe/widgets/servings_and_ready_in_section.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:provider/provider.dart';
 
 class RecipeDetailScreen extends StatefulWidget {
@@ -59,8 +58,6 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
 
     tagsMap!.removeWhere((key, value) => value == false);
     keysList = tagsMap!.keys.toList();
-    final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
     return Theme(
       data: Theme.of(context).copyWith(useMaterial3: false),
       child: Scaffold(

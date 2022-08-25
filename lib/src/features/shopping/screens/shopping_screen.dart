@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/shopping_manager.dart';
 import 'package:food_recipe_final/src/features/shopping/screens/empty_shopping_screen.dart';
-import 'package:food_recipe_final/src/features/shopping/screens/shopping_item_screen.dart';
 import 'package:food_recipe_final/src/features/shopping/screens/shopping_list_screen.dart';
 import 'package:provider/provider.dart';
 

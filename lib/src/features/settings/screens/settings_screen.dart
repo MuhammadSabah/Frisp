@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
-import 'package:food_recipe_final/src/features/authentication/screens/log_in_screen.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:websafe_svg/websafe_svg.dart';

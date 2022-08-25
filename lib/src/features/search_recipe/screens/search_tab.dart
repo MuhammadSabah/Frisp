@@ -27,7 +27,6 @@ class _SearchTabState extends State<SearchTab>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
         Provider.of<SettingsManager>(context, listen: false);
     final size = MediaQuery.of(context).size;
     double itemWidth = (size.width / 2) - 10;

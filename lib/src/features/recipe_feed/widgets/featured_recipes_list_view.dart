@@ -12,6 +12,7 @@ class FeaturedRecipesListView extends StatefulWidget {
 }
 
 class _FeaturedRecipesListViewState extends State<FeaturedRecipesListView> {
+  // ignore: prefer_typing_uninitialized_variables
   var pageController;
 
   List<String> titles = [

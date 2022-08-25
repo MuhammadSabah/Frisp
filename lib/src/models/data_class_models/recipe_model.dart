@@ -5,6 +5,7 @@ import 'package:food_recipe_final/src/models/data_class_models/ingredient_model.
 import 'package:food_recipe_final/src/models/data_class_models/instruction_model.dart';
 import 'package:food_recipe_final/src/models/data_class_models/nutrition_model.dart';
 
+// ignore: must_be_immutable
 class RecipeModel extends Equatable {
   int? id;
   bool? vegetarian;

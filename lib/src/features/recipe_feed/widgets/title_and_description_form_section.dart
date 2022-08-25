@@ -185,6 +185,7 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
                               if (value!.length >= 20) {
                                 return 'Too much';
                               }
+                              return null;
                             },
                             keyboardType: TextInputType.visiblePassword,
                             style: Theme.of(context)

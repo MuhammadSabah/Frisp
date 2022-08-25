@@ -6,7 +6,6 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/features/recipe_feed/screens/discover_tab.dart';
 import 'package:food_recipe_final/src/features/recipe_feed/screens/activity_tab.dart';
-import 'package:food_recipe_final/src/features/search_user/screens/search_user_screen.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';

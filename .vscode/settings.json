@@ -3,9 +3,11 @@
     "ARGB",
     "Cupertino",
     "Glassmorphic",
+    "horiz",
     "prefs",
     "signup",
-    "sqlbrite"
+    "sqlbrite",
+    "xmark"
   ],
   "java.configuration.updateBuildConfiguration": "interactive"
 }
