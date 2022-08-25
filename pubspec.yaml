@@ -96,6 +96,9 @@ flutter:
     - google_fonts/
     - assets/images/
     - assets/
+    - assets/food/feature/
+    - assets/food/today/
+    - assets/food/popular/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

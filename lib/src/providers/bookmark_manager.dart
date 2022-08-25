@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:food_recipe_final/src/repository/bookmark_interface.dart';
+import 'package:food_recipe_final/src/features/bookmark/repository/bookmark_interface.dart';
 import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
 
 class BookmarkManager extends BookmarkInterface {
@@ -19,8 +19,6 @@ class BookmarkManager extends BookmarkInterface {
         _recipeStreamController.stream as Stream<List<RecipeModel>>;
     return _recipeStream!;
   }
-
-  //
 
   @override
   Future<void> insertRecipe(RecipeModel recipe) async {

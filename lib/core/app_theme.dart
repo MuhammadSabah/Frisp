@@ -148,7 +148,8 @@ class AppTheme {
         ),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: Colors.white70,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         unselectedItemColor: Colors.black,
         selectedItemColor: kOrangeColor,
         selectedLabelStyle: GoogleFonts.poppins(
@@ -228,7 +229,8 @@ class AppTheme {
         ),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: kBlackColor,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         unselectedItemColor: Colors.white,
         selectedItemColor: kOrangeColor,
         selectedLabelStyle: GoogleFonts.poppins(

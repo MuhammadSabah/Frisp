@@ -14,14 +14,23 @@ class RecipePostProvider extends ChangeNotifier {
   int _recipePostLength = 0;
   int get getRecipePostLength => _recipePostLength;
   void updateRecipePostInfo(String? userId) async {
-    QuerySnapshot<Map<String, dynamic>> recipePostSnapshots =
-        await FirebaseFirestore.instance
+    Stream<QuerySnapshot<Map<String, dynamic>>> recipePostSnapshots =
+        FirebaseFirestore.instance
             .collection('posts')
             .where('uid', isEqualTo: userId)
-            .get();
-    if (recipePostSnapshots.docs.isNotEmpty) {
-      _recipePostLength = recipePostSnapshots.docs.length;
-    }
+            .snapshots();
+    recipePostSnapshots.listen((event) {
+      if (event.docs.isEmpty) {
+        {
+          _recipePostLength = 0;
+        }
+      } else {
+        {
+          _recipePostLength = event.docs.length;
+        }
+      }
+      notifyListeners();
+    });
     notifyListeners();
   }
 

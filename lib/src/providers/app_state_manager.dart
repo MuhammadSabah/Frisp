@@ -17,36 +17,19 @@ class AppStateManager extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _userAuth = FirebaseAuth.instance;
   bool _initialized = false;
-  bool _loggedIn = false;
-  bool _signedUp = false;
   bool _onboardingComplete = false;
-  bool _settings = false;
-  bool _logOut = false;
 
-  bool _createRecipePost = false;
   int _selectedTab = AppTab.discover;
   final _appCache = AppCache();
   UserModel? user;
 
   bool get isInitialized => _initialized;
-  bool get isLoggedIn => _loggedIn;
-  bool get isSignedUp => _signedUp;
-  bool get didLogout => _logOut;
   bool get isOnboardingComplete => _onboardingComplete;
   int get selectedTab => _selectedTab;
-  bool get isSettingsClicked => _settings;
-  bool get didCreateRecipePost => _createRecipePost;
 
-  void initializeApp(bool loginVal, bool signupVal) async {
+  void initializeApp() async {
     debugPrint(_userAuth.currentUser.toString());
-    if (_userAuth.currentUser == null) {
-      _loggedIn = loginVal;
-      _signedUp = signupVal;
-      _signedUp = await _appCache.isUserSignedUp();
-      _loggedIn = await _appCache.isUserLoggedIn();
-    }
-    _signedUp = await _appCache.isUserSignedUp();
-    _loggedIn = await _appCache.isUserLoggedIn();
+    
     _onboardingComplete = await _appCache.didCompleteOnboarding();
 
     Timer(
@@ -58,36 +41,15 @@ class AppStateManager extends ChangeNotifier {
     );
   }
 
-  void settingsClicked(bool value) {
-    _settings = value;
-    notifyListeners();
-  }
 
-  void createRecipePostClicked(bool value) {
-    _createRecipePost = value;
-    notifyListeners();
-  }
 
-  void loggedOutState(bool value) {
-    _logOut = value;
-    notifyListeners();
-  }
 
-  void goToLogIn() async {
-    _signedUp = true;
-    _loggedIn = false;
-    await _appCache.cacheUserSignup();
-    await _appCache.cacheUserLogin();
-    notifyListeners();
-  }
 
-  void goToSignUp() async {
-    _signedUp = false;
-    _loggedIn = false;
-    await _appCache.cacheUserSignup();
-    await _appCache.cacheUserLogin();
-    notifyListeners();
-  }
+
+
+
+
+
 
   Future<String?> signUpUser({
     required userName,
@@ -125,8 +87,7 @@ class AppStateManager extends ChangeNotifier {
           .set(user!.toJson());
       //
       notifyListeners();
-      _signedUp = true;
-      await _appCache.cacheUserSignup();
+
       return null;
       //
     } on FirebaseAuthException catch (e) {
@@ -139,7 +100,6 @@ class AppStateManager extends ChangeNotifier {
       } else {
         debugPrint(e.toString());
       }
-      _signedUp = false;
       return errorResult;
     } catch (e) {
       return e.toString();
@@ -158,8 +118,7 @@ class AppStateManager extends ChangeNotifier {
       );
 
       //
-      _loggedIn = true;
-      await _appCache.cacheUserLogin();
+
       notifyListeners();
       return null;
       //
@@ -171,7 +130,7 @@ class AppStateManager extends ChangeNotifier {
       } else if (e.code == 'invalid-email') {
         errorResult = 'Invalid email.';
       }
-      _loggedIn = false;
+
       return errorResult;
     } catch (e) {
       return e.toString();
@@ -191,13 +150,10 @@ class AppStateManager extends ChangeNotifier {
 
   void logOutUser() async {
     await _userAuth.signOut();
-    _settings = false;
     _initialized = false;
-    _createRecipePost = false;
     _selectedTab = 0;
-    _logOut = true;
     await _appCache.invalidate();
-    initializeApp(false, false);
+    initializeApp();
     notifyListeners();
   }
 }
