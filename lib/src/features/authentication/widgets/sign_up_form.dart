@@ -204,9 +204,11 @@ class _SignupFormState extends State<SignupForm> {
                               IconButton(
                                 splashRadius: 20,
                                 onPressed: () {
-                                  setState(() {
-                                    _obscureText = !_obscureText;
-                                  });
+                                  if (mounted) {
+                                    setState(() {
+                                      _obscureText = !_obscureText;
+                                    });
+                                  }
                                 },
                                 icon: _obscureText
                                     ? FaIcon(
@@ -268,9 +270,11 @@ class _SignupFormState extends State<SignupForm> {
                         final isValidForm =
                             widget.formKey.currentState!.validate();
                         if (isValidForm) {
-                          setState(() {
-                            _isLoading = true;
-                          });
+                          if (mounted) {
+                            setState(() {
+                              _isLoading = true;
+                            });
+                          }
                           final output = await Provider.of<AppStateManager>(
                                   context,
                                   listen: false)
@@ -282,9 +286,11 @@ class _SignupFormState extends State<SignupForm> {
                           if (output == null) {
                             navigator.pushNamed(AppPages.loginPath);
                           }
-                          setState(() {
-                            _isLoading = false;
-                          });
+                          if (mounted) {
+                            setState(() {
+                              _isLoading = false;
+                            });
+                          }
                           if (output != null) {
                             Get.snackbar(
                               'Error',

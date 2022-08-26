@@ -28,9 +28,11 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Future<void> checkFollowingState(String? userId) async {
-    setState(() {
-      _isLoading = true;
-    });
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+      });
+    }
     UserModel? user;
     DocumentSnapshot<Map<String, dynamic>> userSnapshot =
         await _firestore.collection('users').doc(userId).get();
@@ -44,9 +46,11 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
         _isFollowing = false;
       }
     }
-    setState(() {
-      _isLoading = false;
-    });
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override

@@ -112,7 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               children: [
                                 SizedBox(
                                   height:
-                                      MediaQuery.of(context).size.height / 2,
+                                      MediaQuery.of(context).size.height / 1.9,
                                   child: Stack(
                                     children: [
                                       user.photoUrl == ""

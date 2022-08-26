@@ -62,9 +62,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       await imageProvider.pickAnImage(ImageSource.camera);
 
                   result.fold((l) {
-                    setState(() {
-                      _imageFile = l;
-                    });
+                    if (mounted) {
+                      setState(() {
+                        _imageFile = l;
+                      });
+                    }
                   }, (r) {
                     // Do nothing.
                     debugPrint(result.toString());
@@ -83,9 +85,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       await imageProvider.pickAnImage(ImageSource.gallery);
 
                   result.fold((l) {
-                    setState(() {
-                      _imageFile = l;
-                    });
+                    if (mounted) {
+                      setState(() {
+                        _imageFile = l;
+                      });
+                    }
                   }, (r) {
                     // Do nothing.
                     debugPrint(result.toString());
@@ -131,9 +135,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         Provider.of<UserImageProvider>(context, listen: false);
     final settingsManager =
         Provider.of<SettingsManager>(context, listen: false);
-    setState(() {
-      _isLoading = true;
-    });
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+      });
+    }
     String? downloadUrl;
     if (_imageFile != null) {
       downloadUrl = await imageProvider.uploadAnImageToStorage(
@@ -147,9 +153,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         'bio': _aboutController.text,
       },
     );
-    setState(() {
-      _isLoading = false;
-    });
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
     FocusManager.instance.primaryFocus?.unfocus();
     Get.snackbar(
       '✅',
@@ -379,9 +387,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             margin: const EdgeInsets.only(top: 24),
                             child: BottomSaveButton(
                               callBack: () async {
-                                await updateProfileInfo(context).then(
-                                  (value) => Navigator.pop(context, 'SaveData'),
-                                );
+                                await updateProfileInfo(context).then((value) {
+                                  if (mounted) {
+                                    Navigator.pop(context);
+                                  }
+                                });
                               },
                             ),
                           ),

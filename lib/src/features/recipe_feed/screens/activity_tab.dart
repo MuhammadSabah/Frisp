@@ -21,18 +21,16 @@ class _ActivityTabState extends State<ActivityTab>
   void initState() {
     print(widget.user!.following);
     super.initState();
-    streamResult = FirebaseFirestore.instance
-        .collection('posts')
-        // .where('uid', whereIn: widget.user!.following)
-        .snapshots();
+    // streamResult =
   }
 
   Future<void> refreshTab() async {
     await Future.delayed(const Duration(milliseconds: 2500), () {
       streamResult = FirebaseFirestore.instance
           .collection('posts')
-          .where('uid', whereIn: widget.user!.following)
+          // .where('uid', whereIn: widget.user!.following)
           .snapshots();
+      Provider.of<UserProvider>(context, listen: false).refreshUser();
       setState(() {});
     });
   }
@@ -41,7 +39,7 @@ class _ActivityTabState extends State<ActivityTab>
   // ignore: must_call_super
   Widget build(BuildContext context) {
     UserModel? userProvider =
-        Provider.of<UserProvider>(context, listen: false).getUser;
+        Provider.of<UserProvider>(context, listen: true).getUser;
     return RefreshIndicator(
       onRefresh: refreshTab,
       color: kOrangeColor,
@@ -49,7 +47,10 @@ class _ActivityTabState extends State<ActivityTab>
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-            stream: streamResult,
+            stream: FirebaseFirestore.instance
+                .collection('posts')
+                // .where('uid', whereIn: widget.user!.following)
+                .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const SizedBox();
@@ -81,11 +82,11 @@ class _ActivityTabState extends State<ActivityTab>
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: ((context, index) {
+                    RecipePostModel post = RecipePostModel.fromSnapshot(
+                        snapshot.data!.docs[index]);
                     return RecipePostCard(
                       user: userProvider,
-                      post: RecipePostModel.fromSnapshot(
-                        snapshot.data!.docs[index],
-                      ),
+                      post: post,
                     );
                   }),
                 );

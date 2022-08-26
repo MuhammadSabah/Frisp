@@ -287,7 +287,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                               child: ClipRect(
                                 child: BackdropFilter(
                                   filter:
-                                      ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                                      ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                                   child: Container(
                                     // 3.2 is the image height.
                                     height: (screenHeight / 3.2) / 4.3,
