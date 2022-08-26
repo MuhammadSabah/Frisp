@@ -68,7 +68,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                             .headline1!
                             .copyWith(fontSize: 32),
                       ),
-                      const SizedBox(height: 32),
+                      const SizedBox(height: 26),
                       RichText(
                         textAlign: TextAlign.left,
                         text: TextSpan(
@@ -76,13 +76,15 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                               'Please enter your registered email address. An email notification with a password reset link will then be sent to you.',
                           style:
                               Theme.of(context).textTheme.headline4!.copyWith(
-                                    color: Colors.white54,
+                                    color: settingsManager.darkMode
+                                        ? Colors.white54
+                                        : Colors.black,
                                     fontSize: 16,
                                     height: 1.5,
                                   ),
                         ),
                       ),
-                      const SizedBox(height: 34),
+                      const SizedBox(height: 24),
                       Container(
                         decoration: const BoxDecoration(
                             borderRadius: BorderRadius.all(
@@ -133,7 +135,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 18),
+                      const SizedBox(height: 6),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Material(
@@ -153,8 +155,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                 final output = await appState.forgetPassword(
                                   email: _emailController.text.trim(),
                                 );
-                                if(output==null){
-                                   Get.snackbar(
+                                if (output == null) {
+                                  Get.snackbar(
                                     'Successful',
                                     'Email sent!',
                                     snackPosition: SnackPosition.TOP,
@@ -165,7 +167,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                         : Colors.black,
                                   );
                                 }
-                                  
+
                                 setState(() {
                                   _isLoading = false;
                                 });
@@ -214,7 +216,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           ),
                         ),
                       ),
-                      const Spacer(flex: 6),
+                      const Spacer(flex: 7),
                     ],
                   ),
                 ),

@@ -283,13 +283,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                     builder: (context, AsyncSnapshot snapshot) {
                                       if (snapshot.connectionState ==
                                           ConnectionState.waiting) {
-                                        return const Center(
-                                          child: SizedBox(
-                                            height: 15,
-                                            width: 15,
-                                            child: CircularProgressIndicator(),
-                                          ),
-                                        );
+                                        return const Text('0');
                                       } else if (snapshot.hasError) {
                                         return const Center(
                                           child: Text('⚠️'),

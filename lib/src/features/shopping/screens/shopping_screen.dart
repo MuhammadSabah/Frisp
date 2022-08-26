@@ -44,6 +44,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         ),
       ),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: null,
         elevation: 0,
         centerTitle: true,
         bottom: PreferredSize(

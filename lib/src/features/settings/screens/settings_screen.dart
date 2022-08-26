@@ -110,7 +110,9 @@ class SettingsScreen extends StatelessWidget {
               thickness: 1.1,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, AppPages.forgetPasswordPath);
+              },
               child: Ink(
                 height: MediaQuery.of(context).size.height / 14,
                 child: Row(
