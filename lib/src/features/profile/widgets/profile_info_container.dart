@@ -169,9 +169,11 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                           followId: widget.userId!,
                                           currentUser: widget.user,
                                         );
-                                        setState(() {
-                                          _isFollowing = true;
-                                        });
+                                        if (mounted) {
+                                          setState(() {
+                                            _isFollowing = true;
+                                          });
+                                        }
                                       },
                                       child: Container(
                                         width: 110,
@@ -217,9 +219,11 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                           followId: widget.userId!,
                                           currentUser: widget.user,
                                         );
-                                        setState(() {
-                                          _isFollowing = false;
-                                        });
+                                        if (mounted) {
+                                          setState(() {
+                                            _isFollowing = false;
+                                          });
+                                        }
                                       },
                                       child: Container(
                                         width: 110,

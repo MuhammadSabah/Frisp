@@ -109,8 +109,11 @@ class RouteGenerator {
         );
       case AppPages.forgetPasswordPath:
         return MaterialPageRoute(
-          builder: (context) => const ForgetPasswordScreen(),
+          builder: (context) => ForgetPasswordScreen(
+            isForget: args as bool,
+          ),
         );
+
       default:
         return _errorRoute();
     }

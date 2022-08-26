@@ -20,10 +20,8 @@ class UserProvider extends ChangeNotifier {
     UserModel? userModel;
     final currentUser = _auth.currentUser;
     if (currentUser != null) {
-      DocumentSnapshot userSnapshot = await _firestore
-          .collection('users')
-          .doc(_auth.currentUser!.uid)
-          .get();
+      DocumentSnapshot userSnapshot =
+          await _firestore.collection('users').doc(currentUser.uid).get();
       if (userSnapshot.exists) {
         userModel = UserModel.fromSnapshot(userSnapshot);
       } else {
@@ -37,7 +35,7 @@ class UserProvider extends ChangeNotifier {
     UserModel? user = await getUserFromDocument();
     if (user != null) {
       _user = user;
+      notifyListeners();
     }
-    notifyListeners();
   }
 }

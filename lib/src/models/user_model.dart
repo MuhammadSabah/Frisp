@@ -6,8 +6,8 @@ class UserModel {
   final String email;
   final String photoUrl;
   final String bio;
-  final List followers;
-  final List following;
+  List followers = [''];
+  List following = [''];
   DocumentReference? reference;
 
   UserModel({

@@ -38,7 +38,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
     final settingsManager =
         Provider.of<SettingsManager>(context, listen: false);
     final userProvider = Provider.of<UserProvider>(context);
-    Provider.of<UserProvider>(context, listen: false).refreshUser();
+
     UserModel? user = userProvider.getUser;
     final postProvider = Provider.of<RecipePostProvider>(context);
     double screenHeight = MediaQuery.of(context).size.height;
@@ -433,7 +433,6 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                   AppPages.commentsPath,
                                   arguments: widget.post,
                                 );
-                              
                               },
                               icon: Icon(
                                 Icons.comment,

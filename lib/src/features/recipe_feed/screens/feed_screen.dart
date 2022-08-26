@@ -24,8 +24,8 @@ class _FeedScreenState extends State<FeedScreen>
   late TabController _tabController;
   @override
   void initState() {
-    super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    super.initState();
   }
 
   @override
@@ -178,9 +178,9 @@ class _FeedScreenState extends State<FeedScreen>
                       width: MediaQuery.of(context).size.width,
                       child: TabBarView(
                         controller: _tabController,
-                        children: const [
-                          ActivityTab(),
-                          DiscoverTab(),
+                        children: [
+                          ActivityTab(user: user),
+                          const DiscoverTab(),
                         ],
                       ),
                     )),

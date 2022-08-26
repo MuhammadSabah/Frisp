@@ -7,8 +7,9 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({Key? key}) : super(key: key);
-
+  const ForgetPasswordScreen({Key? key, required this.isForget})
+      : super(key: key);
+  final bool isForget;
   @override
   State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
 }
@@ -62,7 +63,9 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     children: [
                       const Spacer(),
                       Text(
-                        'Forget Password?',
+                        widget.isForget
+                            ? 'Forget Password?'
+                            : 'Change Password',
                         style: Theme.of(context)
                             .textTheme
                             .headline1!

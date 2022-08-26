@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/features/authentication/widgets/log_in_form.dart';
 
 class LogInScreen extends StatefulWidget {
-
-
   const LogInScreen({Key? key}) : super(key: key);
 
   @override
@@ -18,9 +17,9 @@ class _LogInScreenState extends State<LogInScreen> {
 
   @override
   void initState() {
-    super.initState();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+    super.initState();
   }
 
   @override
@@ -43,7 +42,7 @@ class _LogInScreenState extends State<LogInScreen> {
           leading: IconButton(
             splashRadius: 20,
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pushNamed(context, AppPages.signupPath);
             },
             icon: FaIcon(
               FontAwesomeIcons.arrowLeft,

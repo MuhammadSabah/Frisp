@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
           );
         } else if (snapshot.hasError) {
           return const ErrorScreen();
-        } else if (!snapshot.hasData || snapshot.data == null) {
+        } else if (snapshot.data == null) {
           return const SignUpScreen();
         }
         userState.initializeApp();

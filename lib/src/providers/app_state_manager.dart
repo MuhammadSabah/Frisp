@@ -17,29 +17,18 @@ class AppTab {
 class AppStateManager extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _userAuth = FirebaseAuth.instance;
-  bool _initialized = false;
   bool _onboardingComplete = false;
 
   int _selectedTab = AppTab.discover;
   final _appCache = AppCache();
   UserModel? user;
 
-  bool get isInitialized => _initialized;
   bool get isOnboardingComplete => _onboardingComplete;
   int get selectedTab => _selectedTab;
 
   void initializeApp() async {
     debugPrint(_userAuth.currentUser.toString());
-
     _onboardingComplete = await _appCache.didCompleteOnboarding();
-
-    Timer(
-      const Duration(milliseconds: 2200),
-      () {
-        _initialized = true;
-        notifyListeners();
-      },
-    );
   }
 
   Future<String?> signUpUser({
@@ -141,7 +130,6 @@ class AppStateManager extends ChangeNotifier {
 
   Future<void> logOutUser() async {
     await _userAuth.signOut();
-    _initialized = false;
     _selectedTab = 0;
     await _appCache.invalidate();
     initializeApp();
@@ -173,6 +161,5 @@ class AppStateManager extends ChangeNotifier {
     } catch (e) {
       return e.toString();
     }
-    return errorResult;
   }
 }

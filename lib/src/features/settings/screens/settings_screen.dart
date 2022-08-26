@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:websafe_svg/websafe_svg.dart';
@@ -14,7 +15,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appStateProvider =
-        Provider.of<AppStateManager>(context, listen: false);
+        Provider.of<AppStateManager>(context, listen: true);
     final settingsManager =
         Provider.of<SettingsManager>(context, listen: false);
     Color kGreyColorShade =
@@ -25,6 +26,7 @@ class SettingsScreen extends StatelessWidget {
         settingsManager.darkMode ? Colors.white : Colors.black;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
           splashRadius: 20,
@@ -111,7 +113,8 @@ class SettingsScreen extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, AppPages.forgetPasswordPath);
+                Navigator.pushNamed(context, AppPages.forgetPasswordPath,
+                    arguments: false);
               },
               child: Ink(
                 height: MediaQuery.of(context).size.height / 14,
@@ -278,10 +281,10 @@ class SettingsScreen extends StatelessWidget {
               thickness: 1.1,
             ),
             InkWell(
-              onTap: () async {
+              onTap: () {
                 final navigator = Navigator.of(context);
                 FocusManager.instance.primaryFocus?.unfocus();
-                await appStateProvider.logOutUser();
+                appStateProvider.logOutUser();
                 navigator.pushNamedAndRemoveUntil(
                     AppPages.loginPath, (route) => false);
 

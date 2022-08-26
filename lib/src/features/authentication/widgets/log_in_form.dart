@@ -201,7 +201,8 @@ class _LoginFormState extends State<LoginForm> {
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               Navigator.pushNamed(
-                                  context, AppPages.forgetPasswordPath);
+                                  context, AppPages.forgetPasswordPath,
+                                  arguments: true);
                             },
                         ),
                       ),
@@ -250,7 +251,7 @@ class _LoginFormState extends State<LoginForm> {
                       detailText: 'Don\'t have account? ',
                       clickableText: 'Sign up',
                       onTap: () {
-                        Navigator.of(context).pop();
+                        Navigator.pushNamed(context, AppPages.signupPath);
                       },
                     ),
                   ],
