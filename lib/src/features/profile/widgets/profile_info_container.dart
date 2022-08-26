@@ -285,21 +285,18 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                           ConnectionState.waiting) {
                                         return const Center(
                                           child: SizedBox(
-                                             height: 8,
-                                                  width: 8,
-                                            child: LinearProgressIndicator(
-                                              color: kOrangeColor,
-                                              backgroundColor: Colors.white,
-                                            ),
+                                            height: 15,
+                                            width: 15,
+                                            child: CircularProgressIndicator(),
                                           ),
                                         );
                                       } else if (snapshot.hasError) {
                                         return const Center(
-                                          child: Text('Error occurred!'),
+                                          child: Text('⚠️'),
                                         );
                                       } else if (snapshot.data == null) {
                                         return const Center(
-                                          child: Text('No Data!'),
+                                          child: Text('0'),
                                         );
                                       } else {
                                         return Text(snapshot.data.docs.length

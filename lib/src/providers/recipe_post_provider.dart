@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_recipe_final/src/models/comment_model.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';

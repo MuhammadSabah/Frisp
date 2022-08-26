@@ -152,6 +152,7 @@ class AppStateManager extends ChangeNotifier {
     String errorResult = 'Error Occurred';
     try {
       await _userAuth.sendPasswordResetEmail(email: email);
+      return null;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'missing-continue-uri') {
         errorResult = 'Missing continue uri.';
@@ -167,6 +168,7 @@ class AppStateManager extends ChangeNotifier {
         errorResult = 'Unauthorized continue URI.';
       }
 
+      notifyListeners();
       return errorResult;
     } catch (e) {
       return e.toString();

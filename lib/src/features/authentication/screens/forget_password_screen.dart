@@ -153,7 +153,19 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                 final output = await appState.forgetPassword(
                                   email: _emailController.text.trim(),
                                 );
-
+                                if(output==null){
+                                   Get.snackbar(
+                                    'Successful',
+                                    'Email sent!',
+                                    snackPosition: SnackPosition.TOP,
+                                    forwardAnimationCurve: Curves.elasticInOut,
+                                    reverseAnimationCurve: Curves.easeOut,
+                                    colorText: settingsManager.darkMode
+                                        ? Colors.white
+                                        : Colors.black,
+                                  );
+                                }
+                                  
                                 setState(() {
                                   _isLoading = false;
                                 });
