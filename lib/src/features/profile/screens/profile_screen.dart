@@ -35,31 +35,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    streamResult = streamResult = FirebaseFirestore.instance
-        .collection('users')
-        .where('id', isEqualTo: widget.userId)
-        .snapshots();
-    // FirebaseFirestore.instance.collection('users').doc(widget.userId).get();
-    // getUserData();
   }
 
-  Future<void> getUserData() async {
-    setState(() {
-      _isLoadingProfile = true;
-    });
-    try {
-      final recipePostProvider =
-          Provider.of<RecipePostProvider>(context, listen: false);
-      recipePostProvider.updateRecipePostInfo(widget.userId);
+  // Future<void> getUserData() async {
+  //   setState(() {
+  //     _isLoadingProfile = true;
+  //   });
+  //   try {
+  //     final recipePostProvider =
+  //         Provider.of<RecipePostProvider>(context, listen: false);
+  //     recipePostProvider.updateRecipePostInfo(widget.userId);
 
-      setState(() {});
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-    setState(() {
-      _isLoadingProfile = false;
-    });
-  }
+  //     setState(() {});
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //   }
+  //   setState(() {
+  //     _isLoadingProfile = false;
+  //   });
+  // }
 
   Future<void> _refresh() async {
     await Future.delayed(const Duration(milliseconds: 2500), () {
@@ -67,7 +61,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           .collection('users')
           .where('id', isEqualTo: widget.userId)
           .snapshots();
-      getUserData();
       setState(() {});
     });
   }
@@ -90,7 +83,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   physics: const AlwaysScrollableScrollPhysics(),
                   child: SafeArea(
                     child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                      stream: streamResult,
+                      stream: streamResult = FirebaseFirestore.instance
+                          .collection('users')
+                          .where('id', isEqualTo: widget.userId)
+                          .snapshots(),
                       builder: (context, AsyncSnapshot snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {

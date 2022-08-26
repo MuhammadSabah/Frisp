@@ -274,9 +274,38 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500),
                                   ),
-                                  Text(
-                                    recipePostProvider.getRecipePostLength
-                                        .toString(),
+                                  StreamBuilder<
+                                      QuerySnapshot<Map<String, dynamic>>>(
+                                    stream: FirebaseFirestore.instance
+                                        .collection('posts')
+                                        .where('uid', isEqualTo: widget.userId)
+                                        .snapshots(),
+                                    builder: (context, AsyncSnapshot snapshot) {
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return const Center(
+                                          child: SizedBox(
+                                             height: 8,
+                                                  width: 8,
+                                            child: LinearProgressIndicator(
+                                              color: kOrangeColor,
+                                              backgroundColor: Colors.white,
+                                            ),
+                                          ),
+                                        );
+                                      } else if (snapshot.hasError) {
+                                        return const Center(
+                                          child: Text('Error occurred!'),
+                                        );
+                                      } else if (snapshot.data == null) {
+                                        return const Center(
+                                          child: Text('No Data!'),
+                                        );
+                                      } else {
+                                        return Text(snapshot.data.docs.length
+                                            .toString());
+                                      }
+                                    },
                                   ),
                                 ],
                               ),
@@ -327,6 +356,5 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
         ],
       ),
     );
-    
   }
 }

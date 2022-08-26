@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_recipe_final/src/models/comment_model.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
@@ -9,28 +10,19 @@ import 'package:uuid/uuid.dart';
 
 class RecipePostProvider extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  int _recipePostLength = 0;
-  int get getRecipePostLength => _recipePostLength;
-  void updateRecipePostInfo(String? userId) async {
-    Stream<QuerySnapshot<Map<String, dynamic>>> recipePostSnapshots =
-        FirebaseFirestore.instance
-            .collection('posts')
-            .where('uid', isEqualTo: userId)
-            .snapshots();
-    recipePostSnapshots.listen((event) {
-      if (event.docs.isEmpty) {
-        {
-          _recipePostLength = 0;
-        }
-      } else {
-        {
-          _recipePostLength = event.docs.length;
-        }
-      }
-      notifyListeners();
-    });
-    notifyListeners();
-  }
+  // int _recipePostLength = 0;
+  // int get getRecipePostLength => _recipePostLength;
+  // void updateRecipePostInfo(String? userId) async {
+  //   QuerySnapshot<Map<String, dynamic>> recipePostSnapshots =
+  //       await FirebaseFirestore.instance
+  //           .collection('posts')
+  //           .where('uid', isEqualTo: userId)
+  //           .get();
+  //   if (recipePostSnapshots.docs.isNotEmpty) {
+  //     _recipePostLength = recipePostSnapshots.docs.length;
+  //   }
+  //   notifyListeners();
+  // }
 
   Future<String?> uploadRecipePost({
     required String uid,

@@ -10,7 +10,6 @@ import 'package:websafe_svg/websafe_svg.dart';
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
 
-
   bool switchValue = true;
   @override
   Widget build(BuildContext context) {
@@ -277,11 +276,13 @@ class SettingsScreen extends StatelessWidget {
               thickness: 1.1,
             ),
             InkWell(
-              onTap: () {
+              onTap: () async {
+                final navigator = Navigator.of(context);
                 FocusManager.instance.primaryFocus?.unfocus();
-                appStateProvider.logOutUser();
-                Navigator.pushReplacementNamed(context, AppPages.loginPath);
-              
+                await appStateProvider.logOutUser();
+                navigator.pushNamedAndRemoveUntil(
+                    AppPages.loginPath, (route) => false);
+
                 Get.snackbar(
                   '⚠️',
                   'Logged Out',

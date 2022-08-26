@@ -18,6 +18,14 @@ class ProfilePostSection extends StatefulWidget {
 
 class _ProfilePostSectionState extends State<ProfilePostSection> {
   Stream<QuerySnapshot<Map<String, dynamic>>>? streamResult;
+  @override
+  void initState() {
+    streamResult = FirebaseFirestore.instance
+        .collection('posts')
+        .where('uid', isEqualTo: widget.userId)
+        .snapshots();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +35,7 @@ class _ProfilePostSectionState extends State<ProfilePostSection> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 25),
       child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        stream: FirebaseFirestore.instance
-            .collection('posts')
-            .where('uid', isEqualTo: widget.userId)
-            .snapshots(),
+        stream: streamResult,
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return GridView.builder(

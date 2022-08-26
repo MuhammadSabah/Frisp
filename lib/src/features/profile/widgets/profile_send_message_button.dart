@@ -24,8 +24,9 @@ class ProfileSendMessageButton extends StatelessWidget {
         Navigator.pushNamed(
           context,
           AppPages.chatPath,
+          arguments: user,
         );
-     
+
         await messageProvider.createUserContactsCollection(
           user: user,
           currentUser: currentUser!,

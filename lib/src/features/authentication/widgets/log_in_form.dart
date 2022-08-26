@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
@@ -42,7 +43,7 @@ class _LoginFormState extends State<LoginForm> {
       children: [
         SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(18.0).copyWith(top: 0),
+            padding: const EdgeInsets.all(18.0).copyWith(top: 8),
             child: Form(
               key: widget.formKey,
               child: SingleChildScrollView(
@@ -189,12 +190,20 @@ class _LoginFormState extends State<LoginForm> {
                     const SizedBox(height: 6),
                     Align(
                       alignment: Alignment.centerRight,
-                      child: Text(
-                        'Forget Password?',
-                        style: Theme.of(context).textTheme.headline4!.copyWith(
-                              color: Colors.white54,
-                              fontSize: 14,
-                            ),
+                      child: RichText(
+                        text: TextSpan(
+                          text: 'Forget Password?',
+                          style:
+                              Theme.of(context).textTheme.headline4!.copyWith(
+                                    color: Colors.white54,
+                                    fontSize: 14,
+                                  ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(
+                                  context, AppPages.forgetPasswordPath);
+                            },
+                        ),
                       ),
                     ),
                     const SizedBox(height: 40),
@@ -215,7 +224,8 @@ class _LoginFormState extends State<LoginForm> {
                           );
                           await userProvider.refreshUser();
                           if (output == null) {
-                            navigator.pushNamed(AppPages.home);
+                            navigator.pushNamedAndRemoveUntil(
+                                AppPages.home, (Route route) => false);
                           }
                           setState(() {
                             _isLoading = false;

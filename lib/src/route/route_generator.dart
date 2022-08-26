@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
+import 'package:food_recipe_final/src/features/authentication/screens/forget_password_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/log_in_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/sign_up_screen.dart';
 import 'package:food_recipe_final/src/features/bookmark/screens/recipe_detail_screen.dart';
@@ -105,6 +106,10 @@ class RouteGenerator {
           builder: (context) => RecipePostDetailScreen(
             recipePost: args as RecipePostModel,
           ),
+        );
+      case AppPages.forgetPasswordPath:
+        return MaterialPageRoute(
+          builder: (context) => const ForgetPasswordScreen(),
         );
       default:
         return _errorRoute();

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_cache.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
+import 'package:get/get_connect/http/src/interceptors/get_modifiers.dart';
 
 class AppTab {
   static const int discover = 0;
@@ -29,7 +30,7 @@ class AppStateManager extends ChangeNotifier {
 
   void initializeApp() async {
     debugPrint(_userAuth.currentUser.toString());
-    
+
     _onboardingComplete = await _appCache.didCompleteOnboarding();
 
     Timer(
@@ -40,16 +41,6 @@ class AppStateManager extends ChangeNotifier {
       },
     );
   }
-
-
-
-
-
-
-
-
-
-
 
   Future<String?> signUpUser({
     required userName,
@@ -148,12 +139,38 @@ class AppStateManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  void logOutUser() async {
+  Future<void> logOutUser() async {
     await _userAuth.signOut();
     _initialized = false;
     _selectedTab = 0;
     await _appCache.invalidate();
     initializeApp();
     notifyListeners();
+  }
+
+  Future<String?> forgetPassword({required String email}) async {
+    String errorResult = 'Error Occurred';
+    try {
+      await _userAuth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'missing-continue-uri') {
+        errorResult = 'Missing continue uri.';
+      } else if (e.code == 'user-not-found') {
+        errorResult = 'User is not registered.';
+      } else if (e.code == 'invalid-email') {
+        errorResult = 'Invalid email.';
+      } else if (e.code == 'missing-ios-bundle-id') {
+        errorResult = 'Missing iOS bundle id.';
+      } else if (e.code == 'invalid-continue-uri') {
+        errorResult = 'Invalid continue URI.';
+      } else if (e.code == 'unauthorized-continue-uri.') {
+        errorResult = 'Unauthorized continue URI.';
+      }
+
+      return errorResult;
+    } catch (e) {
+      return e.toString();
+    }
+    return errorResult;
   }
 }

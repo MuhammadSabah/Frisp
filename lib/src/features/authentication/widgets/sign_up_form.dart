@@ -45,7 +45,7 @@ class _SignupFormState extends State<SignupForm> {
       children: [
         SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(18.0).copyWith(top: 0),
+            padding: const EdgeInsets.all(18.0).copyWith(top: 8),
             child: Form(
               key: widget.formKey,
               child: SingleChildScrollView(
@@ -245,13 +245,18 @@ class _SignupFormState extends State<SignupForm> {
                     const SizedBox(height: 14),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Text(
-                        'By signing up you agree to our Terms of Use and Privacy Policy',
-                        style: Theme.of(context).textTheme.headline4!.copyWith(
-                              color: Colors.white54,
-                              fontSize: 14,
-                            ),
+                      child: RichText(
                         textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text:
+                              'By signing up you agree to our Terms of Use and Privacy Policy',
+                          style:
+                              Theme.of(context).textTheme.headline4!.copyWith(
+                                    color: Colors.white54,
+                                    fontSize: 14,
+                                    height: 1.6,
+                                  ),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 40),
