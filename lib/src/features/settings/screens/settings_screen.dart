@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
+import 'package:food_recipe_final/src/features/settings/widgets/settings_account_detail_button.dart';
+import 'package:food_recipe_final/src/features/settings/widgets/settings_back_button.dart';
+import 'package:food_recipe_final/src/features/settings/widgets/settings_change_password_button.dart';
+import 'package:food_recipe_final/src/features/settings/widgets/settings_log_out_button.dart';
+import 'package:food_recipe_final/src/features/settings/widgets/settings_theme_button.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
@@ -28,17 +33,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        leading: IconButton(
-          splashRadius: 20,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: settingsManager.darkMode ? Colors.white : Colors.black,
-            size: 24,
-          ),
-        ),
+        leading: const SettingsBackButton(),
         centerTitle: true,
         elevation: 0.0,
         bottomOpacity: 0.0,
@@ -58,10 +53,10 @@ class SettingsScreen extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 14.0),
         child: Column(
           children: [
-            InkWell(
+            SettingsThemeButton(
               onTap: () {
                 if (settingsManager.darkMode == true) {
                   settingsManager.setDarkMode(false);
@@ -69,99 +64,27 @@ class SettingsScreen extends StatelessWidget {
                   settingsManager.setDarkMode(true);
                 }
               },
-              child: Ink(
-                height: MediaQuery.of(context).size.height / 14,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Theme',
-                      style: Theme.of(context).textTheme.headline3!.copyWith(
-                            color: kGreyColorShade,
-                          ),
-                    ),
-                    // Switch.adaptive(
-                    //   value: settingsManager.darkMode,
-                    //   onChanged: (bool value) {
-                    //     settingsManager.setDarkMode(value);
-                    //   },
-                    // ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 4.0),
-                      child: AnimatedCrossFade(
-                        firstChild: WebsafeSvg.asset(
-                          'assets/sun.svg',
-                          color: Colors.white,
-                        ),
-                        secondChild: WebsafeSvg.asset(
-                          'assets/moon.svg',
-                          color: Colors.black,
-                        ),
-                        crossFadeState: settingsManager.darkMode == true
-                            ? CrossFadeState.showFirst
-                            : CrossFadeState.showSecond,
-                        duration: const Duration(milliseconds: 450),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              kGreyColorShade: kGreyColorShade,
             ),
             Divider(
               color: kDividerColor,
               thickness: 1.1,
             ),
-            InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, AppPages.forgetPasswordPath,
-                    arguments: false);
-              },
-              child: Ink(
-                height: MediaQuery.of(context).size.height / 14,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Change Password',
-                      style: Theme.of(context).textTheme.headline3!.copyWith(
-                            color: kGreyColorShade,
-                          ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: arrowForwardColor,
-                      size: 20,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            SettingsChangePasswordButton(
+                kGreyColorShade: kGreyColorShade,
+                arrowForwardColor: arrowForwardColor,
+                onTap: () {
+                  Navigator.pushNamed(context, AppPages.forgetPasswordPath,
+                      arguments: false);
+                }),
             Divider(
               color: kDividerColor,
               thickness: 1.1,
             ),
-            InkWell(
+            SettingsAccountDetailsButton(
+              kGreyColorShade: kGreyColorShade,
+              arrowForwardColor: arrowForwardColor,
               onTap: () {},
-              child: Ink(
-                height: MediaQuery.of(context).size.height / 14,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Account',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline3!
-                          .copyWith(color: kGreyColorShade),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: arrowForwardColor,
-                      size: 20,
-                    ),
-                  ],
-                ),
-              ),
             ),
             Divider(
               color: kDividerColor,
@@ -280,7 +203,9 @@ class SettingsScreen extends StatelessWidget {
               color: kDividerColor,
               thickness: 1.1,
             ),
-            InkWell(
+            SettingsLogoutButton(
+              kGreyColorShade: kGreyColorShade,
+              arrowForwardColor: arrowForwardColor,
               onTap: () {
                 final navigator = Navigator.of(context);
                 FocusManager.instance.primaryFocus?.unfocus();
@@ -298,26 +223,6 @@ class SettingsScreen extends StatelessWidget {
                       settingsManager.darkMode ? Colors.white : Colors.black,
                 );
               },
-              child: Ink(
-                height: MediaQuery.of(context).size.height / 14,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Log out',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline3!
-                          .copyWith(color: kGreyColorShade),
-                    ),
-                    Icon(
-                      Icons.logout,
-                      color: arrowForwardColor,
-                      size: 20,
-                    ),
-                  ],
-                ),
-              ),
             ),
             Divider(
               color: kDividerColor,

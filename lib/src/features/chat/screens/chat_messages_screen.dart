@@ -83,68 +83,71 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
             ),
           ),
           // Text Input
-          TextField(
-            textAlign: TextAlign.start,
-            textAlignVertical: TextAlignVertical.center,
-            style: Theme.of(context).textTheme.headline3!.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
-            controller: _sendMessageController,
-            cursorColor: kOrangeColor,
-            autofocus: false,
-            autocorrect: false,
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(
-              prefixIcon: IconButton(
-                splashRadius: 20,
-                onPressed: () async {},
-                icon: const Icon(
-                  Icons.emoji_emotions_outlined,
-                  color: kOrangeColor,
-                ),
-              ),
-              suffixIcon: IconButton(
-                splashRadius: 20,
-                onPressed: () async {
-                  // !: Send message.
-                  if (_sendMessageController.text.isNotEmpty) {
-                    final message = Message(
-                      userId: FirebaseAuth.instance.currentUser!.uid,
-                      messageText: _sendMessageController.text,
-                      sentAt: DateTime.now(),
-                    );
-                    messageProvider.sendMessage(
-                      message,
-                      widget.user.id,
-                      FirebaseAuth.instance.currentUser!.uid,
-                    );
-                    _sendMessageController.clear();
-                    _scrollToBottom();
-                  }
-                },
-                icon: const Icon(
-                  Icons.send,
-                  color: kOrangeColor,
-                ),
-              ),
-              counterText: ' ',
-              fillColor: settingsManager.darkMode ? kGreyColor : kGreyColor4,
-              filled: true,
-              isCollapsed: true,
-              contentPadding: const EdgeInsets.all(18),
-              hintText: 'Message...',
-              hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
-                    fontSize: 15,
-                    color: settingsManager.darkMode
-                        ? Colors.grey.shade600
-                        : Colors.grey.shade700,
-                    fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: TextField(
+              textAlign: TextAlign.start,
+              textAlignVertical: TextAlignVertical.center,
+              style: Theme.of(context).textTheme.headline3!.copyWith(
+                    fontWeight: FontWeight.w600,
                   ),
-              focusedErrorBorder: kFocusedErrorBorder,
-              errorBorder: kErrorBorder,
-              enabledBorder: kEnabledBorder,
-              focusedBorder: kFocusedBorder,
-              border: kBorder,
+              controller: _sendMessageController,
+              cursorColor: kOrangeColor,
+              autofocus: false,
+              autocorrect: false,
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                prefixIcon: IconButton(
+                  splashRadius: 20,
+                  onPressed: () async {},
+                  icon: const Icon(
+                    Icons.emoji_emotions_outlined,
+                    color: kOrangeColor,
+                  ),
+                ),
+                suffixIcon: IconButton(
+                  splashRadius: 20,
+                  onPressed: () async {
+                    // !: Send message.
+                    if (_sendMessageController.text.isNotEmpty) {
+                      final message = Message(
+                        userId: FirebaseAuth.instance.currentUser!.uid,
+                        messageText: _sendMessageController.text,
+                        sentAt: DateTime.now(),
+                      );
+                      messageProvider.sendMessage(
+                        message,
+                        widget.user.id,
+                        FirebaseAuth.instance.currentUser!.uid,
+                      );
+                      _sendMessageController.clear();
+                      _scrollToBottom();
+                    }
+                  },
+                  icon: const Icon(
+                    Icons.send,
+                    color: kOrangeColor,
+                  ),
+                ),
+                counterText: ' ',
+                fillColor: settingsManager.darkMode ? kGreyColor : kGreyColor4,
+                filled: true,
+                isCollapsed: true,
+                contentPadding: const EdgeInsets.all(18),
+                hintText: 'Message...',
+                hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
+                      fontSize: 15,
+                      color: settingsManager.darkMode
+                          ? Colors.grey.shade600
+                          : Colors.grey.shade700,
+                      fontWeight: FontWeight.bold,
+                    ),
+                focusedErrorBorder: kFocusedErrorBorder,
+                errorBorder: kErrorBorder,
+                enabledBorder: kEnabledBorder,
+                focusedBorder: kFocusedBorder,
+                border: kBorder,
+              ),
             ),
           ),
         ],

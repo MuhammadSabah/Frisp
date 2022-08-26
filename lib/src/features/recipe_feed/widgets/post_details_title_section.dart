@@ -61,6 +61,7 @@ class PostDetailTitleSection extends StatelessWidget {
               recipePost.title,
               style: Theme.of(context).textTheme.headline1!.copyWith(
                     fontSize: 24,
+                    height: 1.4,
                   ),
               maxLines: 4,
             ),

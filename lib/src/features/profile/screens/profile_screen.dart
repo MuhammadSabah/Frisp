@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
-import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/features/profile/screens/edit_profile_screen.dart';
 import 'package:food_recipe_final/src/features/profile/widgets/profile_back_button.dart';
 import 'package:food_recipe_final/src/features/profile/widgets/profile_cached_background_photo.dart';
@@ -14,7 +13,6 @@ import 'package:food_recipe_final/src/features/profile/widgets/profile_messages_
 import 'package:food_recipe_final/src/features/profile/widgets/profile_post_section.dart';
 import 'package:food_recipe_final/src/features/profile/widgets/profile_send_message_button.dart';
 import 'package:food_recipe_final/src/features/profile/widgets/profile_settings_button.dart';
-import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class ProfileScreen extends StatefulWidget {
