@@ -17,4 +17,6 @@ class AppPages {
   static const String chatPath = '/chat';
   static const String searchUserPath = '/searchUser';
   static const String forgetPasswordPath = '/forgetPassword';
+  static const String followersPath = '/followers';
+  static const String followingPath = '/following';
 }

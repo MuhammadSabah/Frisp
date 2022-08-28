@@ -1,15 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/models/user_model.dart';
-import 'package:food_recipe_final/src/features/profile/screens/profile_screen.dart';
+import 'package:food_recipe_final/src/features/search_user/widgets/user_search_result_list.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
 
 class SearchUserScreen extends StatefulWidget {
   const SearchUserScreen({Key? key}) : super(key: key);
@@ -160,387 +155,42 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                   ),
                   Expanded(
                     child: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                        future: futureResult,
-                        builder: (context, AsyncSnapshot snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                          if (snapshot.hasError) {
-                            return const Center(
-                              child: Text('Connection Error!'),
-                            );
-                          }
-                          if (snapshot.data == null) {
-                            return const Center(
-                              child: Text('No Data'),
-                            );
-                          }
-                          if (!snapshot.hasData) {
-                            return const Center(
-                              child: Text('No data!'),
-                            );
-                          }
-                          if (_searchUserController.text.isEmpty) {
-                            ListView.builder(
-                              itemCount: snapshot.data.docs.length,
-                              itemBuilder: (context, index) {
-                                UserModel user = UserModel.fromSnapshot(
-                                  snapshot.data.docs[index],
-                                );
-                                debugPrint(user.userName);
-                                if (user.id ==
-                                    FirebaseAuth.instance.currentUser!.uid) {
-                                  return const SizedBox();
-                                }
-                                if (user.userName.isEmpty) {
-                                  return InkWell(
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        AppPages.profilePath,
-                                        arguments: user.id,
-                                      );
-                                    },
-                                    child: ListTile(
-                                      leading: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                        child: CircleAvatar(
-                                          backgroundColor: Colors.white,
-                                          child: user.photoUrl == ""
-                                              ? Image.asset(
-                                                  'assets/default_image.jpg',
-                                                  fit: BoxFit.cover,
-                                                )
-                                              : CachedNetworkImage(
-                                                  imageUrl: user.photoUrl,
-                                                  fit: BoxFit.cover,
-                                                  errorWidget:
-                                                      (context, url, error) =>
-                                                          const Center(
-                                                    child: FaIcon(
-                                                        FontAwesomeIcons
-                                                            .circleExclamation),
-                                                  ),
-                                                  placeholder: (context, url) =>
-                                                      Shimmer.fromColors(
-                                                          baseColor: Colors
-                                                              .grey.shade400,
-                                                          highlightColor: Colors
-                                                              .grey.shade300,
-                                                          child: SizedBox(
-                                                              height: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .height /
-                                                                  3.3,
-                                                              width: double
-                                                                  .infinity)),
-                                                ),
-                                        ),
-                                      ),
-                                      title: Text(
-                                        user.userName,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText2!
-                                            .copyWith(
-                                              fontSize: 14,
-                                            ),
-                                      ),
-                                      subtitle: Text(
-                                        user.email,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline4!
-                                            .copyWith(
-                                                color: settingsManager.darkMode
-                                                    ? Colors.grey.shade300
-                                                    : Colors.grey.shade700),
-                                      ),
-                                      trailing: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 8.0),
-                                        child: Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: settingsManager.darkMode
-                                              ? Colors.white
-                                              : Colors.black,
-                                          size: 18,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }
-                                if (user.userName
-                                    .toLowerCase()
-                                    .startsWith(searchName.toLowerCase())) {
-                                  return InkWell(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (context) => ProfileScreen(
-                                            userId: user.id,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    child: ListTile(
-                                      leading: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                        child: CircleAvatar(
-                                          backgroundColor: Colors.white,
-                                          child: user.photoUrl == ""
-                                              ? Image.asset(
-                                                  'assets/default_image.jpg',
-                                                  fit: BoxFit.cover,
-                                                )
-                                              : CachedNetworkImage(
-                                                  imageUrl: user.photoUrl,
-                                                  fit: BoxFit.cover,
-                                                  errorWidget:
-                                                      (context, url, error) =>
-                                                          const Center(
-                                                    child: FaIcon(
-                                                        FontAwesomeIcons
-                                                            .circleExclamation),
-                                                  ),
-                                                  placeholder: (context, url) =>
-                                                      Shimmer.fromColors(
-                                                          baseColor: Colors
-                                                              .grey.shade400,
-                                                          highlightColor: Colors
-                                                              .grey.shade300,
-                                                          child: SizedBox(
-                                                              height: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .height /
-                                                                  3.3,
-                                                              width: double
-                                                                  .infinity)),
-                                                ),
-                                        ),
-                                      ),
-                                      title: Text(
-                                        user.userName,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText2!
-                                            .copyWith(
-                                              fontSize: 14,
-                                            ),
-                                      ),
-                                      subtitle: Text(
-                                        user.email,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline4!
-                                            .copyWith(
-                                                color: settingsManager.darkMode
-                                                    ? Colors.grey.shade300
-                                                    : Colors.grey.shade700),
-                                      ),
-                                      trailing: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 8.0),
-                                        child: Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: settingsManager.darkMode
-                                              ? Colors.white
-                                              : Colors.black,
-                                          size: 18,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                } else {
-                                  return const SizedBox();
-                                }
-                              },
-                            );
-                          }
-                          return ListView.builder(
-                            itemCount: snapshot.data.docs.length,
-                            itemBuilder: (context, index) {
-                              UserModel user = UserModel.fromSnapshot(
-                                snapshot.data.docs[index],
-                              );
-                              debugPrint(user.userName);
-                              if (user.id ==
-                                  FirebaseAuth.instance.currentUser!.uid) {
-                                return const SizedBox();
-                              }
-                              if (user.userName.isEmpty) {
-                                return InkWell(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      AppPages.profilePath,
-                                      arguments: user.id,
-                                    );
-                                  },
-                                  child: ListTile(
-                                    leading: ClipRRect(
-                                      borderRadius: BorderRadius.circular(100),
-                                      child: CircleAvatar(
-                                        backgroundColor: Colors.white,
-                                        child: user.photoUrl == ""
-                                            ? Image.asset(
-                                                'assets/default_image.jpg',
-                                                fit: BoxFit.cover,
-                                              )
-                                            : CachedNetworkImage(
-                                                imageUrl: user.photoUrl,
-                                                fit: BoxFit.cover,
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        const Center(
-                                                  child: FaIcon(FontAwesomeIcons
-                                                      .circleExclamation),
-                                                ),
-                                                placeholder: (context, url) =>
-                                                    Shimmer.fromColors(
-                                                        baseColor: Colors
-                                                            .grey.shade400,
-                                                        highlightColor: Colors
-                                                            .grey.shade300,
-                                                        child: SizedBox(
-                                                            height: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .height /
-                                                                3.3,
-                                                            width: double
-                                                                .infinity)),
-                                              ),
-                                      ),
-                                    ),
-                                    title: Text(
-                                      user.userName,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2!
-                                          .copyWith(
-                                            fontSize: 14,
-                                          ),
-                                    ),
-                                    subtitle: Text(
-                                      user.email,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline4!
-                                          .copyWith(
-                                              color: settingsManager.darkMode
-                                                  ? Colors.grey.shade300
-                                                  : Colors.grey.shade700),
-                                    ),
-                                    trailing: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: settingsManager.darkMode
-                                            ? Colors.white
-                                            : Colors.black,
-                                        size: 18,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }
-                              if (user.userName
-                                  .toLowerCase()
-                                  .startsWith(searchName.toLowerCase())) {
-                                return InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => ProfileScreen(
-                                          userId: user.id,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: ListTile(
-                                    leading: ClipRRect(
-                                      borderRadius: BorderRadius.circular(100),
-                                      child: CircleAvatar(
-                                        backgroundColor: Colors.white,
-                                        child: user.photoUrl == ""
-                                            ? Image.asset(
-                                                'assets/default_image.jpg',
-                                                fit: BoxFit.cover,
-                                              )
-                                            : CachedNetworkImage(
-                                                imageUrl: user.photoUrl,
-                                                fit: BoxFit.cover,
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        const Center(
-                                                  child: FaIcon(FontAwesomeIcons
-                                                      .circleExclamation),
-                                                ),
-                                                placeholder: (context, url) =>
-                                                    Shimmer.fromColors(
-                                                        baseColor: Colors
-                                                            .grey.shade400,
-                                                        highlightColor: Colors
-                                                            .grey.shade300,
-                                                        child: SizedBox(
-                                                            height: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .height /
-                                                                3.3,
-                                                            width: double
-                                                                .infinity)),
-                                              ),
-                                      ),
-                                    ),
-                                    title: Text(
-                                      user.userName,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2!
-                                          .copyWith(
-                                            fontSize: 14,
-                                          ),
-                                    ),
-                                    subtitle: Text(
-                                      user.email,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline4!
-                                          .copyWith(
-                                              color: settingsManager.darkMode
-                                                  ? Colors.grey.shade300
-                                                  : Colors.grey.shade700),
-                                    ),
-                                    trailing: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: settingsManager.darkMode
-                                            ? Colors.white
-                                            : Colors.black,
-                                        size: 18,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              } else {
-                                return const SizedBox();
-                              }
-                            },
+                      future: futureResult,
+                      builder: (context, AsyncSnapshot snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
                           );
-                        }),
-                  )
+                        }
+                        if (snapshot.hasError) {
+                          return const Center(
+                            child: Text('Connection Error!'),
+                          );
+                        }
+                        if (snapshot.data == null) {
+                          return const Center(
+                            child: Text('No Data'),
+                          );
+                        }
+                        if (!snapshot.hasData) {
+                          return const Center(
+                            child: Text('No data!'),
+                          );
+                        }
+                        if (_searchUserController.text.isEmpty) {
+                          return UserSearchResultList(
+                            searchName: searchName,
+                            snapshot: snapshot,
+                          );
+                        }
+                        return UserSearchResultList(
+                          searchName: searchName,
+                          snapshot: snapshot,
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -10,6 +10,8 @@ import 'package:food_recipe_final/src/features/comment/screens/comments_screen.d
 import 'package:food_recipe_final/src/features/create_recipe_post/screens/create_recipe_post_screen.dart';
 import 'package:food_recipe_final/src/features/home/screens/home_screen.dart';
 import 'package:food_recipe_final/src/features/profile/screens/edit_profile_screen.dart';
+import 'package:food_recipe_final/src/features/profile/screens/followers_screen.dart';
+import 'package:food_recipe_final/src/features/profile/screens/following_screen.dart';
 import 'package:food_recipe_final/src/features/profile/screens/profile_screen.dart';
 import 'package:food_recipe_final/src/features/recipe_feed/widgets/recipe_post_detail_screen.dart';
 import 'package:food_recipe_final/src/features/search_user/screens/search_user_screen.dart';
@@ -112,6 +114,14 @@ class RouteGenerator {
           builder: (context) => ForgetPasswordScreen(
             isForget: args as bool,
           ),
+        );
+      case AppPages.followersPath:
+        return MaterialPageRoute(
+          builder: (context) => FollowersScreen(user: args as UserModel),
+        );
+         case AppPages.followingPath:
+        return MaterialPageRoute(
+          builder: (context) => FollowingScreen(user: args as UserModel),
         );
 
       default:

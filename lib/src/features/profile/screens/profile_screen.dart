@@ -112,6 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   height:
                                       MediaQuery.of(context).size.height / 1.9,
                                   child: Stack(
+                                    clipBehavior: Clip.none,
                                     children: [
                                       user.photoUrl == ""
                                           ? const ProfileDefaultBackgroundPhoto()

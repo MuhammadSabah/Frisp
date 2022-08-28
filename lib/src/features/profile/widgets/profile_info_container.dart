@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
@@ -308,39 +309,64 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                   ),
                                 ],
                               ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'Followers',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2!
-                                        .copyWith(
-                                            color: settingsManager.darkMode
-                                                ? Colors.grey
-                                                : Colors.grey.shade800,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500),
+                              GestureDetector(
+                                // behavior: HitTestBehavior.translucent,
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    AppPages.followersPath,
+                                    arguments: widget.user,
+                                  );
+                                },
+                                child: AbsorbPointer(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Followers',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2!
+                                            .copyWith(
+                                                color: settingsManager.darkMode
+                                                    ? Colors.grey
+                                                    : Colors.grey.shade800,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500),
+                                      ),
+                                      Text(widget.user.followers.length
+                                          .toString()),
+                                    ],
                                   ),
-                                  Text(widget.user.followers.length.toString()),
-                                ],
+                                ),
                               ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'Following',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyText2!
-                                        .copyWith(
-                                            color: settingsManager.darkMode
-                                                ? Colors.grey
-                                                : Colors.grey.shade800,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    AppPages.followingPath,
+                                    arguments: widget.user,
+                                  );
+                                },
+                                child: AbsorbPointer(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Following',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2!
+                                            .copyWith(
+                                                color: settingsManager.darkMode
+                                                    ? Colors.grey
+                                                    : Colors.grey.shade800,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500),
+                                      ),
+                                      Text(widget.user.following.length
+                                          .toString()),
+                                    ],
                                   ),
-                                  Text(widget.user.following.length.toString()),
-                                ],
+                                ),
                               ),
                             ],
                           ),
