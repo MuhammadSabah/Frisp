@@ -1,6 +1,6 @@
 <h1 align="center">
   <img alt="food_app_icon" src="https://user-images.githubusercontent.com/75329130/180598065-99a17935-740b-430f-a9b3-d642c6c060bc.png" width="200px"/><br/>
-  [App Name]
+  Frisp
 </h1>
 
 ### A small social media application for food recipes.
