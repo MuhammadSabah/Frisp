@@ -39,7 +39,7 @@ class _ActivityTabState extends State<ActivityTab>
   // ignore: must_call_super
   Widget build(BuildContext context) {
     UserModel? userProvider =
-        Provider.of<UserProvider>(context, listen: true).getUser;
+        Provider.of<UserProvider>(context, listen: false).getUser;
     return RefreshIndicator(
       onRefresh: refreshTab,
       color: kOrangeColor,

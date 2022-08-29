@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_recipe_final/src/models/comment_model.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
+import 'package:food_recipe_final/src/models/reply_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:uuid/uuid.dart';
@@ -197,6 +198,81 @@ class RecipePostProvider extends ChangeNotifier {
         });
       }
       notifyListeners();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  ///
+  Future<void> replyComment({
+    required String userName,
+    required String profileImage,
+    required String postId,
+    required String text,
+    required String uid,
+    required String commentId,
+  }) async {
+    try {
+      String replyId = const Uuid().v1();
+      final reply = ReplyModel(
+        userId: uid,
+        userName: userName,
+        replyId: replyId,
+        replyText: text,
+        profilePicture: profileImage,
+        likes: [],
+        dateCommented: DateTime.now(),
+      );
+      await _firestore
+          .collection('posts')
+          .doc(postId)
+          .collection('comments')
+          .doc(commentId)
+          .collection('replies')
+          .doc(replyId)
+          .set(
+            reply.toJson(),
+          );
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> likeOrUnlikeRepliedComment({
+    required String postId,
+    required String userId,
+    required String commentId,
+    required String replyId,
+    required List likes,
+  }) async {
+    try {
+      if (likes.contains(userId)) {
+        await _firestore
+            .collection('posts')
+            .doc(postId)
+            .collection('comments')
+            .doc(commentId)
+            .collection('replies')
+            .doc(replyId)
+            .update(
+          {
+            'likes': FieldValue.arrayRemove([userId])
+          },
+        );
+      } else {
+        await _firestore
+            .collection('posts')
+            .doc(postId)
+            .collection('comments')
+            .doc(commentId)
+            .collection('replies')
+            .doc(replyId)
+            .update(
+          {
+            'likes': FieldValue.arrayUnion([userId])
+          },
+        );
+      }
     } catch (e) {
       debugPrint(e.toString());
     }

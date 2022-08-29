@@ -1,9 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/features/comment/widgets/reply_card.dart';
 import 'package:food_recipe_final/src/models/comment_model.dart';
+import 'package:food_recipe_final/src/models/reply_model.dart';
+import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
 import 'package:intl/intl.dart';
@@ -15,7 +20,9 @@ class CommentCard extends StatefulWidget {
     Key? key,
     required this.comment,
     required this.postId,
+    required this.user,
   }) : super(key: key);
+  final UserModel? user;
   final CommentModel comment;
   final String postId;
   @override
@@ -23,6 +30,7 @@ class CommentCard extends StatefulWidget {
 }
 
 class _CommentCardState extends State<CommentCard> {
+  bool showReplyField = false;
   String daysBetween(DateTime commentedDate) {
     var date;
     if ((DateTime.now().difference(widget.comment.dateCommented).inHours / 24)
@@ -55,8 +63,32 @@ class _CommentCardState extends State<CommentCard> {
     return 'Like';
   }
 
+  final TextEditingController _replyController = TextEditingController();
+
+  @override
+  void dispose() {
+    _replyController.dispose();
+    super.dispose();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>>? replyStreamResult;
+  @override
+  void initState() {
+    replyStreamResult = FirebaseFirestore.instance
+        .collection('posts')
+        .doc(widget.postId)
+        .collection('comments')
+        .doc(widget.comment.commentId)
+        .collection('replies')
+        .orderBy("dateCommented", descending: true)
+        .snapshots();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final postProvider =
+        Provider.of<RecipePostProvider>(context, listen: false);
     final settingsManager =
         Provider.of<SettingsManager>(context, listen: false);
     final commentProvider =
@@ -129,7 +161,7 @@ class _CommentCardState extends State<CommentCard> {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                              fontSize: 12,
+                              fontSize: 10,
                               color: settingsManager.darkMode
                                   ? Colors.grey
                                   : Colors.grey.shade800,
@@ -199,11 +231,122 @@ class _CommentCardState extends State<CommentCard> {
                             },
                         ),
                         const TextSpan(text: '  ●  '),
-                        const TextSpan(text: 'Reply'),
+                        TextSpan(
+                          text: showReplyField ? 'Cancel' : 'Reply',
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              setState(() {
+                                showReplyField = !showReplyField;
+                              });
+                            },
+                        ),
                         const TextSpan(text: '  ●  '),
                         const TextSpan(text: 'Report'),
                       ],
                     ),
+                  ),
+                  showReplyField
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 16.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  textAlign: TextAlign.start,
+                                  textAlignVertical: TextAlignVertical.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 13,
+                                      ),
+                                  controller: _replyController,
+                                  cursorColor: Colors.white,
+                                  autofocus: false,
+                                  autocorrect: false,
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    suffixIcon: IconButton(
+                                      splashRadius: 20,
+                                      iconSize: 20,
+                                      onPressed: () async {
+                                        postProvider.replyComment(
+                                          userName: widget.user!.userName,
+                                          profileImage: widget.user!.photoUrl,
+                                          postId: widget.postId,
+                                          text: _replyController.text,
+                                          uid: widget.user!.id,
+                                          commentId: widget.comment.commentId,
+                                        );
+                                        _replyController.clear();
+                                      },
+                                      icon: const Icon(
+                                        Icons.send,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    counterText: ' ',
+                                    fillColor: settingsManager.darkMode
+                                        ? kGreyColor
+                                        : kGreyColor4,
+                                    filled: true,
+                                    contentPadding:
+                                        const EdgeInsets.only(left: 14),
+                                    hintText: 'Reply',
+                                    hintStyle: Theme.of(context)
+                                        .textTheme
+                                        .headline4!
+                                        .copyWith(
+                                          fontSize: 13,
+                                          color: settingsManager.darkMode
+                                              ? Colors.grey.shade600
+                                              : Colors.grey.shade700,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                    focusedErrorBorder: kFocusedErrorBorder,
+                                    errorBorder: kErrorBorder,
+                                    enabledBorder: kEnabledBorder,
+                                    focusedBorder: kFocusedBorder,
+                                    border: kBorder,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : const SizedBox.shrink(),
+
+                  //!
+                  StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                    stream: replyStreamResult,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const SizedBox();
+                      }
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (context, index) {
+                                ReplyModel reply = ReplyModel.fromSnapshot(
+                                    snapshot.data!.docs[index]);
+                                return ReplyCard(
+                                  reply: reply,
+                                  comment: widget.comment,
+                                  postId: widget.postId,
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ],
               ),

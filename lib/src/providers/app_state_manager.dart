@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_cache.dart';
+import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:get/get_connect/http/src/interceptors/get_modifiers.dart';
 
@@ -27,7 +28,6 @@ class AppStateManager extends ChangeNotifier {
   int get selectedTab => _selectedTab;
 
   void initializeApp() async {
-    debugPrint(_userAuth.currentUser.toString());
     _onboardingComplete = await _appCache.didCompleteOnboarding();
   }
 

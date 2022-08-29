@@ -65,7 +65,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       Text(
                         widget.isForget
                             ? 'Forget Password?'
-                            : 'Change Password',
+                            : 'Change Password.',
                         style: Theme.of(context)
                             .textTheme
                             .headline1!

@@ -1,38 +1,39 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CommentModel {
+class ReplyModel {
   final String userId;
   final String userName;
-  final String commentId;
-  final String commentText;
+  final String replyId;
+  final String replyText;
   final String profilePicture;
   final List likes;
   final DateTime dateCommented;
-  CommentModel({
+  ReplyModel({
     required this.userId,
     required this.userName,
-    required this.commentId,
-    required this.commentText,
+    required this.replyId,
+    required this.replyText,
     required this.profilePicture,
     required this.likes,
     required this.dateCommented,
   });
 
-  CommentModel copyWith({
+  ReplyModel copyWith({
     String? userId,
     String? userName,
-    String? commentId,
-    String? commentText,
+    String? replyId,
+    String? replyText,
     String? profilePicture,
+    List? likes,
     DateTime? dateCommented,
   }) {
-    return CommentModel(
+    return ReplyModel(
       userId: userId ?? this.userId,
       userName: userName ?? this.userName,
-      commentId: commentId ?? this.commentId,
-      commentText: commentText ?? this.commentText,
+      replyId: replyId ?? this.replyId,
+      replyText: replyText ?? this.replyText,
       profilePicture: profilePicture ?? this.profilePicture,
-      likes: likes,
+      likes: likes ?? this.likes,
       dateCommented: dateCommented ?? this.dateCommented,
     );
   }
@@ -42,8 +43,8 @@ class CommentModel {
 
     result.addAll({'userId': userId});
     result.addAll({'userName': userName});
-    result.addAll({'commentId': commentId});
-    result.addAll({'commentText': commentText});
+    result.addAll({'replyId': replyId});
+    result.addAll({'replyText': replyText});
     result.addAll({'profilePicture': profilePicture});
     result.addAll({'likes': likes});
     result.addAll({'dateCommented': dateCommented.millisecondsSinceEpoch});
@@ -51,21 +52,20 @@ class CommentModel {
     return result;
   }
 
-  factory CommentModel.fromJson(Map<String, dynamic> map) {
-    return CommentModel(
+  factory ReplyModel.fromJson(Map<String, dynamic> map) {
+    return ReplyModel(
       userId: map['userId'] ?? '',
       userName: map['userName'] ?? '',
-      commentId: map['commentId'] ?? '',
-      commentText: map['commentText'] ?? '',
+      replyId: map['replyId'] ?? '',
+      replyText: map['replyText'] ?? '',
       profilePicture: map['profilePicture'] ?? '',
-      likes: map['likes'] ?? [],
+      likes: List.from(map['likes']),
       dateCommented: DateTime.fromMillisecondsSinceEpoch(map['dateCommented']),
     );
   }
-
-  factory CommentModel.fromSnapshot(DocumentSnapshot snapshot) {
-    final CommentModel comment =
-        CommentModel.fromJson(snapshot.data() as Map<String, dynamic>);
+    factory ReplyModel.fromSnapshot(DocumentSnapshot snapshot) {
+    final ReplyModel comment =
+        ReplyModel.fromJson(snapshot.data() as Map<String, dynamic>);
     return comment;
   }
 }

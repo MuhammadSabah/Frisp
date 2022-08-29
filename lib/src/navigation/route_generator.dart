@@ -119,7 +119,7 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (context) => FollowersScreen(user: args as UserModel),
         );
-      case AppPages.followingPath:
+         case AppPages.followingPath:
         return MaterialPageRoute(
           builder: (context) => FollowingScreen(user: args as UserModel),
         );

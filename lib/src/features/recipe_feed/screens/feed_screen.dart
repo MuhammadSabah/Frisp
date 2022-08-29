@@ -30,8 +30,8 @@ class _FeedScreenState extends State<FeedScreen>
 
   @override
   Widget build(BuildContext context) {
-    UserModel? user = Provider.of<UserProvider>(context).getUser;
-    final appProvider = Provider.of<AppStateManager>(context);
+    UserModel? user = Provider.of<UserProvider>(context, listen: false).getUser;
+    final appProvider = Provider.of<AppStateManager>(context, listen: false);
     final settingsManager =
         Provider.of<SettingsManager>(context, listen: false);
 

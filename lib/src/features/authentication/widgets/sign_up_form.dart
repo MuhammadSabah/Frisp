@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
@@ -41,6 +43,7 @@ class _SignupFormState extends State<SignupForm> {
   Widget build(BuildContext context) {
     final settingsManager =
         Provider.of<SettingsManager>(context, listen: false);
+    final authProvider = Provider.of<AppStateManager>(context, listen: false);
     return Stack(
       children: [
         SafeArea(
@@ -284,6 +287,7 @@ class _SignupFormState extends State<SignupForm> {
                             userPassword: widget.passwordController.text,
                           );
                           if (output == null) {
+                            authProvider.logOutUser();
                             navigator.pushNamed(AppPages.loginPath);
                           }
                           if (mounted) {

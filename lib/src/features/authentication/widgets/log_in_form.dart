@@ -225,8 +225,7 @@ class _LoginFormState extends State<LoginForm> {
                           );
                           await userProvider.refreshUser();
                           if (output == null) {
-                            navigator.pushNamedAndRemoveUntil(
-                                AppPages.home, (Route route) => false);
+                            navigator.pushReplacementNamed(AppPages.home);
                           }
                           setState(() {
                             _isLoading = false;

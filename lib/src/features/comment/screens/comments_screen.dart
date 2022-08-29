@@ -87,121 +87,121 @@ class _CommentsScreenState extends State<CommentsScreen> {
             ),
             centerTitle: true,
           ),
-          body: Column(
-            children: [
-              Expanded(
-                child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                  stream: _returnedCommentSnapshots,
-                  builder: (context,
-                      AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
-                          snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return Flex(
-                      direction: Axis.vertical,
-                      children: [
-                        Expanded(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (context, index) {
-                              return CommentCard(
-                                comment: CommentModel.fromSnapshot(
-                                  snapshot.data!.docs[index],
-                                ),
-                                postId: widget.recipePost!.postId,
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Form(
-                  key: _formKey,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    textBaseline: TextBaseline.alphabetic,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
+          body: SingleChildScrollView(
+            child: SafeArea(
+              child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                stream: _returnedCommentSnapshots,
+                builder: (context,
+                    AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                        snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const LinearProgressIndicator();
+                  }
+                  return Column(
                     children: [
-                      Expanded(
-                        child: TextFormField(
-                          validator: (String? value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Field is empty';
-                            }
-                            return null;
-                          },
-                          textAlign: TextAlign.start,
-                          textAlignVertical: TextAlignVertical.center,
-                          style:
-                              Theme.of(context).textTheme.headline3!.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                          controller: _commentController,
-                          cursorColor: kOrangeColor,
-                          autofocus: false,
-                          autocorrect: false,
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              splashRadius: 20,
-                              onPressed: () async {
-                                final validForm =
-                                    _formKey.currentState!.validate();
-                                if (validForm) {
-                                  // !: Post comment.
-                                  postProvider.postComment(
-                                    userName: user!.userName,
-                                    profileImage: user.photoUrl,
-                                    postId: widget.recipePost!.postId,
-                                    text: _commentController.text,
-                                    uid: user.id,
-                                  );
-                                  _commentController.clear();
-                                }
-                              },
-                              icon: const Icon(
-                                Icons.send,
-                                color: kOrangeColor,
-                              ),
-                            ),
-                            counterText: ' ',
-                            fillColor: settingsManager.darkMode
-                                ? kGreyColor
-                                : kGreyColor4,
-                            filled: true,
-                            isCollapsed: true,
-                            contentPadding: const EdgeInsets.all(18),
-                            hintText: 'Comment',
-                            hintStyle:
-                                Theme.of(context).textTheme.headline4!.copyWith(
-                                      fontSize: 15,
-                                      color: settingsManager.darkMode
-                                          ? Colors.grey.shade600
-                                          : Colors.grey.shade700,
-                                      fontWeight: FontWeight.bold,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12)
+                            .copyWith(top: 8),
+                        child: Form(
+                          key: _formKey,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            textBaseline: TextBaseline.alphabetic,
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  validator: (String? value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Field is empty';
+                                    }
+                                    return null;
+                                  },
+                                  textAlign: TextAlign.start,
+                                  textAlignVertical: TextAlignVertical.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                  controller: _commentController,
+                                  cursorColor: kOrangeColor,
+                                  autofocus: false,
+                                  autocorrect: false,
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                    suffixIcon: IconButton(
+                                      splashRadius: 20,
+                                      onPressed: () async {
+                                        final validForm =
+                                            _formKey.currentState!.validate();
+                                        if (validForm) {
+                                          // !: Post comment.
+                                          postProvider.postComment(
+                                            userName: user!.userName,
+                                            profileImage: user.photoUrl,
+                                            postId: widget.recipePost!.postId,
+                                            text: _commentController.text,
+                                            uid: user.id,
+                                          );
+                                          _commentController.clear();
+                                        }
+                                      },
+                                      icon: const Icon(
+                                        Icons.send,
+                                        color: kOrangeColor,
+                                      ),
                                     ),
-                            focusedErrorBorder: kFocusedErrorBorder,
-                            errorBorder: kErrorBorder,
-                            enabledBorder: kEnabledBorder,
-                            focusedBorder: kFocusedBorder,
-                            border: kBorder,
+                                    counterText: ' ',
+                                    fillColor: settingsManager.darkMode
+                                        ? kGreyColor
+                                        : kGreyColor4,
+                                    filled: true,
+                                    isCollapsed: true,
+                                    contentPadding: const EdgeInsets.all(14),
+                                    hintText: 'Comment',
+                                    hintStyle: Theme.of(context)
+                                        .textTheme
+                                        .headline4!
+                                        .copyWith(
+                                          fontSize: 15,
+                                          color: settingsManager.darkMode
+                                              ? Colors.grey.shade600
+                                              : Colors.grey.shade700,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                    focusedErrorBorder: kFocusedErrorBorder,
+                                    errorBorder: kErrorBorder,
+                                    enabledBorder: kEnabledBorder,
+                                    focusedBorder: kFocusedBorder,
+                                    border: kBorder,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: snapshot.data!.docs.length,
+                        itemBuilder: (context, index) {
+                          return CommentCard(
+                            user: user,
+                            comment: CommentModel.fromSnapshot(
+                              snapshot.data!.docs[index],
+                            ),
+                            postId: widget.recipePost!.postId,
+                          );
+                        },
+                      ),
                     ],
-                  ),
-                ),
+                  );
+                },
               ),
-            ],
+            ),
           ),
         ),
       ),
