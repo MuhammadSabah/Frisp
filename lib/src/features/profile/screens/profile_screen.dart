@@ -81,7 +81,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   physics: const AlwaysScrollableScrollPhysics(),
                   child: SafeArea(
                     child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                      stream: streamResult = FirebaseFirestore.instance
+                      stream: FirebaseFirestore.instance
                           .collection('users')
                           .where('id', isEqualTo: widget.userId)
                           .snapshots(),

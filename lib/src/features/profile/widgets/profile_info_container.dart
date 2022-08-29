@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
@@ -28,6 +29,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
   bool _isLoading = false;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  Stream<QuerySnapshot<Map<String, dynamic>>>? recipeLengthResult;
   Future<void> checkFollowingState(String? userId) async {
     if (mounted) {
       setState(() {
@@ -57,6 +59,10 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
   @override
   void initState() {
     checkFollowingState(widget.userId);
+    recipeLengthResult = FirebaseFirestore.instance
+        .collection('posts')
+        .where('uid', isEqualTo: widget.userId)
+        .snapshots();
     super.initState();
   }
 
@@ -285,14 +291,11 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                   ),
                                   StreamBuilder<
                                       QuerySnapshot<Map<String, dynamic>>>(
-                                    stream: FirebaseFirestore.instance
-                                        .collection('posts')
-                                        .where('uid', isEqualTo: widget.userId)
-                                        .snapshots(),
+                                    stream: recipeLengthResult,
                                     builder: (context, AsyncSnapshot snapshot) {
                                       if (snapshot.connectionState ==
                                           ConnectionState.waiting) {
-                                        return const Text('0');
+                                        return const CupertinoActivityIndicator();
                                       } else if (snapshot.hasError) {
                                         return const Center(
                                           child: Text('⚠️'),
