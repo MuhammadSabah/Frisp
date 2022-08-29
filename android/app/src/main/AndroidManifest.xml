@@ -15,7 +15,7 @@
   </intent>
 </queries>
    <application
-        android:label="AppName"
+        android:label="Frisp"
         android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

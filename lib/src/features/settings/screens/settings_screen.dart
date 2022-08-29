@@ -7,10 +7,8 @@ import 'package:food_recipe_final/src/features/settings/widgets/settings_log_out
 import 'package:food_recipe_final/src/features/settings/widgets/settings_theme_button.dart';
 import 'package:food_recipe_final/src/providers/app_state_manager.dart';
 import 'package:food_recipe_final/src/providers/settings_manager.dart';
-import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:websafe_svg/websafe_svg.dart';
 
 // ignore: must_be_immutable
 class SettingsScreen extends StatelessWidget {

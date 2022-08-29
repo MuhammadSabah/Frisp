@@ -46,7 +46,7 @@ class RouteGenerator {
       case AppPages.profilePath:
         return MaterialPageRoute(
           builder: (context) => ProfileScreen(
-            userId: '',
+            userId: args as String,
           ),
         );
       case AppPages.commentsPath:
@@ -119,7 +119,7 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (context) => FollowersScreen(user: args as UserModel),
         );
-         case AppPages.followingPath:
+      case AppPages.followingPath:
         return MaterialPageRoute(
           builder: (context) => FollowingScreen(user: args as UserModel),
         );

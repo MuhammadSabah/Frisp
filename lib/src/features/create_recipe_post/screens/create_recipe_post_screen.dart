@@ -212,6 +212,11 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
+            title: Text(
+              'Create',
+              style:
+                  Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
+            ),
             leading: IconButton(
               splashRadius: 20,
               onPressed: () {
@@ -249,7 +254,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                         }
                       },
                       child: Ink(
-                        width: 80,
+                        width: 95,
                         decoration: BoxDecoration(
                             color: settingsManager.darkMode
                                 ? Colors.white

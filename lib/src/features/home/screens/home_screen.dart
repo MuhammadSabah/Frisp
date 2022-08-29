@@ -30,11 +30,13 @@ class _HomeScreenState extends State<HomeScreen> {
     UserProvider userProvider =
         Provider.of<UserProvider>(context, listen: false);
 
-    await userProvider.refreshUser().whenComplete(
-          () => setState(() {
-            _isLoading = false;
-          }),
-        );
+    await userProvider.refreshUser().whenComplete(() {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    });
   }
 
   @override

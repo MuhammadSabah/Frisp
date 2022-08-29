@@ -178,12 +178,6 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                             child: Text('No data!'),
                           );
                         }
-                        if (_searchUserController.text.isEmpty) {
-                          return UserSearchResultList(
-                            searchName: searchName,
-                            snapshot: snapshot,
-                          );
-                        }
                         return UserSearchResultList(
                           searchName: searchName,
                           snapshot: snapshot,
