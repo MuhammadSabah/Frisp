@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
-enum Importance { low, medium, high }
+enum Importance {
+  low,
+  medium,
+  high,
+}
 
 class ShoppingItem {
   final String id;

@@ -17,12 +17,11 @@ class ShoppingScreen extends StatefulWidget {
 
 class _ShoppingScreenState extends State<ShoppingScreen> {
   List<String> sortByItems = ['Quantity', 'Date', 'Importance'];
-  String sortValue = '';
-  bool isArrowUp = true;
+  bool isArrowUp = false;
   @override
   Widget build(BuildContext context) {
-    final shoppingManager =
-        Provider.of<ShoppingProvider>(context, listen: false);
+    final shoppingProvider =
+        Provider.of<ShoppingProvider>(context, listen: true);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton.extended(
@@ -37,7 +36,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
               ),
         ),
         onPressed: () {
-          shoppingManager.createNewItem();
+          shoppingProvider.createNewItem();
           Navigator.pushNamed(context, AppPages.shoppingItemDetails);
         },
         icon: const FaIcon(
@@ -67,7 +66,9 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
               dropdownWidth: 120,
               itemPadding: const EdgeInsets.only(left: 10),
               hint: Text(
-                sortValue == '' ? 'Sort by' : sortValue,
+                shoppingProvider.getSortValue == ''
+                    ? 'Sort by'
+                    : shoppingProvider.getSortValue,
                 style: Theme.of(context).textTheme.headline3!.copyWith(
                       fontSize: 13,
                     ),
@@ -80,9 +81,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
               }).toList(),
               onChanged: (value) {
                 if (value is String) {
-                  setState(() {
-                    sortValue = value;
-                  });
+                  shoppingProvider.setSortValue(value);
                 }
               },
             ),
@@ -90,6 +89,28 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
           IconButton(
             splashRadius: 20,
             onPressed: () {
+              String sortVal = shoppingProvider.getSortValue;
+              if (sortVal == 'Quantity') {
+                if (isArrowUp) {
+                  shoppingProvider.sortByQuantityAscending();
+                } else {
+                  shoppingProvider.sortByQuantityDescending();
+                }
+              }
+              if (sortVal == 'Date') {
+                if (isArrowUp) {
+                  shoppingProvider.sortByDateAscending();
+                } else {
+                  shoppingProvider.sortByDateDescending();
+                }
+              }
+              if (sortVal == 'Importance') {
+                if (isArrowUp) {
+                  shoppingProvider.sortByImportanceAscending();
+                } else {
+                  shoppingProvider.sortByImportanceDescending();
+                }
+              }
               setState(() {
                 isArrowUp = !isArrowUp;
               });
@@ -104,7 +125,6 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
           "Shopping List",
           style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
         ),
-        // actions: [DropdownButton(items: items, onChanged: onChanged),],
       ),
       body: _buildShoppingScreen(),
     );

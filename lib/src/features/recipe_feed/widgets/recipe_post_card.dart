@@ -284,76 +284,83 @@ class _RecipePostCardState extends State<RecipePostCard> {
                               bottom: 0,
                               left: 0,
                               right: 0,
-                              child: ClipRect(
-                                child: BackdropFilter(
-                                  filter:
-                                      ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                                  child: Container(
-                                    // 3.2 is the image height.
-                                    height: (screenHeight / 3.2) / 4.3,
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        begin: Alignment.centerLeft,
-                                        end: Alignment.centerRight,
-                                        colors: [
-                                          Colors.white.withOpacity(0.2),
-                                          Colors.white.withOpacity(0.15),
-                                        ],
-                                        stops: const [0.0, 1.0],
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  bottomRight: Radius.circular(10),
+                                ),
+                                child: ClipRect(
+                                  child: BackdropFilter(
+                                    filter: ImageFilter.blur(
+                                        sigmaX: 10, sigmaY: 10),
+                                    child: Container(
+                                      // 3.2 is the image height.
+                                      height: (screenHeight / 3.2) / 4.3,
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            Colors.white.withOpacity(0.2),
+                                            Colors.white.withOpacity(0.15),
+                                          ],
+                                          stops: const [0.0, 1.0],
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          bottomLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10),
+                                        ),
+                                        // border:
+                                        //     Border.all(width: 2, color: Colors.white30),
                                       ),
-                                      borderRadius: const BorderRadius.only(
-                                        bottomLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10),
-                                      ),
-                                      // border:
-                                      //     Border.all(width: 2, color: Colors.white30),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            child: Column(
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: Text(
-                                                        widget.post.title,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        maxLines: 1,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .headline2!
-                                                            .copyWith(),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Text(
+                                                          widget.post.title,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          maxLines: 1,
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .headline2!
+                                                                  .copyWith(),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                const SizedBox(height: 8),
-                                                // Row(
-                                                //   children: [
-                                                //     Expanded(
-                                                //       child: Text(
-                                                //         'Subtitle',
-                                                //         overflow:
-                                                //             TextOverflow.ellipsis,
-                                                //         maxLines: 1,
-                                                //         style: Theme.of(context)
-                                                //             .textTheme
-                                                //             .headline3!
-                                                //             .copyWith(
-                                                //                 color: Colors
-                                                //                     .grey.shade600),
-                                                //       ),
-                                                //     ),
-                                                //   ],
-                                                // ),
-                                              ],
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 8),
+                                                  // Row(
+                                                  //   children: [
+                                                  //     Expanded(
+                                                  //       child: Text(
+                                                  //         'Subtitle',
+                                                  //         overflow:
+                                                  //             TextOverflow.ellipsis,
+                                                  //         maxLines: 1,
+                                                  //         style: Theme.of(context)
+                                                  //             .textTheme
+                                                  //             .headline3!
+                                                  //             .copyWith(
+                                                  //                 color: Colors
+                                                  //                     .grey.shade600),
+                                                  //       ),
+                                                  //     ),
+                                                  //   ],
+                                                  // ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
