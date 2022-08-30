@@ -1,22 +1,48 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
-class TitleAndDescriptionFormSection extends StatelessWidget {
-  const TitleAndDescriptionFormSection({
+// ignore: must_be_immutable
+class TitleAndDescriptionFormSection extends StatefulWidget {
+  TitleAndDescriptionFormSection({
     Key? key,
     required this.formKey,
     required this.titleController,
     required this.descriptionController,
-    required this.servesController,
-    required this.cookTimeController,
+    required this.servesValue,
+    required this.cookTimeController, required this.onChanged,
   }) : super(key: key);
   final GlobalKey<FormState> formKey;
   final TextEditingController titleController;
   final TextEditingController descriptionController;
-  final TextEditingController servesController;
   final TextEditingController cookTimeController;
+  String? servesValue;
+  final Function(String?) onChanged;
+
+  @override
+  State<TitleAndDescriptionFormSection> createState() =>
+      _TitleAndDescriptionFormSectionState();
+}
+
+class _TitleAndDescriptionFormSectionState
+    extends State<TitleAndDescriptionFormSection> {
+  List<String> dropdownItems = [
+    '2',
+    '4',
+    '6',
+    '8',
+    '10',
+    '12',
+    '14',
+    '16',
+    '18',
+    '20',
+    '22',
+    '24',
+  ];
+
   @override
   Widget build(BuildContext context) {
     final settingsManager =
@@ -24,7 +50,7 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Form(
-        key: formKey,
+        key: widget.formKey,
         child: Column(
           children: [
             TextFormField(
@@ -38,7 +64,7 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
               textAlignVertical: TextAlignVertical.center,
               style: Theme.of(context).textTheme.headline3!.copyWith(
                   fontWeight: FontWeight.w600, fontSize: 20, height: 1.6),
-              controller: titleController,
+              controller: widget.titleController,
               maxLines: 2,
               cursorHeight: 30,
               autofocus: false,
@@ -75,7 +101,7 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
               textAlignVertical: TextAlignVertical.center,
               style: Theme.of(context).textTheme.headline3!.copyWith(
                   fontWeight: FontWeight.w400, fontSize: 18, height: 1.6),
-              controller: descriptionController,
+              controller: widget.descriptionController,
               maxLines: 6,
               cursorHeight: 30,
               autofocus: false,
@@ -120,46 +146,81 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
                         child: SizedBox(
                           width: 135,
                           child: Align(
-                            child: TextFormField(
-                              validator: (String? value) {
-                                if (value!.length >= 10) {
-                                  return 'Too much';
-                                }
-                                return null;
-                              },
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline3!
-                                  .copyWith(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 18,
-                                      height: 1.6),
-                              autofocus: false,
-                              autocorrect: false,
-                              keyboardType: TextInputType.number,
-                              textInputAction: TextInputAction.done,
-                              controller: servesController,
-                              decoration: InputDecoration(
-                                hintStyle: Theme.of(context)
-                                    .textTheme
-                                    .headline4!
-                                    .copyWith(
-                                        fontSize: 17,
-                                        color: Colors.grey.shade600,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.6),
-                                hintText: '2 people',
-                                fillColor: settingsManager.darkMode
-                                    ? kGreyColor
-                                    : kGreyColor4,
-                                filled: true,
-                                counterText: ' ',
-                                contentPadding: const EdgeInsets.all(8),
-                                focusedErrorBorder: kFocusedErrorBorder,
-                                errorBorder: kErrorBorder,
-                                enabledBorder: kEnabledBorder,
-                                focusedBorder: kFocusedBorder,
-                                border: kBorder,
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton2(
+                                isExpanded: true,
+                                hint: Row(
+                                  children: const [
+                                    Icon(
+                                      Icons.group,
+                                      size: 16,
+                                      color: Colors.white,
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'Select',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                items: dropdownItems
+                                    .map((item) => DropdownMenuItem<String>(
+                                          value: item,
+                                          child: Text(
+                                            item,
+                                            style: const TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ))
+                                    .toList(),
+                                value: widget.servesValue,
+                                onChanged: widget.onChanged,
+                                icon: const Icon(
+                                  Icons.arrow_forward_ios_outlined,
+                                ),
+                                iconSize: 14,
+                                iconEnabledColor: Colors.white,
+                                iconDisabledColor: Colors.grey,
+                                buttonHeight: 50,
+                                buttonPadding:
+                                    const EdgeInsets.only(left: 14, right: 14),
+                                buttonDecoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    color: Colors.black,
+                                    width: 1,
+                                  ),
+                                  color: kGreyColor,
+                                ),
+                                buttonElevation: 2,
+                                itemHeight: 40,
+                                itemPadding:
+                                    const EdgeInsets.only(left: 14, right: 14),
+                                dropdownMaxHeight: 200,
+                                dropdownWidth: 80,
+                                dropdownPadding: null,
+                                dropdownDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    color: kBlackColor,
+                                    border: Border.all(color: kGreyColor)),
+                                dropdownElevation: 8,
+                                scrollbarRadius: const Radius.circular(40),
+                                scrollbarThickness: 6,
+                                scrollbarAlwaysShow: true,
+                                offset: const Offset(-20, 0),
                               ),
                             ),
                           ),
@@ -167,6 +228,7 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 14),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
@@ -198,7 +260,7 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
                             autofocus: false,
                             autocorrect: false,
                             textInputAction: TextInputAction.done,
-                            controller: cookTimeController,
+                            controller: widget.cookTimeController,
                             decoration: InputDecoration(
                               hintStyle: Theme.of(context)
                                   .textTheme

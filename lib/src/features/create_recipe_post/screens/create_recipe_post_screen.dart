@@ -23,9 +23,9 @@ class CreateRecipePostScreen extends StatefulWidget {
 class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _servesController = TextEditingController();
   final TextEditingController _cookTimeController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String? servesValue;
 
   final List<String> _popUpItemsList = ['Delete item', 'Add item'];
   final List _ingredientsFormList = [];
@@ -60,7 +60,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
         profImage: profImage,
         title: _titleController.text,
         description: _descriptionController.text,
-        serves: _servesController.text,
+        serves: servesValue!,
         cookTime: _cookTimeController.text,
         ingredients: _ingredientControllersList.map((element) {
           return element.text;
@@ -182,7 +182,6 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
     super.dispose();
     _titleController.dispose();
     _descriptionController.dispose();
-    _servesController.dispose();
     _cookTimeController.dispose();
     for (TextEditingController t in _ingredientControllersList) {
       t.dispose();
@@ -339,10 +338,15 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                     const SizedBox(height: 14),
                     // !: Title and Description Section:
                     TitleAndDescriptionFormSection(
+                      onChanged: (value) {
+                        setState(() {
+                          servesValue = value as String;
+                        });
+                      },
                       formKey: _formKey,
                       titleController: _titleController,
                       descriptionController: _descriptionController,
-                      servesController: _servesController,
+                      servesValue: servesValue,
                       cookTimeController: _cookTimeController,
                     ),
                     Divider(
