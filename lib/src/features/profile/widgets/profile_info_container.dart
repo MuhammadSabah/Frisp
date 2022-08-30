@@ -6,7 +6,7 @@ import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class ProfileInfoContainer extends StatefulWidget {
@@ -71,7 +71,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
     final recipePostProvider =
         Provider.of<RecipePostProvider>(context, listen: false);
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(

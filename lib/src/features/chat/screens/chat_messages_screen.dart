@@ -5,7 +5,7 @@ import 'package:food_recipe_final/src/models/message.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/features/chat/widgets/messages_list.dart';
 import 'package:food_recipe_final/src/providers/message_provider.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class ChatMessagesScreen extends StatefulWidget {
@@ -36,7 +36,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
     final messageProvider =
         Provider.of<MessageProvider>(context, listen: false);
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

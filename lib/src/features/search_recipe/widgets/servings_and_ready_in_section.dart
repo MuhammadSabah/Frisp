@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class ServingsAndReadyInSection extends StatelessWidget {
@@ -11,7 +11,7 @@ class ServingsAndReadyInSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return SizedBox(
       height: 90,
       child: Column(

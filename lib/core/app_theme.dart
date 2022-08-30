@@ -147,19 +147,13 @@ class AppTheme {
           fontSize: 14,
         ),
       ),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         elevation: 0,
         backgroundColor: Colors.transparent,
         unselectedItemColor: Colors.black,
         selectedItemColor: kOrangeColor,
-        selectedLabelStyle: GoogleFonts.poppins(
-          fontSize: 12,
-          color: kOrangeColor,
-        ),
-        unselectedLabelStyle: GoogleFonts.poppins(
-          fontSize: 12,
-          color: Colors.black,
-        ),
+       
+        
       ),
       textTheme: lightTextTheme,
       scaffoldBackgroundColor: Colors.white,

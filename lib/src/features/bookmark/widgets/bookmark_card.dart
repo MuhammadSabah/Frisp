@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class BookmarkCard extends StatefulWidget {
@@ -23,7 +23,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
   @override
   Widget build(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: ClipRRect(
@@ -36,7 +36,6 @@ class _BookmarkCardState extends State<BookmarkCard> {
                   onTap: () {
                     Navigator.pushNamed(context, AppPages.recipeDetails,
                         arguments: widget.recipe);
-                 
                   },
                   child: SizedBox(
                     height: 120,

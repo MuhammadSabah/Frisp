@@ -10,7 +10,7 @@ import 'package:food_recipe_final/src/models/comment_model.dart';
 import 'package:food_recipe_final/src/models/reply_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -90,7 +90,7 @@ class _CommentCardState extends State<CommentCard> {
     final postProvider =
         Provider.of<RecipePostProvider>(context, listen: false);
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     final commentProvider =
         Provider.of<RecipePostProvider>(context, listen: false);
     return Padding(

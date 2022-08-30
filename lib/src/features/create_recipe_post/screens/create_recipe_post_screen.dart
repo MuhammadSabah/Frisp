@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:food_recipe_final/src/features/create_recipe_post/widgets/add_fields_section.dart';
@@ -44,7 +44,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
     required String profImage,
   }) async {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     final navigator = Navigator.of(context);
     setState(() {
       _isLoading = true;
@@ -91,7 +91,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
   void _selectAnImageDialog(BuildContext context) async {
     () => FocusManager.instance.primaryFocus?.unfocus();
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return showDialog(
       context: context,
       builder: (context) {
@@ -197,7 +197,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
   @override
   Widget build(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     final userProvider = Provider.of<UserProvider>(context);
     UserModel? user;
     if (userProvider.getUser != null) {

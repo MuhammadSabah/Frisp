@@ -6,12 +6,12 @@ import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/firebase_options.dart';
 import 'package:food_recipe_final/src/features/bookmark/repository/bookmark_interface.dart';
 import 'package:food_recipe_final/src/navigation/route_generator.dart';
-import 'package:food_recipe_final/src/providers/app_state_manager.dart';
-import 'package:food_recipe_final/src/providers/bookmark_manager.dart';
+import 'package:food_recipe_final/src/providers/auth_provider.dart';
+import 'package:food_recipe_final/src/providers/bookmark_provider.dart';
 import 'package:food_recipe_final/src/providers/message_provider.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
-import 'package:food_recipe_final/src/providers/shopping_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
+import 'package:food_recipe_final/src/providers/shopping_provider.dart';
 import 'package:food_recipe_final/src/features/splash/screens/splash_screen.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
@@ -45,8 +45,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _appStateManager = AppStateManager();
-  final _shoppingManager = ShoppingManager();
+  final _appStateManager = AuthProvider();
+  final _shoppingManager = ShoppingProvider();
   final _userProvider = UserProvider();
 
   @override
@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         Provider<BookmarkInterface>(
-          create: (context) => BookmarkManager(),
+          create: (context) => BookmarkProvider(),
         ),
         ChangeNotifierProvider<MessageProvider>(
           lazy: false,
@@ -86,10 +86,10 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           lazy: false,
-          create: (context) => SettingsManager(),
+          create: (context) => SettingsProvider(),
         ),
       ],
-      child: Consumer<SettingsManager>(
+      child: Consumer<SettingsProvider>(
         builder: (context, settingsManager, _) {
           ThemeData theme;
           if (settingsManager.darkMode) {

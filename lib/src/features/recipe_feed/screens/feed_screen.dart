@@ -6,8 +6,8 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/features/recipe_feed/screens/discover_tab.dart';
 import 'package:food_recipe_final/src/features/recipe_feed/screens/activity_tab.dart';
-import 'package:food_recipe_final/src/providers/app_state_manager.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/auth_provider.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -31,9 +31,9 @@ class _FeedScreenState extends State<FeedScreen>
   @override
   Widget build(BuildContext context) {
     UserModel? user = Provider.of<UserProvider>(context, listen: false).getUser;
-    final appProvider = Provider.of<AppStateManager>(context, listen: false);
+    final appProvider = Provider.of<AuthProvider>(context, listen: false);
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
 
     return Theme(
       data: Theme.of(context).copyWith(

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
-import 'package:food_recipe_final/src/providers/shopping_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
+import 'package:food_recipe_final/src/providers/shopping_provider.dart';
 import 'package:food_recipe_final/src/features/shopping/widgets/shopping_tile.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +13,6 @@ class ShoppingItemScreen extends StatefulWidget {
   final ShoppingItem? originalItem;
   final int index;
   final bool isUpdating;
-
 
   const ShoppingItemScreen({
     Key? key,
@@ -68,9 +67,9 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
   @override
   Widget build(BuildContext context) {
     final shoppingManager =
-        Provider.of<ShoppingManager>(context, listen: false);
+        Provider.of<ShoppingProvider>(context, listen: false);
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Theme(
       data: Theme.of(context).copyWith(useMaterial3: false),
       child: GestureDetector(
@@ -188,7 +187,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
 
   Widget _buildNameField() {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -240,7 +239,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
 
   Widget _buildImportanceField() {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -313,7 +312,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
 
   Widget _buildDatePicker(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -375,7 +374,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
 
   Widget _buildTimePicker(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -434,7 +433,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
 
   Widget _buildColorPicker(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -495,7 +494,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
 
   Widget _buildQuantityField() {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.baseline,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

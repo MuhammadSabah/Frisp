@@ -4,7 +4,7 @@ import 'package:food_recipe_final/src/features/bookmark/screens/bookmark_tab.dar
 import 'package:food_recipe_final/src/features/search_recipe/screens/search_tab.dart';
 import 'package:food_recipe_final/src/features/search_recipe/widgets/custom_drop_down.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:food_recipe_final/src/services/recipe_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -72,7 +72,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
   @override
   Widget build(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Theme(
@@ -148,7 +148,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
 
   Widget _buildSearchCard() {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0).copyWith(top: 20),
       child: Row(

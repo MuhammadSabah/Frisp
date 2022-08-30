@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class TitleAndDescriptionFormSection extends StatelessWidget {
@@ -20,7 +20,7 @@ class TitleAndDescriptionFormSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Form(

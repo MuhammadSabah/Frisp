@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -15,7 +15,7 @@ class ContactsListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        Provider.of<SettingsManager>(context, listen: false);
+    Provider.of<SettingsProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -94,7 +94,6 @@ class ContactsListScreen extends StatelessWidget {
                           AppPages.chatPath,
                           arguments: contactUser,
                         );
-                     
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 4.0),

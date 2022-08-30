@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -28,7 +28,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
   @override
   Widget build(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: Column(

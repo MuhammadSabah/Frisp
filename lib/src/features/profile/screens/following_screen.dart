@@ -7,7 +7,7 @@ import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/features/profile/screens/profile_screen.dart';
 import 'package:food_recipe_final/src/features/settings/widgets/settings_back_button.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -17,7 +17,7 @@ class FollowingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: const SettingsBackButton(),

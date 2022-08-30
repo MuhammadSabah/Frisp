@@ -8,7 +8,7 @@ import 'package:food_recipe_final/src/features/recipe_feed/screens/feed_screen.d
 import 'package:food_recipe_final/src/features/profile/screens/profile_screen.dart';
 import 'package:food_recipe_final/src/features/search_recipe/screens/search_recipe_screen.dart';
 import 'package:food_recipe_final/src/features/shopping/screens/shopping_screen.dart';
-import 'package:food_recipe_final/src/providers/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/auth_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CircularProgressIndicator(),
             ),
           )
-        : Consumer<AppStateManager>(
+        : Consumer<AuthProvider>(
             builder: (context, manager, child) {
               return GestureDetector(
                 onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

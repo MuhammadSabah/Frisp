@@ -6,7 +6,7 @@ import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/features/comment/widgets/comment_card.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -47,7 +47,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
     final UserModel? user =
         Provider.of<UserProvider>(context, listen: false).getUser;
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     final postProvider =
         Provider.of<RecipePostProvider>(context, listen: false);
     return GestureDetector(

@@ -5,8 +5,8 @@ import 'package:food_recipe_final/src/features/settings/widgets/settings_back_bu
 import 'package:food_recipe_final/src/features/settings/widgets/settings_change_password_button.dart';
 import 'package:food_recipe_final/src/features/settings/widgets/settings_log_out_button.dart';
 import 'package:food_recipe_final/src/features/settings/widgets/settings_theme_button.dart';
-import 'package:food_recipe_final/src/providers/app_state_manager.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/auth_provider.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -17,10 +17,9 @@ class SettingsScreen extends StatelessWidget {
   bool switchValue = true;
   @override
   Widget build(BuildContext context) {
-    final appStateProvider =
-        Provider.of<AppStateManager>(context, listen: true);
+    final appStateProvider = Provider.of<AuthProvider>(context, listen: true);
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     Color kGreyColorShade =
         settingsManager.darkMode ? Colors.grey.shade300 : Colors.black;
     Color kDividerColor =

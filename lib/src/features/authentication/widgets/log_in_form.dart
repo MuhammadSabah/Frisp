@@ -6,8 +6,8 @@ import 'package:food_recipe_final/core/constants.dart';
 
 import 'package:food_recipe_final/src/features/authentication/widgets/auth_bottom_rich_text.dart';
 import 'package:food_recipe_final/src/features/authentication/widgets/auth_confirm_button.dart';
-import 'package:food_recipe_final/src/providers/app_state_manager.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/auth_provider.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -35,10 +35,9 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     UserProvider userProvider =
         Provider.of<UserProvider>(context, listen: false);
-    AppStateManager appState =
-        Provider.of<AppStateManager>(context, listen: false);
+    AuthProvider appState = Provider.of<AuthProvider>(context, listen: false);
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Stack(
       children: [
         SafeArea(

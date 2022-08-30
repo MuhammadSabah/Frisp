@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/providers/app_state_manager.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/auth_provider.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -26,10 +26,9 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    AppStateManager appState =
-        Provider.of<AppStateManager>(context, listen: false);
+    AuthProvider appState = Provider.of<AuthProvider>(context, listen: false);
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(

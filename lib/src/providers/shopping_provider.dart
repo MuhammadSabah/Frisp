@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
 
-class ShoppingManager extends ChangeNotifier {
+class ShoppingProvider extends ChangeNotifier {
   // Fields:
   final _shoppingItems = <ShoppingItem>[];
   int _selectedIndex = -1;

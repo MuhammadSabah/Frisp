@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:food_recipe_final/src/features/bookmark/widgets/bottom_save_button.dart';
 import 'package:food_recipe_final/src/features/profile/widgets/profile_cached_background_photo.dart';
@@ -32,7 +32,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   void _selectAnImageDialog(BuildContext context) async {
     () => FocusManager.instance.primaryFocus?.unfocus();
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return showDialog(
       context: context,
       builder: (context) {
@@ -134,7 +134,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     final imageProvider =
         Provider.of<UserImageProvider>(context, listen: false);
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     if (mounted) {
       setState(() {
         _isLoading = true;
@@ -172,7 +172,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(

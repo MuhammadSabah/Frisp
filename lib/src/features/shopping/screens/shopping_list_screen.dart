@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:food_recipe_final/src/features/shopping/screens/shopping_item_screen.dart';
 import 'package:food_recipe_final/src/features/shopping/widgets/shopping_tile.dart';
-import 'package:food_recipe_final/src/providers/shopping_manager.dart';
+import 'package:food_recipe_final/src/providers/shopping_provider.dart';
 import 'package:provider/provider.dart';
 
 class ShoppingListScreen extends StatelessWidget {
   const ShoppingListScreen({Key? key, required this.manager}) : super(key: key);
 
-  final ShoppingManager manager;
+  final ShoppingProvider manager;
   @override
   Widget build(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     final shoppingItems = manager.shoppingItems;
     return Padding(
       padding: const EdgeInsets.all(16.0),

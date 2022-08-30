@@ -6,8 +6,8 @@ import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/features/authentication/widgets/auth_bottom_rich_text.dart';
 import 'package:food_recipe_final/src/features/authentication/widgets/auth_confirm_button.dart';
-import 'package:food_recipe_final/src/providers/app_state_manager.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/auth_provider.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -42,8 +42,8 @@ class _SignupFormState extends State<SignupForm> {
   @override
   Widget build(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
-    final authProvider = Provider.of<AppStateManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Stack(
       children: [
         SafeArea(
@@ -278,7 +278,7 @@ class _SignupFormState extends State<SignupForm> {
                               _isLoading = true;
                             });
                           }
-                          final output = await Provider.of<AppStateManager>(
+                          final output = await Provider.of<AuthProvider>(
                                   context,
                                   listen: false)
                               .signUpUser(

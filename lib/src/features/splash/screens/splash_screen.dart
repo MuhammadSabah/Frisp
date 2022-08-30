@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/error_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/sign_up_screen.dart';
 import 'package:food_recipe_final/src/features/home/screens/home_screen.dart';
-import 'package:food_recipe_final/src/providers/app_state_manager.dart';
+import 'package:food_recipe_final/src/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    final userState = Provider.of<AppStateManager>(context, listen: false);
+    final userState = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
         body: StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),

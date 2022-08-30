@@ -11,7 +11,7 @@ import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/recipe_post_provider.dart';
 import 'package:food_recipe_final/src/features/recipe_feed/widgets/animated_like_button.dart';
 import 'package:food_recipe_final/src/features/search_recipe/widgets/custom_drop_down.dart';
-import 'package:food_recipe_final/src/providers/settings_manager.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:food_recipe_final/src/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -36,7 +36,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
   @override
   Widget build(BuildContext context) {
     final settingsManager =
-        Provider.of<SettingsManager>(context, listen: false);
+        Provider.of<SettingsProvider>(context, listen: false);
     final userProvider = Provider.of<UserProvider>(context);
 
     UserModel? user = userProvider.getUser;
