@@ -1,9 +1,18 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:food_recipe_final/src/models/enums/importance_enum.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
 
 class ShoppingProvider extends ChangeNotifier {
+  //Hive
+  final Box<ShoppingItem> _shoppingItems =
+      Hive.box<ShoppingItem>('shoppingItems');
+  Box<ShoppingItem> getShoppingItems() => _shoppingItems;
+
+  //
+  ValueListenable<Box<ShoppingItem>> listenToShoppingItems() =>
+      _shoppingItems.listenable();
   // Fields:
-  final _shoppingItems = <ShoppingItem>[];
   int _selectedIndex = -1;
   bool _createNewItem = false;
   String _sortValue = '';
@@ -14,12 +23,11 @@ class ShoppingProvider extends ChangeNotifier {
   }
 
   // Getters:
-  List<ShoppingItem> get shoppingItems => List.unmodifiable(_shoppingItems);
 
   int get selectedIndex => _selectedIndex;
 
   ShoppingItem? get selectedShoppingItem =>
-      selectedIndex != -1 ? shoppingItems[selectedIndex] : null;
+      selectedIndex != -1 ? _shoppingItems.getAt(selectedIndex) : null;
 
   bool get isCreatingNewItem => _createNewItem;
 
@@ -36,21 +44,21 @@ class ShoppingProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteItem(int index) {
-    _shoppingItems.removeAt(index);
+  void deleteItem(int index, ShoppingItem item) {
+    _shoppingItems.delete(item.key);
     notifyListeners();
   }
 
   void updateItem(ShoppingItem item, int index) {
-    _shoppingItems[index] = item;
+    _shoppingItems.putAt(index, item);
     _selectedIndex = -1;
     _createNewItem = false;
     notifyListeners();
   }
 
   void completeItem(int index, bool change) {
-    final item = _shoppingItems[index];
-    _shoppingItems[index] = item.copyWith(isComplete: change);
+    final item = _shoppingItems.getAt(index);
+    _shoppingItems.putAt(index, item!.copyWith(isComplete: change));
     notifyListeners();
   }
 
@@ -61,7 +69,9 @@ class ShoppingProvider extends ChangeNotifier {
   }
 
   void setSelectedShoppingItem(String id) {
-    final index = _shoppingItems.indexWhere((element) => element.id == id);
+    final index = _shoppingItems.values
+        .toList()
+        .indexWhere((element) => element.id == id);
     _selectedIndex = index;
     _createNewItem = false;
     notifyListeners();
@@ -70,45 +80,77 @@ class ShoppingProvider extends ChangeNotifier {
   // Sorting methods:
   // 1)
   void sortByQuantityAscending() {
-    _shoppingItems.sort((a, b) {
+    var items = _shoppingItems.values.toList();
+    items.sort((a, b) {
       return int.parse(a.quantity).compareTo(int.parse(b.quantity));
     });
+    items.forEach((element) {
+      _shoppingItems.delete(element.key);
+      _shoppingItems.add(element);
+    });
+
     notifyListeners();
   }
 
   void sortByQuantityDescending() {
-    _shoppingItems.sort((a, b) {
+    var items = _shoppingItems.values.toList();
+    items.sort((a, b) {
       return int.parse(b.quantity).compareTo(int.parse(a.quantity));
     });
+    items.forEach((element) {
+      _shoppingItems.delete(element.key);
+      _shoppingItems.add(element);
+    });
+
     notifyListeners();
   }
 
   // 2)
   void sortByDateAscending() {
-    _shoppingItems.sort((a, b) {
+    var items = _shoppingItems.values.toList();
+    items.sort((a, b) {
       return a.date.compareTo(b.date);
+    });
+    items.forEach((element) {
+      _shoppingItems.delete(element.key);
+      _shoppingItems.add(element);
     });
     notifyListeners();
   }
 
   void sortByDateDescending() {
-    _shoppingItems.sort((a, b) {
+    var items = _shoppingItems.values.toList();
+    items.sort((a, b) {
       return b.date.compareTo(a.date);
+    });
+    items.forEach((element) {
+      _shoppingItems.delete(element.key);
+      _shoppingItems.add(element);
     });
     notifyListeners();
   }
 
   // 3)
   void sortByImportanceAscending() {
-    _shoppingItems.sort((a, b) {
-      return a.importance.index.compareTo(b.importance.index);
+    var items = _shoppingItems.values.toList();
+    items.sort((a, b) {
+      return a.importance.toEnum().index.compareTo(b.importance.toEnum().index);
+    });
+    items.forEach((element) {
+      _shoppingItems.delete(element.key);
+      _shoppingItems.add(element);
     });
     notifyListeners();
   }
 
   void sortByImportanceDescending() {
-    _shoppingItems.sort((a, b) {
-      return b.importance.index.compareTo(a.importance.index);
+    var items = _shoppingItems.values.toList();
+    items.sort((a, b) {
+      return b.importance.toEnum().index.compareTo(a.importance.toEnum().index);
+    });
+    items.forEach((element) {
+      _shoppingItems.delete(element.key);
+      _shoppingItems.add(element);
     });
     notifyListeners();
   }

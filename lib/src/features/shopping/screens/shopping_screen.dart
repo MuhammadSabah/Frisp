@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
+import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/providers/shopping_provider.dart';
 import 'package:food_recipe_final/src/features/shopping/screens/empty_shopping_screen.dart';
 import 'package:food_recipe_final/src/features/shopping/screens/shopping_list_screen.dart';
@@ -88,6 +89,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
           ),
           IconButton(
             splashRadius: 20,
+            color: kOrangeColor,
             onPressed: () {
               String sortVal = shoppingProvider.getSortValue;
               if (sortVal == 'Quantity') {
@@ -133,7 +135,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
   Widget _buildShoppingScreen() {
     return Consumer<ShoppingProvider>(
       builder: (context, manager, child) {
-        if (manager.shoppingItems.isNotEmpty) {
+        if (manager.getShoppingItems().isNotEmpty) {
           return ShoppingListScreen(manager: manager);
         } else {
           return const EmptyShoppingScreen();

@@ -1,10 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/firebase_options.dart';
 import 'package:food_recipe_final/src/features/bookmark/repository/bookmark_interface.dart';
+import 'package:food_recipe_final/src/models/shopping_item.dart';
 import 'package:food_recipe_final/src/navigation/route_generator.dart';
 import 'package:food_recipe_final/src/providers/auth_provider.dart';
 import 'package:food_recipe_final/src/providers/bookmark_provider.dart';
@@ -23,10 +25,16 @@ import 'package:provider/provider.dart';
 void main() async {
   GoogleFonts.config.allowRuntimeFetching = false;
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // await Hive.initFlutter();
+  await Hive.initFlutter();
+  Hive.registerAdapter(ShoppingItemAdapter());
+  await Hive.openBox<ShoppingItem>('shoppingItems');
   // SystemChrome.setSystemUIOverlayStyle(
   // const SystemUiOverlayStyle(
   //   systemNavigationBarColor: kBlackColor2,

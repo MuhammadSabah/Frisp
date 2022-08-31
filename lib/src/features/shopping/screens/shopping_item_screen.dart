@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/models/enums/importance_enum.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
 import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:food_recipe_final/src/providers/shopping_provider.dart';
@@ -31,10 +32,10 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
   final _quantityController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String _name = '';
-  Importance _importance = Importance.low;
+  ImportanceEnum _importance = ImportanceEnum.low;
   DateTime _dueDate = DateTime.now();
   TimeOfDay _timeOfDay = TimeOfDay.now();
-  Color _currentColor = kOrangeColorTint2;
+  int _currentColor = kOrangeColorTint2.value;
   @override
   void initState() {
     super.initState();
@@ -43,7 +44,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
       _name = originalItem.name;
       _nameController.text = originalItem.name;
       _quantityController.text = originalItem.quantity.toString();
-      _importance = originalItem.importance;
+      _importance = originalItem.importance.toEnum();
       _currentColor = originalItem.color;
       final date = originalItem.date;
       _timeOfDay = TimeOfDay(hour: date.hour, minute: date.minute);
@@ -66,7 +67,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final shoppingManager =
+    final shoppingProvider =
         Provider.of<ShoppingProvider>(context, listen: false);
     final settingsManager =
         Provider.of<SettingsProvider>(context, listen: false);
@@ -114,7 +115,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                     final shoppingItem = ShoppingItem(
                       id: widget.originalItem?.id ?? const Uuid().v1(),
                       name: _nameController.text,
-                      importance: _importance,
+                      importance: _importance.type,
                       color: _currentColor,
                       quantity: _quantityController.text,
                       date: DateTime(
@@ -126,11 +127,12 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                       ),
                     );
 
+                      
                     if (widget.isUpdating) {
-                      shoppingManager.updateItem(shoppingItem, widget.index);
+                      shoppingProvider.updateItem(shoppingItem, widget.index);
                       Navigator.of(context).pop();
                     } else {
-                      shoppingManager.addItem(shoppingItem);
+                      shoppingProvider.addItem(shoppingItem);
                       Navigator.of(context).pop();
                     }
                   }
@@ -163,7 +165,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                       item: ShoppingItem(
                         id: 'PreviewMode',
                         name: _name,
-                        importance: _importance,
+                        importance: _importance.type,
                         color: _currentColor,
                         quantity: _quantityController.text,
                         date: DateTime(
@@ -256,7 +258,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
               selectedColor: settingsManager.darkMode
                   ? Colors.grey.shade700
                   : Colors.grey.shade500,
-              selected: _importance == Importance.low,
+              selected: _importance == ImportanceEnum.low,
               label: Text(
                 'low',
                 style: Theme.of(context)
@@ -265,7 +267,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                     .copyWith(fontSize: 14),
               ),
               onSelected: (selected) {
-                setState(() => _importance = Importance.low);
+                setState(() => _importance = ImportanceEnum.low);
               },
             ),
             ChoiceChip(
@@ -274,7 +276,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
               selectedColor: settingsManager.darkMode
                   ? Colors.grey.shade700
                   : Colors.grey.shade500,
-              selected: _importance == Importance.medium,
+              selected: _importance == ImportanceEnum.medium,
               label: Text(
                 'medium',
                 style: Theme.of(context)
@@ -283,7 +285,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                     .copyWith(fontSize: 14),
               ),
               onSelected: (selected) {
-                setState(() => _importance = Importance.medium);
+                setState(() => _importance = ImportanceEnum.medium);
               },
             ),
             ChoiceChip(
@@ -292,7 +294,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
               selectedColor: settingsManager.darkMode
                   ? Colors.grey.shade700
                   : Colors.grey.shade500,
-              selected: _importance == Importance.high,
+              selected: _importance == ImportanceEnum.high,
               label: Text(
                 'high',
                 style: Theme.of(context)
@@ -301,7 +303,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                     .copyWith(fontSize: 14),
               ),
               onSelected: (selected) {
-                setState(() => _importance = Importance.high);
+                setState(() => _importance = ImportanceEnum.high);
               },
             ),
           ],
@@ -442,7 +444,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             Container(
               height: 50,
               width: 10,
-              color: _currentColor,
+              color: Color(_currentColor),
             ),
             const SizedBox(width: 8),
             Text(
@@ -467,7 +469,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                   content: BlockPicker(
                     pickerColor: Colors.white,
                     onColorChanged: (color) {
-                      setState(() => _currentColor = color);
+                      setState(() => _currentColor = color.value);
                     },
                   ),
                   actions: [

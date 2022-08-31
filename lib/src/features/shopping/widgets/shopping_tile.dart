@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/models/enums/importance_enum.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
 import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:intl/intl.dart';
@@ -35,7 +36,7 @@ class ShoppingTile extends StatelessWidget {
             child: Container(
               width: 10.0,
               decoration: BoxDecoration(
-                color: item.color,
+                color: Color(item.color),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
                   bottomLeft: Radius.circular(10),
@@ -107,14 +108,14 @@ class ShoppingTile extends StatelessWidget {
   }
 
   Widget buildImportance(BuildContext context) {
-    if (item.importance == Importance.low) {
+    if (item.importance == ImportanceEnum.low.type) {
       return Text(
         'Low',
         style: Theme.of(context).textTheme.bodyText2!.copyWith(
               fontSize: 15,
             ),
       );
-    } else if (item.importance == Importance.medium) {
+    } else if (item.importance == ImportanceEnum.medium.type) {
       return Text(
         'Medium',
         style: Theme.of(context).textTheme.bodyText2!.copyWith(
@@ -123,7 +124,7 @@ class ShoppingTile extends StatelessWidget {
             fontSize: 15),
       );
     }
-    if (item.importance == Importance.high) {
+    if (item.importance == ImportanceEnum.high.type) {
       return Text(
         'High',
         style: Theme.of(context).textTheme.bodyText2!.copyWith(

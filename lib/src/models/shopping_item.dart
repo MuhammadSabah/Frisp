@@ -1,18 +1,29 @@
-import 'package:flutter/material.dart';
+import 'package:food_recipe_final/src/models/enums/importance_enum.dart';
+import 'package:hive/hive.dart';
 
-enum Importance {
-  low,
-  medium,
-  high,
-}
+part 'shopping_item.g.dart';
 
-class ShoppingItem {
+@HiveType(typeId: 0)
+class ShoppingItem extends HiveObject {
+  @HiveField(0)
   final String id;
+
+  @HiveField(1)
   final String name;
-  final Importance importance;
-  final Color color;
+
+  @HiveField(2)
+  final String importance;
+
+  @HiveField(3)
+  final int color;
+
+  @HiveField(4)
   final String quantity;
+
+  @HiveField(5)
   final DateTime date;
+
+  @HiveField(6)
   final bool isComplete;
 
   ShoppingItem({
@@ -28,8 +39,8 @@ class ShoppingItem {
   ShoppingItem copyWith({
     String? id,
     String? name,
-    Importance? importance,
-    Color? color,
+    ImportanceEnum? importance,
+    int? color,
     String? quantity,
     DateTime? date,
     bool? isComplete,
@@ -37,7 +48,7 @@ class ShoppingItem {
     return ShoppingItem(
       id: id ?? this.id,
       name: name ?? this.name,
-      importance: importance ?? this.importance,
+      importance: importance?.type ?? this.importance.toString(),
       color: color ?? this.color,
       quantity: quantity ?? this.quantity,
       date: date ?? this.date,
