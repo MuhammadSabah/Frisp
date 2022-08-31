@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
+import 'package:food_recipe_final/src/features/authentication/screens/auth_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/forget_password_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/log_in_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/sign_up_screen.dart';
@@ -65,6 +66,10 @@ class RouteGenerator {
             user: args as UserModel,
           ),
         );
+      case AppPages.auth:
+        return MaterialPageRoute(
+          builder: (context) => const AuthScreen(),
+        );
       //  case AppPages.onboardingPath:
       // return MaterialPageRoute(
       //   builder: (context) => const (),
@@ -119,7 +124,7 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (context) => FollowersScreen(user: args as UserModel),
         );
-         case AppPages.followingPath:
+      case AppPages.followingPath:
         return MaterialPageRoute(
           builder: (context) => FollowingScreen(user: args as UserModel),
         );

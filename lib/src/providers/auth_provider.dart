@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/core/app_cache.dart';
+import 'package:food_recipe_final/main.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 
 class AppTab {
@@ -16,18 +16,11 @@ class AppTab {
 class AuthProvider extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _userAuth = FirebaseAuth.instance;
-  bool _onboardingComplete = false;
 
   int _selectedTab = AppTab.discover;
-  final _appCache = AppCache();
   UserModel? user;
 
-  bool get isOnboardingComplete => _onboardingComplete;
   int get selectedTab => _selectedTab;
-
-  void initializeApp() async {
-    _onboardingComplete = await _appCache.didCompleteOnboarding();
-  }
 
   Future<String?> signUpUser({
     required userName,
@@ -115,12 +108,6 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  void completeOnboarding() async {
-    _onboardingComplete = true;
-    await _appCache.completeOnboarding();
-    notifyListeners();
-  }
-
   void gotToTab(int tabIndex) {
     _selectedTab = tabIndex;
     notifyListeners();
@@ -129,8 +116,7 @@ class AuthProvider extends ChangeNotifier {
   Future<void> logOutUser() async {
     await _userAuth.signOut();
     _selectedTab = 0;
-    await _appCache.invalidate();
-    initializeApp();
+    onboardingBox?.put(1, false);
     notifyListeners();
   }
 

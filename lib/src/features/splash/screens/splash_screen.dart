@@ -1,12 +1,10 @@
-import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/main.dart';
+import 'package:food_recipe_final/src/features/authentication/screens/auth_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/error_screen.dart';
-import 'package:food_recipe_final/src/features/authentication/screens/sign_up_screen.dart';
 import 'package:food_recipe_final/src/features/home/screens/home_screen.dart';
-import 'package:food_recipe_final/src/providers/auth_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:food_recipe_final/src/features/onboarding/screens/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -18,7 +16,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    final userState = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
         body: StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
@@ -30,9 +27,11 @@ class _SplashScreenState extends State<SplashScreen> {
         } else if (snapshot.hasError) {
           return const ErrorScreen();
         } else if (snapshot.data == null) {
-          return const SignUpScreen();
+          if (onboardingBox?.get(1) ?? false) {
+            return const AuthScreen();
+          }
+          return const OnboardingScreen();
         }
-        userState.initializeApp();
         return const HomeScreen();
       },
     ));

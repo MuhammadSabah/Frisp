@@ -287,7 +287,7 @@ class _SignupFormState extends State<SignupForm> {
                             userPassword: widget.passwordController.text,
                           );
                           if (output == null) {
-                            authProvider.logOutUser();
+                            FirebaseAuth.instance.signOut();
                             navigator.pushNamed(AppPages.loginPath);
                           }
                           if (mounted) {

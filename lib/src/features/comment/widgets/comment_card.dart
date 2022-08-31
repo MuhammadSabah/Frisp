@@ -287,7 +287,6 @@ class _CommentCardState extends State<CommentCard> {
                                         color: Colors.white,
                                       ),
                                     ),
-                                    counterText: ' ',
                                     fillColor: settingsManager.darkMode
                                         ? kGreyColor
                                         : kGreyColor4,

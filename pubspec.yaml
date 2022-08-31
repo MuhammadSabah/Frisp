@@ -111,6 +111,8 @@ flutter:
   assets:
     - google_fonts/
     - assets/images/
+    - assets/onboarding/
+    - assets/onboarding/pages/
     - assets/
     - assets/food/feature/
     - assets/food/today/

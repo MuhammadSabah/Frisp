@@ -22,6 +22,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
+Box? onboardingBox;
 void main() async {
   GoogleFonts.config.allowRuntimeFetching = false;
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +36,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(ShoppingItemAdapter());
   await Hive.openBox<ShoppingItem>('shoppingItems');
+  onboardingBox = await Hive.openBox('onboarding');
   // SystemChrome.setSystemUIOverlayStyle(
   // const SystemUiOverlayStyle(
   //   systemNavigationBarColor: kBlackColor2,
