@@ -20,7 +20,7 @@ class FollowersScreen extends StatelessWidget {
         Provider.of<SettingsProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        leading: const SettingsBackButton(),
+        leading: SettingsBackButton(darkState: settingsManager,),
         centerTitle: true,
         elevation: 0.0,
         bottomOpacity: 0.0,

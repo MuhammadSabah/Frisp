@@ -135,7 +135,8 @@ class AppTheme {
         elevation: 0,
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(
-          color: kOrangeColor,
+          color: Colors.black,
+          
         ),
       ),
       tabBarTheme: TabBarTheme(
@@ -152,8 +153,6 @@ class AppTheme {
         backgroundColor: Colors.transparent,
         unselectedItemColor: Colors.black,
         selectedItemColor: kOrangeColor,
-       
-        
       ),
       textTheme: lightTextTheme,
       scaffoldBackgroundColor: Colors.white,
@@ -210,7 +209,7 @@ class AppTheme {
         elevation: 0,
         backgroundColor: kBlackColor,
         iconTheme: IconThemeData(
-          color: kOrangeColor,
+          color: Colors.white,
         ),
       ),
       tabBarTheme: TabBarTheme(

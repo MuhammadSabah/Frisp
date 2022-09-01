@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/src/providers/settings_provider.dart';
-import 'package:provider/provider.dart';
+
 
 class SettingsBackButton extends StatelessWidget {
-  const SettingsBackButton({Key? key}) : super(key: key);
-
+  const SettingsBackButton({Key? key, required this.darkState})
+      : super(key: key);
+  final darkState;
   @override
   Widget build(BuildContext context) {
-    final settingsManager =
-        Provider.of<SettingsProvider>(context, listen: false);
     return IconButton(
       splashRadius: 20,
       onPressed: () {
@@ -16,7 +14,7 @@ class SettingsBackButton extends StatelessWidget {
       },
       icon: Icon(
         Icons.arrow_back,
-        color: settingsManager.darkMode ? Colors.white : Colors.black,
+        color: darkState.darkMode ? Colors.white : Colors.black,
         size: 24,
       ),
     );
