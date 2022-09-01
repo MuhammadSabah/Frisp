@@ -18,7 +18,7 @@ class ShoppingListScreen extends StatelessWidget {
         Provider.of<SettingsProvider>(context, listen: false);
 
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(14.0),
       child: ValueListenableBuilder<Box<ShoppingItem>>(
           valueListenable: manager.listenToShoppingItems(),
           builder: (context, box, _) {
@@ -34,7 +34,7 @@ class ShoppingListScreen extends StatelessWidget {
                   background: Container(
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(
-                        Radius.circular(10),
+                        Radius.circular(6),
                       ),
                       color: Colors.red.shade400,
                     ),
@@ -67,7 +67,7 @@ class ShoppingListScreen extends StatelessWidget {
                     );
                   },
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(6),
                     child: Material(
                       color:
                           settingsManager.darkMode ? kGreyColor : kGreyColor4,
@@ -94,7 +94,7 @@ class ShoppingListScreen extends StatelessWidget {
                 );
               },
               separatorBuilder: (_, index) {
-                return const SizedBox(height: 16);
+                return const SizedBox(height: 14);
               },
               itemCount: shoppingItems.length,
             );

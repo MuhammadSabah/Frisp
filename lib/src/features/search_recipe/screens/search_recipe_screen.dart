@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/features/bookmark/screens/bookmark_tab.dart';
 import 'package:food_recipe_final/src/features/search_recipe/screens/search_tab.dart';
@@ -170,15 +171,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                 ),
                 child: Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.search),
-                      splashRadius: 20,
-                      onPressed: () {
-                        FocusManager.instance.primaryFocus?.unfocus();
-                        startSearch(_searchController.text);
-                      },
-                    ),
-                    const SizedBox(width: 4),
+                    const SizedBox(width: 18),
                     Expanded(
                       child: Row(
                         children: [
@@ -258,6 +251,10 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
             child: Material(
               color: kOrangeColorTint,
               child: InkWell(
+                onTap: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  startSearch(_searchController.text);
+                },
                 child: Ink(
                   height: 48,
                   width: 48,
@@ -266,7 +263,13 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                       Radius.circular(10),
                     ),
                   ),
-                  child: const Icon(Icons.tune_outlined),
+                  child: const Center(
+                    child: FaIcon(
+                      FontAwesomeIcons.magnifyingGlass,
+                      size: 20,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ),

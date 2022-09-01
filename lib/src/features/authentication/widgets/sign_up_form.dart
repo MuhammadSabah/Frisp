@@ -313,7 +313,9 @@ class _SignupFormState extends State<SignupForm> {
                     SizedBox(height: MediaQuery.of(context).size.height / 8),
                     AuthBottomRichText(
                       detailText: 'Already have account? ',
+                      darkColor: Colors.white54,
                       clickableText: 'Log in',
+                      lightColor: Colors.grey.shade800,
                       onTap: () {
                         Navigator.pushNamed(context, AppPages.loginPath);
                       },

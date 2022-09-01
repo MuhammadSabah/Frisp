@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
-import 'package:food_recipe_final/src/features/authentication/screens/auth_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/forget_password_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/log_in_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/sign_up_screen.dart';
@@ -19,6 +18,7 @@ import 'package:food_recipe_final/src/features/search_user/screens/search_user_s
 import 'package:food_recipe_final/src/features/settings/screens/settings_screen.dart';
 import 'package:food_recipe_final/src/features/shopping/screens/shopping_item_screen.dart';
 import 'package:food_recipe_final/src/features/splash/screens/splash_screen.dart';
+import 'package:food_recipe_final/src/features/welcome/screens/welcome_screen.dart';
 import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
@@ -68,7 +68,7 @@ class RouteGenerator {
         );
       case AppPages.auth:
         return MaterialPageRoute(
-          builder: (context) => const AuthScreen(),
+          builder: (context) => const WelcomeScreen(),
         );
       //  case AppPages.onboardingPath:
       // return MaterialPageRoute(

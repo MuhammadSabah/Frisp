@@ -251,6 +251,8 @@ class _LoginFormState extends State<LoginForm> {
                       onTap: () {
                         Navigator.pushNamed(context, AppPages.signupPath);
                       },
+                      darkColor: Colors.white54,
+                      lightColor: Colors.grey.shade800,
                     ),
                   ],
                 ),

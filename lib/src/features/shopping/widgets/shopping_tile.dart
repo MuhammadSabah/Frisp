@@ -24,7 +24,7 @@ class ShoppingTile extends StatelessWidget {
       decoration: BoxDecoration(
         color: settingsManager.darkMode ? kGreyColor : kGreyColor4,
         borderRadius: const BorderRadius.all(
-          Radius.circular(10),
+          Radius.circular(6),
         ),
       ),
       child: Stack(
@@ -38,8 +38,8 @@ class ShoppingTile extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Color(item.color),
                 borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
+                  topLeft: Radius.circular(6),
+                  bottomLeft: Radius.circular(6),
                 ),
               ),
             ),

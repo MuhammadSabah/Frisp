@@ -9,10 +9,13 @@ class AuthBottomRichText extends StatelessWidget {
     required this.onTap,
     required this.detailText,
     required this.clickableText,
+    required this.lightColor, required this.darkColor,
   }) : super(key: key);
   final Function()? onTap;
   final String detailText;
   final String clickableText;
+  final Color lightColor;
+  final Color darkColor;
   @override
   Widget build(BuildContext context) {
     final settingsManager =
@@ -26,9 +29,7 @@ class AuthBottomRichText extends StatelessWidget {
               TextSpan(
                 text: detailText,
                 style: Theme.of(context).textTheme.headline4!.copyWith(
-                      color: settingsManager.darkMode
-                          ? Colors.white54
-                          : Colors.grey.shade800,
+                      color: settingsManager.darkMode ? darkColor : lightColor,
                       fontSize: 14,
                     ),
               ),

@@ -3,8 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/src/features/authentication/widgets/sign_up_form.dart';
 
 class SignUpScreen extends StatefulWidget {
-
-
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
@@ -16,7 +14,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  
+
   @override
   void initState() {
     super.initState();
@@ -42,15 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         appBar: AppBar(
           elevation: 0,
           bottomOpacity: 0,
-          leading: IconButton(
-            splashRadius: 20,
-            onPressed: () {},
-            icon: FaIcon(
-              FontAwesomeIcons.arrowLeft,
-              color: Colors.grey.shade500,
-              size: 21,
-            ),
-          ),
+          automaticallyImplyLeading: false,
         ),
         body: SignupForm(
           formKey: _formKey,
