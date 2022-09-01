@@ -117,7 +117,9 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                       name: _nameController.text,
                       importance: _importance.type,
                       color: _currentColor,
-                      quantity: _quantityController.text,
+                      quantity: _quantityController.text.isEmpty
+                          ? 0.toString()
+                          : _quantityController.text,
                       date: DateTime(
                         _dueDate.year,
                         _dueDate.month,
@@ -127,11 +129,11 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                       ),
                     );
 
-                      
                     if (widget.isUpdating) {
                       shoppingProvider.updateItem(shoppingItem, widget.index);
                       Navigator.of(context).pop();
                     } else {
+                      print(shoppingItem.quantity);
                       shoppingProvider.addItem(shoppingItem);
                       Navigator.of(context).pop();
                     }
@@ -167,7 +169,9 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                         name: _name,
                         importance: _importance.type,
                         color: _currentColor,
-                        quantity: _quantityController.text,
+                        quantity: _quantityController.text.isEmpty
+                            ? 0.toString()
+                            : _quantityController.text,
                         date: DateTime(
                           _dueDate.year,
                           _dueDate.month,
