@@ -5,8 +5,8 @@ import 'package:food_recipe_final/src/models/message.dart';
 import 'package:food_recipe_final/src/features/chat/widgets/my_message_bubble.dart';
 import 'package:food_recipe_final/src/features/chat/widgets/sender_message_bubble.dart';
 
-class MessagesList extends StatefulWidget {
-  const MessagesList({
+class ChatMessages extends StatefulWidget {
+  const ChatMessages({
     Key? key,
     required this.scrollController,
     required this.userId,
@@ -17,10 +17,10 @@ class MessagesList extends StatefulWidget {
   final String currentUserId;
 
   @override
-  State<MessagesList> createState() => _MessagesListState();
+  State<ChatMessages> createState() => _ChatMessagesState();
 }
 
-class _MessagesListState extends State<MessagesList> {
+class _ChatMessagesState extends State<ChatMessages> {
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Stream<QuerySnapshot<Map<String, dynamic>>>? streamResult;
   void _scrollToBottom() {

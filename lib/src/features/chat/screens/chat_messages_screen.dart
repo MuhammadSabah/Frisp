@@ -4,7 +4,7 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/enums/message_enum.dart';
 import 'package:food_recipe_final/src/models/message.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
-import 'package:food_recipe_final/src/features/chat/widgets/messages_list.dart';
+import 'package:food_recipe_final/src/features/chat/widgets/chat_messages.dart';
 import 'package:food_recipe_final/src/providers/message_provider.dart';
 import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
@@ -76,7 +76,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
           Expanded(
             child: Align(
               alignment: Alignment.center,
-              child: MessagesList(
+              child: ChatMessages(
                 scrollController: _scrollController,
                 userId: widget.user.id,
                 currentUserId: FirebaseAuth.instance.currentUser!.uid,

@@ -36,7 +36,8 @@ class MessageProvider extends ChangeNotifier {
             },
           );
 
-      // !:**********************************************************
+      // !:*********************************************
+
       CollectionReference currentUserContactsCollection = _firestore
           .collection('users')
           .doc(_auth.currentUser!.uid)
@@ -66,6 +67,7 @@ class MessageProvider extends ChangeNotifier {
 
   void sendMessage(
       Message message, String oppositeUserId, String currentUserId) async {
+    //
     await _firestore
         .collection('users')
         .doc(currentUserId)
@@ -73,7 +75,25 @@ class MessageProvider extends ChangeNotifier {
         .doc(oppositeUserId)
         .collection('messages')
         .add(message.toJson());
-    //
+    await _firestore
+        .collection('users')
+        .doc(currentUserId)
+        .collection('contacts')
+        .doc(oppositeUserId)
+        .update({
+      'lastMessage': message.messageText,
+      'messageSent': DateTime.now()
+    });
+    ////////////////////////////
+    await _firestore
+        .collection('users')
+        .doc(oppositeUserId)
+        .collection('contacts')
+        .doc(currentUserId)
+        .update({
+      'lastMessage': message.messageText,
+      'messageSent': DateTime.now()
+    });
     await _firestore
         .collection('users')
         .doc(oppositeUserId)

@@ -11,6 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
+// ignore: must_be_immutable
 class ContactsListScreen extends StatelessWidget {
   ContactsListScreen({Key? key}) : super(key: key);
   String lastMessage = '';
@@ -123,10 +124,7 @@ class ContactsListScreen extends StatelessWidget {
                           subtitle: Padding(
                             padding: const EdgeInsets.only(top: 6),
                             child: Text(
-                              lastMessage,
-                              // snapshot.data == null
-                              //     ? ''
-                              //     : snapshot.data!.docs.first['messageText'],
+                              contactUser.lastMessage,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline3!
@@ -171,13 +169,11 @@ class ContactsListScreen extends StatelessWidget {
                                   ),
                           ),
                           trailing: Text(
-                            '', // snapshot.data == null
-                            //     ? ''
-                            //     : DateFormat.Hms()
-                            //         .format(DateTime.parse(snapshot
-                            //             .data!.docs.first['sentAt']
-                            //             .toString()))
-                            //         .toString(),
+                            contactUser.messageSent == null
+                                ? ''
+                                : DateFormat('kk:mm')
+                                    .format(contactUser.messageSent!)
+                                    .toString(),
                             style: const TextStyle(
                               fontSize: 12,
                               color: Colors.grey,

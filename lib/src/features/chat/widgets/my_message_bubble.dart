@@ -51,7 +51,7 @@ class MyMessageBubble extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  DateFormat('dd-MM yyyy, kk:mm').format(date).toString(),
+                  DateFormat('dd-MM yy, kk:mm').format(date).toString(),
                   maxLines: 1,
                   textAlign: TextAlign.end,
                   style: TextStyle(

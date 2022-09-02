@@ -30,10 +30,10 @@ class SenderMessageBubble extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
-                      left: 10,
-                      right: 20,
+                      left: 5,
+                      right: 6,
                       top: 5,
-                      bottom: 10,
+                      bottom: 6,
                     ),
                     child: Text(
                       message,
@@ -52,7 +52,7 @@ class SenderMessageBubble extends StatelessWidget {
               children: [
                 const SizedBox(width: 12),
                 Text(
-                  DateFormat('dd-MM yyyy, kk:mm').format(date).toString(),
+                  DateFormat('dd-MM yy, kk:mm').format(date).toString(),
                   maxLines: 1,
                   textAlign: TextAlign.start,
                   style: TextStyle(
