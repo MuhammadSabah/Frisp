@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/models/enums/message_enum.dart';
 import 'package:food_recipe_final/src/models/message.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/features/chat/widgets/messages_list.dart';
@@ -84,7 +85,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
           ),
           // Text Input
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextField(
               textAlign: TextAlign.start,
               textAlignVertical: TextAlignVertical.center,
@@ -95,8 +96,12 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
               cursorColor: kOrangeColor,
               autofocus: false,
               autocorrect: false,
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.next,
+              minLines: null,
+              maxLines: null,
               decoration: InputDecoration(
+                counterText: ' ',
                 prefixIcon: IconButton(
                   splashRadius: 20,
                   onPressed: () async {},
@@ -111,9 +116,12 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
                     // !: Send message.
                     if (_sendMessageController.text.isNotEmpty) {
                       final message = Message(
+                        receiverId: widget.user.id,
                         userId: FirebaseAuth.instance.currentUser!.uid,
                         messageText: _sendMessageController.text,
                         sentAt: DateTime.now(),
+                        isSeen: false,
+                        // type: MessageEnum.text,
                       );
                       messageProvider.sendMessage(
                         message,
@@ -129,11 +137,10 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
                     color: kOrangeColor,
                   ),
                 ),
-                counterText: ' ',
                 fillColor: settingsManager.darkMode ? kGreyColor : kGreyColor4,
                 filled: true,
                 isCollapsed: true,
-                contentPadding: const EdgeInsets.all(18),
+                contentPadding: const EdgeInsets.all(18).copyWith(right: 0),
                 hintText: 'Message...',
                 hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
                       fontSize: 15,

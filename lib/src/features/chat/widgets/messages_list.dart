@@ -54,7 +54,7 @@ class _MessagesListState extends State<MessagesList> {
             child: CircularProgressIndicator(),
           );
         }
-        if (snapshot.data == null || !snapshot.hasData) {
+        if (snapshot.data == null) {
           return const Center(
             child: Text('No data!'),
           );

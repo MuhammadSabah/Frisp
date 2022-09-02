@@ -28,7 +28,7 @@ class ProfileSendMessageButton extends StatelessWidget {
         );
 
         await messageProvider.createUserContactsCollection(
-          user: user,
+          receiverUser: user,
           currentUser: currentUser!,
         );
       },

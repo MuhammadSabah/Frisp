@@ -136,7 +136,6 @@ class AppTheme {
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(
           color: Colors.black,
-          
         ),
       ),
       tabBarTheme: TabBarTheme(

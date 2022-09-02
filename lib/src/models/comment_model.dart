@@ -51,15 +51,15 @@ class CommentModel {
     return result;
   }
 
-  factory CommentModel.fromJson(Map<String, dynamic> map) {
+  factory CommentModel.fromJson(Map<String, dynamic> json) {
     return CommentModel(
-      userId: map['userId'] ?? '',
-      userName: map['userName'] ?? '',
-      commentId: map['commentId'] ?? '',
-      commentText: map['commentText'] ?? '',
-      profilePicture: map['profilePicture'] ?? '',
-      likes: map['likes'] ?? [],
-      dateCommented: DateTime.fromMillisecondsSinceEpoch(map['dateCommented']),
+      userId: json['userId'] ?? '',
+      userName: json['userName'] ?? '',
+      commentId: json['commentId'] ?? '',
+      commentText: json['commentText'] ?? '',
+      profilePicture: json['profilePicture'] ?? '',
+      likes: json['likes'] ?? [],
+      dateCommented: DateTime.fromMillisecondsSinceEpoch(json['dateCommented']),
     );
   }
 

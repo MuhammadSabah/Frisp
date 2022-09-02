@@ -92,7 +92,7 @@ class RouteGenerator {
         );
       case AppPages.contactsPath:
         return MaterialPageRoute(
-          builder: (context) => const ContactsListScreen(),
+          builder: (context) => ContactsListScreen(),
         );
       case AppPages.chatPath:
         return MaterialPageRoute(

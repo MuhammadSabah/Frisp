@@ -7,11 +7,25 @@ import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/settings_provider.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ContactsListScreen extends StatelessWidget {
-  const ContactsListScreen({Key? key}) : super(key: key);
+  ContactsListScreen({Key? key}) : super(key: key);
+  String lastMessage = '';
+  getContactData(String contactId) {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('contacts')
+        .doc(contactId)
+        .collection('messages')
+        .snapshots()
+        .listen((event) {
+      lastMessage = event.docs.last['messageText'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +99,7 @@ class ContactsListScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 final contactUser =
                     UserModel.fromSnapshot(contactUsersList[index]);
+                // getContactData(contactUser.id);
                 return Column(
                   children: [
                     InkWell(
@@ -108,7 +123,10 @@ class ContactsListScreen extends StatelessWidget {
                           subtitle: Padding(
                             padding: const EdgeInsets.only(top: 6),
                             child: Text(
-                              'Last message',
+                              lastMessage,
+                              // snapshot.data == null
+                              //     ? ''
+                              //     : snapshot.data!.docs.first['messageText'],
                               style: Theme.of(context)
                                   .textTheme
                                   .headline3!
@@ -152,9 +170,15 @@ class ContactsListScreen extends StatelessWidget {
                                     ),
                                   ),
                           ),
-                          trailing: const Text(
-                            '21:09',
-                            style: TextStyle(
+                          trailing: Text(
+                            '', // snapshot.data == null
+                            //     ? ''
+                            //     : DateFormat.Hms()
+                            //         .format(DateTime.parse(snapshot
+                            //             .data!.docs.first['sentAt']
+                            //             .toString()))
+                            //         .toString(),
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.grey,
                             ),

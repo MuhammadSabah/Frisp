@@ -31,10 +31,10 @@ class MyMessageBubble extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
-                      left: 10,
-                      right: 20,
+                      left: 5,
+                      right: 6,
                       top: 5,
-                      bottom: 10,
+                      bottom: 6,
                     ),
                     child: Text(
                       message,

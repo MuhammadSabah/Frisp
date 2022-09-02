@@ -9,17 +9,19 @@ class MessageProvider extends ChangeNotifier {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> createUserContactsCollection({
-    required UserModel user,
+    required UserModel receiverUser,
     required UserModel currentUser,
   }) async {
     try {
-      CollectionReference userContactsCollection =
-          _firestore.collection('users').doc(user.id).collection('contacts');
+      CollectionReference userContactsCollection = _firestore
+          .collection('users')
+          .doc(receiverUser.id)
+          .collection('contacts');
       //
 
       final userContactsList = _firestore
           .collection('users')
-          .doc(user.id)
+          .doc(receiverUser.id)
           .collection('contacts')
           .doc(_auth.currentUser!.uid);
 
@@ -34,7 +36,7 @@ class MessageProvider extends ChangeNotifier {
             },
           );
 
-      //!:*********************************
+      // !:**********************************************************
       CollectionReference currentUserContactsCollection = _firestore
           .collection('users')
           .doc(_auth.currentUser!.uid)
@@ -45,14 +47,14 @@ class MessageProvider extends ChangeNotifier {
           .collection('users')
           .doc(_auth.currentUser!.uid)
           .collection('contacts')
-          .doc(user.id);
+          .doc(receiverUser.id);
 
       currentUserContactsList.get().then(
             (snapshot) => {
               if (!snapshot.exists)
                 {
-                  currentUserContactsCollection.doc(user.id).set(
-                        user.toJson(),
+                  currentUserContactsCollection.doc(receiverUser.id).set(
+                        receiverUser.toJson(),
                       ),
                 }
             },

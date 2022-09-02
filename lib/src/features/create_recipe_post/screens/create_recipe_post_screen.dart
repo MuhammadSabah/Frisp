@@ -392,7 +392,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                       leadingTextFieldColor: settingsManager.darkMode
                           ? Colors.white
                           : Colors.black,
-                      sectionText: 'Instructions',
+                      sectionText: 'Steps',
                       hintText: 'Mix the flour and water until they thicken',
                       buttonTextColor:
                           settingsManager.darkMode ? kBlackColor : Colors.white,
