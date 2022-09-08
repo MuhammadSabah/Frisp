@@ -71,7 +71,7 @@ class _ActivityTabState extends State<ActivityTab>
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
+                    children: const [
                       //TODO: if the user does not follow anyone.
                     ],
                   );

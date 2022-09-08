@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
+import 'package:provider/provider.dart';
 
 class AddRecipePostScreen extends StatelessWidget {
   const AddRecipePostScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final settingsProvider = Provider.of<SettingsProvider>(context);
     return Scaffold(
       body: SafeArea(
           child: Padding(
@@ -35,7 +38,9 @@ class AddRecipePostScreen extends StatelessWidget {
               'Help people to find new ideas and develope their cooking skills.',
               style: Theme.of(context).textTheme.headline3!.copyWith(
                     height: 1.4,
-                    color: Colors.grey.shade300,
+                    color: settingsProvider.darkMode
+                        ? Colors.grey.shade300
+                        : Colors.grey.shade700,
                   ),
               textAlign: TextAlign.center,
             ),
@@ -43,7 +48,7 @@ class AddRecipePostScreen extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Material(
-                color: Colors.white,
+                color: settingsProvider.darkMode ? Colors.white : kOrangeColor,
                 elevation: 4,
                 child: InkWell(
                   onTap: () {
@@ -67,7 +72,9 @@ class AddRecipePostScreen extends StatelessWidget {
                               Theme.of(context).textTheme.headline2!.copyWith(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: kOrangeColor,
+                                    color: settingsProvider.darkMode
+                                        ? kOrangeColor
+                                        : Colors.white,
                                   ),
                         ),
                       ],

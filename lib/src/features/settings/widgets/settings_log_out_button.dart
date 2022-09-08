@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/core/app_pages.dart';
-import 'package:food_recipe_final/src/providers/auth_provider.dart';
-import 'package:food_recipe_final/src/providers/settings_provider.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 
 
 class SettingsLogoutButton extends StatelessWidget {

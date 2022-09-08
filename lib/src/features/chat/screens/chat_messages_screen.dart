@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/models/enums/message_enum.dart';
 import 'package:food_recipe_final/src/models/message.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/features/chat/widgets/chat_messages.dart';
@@ -106,7 +105,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
                   splashRadius: 20,
                   onPressed: () async {},
                   icon: const Icon(
-                    Icons.emoji_emotions_outlined,
+                    Icons.add,
                     color: kOrangeColor,
                   ),
                 ),

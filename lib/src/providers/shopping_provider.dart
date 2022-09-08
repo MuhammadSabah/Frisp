@@ -84,10 +84,10 @@ class ShoppingProvider extends ChangeNotifier {
     items.sort((a, b) {
       return int.parse(a.quantity).compareTo(int.parse(b.quantity));
     });
-    items.forEach((element) {
+    for (var element in items) {
       _shoppingItems.delete(element.key);
       _shoppingItems.add(element);
-    });
+    }
 
     notifyListeners();
   }
@@ -97,10 +97,10 @@ class ShoppingProvider extends ChangeNotifier {
     items.sort((a, b) {
       return int.parse(b.quantity).compareTo(int.parse(a.quantity));
     });
-    items.forEach((element) {
+    for (var element in items) {
       _shoppingItems.delete(element.key);
       _shoppingItems.add(element);
-    });
+    }
 
     notifyListeners();
   }
@@ -111,10 +111,10 @@ class ShoppingProvider extends ChangeNotifier {
     items.sort((a, b) {
       return a.date.compareTo(b.date);
     });
-    items.forEach((element) {
+    for (var element in items) {
       _shoppingItems.delete(element.key);
       _shoppingItems.add(element);
-    });
+    }
     notifyListeners();
   }
 
@@ -123,10 +123,10 @@ class ShoppingProvider extends ChangeNotifier {
     items.sort((a, b) {
       return b.date.compareTo(a.date);
     });
-    items.forEach((element) {
+    for (var element in items) {
       _shoppingItems.delete(element.key);
       _shoppingItems.add(element);
-    });
+    }
     notifyListeners();
   }
 
@@ -136,10 +136,10 @@ class ShoppingProvider extends ChangeNotifier {
     items.sort((a, b) {
       return a.importance.toEnum().index.compareTo(b.importance.toEnum().index);
     });
-    items.forEach((element) {
+    for (var element in items) {
       _shoppingItems.delete(element.key);
       _shoppingItems.add(element);
-    });
+    }
     notifyListeners();
   }
 
@@ -148,10 +148,10 @@ class ShoppingProvider extends ChangeNotifier {
     items.sort((a, b) {
       return b.importance.toEnum().index.compareTo(a.importance.toEnum().index);
     });
-    items.forEach((element) {
+    for (var element in items) {
       _shoppingItems.delete(element.key);
       _shoppingItems.add(element);
-    });
+    }
     notifyListeners();
   }
 }

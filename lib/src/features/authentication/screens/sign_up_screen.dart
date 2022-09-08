@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/src/features/authentication/widgets/sign_up_form.dart';
 
 class SignUpScreen extends StatefulWidget {

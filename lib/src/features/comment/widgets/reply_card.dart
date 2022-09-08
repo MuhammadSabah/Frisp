@@ -22,7 +22,7 @@ class ReplyCard extends StatelessWidget {
   final CommentModel comment;
   final String postId;
   String daysBetween(DateTime commentedDate) {
-    var date;
+    String date;
     if ((DateTime.now().difference(reply.dateCommented).inHours / 24).round() ==
         1) {
       date = DateFormat('kk:mm').format(
@@ -35,7 +35,7 @@ class ReplyCard extends StatelessWidget {
       date = DateFormat('dd MMMM, kk:mm').format(
         reply.dateCommented,
       );
-      return '$date';
+      return date;
     } else {
       date = DateFormat('kk:mm').format(
         reply.dateCommented,
@@ -198,7 +198,7 @@ class ReplyCard extends StatelessWidget {
                     ),
                   ),
 
-                  //!
+                  
                 ],
               ),
             ),

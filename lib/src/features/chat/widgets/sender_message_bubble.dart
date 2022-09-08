@@ -1,6 +1,8 @@
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class SenderMessageBubble extends StatelessWidget {
   const SenderMessageBubble({
@@ -12,6 +14,7 @@ class SenderMessageBubble extends StatelessWidget {
   final DateTime date;
   @override
   Widget build(BuildContext context) {
+    final settingsProvider = Provider.of<SettingsProvider>(context);
     return Align(
       alignment: Alignment.centerLeft,
       child: ConstrainedBox(
@@ -23,7 +26,8 @@ class SenderMessageBubble extends StatelessWidget {
           children: [
             Bubble(
               nip: BubbleNip.leftBottom,
-              color: Colors.white,
+              color:
+                  settingsProvider.darkMode ? Colors.white : Colors.grey[850],
               margin: const BubbleEdges.symmetric(horizontal: 12, vertical: 6),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +44,9 @@ class SenderMessageBubble extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline3!.copyWith(
                             fontSize: 14,
                             height: 1.6,
-                            color: Colors.black,
+                            color: settingsProvider.darkMode
+                                ? Colors.black
+                                : Colors.white,
                           ),
                     ),
                   ),

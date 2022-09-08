@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/core/constants.dart';
 
 class Page2 extends StatelessWidget {
   const Page2({super.key});

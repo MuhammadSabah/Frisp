@@ -32,7 +32,7 @@ class CommentCard extends StatefulWidget {
 class _CommentCardState extends State<CommentCard> {
   bool showReplyField = false;
   String daysBetween(DateTime commentedDate) {
-    var date;
+    String date;
     if ((DateTime.now().difference(widget.comment.dateCommented).inHours / 24)
             .round() ==
         1) {
@@ -47,7 +47,7 @@ class _CommentCardState extends State<CommentCard> {
       date = DateFormat('dd MMMM, kk:mm').format(
         widget.comment.dateCommented,
       );
-      return '$date';
+      return date;
     } else {
       date = DateFormat('kk:mm').format(
         widget.comment.dateCommented,
@@ -262,7 +262,9 @@ class _CommentCardState extends State<CommentCard> {
                                         fontSize: 13,
                                       ),
                                   controller: _replyController,
-                                  cursorColor: Colors.white,
+                                  cursorColor: settingsManager.darkMode
+                                      ? Colors.white
+                                      : Colors.black,
                                   autofocus: false,
                                   autocorrect: false,
                                   keyboardType: TextInputType.text,
@@ -282,9 +284,11 @@ class _CommentCardState extends State<CommentCard> {
                                         );
                                         _replyController.clear();
                                       },
-                                      icon: const Icon(
+                                      icon: Icon(
                                         Icons.send,
-                                        color: Colors.white,
+                                        color: settingsManager.darkMode
+                                            ? Colors.white
+                                            : kBlackColor,
                                       ),
                                     ),
                                     fillColor: settingsManager.darkMode

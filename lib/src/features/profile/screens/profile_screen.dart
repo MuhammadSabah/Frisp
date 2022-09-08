@@ -26,7 +26,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool _isLoadingProfile = false;
+  final bool _isLoadingProfile = false;
   String imageUrl = 'assets/default_image.jpg';
   Stream<QuerySnapshot<Map<String, dynamic>>>? streamResult;
 

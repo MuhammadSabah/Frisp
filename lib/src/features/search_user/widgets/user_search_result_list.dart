@@ -8,6 +8,7 @@ import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
+// ignore: must_be_immutable
 class UserSearchResultList extends StatelessWidget {
   UserSearchResultList({
     Key? key,
@@ -108,10 +109,7 @@ class UserSearchResultList extends StatelessWidget {
                   ),
                 );
               }
-              // print("USER.USERNAME" + user.userName);
-              // print("SEARCHNAME " + searchName);
-              print("SEARCH-NAME " + searchName.toLowerCase());
-              print("USER-NAME " + user.userName.toLowerCase());
+
               if (user.userName
                   .toLowerCase()
                   .startsWith(searchName.toLowerCase())) {

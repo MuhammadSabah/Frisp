@@ -6,7 +6,6 @@ import 'package:food_recipe_final/src/features/onboarding/pages/page_1.dart';
 import 'package:food_recipe_final/src/features/onboarding/pages/page_2.dart';
 import 'package:food_recipe_final/src/features/onboarding/pages/page_3.dart';
 import 'package:food_recipe_final/src/providers/auth_provider.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
