@@ -40,10 +40,14 @@ run app on an emulator ``flutter run``
 • Ability to Post, and Comment on what other people have shared.
 
 • A list for saving ingredients while going to grocery store.
+
+• Like and reply to comments.
+
+• Search for specific users and view their profile.
 ```
 
 ## ✅ Roadmap :
-- [ ] Use Firebase for user Auth.
+- [x] Use Firebase for user Auth.
 - [ ] Implement deep linking for desktop and mobile.
 - [x] Use FontAwesome icons instead of material icons.
 - [x] Finish the UI design for the signup and login screens.
@@ -51,23 +55,26 @@ run app on an emulator ``flutter run``
 - [x] Code the search recipe tab.
 - [x] Code the bookmark tab.
 - [x] Use Streams instead of Provider to save each recipe.
-- [ ] Save complex data using Sqlite.
+- [x] Save complex data using Hive.
 - [x] Save simple data using SharedPreferences.
 - [ ] Switch the API service to either Dio or Chopper.
 - [x] Add searching functionality.
-- [ ] Use Firebase to implement posting functionality.
-- [ ] Design and Code Splash and Onboarding screen. 
-- [ ] Implement Chatting or Commenting functionality.
-- [ ] Complete the Discovery Screen.
-- [ ] Code the Profile Screen.
+- [x] Use Firebase to implement posting functionality.
+- [x] Design and Code Splash and Onboarding screen. 
+- [x] Implement Chatting or Commenting functionality.
+- [x] Complete the Discovery Screen.
+- [x] Code the Profile Screen.
 - [x] Design and Code the recipe details screeen.
 - [ ] Make the app responsive for other mobile devices.
-- [ ] Add Filtering functionality.
+- [x] Reply to comments feature.
 - [x] Add dark theme and light theme.
 - [x] Use Navigation 2.0
 - [x] Code the shopping screen.
 - [x] Code the shopping item and shopping list screens.
-- [ ] Add Shimmer loading.
+- [x] Add Shimmer loading.
+- [x] Design and code Settings Screen.
+- [x] Design and code Edit Profile Screen.
+- [x] Search for specific user functionality.
 
 ## Screenshots (Dark mode)
 
