@@ -43,7 +43,7 @@ run app on an emulator ``flutter run``
 
 • Like and reply to comments.
 
-• Search fot specific users.
+• Search for specific users and view their profile.
 ```
 
 ## ✅ Roadmap :
