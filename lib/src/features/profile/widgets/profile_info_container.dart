@@ -31,11 +31,9 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Stream<QuerySnapshot<Map<String, dynamic>>>? recipeLengthResult;
   Future<void> checkFollowingState(String? userId) async {
-    if (mounted) {
-      setState(() {
-        _isLoading = true;
-      });
-    }
+    setState(() {
+      _isLoading = true;
+    });
     UserModel? user;
     DocumentSnapshot<Map<String, dynamic>> userSnapshot =
         await _firestore.collection('users').doc(userId).get();
@@ -44,22 +42,24 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
     }
     if (user != null) {
       if (user.followers.contains(_auth.currentUser!.uid)) {
-        _isFollowing = true;
+        setState(() {
+          _isFollowing = true;
+        });
       } else {
-        _isFollowing = false;
+        setState(() {
+          _isFollowing = false;
+        });
       }
     }
-    if (mounted) {
-      setState(() {
-        _isLoading = false;
-      });
-    }
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
   void initState() {
     checkFollowingState(widget.userId);
-    recipeLengthResult = FirebaseFirestore.instance
+    recipeLengthResult = _firestore
         .collection('posts')
         .where('uid', isEqualTo: widget.userId)
         .snapshots();
@@ -68,6 +68,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
 
   @override
   Widget build(BuildContext context) {
+    // checkFollowingState(widget.userId);
     final recipePostProvider =
         Provider.of<RecipePostProvider>(context, listen: false);
     final settingsManager =
@@ -168,23 +169,24 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                   ),
                                 ),
                               )
-                            : _isFollowing == false
+                            : _isFollowing == false &&
+                                    FirebaseAuth.instance.currentUser!.uid !=
+                                        widget.userId
                                 ? Padding(
                                     padding: const EdgeInsets.only(top: 5.0),
                                     child: GestureDetector(
                                       onTap: () async {
+                                        // await checkFollowingState(
+                                        //     widget.userId);
                                         await recipePostProvider
                                             .followOrUnfollowUser(
-                                          userId: FirebaseAuth
-                                              .instance.currentUser!.uid,
-                                          followId: widget.userId!,
-                                          currentUser: widget.user,
-                                        );
-                                        if (mounted) {
-                                          setState(() {
-                                            _isFollowing = true;
-                                          });
-                                        }
+                                              userId: _auth.currentUser!.uid,
+                                              followId: widget.userId!,
+                                              currentUser: widget.user,
+                                            )
+                                            .then((value) => setState(() {
+                                                  _isFollowing = true;
+                                                }));
                                       },
                                       child: Container(
                                         width: 110,
@@ -223,18 +225,17 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                     padding: const EdgeInsets.only(top: 5.0),
                                     child: GestureDetector(
                                       onTap: () async {
+                                        // await checkFollowingState(
+                                        //     widget.userId);
                                         await recipePostProvider
                                             .followOrUnfollowUser(
-                                          userId: FirebaseAuth
-                                              .instance.currentUser!.uid,
-                                          followId: widget.userId!,
-                                          currentUser: widget.user,
-                                        );
-                                        if (mounted) {
-                                          setState(() {
-                                            _isFollowing = false;
-                                          });
-                                        }
+                                              userId: _auth.currentUser!.uid,
+                                              followId: widget.userId!,
+                                              currentUser: widget.user,
+                                            )
+                                            .then((value) => setState(() {
+                                                  _isFollowing = false;
+                                                }));
                                       },
                                       child: Container(
                                         width: 110,

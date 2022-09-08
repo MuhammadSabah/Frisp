@@ -60,7 +60,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
         profImage: profImage,
         title: _titleController.text,
         description: _descriptionController.text,
-        serves: servesValue!,
+        serves: servesValue ?? '',
         cookTime: _cookTimeController.text,
         ingredients: _ingredientControllersList.map((element) {
           return element.text;

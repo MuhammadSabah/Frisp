@@ -108,78 +108,89 @@ class _TodayRecipesListViewState extends State<TodayRecipesListView> {
                                     bottom: 0,
                                     left: 0,
                                     right: 0,
-                                    child: ClipRect(
-                                      child: BackdropFilter(
-                                        filter: ImageFilter.blur(
-                                            sigmaX: 10, sigmaY: 10),
-                                        child: Container(
-                                          height: 35,
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              begin: Alignment.centerLeft,
-                                              end: Alignment.centerRight,
-                                              colors: [
-                                                Colors.white.withOpacity(0.5),
-                                                Colors.white.withOpacity(0.3),
-                                              ],
-                                              stops: const [0.0, 1.0],
+                                    child: ClipRRect(
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10),
+                                      ),
+                                      child: ClipRect(
+                                        child: BackdropFilter(
+                                          filter: ImageFilter.blur(
+                                              sigmaX: 10, sigmaY: 10),
+                                          child: Container(
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                begin: Alignment.centerLeft,
+                                                end: Alignment.centerRight,
+                                                colors: [
+                                                  Colors.white.withOpacity(0.5),
+                                                  Colors.white.withOpacity(0.3),
+                                                ],
+                                                stops: const [0.0, 1.0],
+                                              ),
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                bottomLeft: Radius.circular(10),
+                                                bottomRight:
+                                                    Radius.circular(10),
+                                              ),
                                             ),
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              bottomLeft: Radius.circular(10),
-                                              bottomRight: Radius.circular(10),
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 2.0, horizontal: 8),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    const Icon(
-                                                      Icons
-                                                          .favorite_border_outlined,
-                                                      color: Colors.white,
-                                                      size: 18,
-                                                    ),
-                                                    const SizedBox(width: 4),
-                                                    Text(
-                                                      likes[index].toString(),
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyText1!
-                                                          .copyWith(
-                                                            fontSize: 14,
-                                                            color: Colors.white,
-                                                          ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    const FaIcon(
-                                                      FontAwesomeIcons.clock,
-                                                      color: Colors.white,
-                                                      size: 18,
-                                                    ),
-                                                    const SizedBox(width: 4),
-                                                    Text(
-                                                      '${minutes[index]}mins',
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyText1!
-                                                          .copyWith(
-                                                            fontSize: 14,
-                                                            color: Colors.white,
-                                                          ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 2.0,
+                                                      horizontal: 8),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      const Icon(
+                                                        Icons
+                                                            .favorite_border_outlined,
+                                                        color: Colors.white,
+                                                        size: 18,
+                                                      ),
+                                                      const SizedBox(width: 4),
+                                                      Text(
+                                                        likes[index].toString(),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyText1!
+                                                            .copyWith(
+                                                              fontSize: 14,
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      const FaIcon(
+                                                        FontAwesomeIcons.clock,
+                                                        color: Colors.white,
+                                                        size: 18,
+                                                      ),
+                                                      const SizedBox(width: 4),
+                                                      Text(
+                                                        '${minutes[index]}mins',
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyText1!
+                                                            .copyWith(
+                                                              fontSize: 14,
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),

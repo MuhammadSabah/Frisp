@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
+import 'package:food_recipe_final/src/providers/settings_provider.dart';
+import 'package:provider/provider.dart';
 
 class CategoryListView extends StatefulWidget {
   const CategoryListView({Key? key}) : super(key: key);
@@ -43,6 +45,8 @@ class _CategoryListViewState extends State<CategoryListView> {
 
   @override
   Widget build(BuildContext context) {
+    final settingsProvider =
+        Provider.of<SettingsProvider>(context, listen: false);
     return Column(
       children: [
         Padding(
@@ -82,9 +86,11 @@ class _CategoryListViewState extends State<CategoryListView> {
                       child: Container(
                         height: 40,
                         width: 150,
-                        decoration: const BoxDecoration(
-                          color: kGreyColor,
-                          borderRadius: BorderRadius.all(
+                        decoration: BoxDecoration(
+                          color: settingsProvider.darkMode
+                              ? kGreyColor
+                              : Colors.grey.shade600,
+                          borderRadius: const BorderRadius.all(
                             Radius.circular(10),
                           ),
                         ),

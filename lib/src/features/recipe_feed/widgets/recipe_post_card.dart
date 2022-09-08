@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -129,11 +128,23 @@ class _RecipePostCardState extends State<RecipePostCard> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Text(
-                                  widget.post.userName,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.bodyText2,
+                                GestureDetector(
+                                  onTap: () {
+                                    if (currentUser!.uid != widget.post.uid) {
+                                      Navigator.pushNamed(
+                                        context,
+                                        AppPages.profilePath,
+                                        arguments: widget.post.uid,
+                                      );
+                                    }
+                                  },
+                                  child: Text(
+                                    widget.post.userName,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText2,
+                                  ),
                                 ),
                               ],
                             ),
@@ -387,10 +398,15 @@ class _RecipePostCardState extends State<RecipePostCard> {
                       Row(
                         children: [
                           Expanded(
-                            child: Text(
-                              '${widget.post.likes.length.toString()} Likes',
-                              maxLines: 1,
-                            ),
+                            child: widget.post.likes.length == 1
+                                ? Text(
+                                    '${widget.post.likes.length.toString()} Like',
+                                    maxLines: 1,
+                                  )
+                                : Text(
+                                    '${widget.post.likes.length.toString()} Likes',
+                                    maxLines: 1,
+                                  ),
                           ),
                         ],
                       ),
