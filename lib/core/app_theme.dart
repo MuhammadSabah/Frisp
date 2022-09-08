@@ -4,6 +4,7 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
+  // Text Theme for Light theme mode
   static TextTheme lightTextTheme = TextTheme(
     bodyText1: GoogleFonts.poppins(
       fontSize: 20,
@@ -46,6 +47,8 @@ class AppTheme {
       color: Colors.black,
     ),
   );
+
+  // Text Theme for Dark theme mode
   static TextTheme darkTextTheme = TextTheme(
     bodyText1: GoogleFonts.poppins(
       fontSize: 20,
@@ -88,6 +91,8 @@ class AppTheme {
       color: Colors.white,
     ),
   );
+
+  // Light ThemeData
   static ThemeData light() {
     return ThemeData(
       switchTheme: SwitchThemeData(
@@ -163,6 +168,7 @@ class AppTheme {
     );
   }
 
+  // Dark ThemeData
   static ThemeData dark() {
     return ThemeData(
       switchTheme: SwitchThemeData(

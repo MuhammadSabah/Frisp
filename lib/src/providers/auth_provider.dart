@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/main.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 
 class AppTab {
@@ -116,7 +115,7 @@ class AuthProvider extends ChangeNotifier {
   Future<void> logOutUser() async {
     await _userAuth.signOut();
     _selectedTab = 0;
-    onboardingBox?.put(1, false);
+    // onboardingBox?.put(1, false);
     notifyListeners();
   }
 

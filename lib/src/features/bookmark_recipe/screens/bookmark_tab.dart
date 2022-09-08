@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/src/features/bookmark/repository/bookmark_interface.dart';
+import 'package:food_recipe_final/src/features/bookmark_recipe/repository/bookmark_interface.dart';
 import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
-import 'package:food_recipe_final/src/features/bookmark/widgets/bookmark_card.dart';
+import 'package:food_recipe_final/src/features/bookmark_recipe/widgets/bookmark_card.dart';
 import 'package:provider/provider.dart';
 
 class BookmarkTab extends StatefulWidget {

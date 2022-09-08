@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_recipe_final/src/features/bookmark/repository/bookmark_interface.dart';
+import 'package:food_recipe_final/src/features/bookmark_recipe/repository/bookmark_interface.dart';
 import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
-import 'package:food_recipe_final/src/features/bookmark/widgets/bottom_save_button.dart';
+import 'package:food_recipe_final/src/features/bookmark_recipe/widgets/bottom_save_button.dart';
 import 'package:food_recipe_final/src/features/search_recipe/widgets/details_sliver_app_bar.dart';
 import 'package:food_recipe_final/src/features/search_recipe/widgets/details_title_section.dart';
 import 'package:food_recipe_final/src/features/search_recipe/widgets/ingredients_section.dart';

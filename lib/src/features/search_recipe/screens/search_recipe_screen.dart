@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
-import 'package:food_recipe_final/src/features/bookmark/screens/bookmark_tab.dart';
+import 'package:food_recipe_final/src/features/bookmark_recipe/screens/bookmark_tab.dart';
 import 'package:food_recipe_final/src/features/search_recipe/screens/search_tab.dart';
 import 'package:food_recipe_final/src/features/search_recipe/widgets/custom_drop_down.dart';
 import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';

@@ -208,7 +208,9 @@ class SettingsScreen extends StatelessWidget {
                 FocusManager.instance.primaryFocus?.unfocus();
                 appStateProvider.logOutUser();
                 navigator.pushNamedAndRemoveUntil(
-                    AppPages.loginPath, (route) => false);
+                  AppPages.welcomePath,
+                  (route) => false,
+                );
 
                 Get.snackbar(
                   '⚠️',

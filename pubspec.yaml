@@ -65,6 +65,7 @@ dependencies:
   flutter_native_splash: ^2.2.8
   dropdown_button2: ^1.7.2
 
+
   # sqflite: ^2.0.3+1
   # path_provider: ^2.0.11
   # sqlbrite: ^2.3.0

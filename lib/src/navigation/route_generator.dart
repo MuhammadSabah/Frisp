@@ -3,7 +3,7 @@ import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/forget_password_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/log_in_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/screens/sign_up_screen.dart';
-import 'package:food_recipe_final/src/features/bookmark/screens/recipe_detail_screen.dart';
+import 'package:food_recipe_final/src/features/bookmark_recipe/screens/recipe_detail_screen.dart';
 import 'package:food_recipe_final/src/features/chat/screens/chat_messages_screen.dart';
 import 'package:food_recipe_final/src/features/chat/screens/contacts_list_screen.dart';
 import 'package:food_recipe_final/src/features/comment/screens/comments_screen.dart';
@@ -70,10 +70,10 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (context) => const WelcomeScreen(),
         );
-      //  case AppPages.onboardingPath:
-      // return MaterialPageRoute(
-      //   builder: (context) => const (),
-      // );
+      case AppPages.welcomePath:
+        return MaterialPageRoute(
+          builder: (context) => const WelcomeScreen(),
+        );
       case AppPages.postDetails:
         return MaterialPageRoute(
           builder: (context) => RecipePostDetailScreen(

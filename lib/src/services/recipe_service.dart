@@ -1,5 +1,7 @@
-import 'package:http/http.dart';
+import 'package:food_recipe_final/src/models/api/recipe_api_model.dart';
+import 'package:food_recipe_final/src/services/model_response.dart';
 import 'package:food_recipe_final/creds.dart';
+import 'package:http/http.dart';
 
 // const String apiKey = <Your API key>;
 const String apiUrl = 'https://api.spoonacular.com/recipes/complexSearch';
@@ -28,3 +30,4 @@ class RecipeService {
     }
   }
 }
+

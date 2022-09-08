@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:food_recipe_final/src/features/bookmark/repository/bookmark_interface.dart';
+import 'package:food_recipe_final/src/features/bookmark_recipe/repository/bookmark_interface.dart';
 import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart';
 
 class BookmarkProvider extends BookmarkInterface {

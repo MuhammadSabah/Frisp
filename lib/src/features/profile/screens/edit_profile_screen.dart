@@ -5,7 +5,7 @@ import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 import 'package:food_recipe_final/src/providers/settings_provider.dart';
 import 'package:food_recipe_final/src/providers/user_image_provider.dart';
-import 'package:food_recipe_final/src/features/bookmark/widgets/bottom_save_button.dart';
+import 'package:food_recipe_final/src/features/bookmark_recipe/widgets/bottom_save_button.dart';
 import 'package:food_recipe_final/src/features/profile/widgets/profile_cached_background_photo.dart';
 import 'package:food_recipe_final/src/features/profile/widgets/profile_default_background_photo.dart';
 import 'package:get/get.dart';
