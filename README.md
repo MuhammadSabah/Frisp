@@ -68,6 +68,9 @@ run app on an emulator ``flutter run``
 - [x] Code the shopping screen.
 - [x] Code the shopping item and shopping list screens.
 - [x] Add Shimmer loading.
+- [x] Design and code Settings Screen.
+- [x] Design and code Edit Profile Screen.
+- [x] Search for specific user functionality.
 
 ## Screenshots (Dark mode)
 
