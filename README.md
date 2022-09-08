@@ -40,6 +40,10 @@ run app on an emulator ``flutter run``
 • Ability to Post, and Comment on what other people have shared.
 
 • A list for saving ingredients while going to grocery store.
+
+• Like and reply to comments.
+
+• Search fot specific users.
 ```
 
 ## ✅ Roadmap :
