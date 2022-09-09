@@ -8,8 +8,8 @@ class UserModel {
   final String bio;
   final String lastMessage;
   final DateTime? messageSent;
-  List followers = [''];
-  List following = [''];
+  final List followers;
+  final List following;
   DocumentReference? reference;
 
   UserModel({
@@ -68,7 +68,8 @@ class UserModel {
     return result;
   }
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
+  factory UserModel.fromJson(
+      Map<String, dynamic> json, DocumentReference? reference) {
     return UserModel(
       id: json['id'] ?? '',
       userName: json['userName'] ?? '',
@@ -80,14 +81,14 @@ class UserModel {
           ? DateTime.fromMillisecondsSinceEpoch(
               json['messageSent'].millisecondsSinceEpoch)
           : null,
-      followers: List.from(json['followers']),
-      following: List.from(json['following']),
+      followers: json['followers'] ?? [],
+      following: json['following'] ?? [],
     );
   }
 
   factory UserModel.fromSnapshot(DocumentSnapshot snapshot) {
-    final userModel =
-        UserModel.fromJson(snapshot.data() as Map<String, dynamic>);
+    final userModel = UserModel.fromJson(
+        snapshot.data() as Map<String, dynamic>, snapshot.reference);
     return userModel;
   }
 }

@@ -42,13 +42,9 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
     }
     if (user != null) {
       if (user.followers.contains(_auth.currentUser!.uid)) {
-        setState(() {
-          _isFollowing = true;
-        });
+        _isFollowing = true;
       } else {
-        setState(() {
-          _isFollowing = false;
-        });
+        _isFollowing = false;
       }
     }
     setState(() {
@@ -68,9 +64,8 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
 
   @override
   Widget build(BuildContext context) {
-    // checkFollowingState(widget.userId);
     final recipePostProvider =
-        Provider.of<RecipePostProvider>(context, listen: false);
+        Provider.of<RecipePostProvider>(context, listen: true);
     final settingsManager =
         Provider.of<SettingsProvider>(context, listen: false);
     return Padding(
@@ -176,17 +171,15 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                     padding: const EdgeInsets.only(top: 5.0),
                                     child: GestureDetector(
                                       onTap: () async {
-                                        // await checkFollowingState(
-                                        //     widget.userId);
                                         await recipePostProvider
                                             .followOrUnfollowUser(
-                                              userId: _auth.currentUser!.uid,
-                                              followId: widget.userId!,
-                                              currentUser: widget.user,
-                                            )
-                                            .then((value) => setState(() {
-                                                  _isFollowing = true;
-                                                }));
+                                          userId: _auth.currentUser!.uid,
+                                          followId: widget.userId!,
+                                          currentUser: widget.user,
+                                        );
+                                        setState(() {
+                                          _isFollowing = true;
+                                        });
                                       },
                                       child: Container(
                                         width: 110,
@@ -225,17 +218,15 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                     padding: const EdgeInsets.only(top: 5.0),
                                     child: GestureDetector(
                                       onTap: () async {
-                                        // await checkFollowingState(
-                                        //     widget.userId);
                                         await recipePostProvider
                                             .followOrUnfollowUser(
-                                              userId: _auth.currentUser!.uid,
-                                              followId: widget.userId!,
-                                              currentUser: widget.user,
-                                            )
-                                            .then((value) => setState(() {
-                                                  _isFollowing = false;
-                                                }));
+                                          userId: _auth.currentUser!.uid,
+                                          followId: widget.userId!,
+                                          currentUser: widget.user,
+                                        );
+                                        setState(() {
+                                          _isFollowing = false;
+                                        });
                                       },
                                       child: Container(
                                         width: 110,

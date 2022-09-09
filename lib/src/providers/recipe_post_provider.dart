@@ -172,49 +172,35 @@ class RecipePostProvider extends ChangeNotifier {
     required String followId,
     required UserModel currentUser,
   }) async {
+    print(followId);
+    print(userId);
     try {
-      DocumentSnapshot snap =
+      DocumentSnapshot currentUserSnapshot =
           await _firestore.collection('users').doc(userId).get();
-      List following = (snap.data() as dynamic)['followers'];
-      if (following.contains(followId)) {
-        await _firestore.collection('users').doc(followId).update({
+      currentUser = UserModel.fromSnapshot(currentUserSnapshot);
+      //
+      DocumentSnapshot followedUserSnapshot =
+          await _firestore.collection('users').doc(followId).get();
+      UserModel followedUser = UserModel.fromSnapshot(followedUserSnapshot);
+      //
+      if (currentUser.following.contains(followId)) {
+        await followedUser.reference?.update({
           'followers': FieldValue.arrayRemove([userId]),
         });
-        await _firestore.collection('users').doc(userId).update({
-          'following': FieldValue.arrayRemove([followId]),
+        await currentUser.reference?.update({
+          'following': FieldValue.arrayRemove([followId])
         });
       } else {
-        await _firestore.collection('users').doc(followId).update({
-          'followers': FieldValue.arrayUnion([userId]),
+        await followedUser.reference?.update({
+          'followers': FieldValue.arrayUnion([userId])
         });
-        await _firestore.collection('users').doc(userId).update({
-          'following': FieldValue.arrayUnion([followId]),
+        await currentUser.reference?.update({
+          'following': FieldValue.arrayUnion([followId])
         });
       }
+
       //
-      // DocumentSnapshot currentUserSnapshot =
-      //     await _firestore.collection('users').doc(userId).get();
-      // currentUser = UserModel.fromSnapshot(currentUserSnapshot);
-      // //
-      // DocumentSnapshot followedUserSnapshot =
-      //     await _firestore.collection('users').doc(followId).get();
-      // UserModel followedUser = UserModel.fromSnapshot(followedUserSnapshot);
-      // //
-      // if (currentUser.following.contains(followId)) {
-      //   await followedUser.reference?.update({
-      //     'followers': FieldValue.arrayRemove([userId]),
-      //   });
-      //   await currentUser.reference?.update({
-      //     'following': FieldValue.arrayRemove([followId])
-      //   });
-      // } else {
-      //   await followedUser.reference?.update({
-      //     'followers': FieldValue.arrayUnion([userId])
-      //   });
-      //   await currentUser.reference?.update({
-      //     'following': FieldValue.arrayUnion([followId])
-      //   });
-      // }
+
       notifyListeners();
     } catch (e) {
       debugPrint(e.toString());

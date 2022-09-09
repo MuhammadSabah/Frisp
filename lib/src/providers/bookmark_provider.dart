@@ -10,7 +10,7 @@ class BookmarkProvider extends BookmarkInterface {
 
   // Stream Controllers:
   final StreamController _recipeStreamController =
-      StreamController<List<RecipeModel>>.broadcast();
+      StreamController<List<RecipeModel>>();
 
   // Stream Methods:
   @override

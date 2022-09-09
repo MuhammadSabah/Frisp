@@ -8,7 +8,6 @@ abstract class BookmarkInterface {
   //Streams:
   Stream<List<RecipeModel>> watchAllRecipes();
 
-  // OLD: for using Sqflite
-  // Future init();
-  // void close();
+  Future init();
+  void close();
 }
