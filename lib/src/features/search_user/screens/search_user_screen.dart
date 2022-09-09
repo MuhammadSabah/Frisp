@@ -16,21 +16,15 @@ class SearchUserScreen extends StatefulWidget {
 class _SearchUserScreenState extends State<SearchUserScreen> {
   final TextEditingController _searchUserController = TextEditingController();
   String searchName = '';
-  Future<QuerySnapshot<Map<String, dynamic>>>? futureResult;
+  Stream<QuerySnapshot<Map<String, dynamic>>>? streamResult;
   @override
   void initState() {
     super.initState();
-    futureResult = FirebaseFirestore.instance
-        .collection('users')
-        .where('userName', isGreaterThanOrEqualTo: _searchUserController.text)
-        .get();
+    streamResult = FirebaseFirestore.instance.collection('users').snapshots();
   }
 
   void updateSearchResult() async {
-    futureResult = FirebaseFirestore.instance
-        .collection('users')
-        .where('userName', isGreaterThanOrEqualTo: _searchUserController.text)
-        .get();
+    streamResult = FirebaseFirestore.instance.collection('users').snapshots();
   }
 
   @override
@@ -121,7 +115,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                         const SizedBox(width: 8),
                         GestureDetector(
                           onTap: () {
-                            if (_searchUserController.text.isNotEmpty) {
+                            if (searchName.isNotEmpty) {
                               updateSearchResult();
                             }
                           },
@@ -154,8 +148,8 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                     ),
                   ),
                   Expanded(
-                    child: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                      future: futureResult,
+                    child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                      stream: streamResult,
                       builder: (context, AsyncSnapshot snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {

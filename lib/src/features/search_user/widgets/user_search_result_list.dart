@@ -39,7 +39,6 @@ class UserSearchResultList extends StatelessWidget {
               UserModel user = UserModel.fromSnapshot(
                 snapshot.data.docs[index],
               );
-
               if (user.id == FirebaseAuth.instance.currentUser!.uid) {
                 return const SizedBox();
               }
@@ -111,6 +110,7 @@ class UserSearchResultList extends StatelessWidget {
               }
 
               if (user.userName
+                  .toString()
                   .toLowerCase()
                   .startsWith(searchName.toLowerCase())) {
                 return InkWell(
