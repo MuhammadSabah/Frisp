@@ -83,6 +83,7 @@ class UserModel {
           : null,
       followers: json['followers'] ?? [],
       following: json['following'] ?? [],
+      reference: reference,
     );
   }
 
