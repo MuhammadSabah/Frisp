@@ -80,7 +80,7 @@ run app on an emulator ``flutter run``
 
 Onboarding 1               |   Onboarding 2            |   Onboarding 3            |   Welcome Screen
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](https://user-images.githubusercontent.com/75329130/189482024-541fe517-4592-4f14-a6c6-d7cc7c27c06e.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482025-c1474e5a-ff09-4b47-accb-9c739c1c5c2b.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482016-bb8cf4fc-2e18-4c8e-847b-ee611f5c96a3.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482022-9d570ad6-01b3-4f35-9c74-2b3ba6b8401b.png?raw=true)
+![](https://user-images.githubusercontent.com/75329130/189482024-541fe517-4592-4f14-a6c6-d7cc7c27c06e.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482025-c1474e5a-ff09-4b47-accb-9c739c1c5c2b.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482016-bb8cf4fc-2e18-4c8e-847b-ee611f5c96a3.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189483212-ac094797-b1f2-476c-8e43-3727eb41df48.png?raw=true)
 
 Signup Screen              |   Login Screen            |   Forget Password Screen  |   Feed Screen-Activity
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
