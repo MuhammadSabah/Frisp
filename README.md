@@ -108,6 +108,62 @@ Comments Screen            |   Chats Screen            |   Chat Messages Screen 
 
 ## Directory Structure (Provider)
 ```
+📂lib
+├── main.dart
+├── 📂core
+│   ├── app_pages.dart
+│   ├── app_theme.dart
+│   └── constants.dart
+└── 📂src
+    ├── 📂features
+    │   ├── 📂authentication
+    │   ├── 📂bookmark_recipe
+    │   ├── 📂chat
+    │   ├── 📂comment
+    │   ├── 📂create_recipe_post
+    │   ├── 📂home
+    │   ├── 📂onboarding
+    │   ├── 📂profile
+    │   ├── 📂recipe_feed
+    │   ├── 📂search_recipe
+    │   ├── 📂search_user
+    │   ├── 📂settings
+    │   ├── 📂splash
+    │   └── 📂welcome
+    ├── 📂models
+    │   ├── 📂api
+    │   │   ├── recipe_api_model.dart
+    │   │   └── recipe_api_model.g.dart
+    │   ├── 📂data_class_models
+    │   │   ├── ingredient_model.dart
+    │   │   ├── instruction_model.dart
+    │   │   ├── nutrients_model.dart
+    │   │   ├── nutrition_model.dart
+    │   │   ├── recipe_model.dart
+    │   │   └── steps_model.dart
+    │   ├── 📂enums
+    │   │   ├── importance_enum.dart
+    │   │   └── message_enum.dart
+    │   ├── comment_model.dart
+    │   ├── message.dart
+    │   ├── recipe_post_model.dart
+    │   ├── reply_model.dart
+    │   ├── shopping_item.dart
+    │   ├── shopping_item.g.dart
+    │   └── user_model.dart
+    ├── 📂navigation
+    │   └── route_generator.dart
+    ├── 📂providers
+    │   ├── auth_provider.dart
+    │   ├── bookmark_provider.dart
+    │   ├── message_provider.dart
+    │   ├── recipe_post_provider.dart
+    │   ├── settings_provider.dart
+    │   ├── shopping_provider.dart
+    │   ├── user_image_provider.dart
+    │   └── user_provider.dart
+    └── 📂services
+        └── recipe_service.dart
 
 ```
 
