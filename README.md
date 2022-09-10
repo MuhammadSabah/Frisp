@@ -82,7 +82,7 @@ Onboarding 1               |   Onboarding 2            |   Onboarding 3         
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/75329130/189482024-541fe517-4592-4f14-a6c6-d7cc7c27c06e.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482025-c1474e5a-ff09-4b47-accb-9c739c1c5c2b.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482016-bb8cf4fc-2e18-4c8e-847b-ee611f5c96a3.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482022-9d570ad6-01b3-4f35-9c74-2b3ba6b8401b.png?raw=true)
 
-Signup Screen              |   Login Screen            |   Forget Password Screen  |   Feed Screen-Sctivity
+Signup Screen              |   Login Screen            |   Forget Password Screen  |   Feed Screen-Activity
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/75329130/189482143-20663f3a-530d-47af-908e-f09119ead6cd.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482146-d81519fe-91e7-49ac-8d0d-41af07df103d.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482148-444d8d82-8ca9-4aff-9296-be46fede442b.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482157-04999956-fb10-4dbd-bf1b-38f5fbe6282a.png?raw=true)
 
@@ -97,6 +97,10 @@ Recipe Detail Screen       |   Bookmark Tab            |   Shopping List Screen 
 Add Recipe Screen          |   Create Recipe Screen-1  |   Create Recipe Screen-2  |   Profile Screen-1
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/75329130/189482562-2ec36de4-5bcf-4847-833d-237bde025673.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482630-8df92eb9-936e-4d2d-a820-c7d176353c8d.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482634-f9558baf-0fd8-45ac-845c-b1b0af776098.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482638-ceb8db0d-20bd-4778-8a84-f35a369399f2.png?raw=true)
+
+Profile Screen-2           |   Edit Profile Screen     |   Settings Screen         |  Recipe Post Screen
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![](https://user-images.githubusercontent.com/75329130/189482716-99d967dc-128e-4c0c-8c0d-e8ffce3112ed.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482722-d1e65fdc-954c-40f0-9ddc-13dd2bbf1a9f.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482723-25cd0433-f2eb-4740-a00f-261a84be3a44.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482727-ec6a3a2f-2538-430e-b6f8-ccd19c5ad7a0.png?raw=true)
 
 
 
