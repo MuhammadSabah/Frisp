@@ -297,8 +297,8 @@ Comments Screen            |   Chats Screen            |   Chat Messages Screen 
 | [firebase_auth](https://pub.dev/packages/firebase_auth)  | 3.6.1  |
 | [image_picker](https://pub.dev/packages/image_picker)  | 0.8.5+3  |
 | [dartz](https://pub.dev/packages/dartz)  | 0.10.1  |
-| [get](https://pub.dev/packages/get)  | 10.3.4  |
-| [bubble](https://pub.dev/packages/bubble)  | 2.2.3  |
+| [get](https://pub.dev/packages/get)  | 4.6.5  |
+| [bubble](https://pub.dev/packages/bubble)  | 1.2.1  |
 | [hive](https://pub.dev/packages/hive)  | 2.2.3  |
 | [hive_flutter](https://pub.dev/packages/hive_flutter)  | 1.1.0  |
 | [equatable](https://pub.dev/packages/equatable)  | 2.0.5  |
