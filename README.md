@@ -86,6 +86,10 @@ Signup Screen              |   Login Screen            |   Forget Password Scree
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/75329130/189482143-20663f3a-530d-47af-908e-f09119ead6cd.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482146-d81519fe-91e7-49ac-8d0d-41af07df103d.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482148-444d8d82-8ca9-4aff-9296-be46fede442b.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482157-04999956-fb10-4dbd-bf1b-38f5fbe6282a.png?raw=true)
 
+Feed Screen-discover-1     |   Feed Screen-discover-2  |   Search Recipe Screen    |   Search User Screen
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![](https://user-images.githubusercontent.com/75329130/189482348-3f34fad7-7b1a-4b6e-8367-39149ceaf317.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482353-49ac2147-7c4e-4b14-81a6-039dd8bd9348.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482359-67497337-efd6-40c8-8766-3216d9472613.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482365-fb00790b-40d9-4f1e-9a71-7e1b49902799.png?raw=true)
+
 
 
 
