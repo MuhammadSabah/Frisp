@@ -78,7 +78,7 @@ run app on an emulator ``flutter run``
 
 ## Screenshots (Dark mode)
 
-Onboarding 1               |   Onboarding 2            |  Onboarding 3             |  Welcome Screen
+Onboarding 1               |   Onboarding 2            |   Onboarding 3            |   Welcome Screen
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/75329130/189481542-f8eb252b-a376-47cb-8be0-8f291ce97a42.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189481555-2d4fc160-c804-4fac-8f6b-98289d85aa99.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189481566-0ee34193-fb69-4a24-847c-79079951c395.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189481586-1795a40f-0f78-4e27-b472-bebf09cc8851.png?raw=true)
 
