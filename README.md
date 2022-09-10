@@ -295,7 +295,18 @@ Comments Screen            |   Chats Screen            |   Chat Messages Screen 
 | [firebase_core](https://pub.dev/packages/firebase_core)  | 1.20.0  |
 | [cloud_firestore](https://pub.dev/packages/cloud_firestore)  | 3.4.2 |
 | [firebase_auth](https://pub.dev/packages/firebase_auth)  | 3.6.1  |
-| [firebase_storage](https://pub.dev/packages/firebase_storage)  | 10.3.4  |
+| [image_picker](https://pub.dev/packages/image_picker)  | 0.8.5+3  |
+| [dartz](https://pub.dev/packages/dartz)  | 0.10.1  |
+| [get](https://pub.dev/packages/get)  | 10.3.4  |
+| [bubble](https://pub.dev/packages/bubble)  | 2.2.3  |
+| [hive](https://pub.dev/packages/hive)  | 2.2.3  |
+| [hive_flutter](https://pub.dev/packages/hive_flutter)  | 1.1.0  |
+| [equatable](https://pub.dev/packages/equatable)  | 2.0.5  |
+| [websafe_svg](https://pub.dev/packages/websafe_svg)  | 2.1.2+2  |
+| [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)  | 2.2.8  |
+| [dropdown_button2](https://pub.dev/packages/dropdown_button2)  | 1.7.2  |
+
+
 
 
 
