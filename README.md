@@ -82,6 +82,10 @@ Onboarding 1               |   Onboarding 2            |   Onboarding 3         
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/75329130/189482024-541fe517-4592-4f14-a6c6-d7cc7c27c06e.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482025-c1474e5a-ff09-4b47-accb-9c739c1c5c2b.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482016-bb8cf4fc-2e18-4c8e-847b-ee611f5c96a3.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482022-9d570ad6-01b3-4f35-9c74-2b3ba6b8401b.png?raw=true)
 
+Signup Screen              |   Login Screen            |   Forget Password Screen  |   Feed Screen-activity
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![](https://user-images.githubusercontent.com/75329130/189482143-20663f3a-530d-47af-908e-f09119ead6cd.png?raw=true)|![]([https://user-images.githubusercontent.com/75329130/189482025-c1474e5a-ff09-4b47-accb-9c739c1c5c2b.png](https://user-images.githubusercontent.com/75329130/189482148-444d8d82-8ca9-4aff-9296-be46fede442b.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482016-bb8cf4fc-2e18-4c8e-847b-ee611f5c96a3.png?raw=true)|![]https://user-images.githubusercontent.com/75329130/189482157-04999956-fb10-4dbd-bf1b-38f5fbe6282a.png?raw=true)
+
 
 
 
