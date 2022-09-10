@@ -84,7 +84,7 @@ Onboarding 1               |   Onboarding 2            |   Onboarding 3         
 
 Signup Screen              |   Login Screen            |   Forget Password Screen  |   Feed Screen-activity
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](https://user-images.githubusercontent.com/75329130/189482143-20663f3a-530d-47af-908e-f09119ead6cd.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482025-c1474e5a-ff09-4b47-accb-9c739c1c5c2b.png)|![](https://user-images.githubusercontent.com/75329130/189482148-444d8d82-8ca9-4aff-9296-be46fede442b.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482016-bb8cf4fc-2e18-4c8e-847b-ee611f5c96a3.png?raw=true)
+![](https://user-images.githubusercontent.com/75329130/189482143-20663f3a-530d-47af-908e-f09119ead6cd.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482146-d81519fe-91e7-49ac-8d0d-41af07df103d.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482148-444d8d82-8ca9-4aff-9296-be46fede442b.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482157-04999956-fb10-4dbd-bf1b-38f5fbe6282a.png?raw=true)
 
 
 
