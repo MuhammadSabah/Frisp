@@ -102,6 +102,10 @@ Profile Screen-2           |   Edit Profile Screen     |   Settings Screen      
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/75329130/189482716-99d967dc-128e-4c0c-8c0d-e8ffce3112ed.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482722-d1e65fdc-954c-40f0-9ddc-13dd2bbf1a9f.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482723-25cd0433-f2eb-4740-a00f-261a84be3a44.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482727-ec6a3a2f-2538-430e-b6f8-ccd19c5ad7a0.png?raw=true)
 
+Comments Screen            |   Chats Screen            |   Chat Messages Screen    |  Followers Screen
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![](https://user-images.githubusercontent.com/75329130/189482834-958e2505-eeeb-4355-84af-309b6e958cef.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482838-aca24468-fc3c-4d52-81ab-1f4e75b71e79.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482840-4bceda54-8aad-4184-a81a-f5126f7224d4.png?raw=true)|![](?raw=true)
+
 
 
 
