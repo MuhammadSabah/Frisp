@@ -117,19 +117,124 @@ Comments Screen            |   Chats Screen            |   Chat Messages Screen 
 └── 📂src
     ├── 📂features
     │   ├── 📂authentication
+    │   │   ├── 📂screens
+    │   │   │   ├── error_screen.dart
+    │   │   │   ├── forget_password_screen.dart
+    │   │   │   ├── log_in_screen.dart
+    │   │   │   └── sign_up_screen.dart
+    │   │   └── 📂widgets
+    │   │       ├── auth_bottom_rich_text.dart
+    │   │       ├── auth_confirm_button.dart
+    │   │       ├── log_in_form.dart
+    │   │       └── sign_up_form.dart
     │   ├── 📂bookmark_recipe
+    │   │   ├── 📂repository
+    │   │   │   └── bookmark_interface.dart
+    │   │   ├── 📂screens
+    │   │   │   ├── bookmark_tab.dart
+    │   │   │   └── recipe_detail_screen.dart
+    │   │   └── 📂widgets
+    │   │       ├── bookmark_card.dart
+    │   │       └── bottom_save_button.dart 
     │   ├── 📂chat
+    │   │   ├── 📂screens
+    │   │   │   ├── chat_messages_screen.dart
+    │   │   │   └── contacts_list_screen.dart
+    │   │   └── 📂widgets
+    │   │       ├── chat_messages.dart
+    │   │       ├── my_message_bubble.dart
+    │   │       └── sender_message_bubble.dart
     │   ├── 📂comment
+    │   │   ├── 📂screens
+    │   │   │   └── comments_screen.dart
+    │   │   └── 📂widgets
+    │   │       ├── comment_card.dart
+    │   │       └── reply_card.dart
     │   ├── 📂create_recipe_post
+    │   │   ├── 📂screens
+    │   │   │   ├── add_recipe_post_screen.dart
+    │   │   │   └── create_recipe_post_screen.dart
+    │   │   └── 📂widgets
+    │   │       └── add_fields_section.dart
     │   ├── 📂home
+    │   │   └── 📂screens
+    │   │       └── home_screen.dart
     │   ├── 📂onboarding
+    │   │   ├── 📂screens
+    │   │   │   └── onboarding_screen.dart
+    │   │   └── 📂pages
+    │   │       ├── page_1.dart
+    │   │       ├── page_2.dart
+    │   │       └── page_3.dart
     │   ├── 📂profile
+    │   │   ├── 📂screens
+    │   │   │   ├── edit_profile_screen.dart
+    │   │   │   ├── followers_screen.dart
+    │   │   │   ├── following_screen.dart
+    │   │   │   └── profile_screen.dart
+    │   │   └── 📂widgets
+    │   │       ├── profile_back_button.dart
+    │   │       ├── profile_cached_background_photo.dart
+    │   │       ├── profile_default_background_photo.dart
+    │   │       ├── profile_info_container.dart
+    │   │       ├── profile_messages_button.dart
+    │   │       ├── profile_post_section.dart
+    │   │       ├── profile_send_message_button.dart
+    │   │       └── profile_settings_button.dart
     │   ├── 📂recipe_feed
+    │   │   ├── 📂screens
+    │   │   │   ├── activity_tab.dart
+    │   │   │   ├── discover_tab.dart
+    │   │   │   └── feed_screen.dart
+    │   │   └── 📂widgets
+    │   │       ├── animated_like_button.dart
+    │   │       ├── category_list_view.dart
+    │   │       ├── featured_recipes_list_view.dart
+    │   │       ├── ingredients_post_section.dart
+    │   │       ├── popular_recipes_list_view.dart
+    │   │       ├── post_detail_sliver_app_bar.dart
+    │   │       ├── post_details_title_section.dart
+    │   │       ├── recipe_post_card.dart
+    │   │       ├── recipe_post_detail_screen.dart
+    │   │       ├── serve_and_cook_time_section.dart
+    │   │       ├── steps_post_section.dart
+    │   │       ├── title_and_description_form_section.dart
+    │   │       └── today_recipes_list_view.dart
     │   ├── 📂search_recipe
+    │   │   ├── 📂screens
+    │   │   │   ├── search_recipe_screen.dart
+    │   │   │   └── search_tab.dart
+    │   │   └── 📂widgets
+    │   │       ├── circle_tab_indicator.dart
+    │   │       ├── custom_drop_down.dart
+    │   │       ├── details_sliver_app_bar.dart
+    │   │       ├── details_title_section.dart
+    │   │       ├── ingredients_section.dart
+    │   │       ├── instructions_section.dart
+    │   │       ├── nutritions_section.dart
+    │   │       ├── recipe_card.dart
+    │   │       ├── recipe_grid_view.dart
+    │   │       └── servings_and_ready_in_section.dart
     │   ├── 📂search_user
+    │   │   ├── 📂screens
+    │   │   │   └── search_user_screen.dart
+    │   │   └── 📂widgets
+    │   │       └── user_search_result_list.dart
     │   ├── 📂settings
+    │   │   ├── 📂screens
+    │   │   │   └── settings_screen.dart
+    │   │   └── 📂widgets
+    │   │       ├── settings_account_detail_button.dart
+    │   │       ├── settings_back_button.dart
+    │   │       ├── settings_change_password_button.dart
+    │   │       ├── settings_log_out_button.dart
+    │   │       └── settings_theme_button.dart
     │   ├── 📂splash
+    │   │   └── 📂screens
+    │   │       └── splash_screen.dart
     │   └── 📂welcome
+    │       └── 📂screens
+    │           └── welcome_screen.dart
     ├── 📂models
     │   ├── 📂api
     │   │   ├── recipe_api_model.dart
