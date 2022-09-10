@@ -80,7 +80,7 @@ run app on an emulator ``flutter run``
 
 Onboarding 1               |   Onboarding 2            |   Onboarding 3            |   Welcome Screen
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](https://user-images.githubusercontent.com/75329130/189481542-f8eb252b-a376-47cb-8be0-8f291ce97a42.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189481555-2d4fc160-c804-4fac-8f6b-98289d85aa99.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189481566-0ee34193-fb69-4a24-847c-79079951c395.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189481586-1795a40f-0f78-4e27-b472-bebf09cc8851.png?raw=true)
+![](https://user-images.githubusercontent.com/75329130/189482024-541fe517-4592-4f14-a6c6-d7cc7c27c06e.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482025-c1474e5a-ff09-4b47-accb-9c739c1c5c2b.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482016-bb8cf4fc-2e18-4c8e-847b-ee611f5c96a3.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482022-9d570ad6-01b3-4f35-9c74-2b3ba6b8401b.png?raw=true)
 
 
 
