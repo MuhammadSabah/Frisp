@@ -44,6 +44,8 @@ run app on an emulator ``flutter run``
 • Like and reply to comments.
 
 • Search for specific users and view their profile.
+
+• Send messages to other users and add them to your chat list.
 ```
 
 ## ✅ Roadmap :
@@ -301,18 +303,11 @@ Comments Screen            |   Chats Screen            |   Chat Messages Screen 
 | [bubble](https://pub.dev/packages/bubble)  | 1.2.1  |
 | [hive](https://pub.dev/packages/hive)  | 2.2.3  |
 | [hive_flutter](https://pub.dev/packages/hive_flutter)  | 1.1.0  |
+| [hive_generator](https://pub.dev/packages/hive_generator)  | 1.1.3  |
 | [equatable](https://pub.dev/packages/equatable)  | 2.0.5  |
 | [websafe_svg](https://pub.dev/packages/websafe_svg)  | 2.1.2+2  |
 | [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)  | 2.2.8  |
 | [dropdown_button2](https://pub.dev/packages/dropdown_button2)  | 1.7.2  |
-| [hive_generator](https://pub.dev/packages/hive_generator)  | 1.1.3  |
-
-
-
-
-
-
-
 
 
 ## Created & Maintained By
