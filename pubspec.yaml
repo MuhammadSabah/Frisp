@@ -48,14 +48,12 @@ dependencies:
   flutter_slidable: ^0.6.0
   shimmer: ^2.0.0
   font_awesome_flutter: ^10.1.0
-  glassmorphism: ^3.0.0
   firebase_core: ^1.20.0
   cloud_firestore: ^3.4.2
   firebase_storage: ^10.3.4
   firebase_auth: ^3.6.1
   image_picker: ^0.8.5+3
   dartz: ^0.10.1
-  after_layout: ^1.2.0
   get: ^4.6.5
   bubble: ^1.2.1
   hive: ^2.2.3

@@ -77,7 +77,7 @@ class ContactsListScreen extends StatelessWidget {
             );
           } else if (snapshot.data == null || !snapshot.hasData) {
             return const Center(
-              child: Text("You don't have any contact"),
+              child: Text("You don't have any chat"),
             );
           } else if (snapshot.hasError) {
             return const Center(
@@ -86,7 +86,7 @@ class ContactsListScreen extends StatelessWidget {
           }
           if (snapshot.data!.docs.isEmpty) {
             return const Center(
-              child: Text("You don't have any contact"),
+              child: Text("You don't have any chat"),
             );
           }
           final contactUsersList = snapshot.data!.docs;
@@ -125,6 +125,8 @@ class ContactsListScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 6),
                             child: Text(
                               contactUser.lastMessage,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline3!
@@ -133,9 +135,12 @@ class ContactsListScreen extends StatelessWidget {
                                   ),
                             ),
                           ),
-                          leading: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 20,
+                          leading: Container(
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(100))),
+                            height: 45,
+                            width: 45,
                             child: contactUser.photoUrl == ""
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(100),

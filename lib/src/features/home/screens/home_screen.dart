@@ -68,57 +68,62 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (context, manager, child) {
               return GestureDetector(
                 onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-                child: Scaffold(
-                  extendBody: false,
-                  resizeToAvoidBottomInset: false,
-                  body: IndexedStack(
-                    index: manager.selectedTab,
-                    children: pages,
-                  ),
-                  bottomNavigationBar: ClipRect(
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                      child: BottomNavigationBar(
-                        showSelectedLabels: false,
-                        showUnselectedLabels: false,
-                        onTap: (index) {
-                          manager.gotToTab(index);
-                        },
-                        currentIndex: manager.selectedTab,
-                        type: BottomNavigationBarType.fixed,
-                        iconSize: 20,
-                        items: const [
-                          BottomNavigationBarItem(
-                            icon: FaIcon(
-                              FontAwesomeIcons.house,
+                child: WillPopScope(
+                  onWillPop: () async {
+                    return false;
+                  },
+                  child: Scaffold(
+                    extendBody: false,
+                    resizeToAvoidBottomInset: false,
+                    body: IndexedStack(
+                      index: manager.selectedTab,
+                      children: pages,
+                    ),
+                    bottomNavigationBar: ClipRect(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                        child: BottomNavigationBar(
+                          showSelectedLabels: false,
+                          showUnselectedLabels: false,
+                          onTap: (index) {
+                            manager.gotToTab(index);
+                          },
+                          currentIndex: manager.selectedTab,
+                          type: BottomNavigationBarType.fixed,
+                          iconSize: 20,
+                          items: const [
+                            BottomNavigationBarItem(
+                              icon: FaIcon(
+                                FontAwesomeIcons.house,
+                              ),
+                              label: '',
                             ),
-                            label: '',
-                          ),
-                          BottomNavigationBarItem(
-                            icon: FaIcon(
-                              FontAwesomeIcons.magnifyingGlass,
+                            BottomNavigationBarItem(
+                              icon: FaIcon(
+                                FontAwesomeIcons.magnifyingGlass,
+                              ),
+                              label: '',
                             ),
-                            label: '',
-                          ),
-                          BottomNavigationBarItem(
-                            icon: FaIcon(
-                              FontAwesomeIcons.plus,
+                            BottomNavigationBarItem(
+                              icon: FaIcon(
+                                FontAwesomeIcons.plus,
+                              ),
+                              label: '',
                             ),
-                            label: '',
-                          ),
-                          BottomNavigationBarItem(
-                            icon: FaIcon(
-                              FontAwesomeIcons.clipboardList,
+                            BottomNavigationBarItem(
+                              icon: FaIcon(
+                                FontAwesomeIcons.clipboardList,
+                              ),
+                              label: '',
                             ),
-                            label: '',
-                          ),
-                          BottomNavigationBarItem(
-                            icon: FaIcon(
-                              FontAwesomeIcons.solidUser,
+                            BottomNavigationBarItem(
+                              icon: FaIcon(
+                                FontAwesomeIcons.solidUser,
+                              ),
+                              label: '',
                             ),
-                            label: '',
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

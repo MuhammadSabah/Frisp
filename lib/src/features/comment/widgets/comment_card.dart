@@ -187,7 +187,7 @@ class _CommentCardState extends State<CommentCard> {
                                     .copyWith(
                                       fontSize: 14,
                                       color: settingsManager.darkMode
-                                          ? Colors.grey.shade300
+                                          ? Colors.white70
                                           : Colors.grey.shade800,
                                       fontWeight: FontWeight.w400,
                                       height: 1.4,

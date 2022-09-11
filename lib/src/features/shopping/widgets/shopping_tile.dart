@@ -65,7 +65,10 @@ class ShoppingTile extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .headline2!
-                                  .copyWith(height: 1.4),
+                                  .copyWith(
+                                    height: 1.4,
+                                    fontSize: 17,
+                                  ),
                             ),
                           ),
                         ],
@@ -84,7 +87,7 @@ class ShoppingTile extends StatelessWidget {
                       child: Text(
                         item.quantity.toString(),
                         style: Theme.of(context).textTheme.headline2!.copyWith(
-                              fontSize: 19,
+                              fontSize: 16,
                             ),
                       ),
                     ),
@@ -121,7 +124,7 @@ class ShoppingTile extends StatelessWidget {
         style: Theme.of(context).textTheme.bodyText2!.copyWith(
             fontWeight: FontWeight.bold,
             color: Colors.yellow.shade400,
-            fontSize: 15),
+            fontSize: 14),
       );
     }
     if (item.importance == ImportanceEnum.high.type) {
