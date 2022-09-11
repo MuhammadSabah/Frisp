@@ -115,7 +115,7 @@ class ShoppingTile extends StatelessWidget {
       return Text(
         'Low',
         style: Theme.of(context).textTheme.bodyText2!.copyWith(
-              fontSize: 15,
+              fontSize: 13,
             ),
       );
     } else if (item.importance == ImportanceEnum.medium.type) {
@@ -124,7 +124,7 @@ class ShoppingTile extends StatelessWidget {
         style: Theme.of(context).textTheme.bodyText2!.copyWith(
             fontWeight: FontWeight.bold,
             color: Colors.yellow.shade400,
-            fontSize: 14),
+            fontSize: 13),
       );
     }
     if (item.importance == ImportanceEnum.high.type) {
@@ -133,7 +133,7 @@ class ShoppingTile extends StatelessWidget {
         style: Theme.of(context).textTheme.bodyText2!.copyWith(
               fontWeight: FontWeight.bold,
               color: Colors.red.shade400,
-              fontSize: 15,
+              fontSize: 13,
             ),
       );
     } else {

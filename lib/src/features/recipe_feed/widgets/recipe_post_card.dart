@@ -312,8 +312,8 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                           begin: Alignment.centerLeft,
                                           end: Alignment.centerRight,
                                           colors: [
-                                            Colors.white.withOpacity(0.2),
-                                            Colors.white.withOpacity(0.15),
+                                            Colors.grey.withOpacity(0.3),
+                                            Colors.grey.withOpacity(0.15),
                                           ],
                                           stops: const [0.0, 1.0],
                                         ),

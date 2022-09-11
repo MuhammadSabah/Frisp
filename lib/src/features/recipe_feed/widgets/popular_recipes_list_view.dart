@@ -147,10 +147,10 @@ class _PopularRecipesListViewViewState extends State<PopularRecipesListView> {
                                                       end:
                                                           Alignment.centerRight,
                                                       colors: [
-                                                        Colors.white
-                                                            .withOpacity(0.5),
-                                                        Colors.white
-                                                            .withOpacity(0.3),
+                                                        Colors.grey
+                                                            .withOpacity(0.2),
+                                                        Colors.grey
+                                                            .withOpacity(0.15),
                                                       ],
                                                       stops: const [0.0, 1.0],
                                                     ),
