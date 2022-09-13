@@ -116,6 +116,9 @@ Comments Screen            |   Chats Screen            |   Chat Messages Screen 
 │   ├── app_pages.dart
 │   ├── app_theme.dart
 │   └── constants.dart
+├── 📂localization
+│   ├── app_en.arb
+│   ├── localization.dart
 └── 📂src
     ├── 📂features
     │   ├── 📂authentication
