@@ -5,6 +5,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/app_theme.dart';
 import 'package:food_recipe_final/firebase_options.dart';
+import 'package:food_recipe_final/localization/localization.dart';
 import 'package:food_recipe_final/src/features/bookmark_recipe/repository/bookmark_interface.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
 import 'package:food_recipe_final/src/navigation/route_generator.dart';
@@ -108,6 +109,7 @@ class _MyAppState extends State<MyApp> {
             theme = AppTheme.light();
           }
           return GetMaterialApp(
+            supportedLocales: Localization.all,
             debugShowCheckedModeBanner: false,
             theme: theme,
             initialRoute: AppPages.splashPath,

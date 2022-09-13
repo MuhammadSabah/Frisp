@@ -172,8 +172,6 @@ class RecipePostProvider extends ChangeNotifier {
     required String followId,
     required UserModel currentUser,
   }) async {
-    print(followId);
-    print(userId);
     try {
       DocumentSnapshot currentUserSnapshot =
           await _firestore.collection('users').doc(userId).get();

@@ -5,8 +5,6 @@ import 'package:food_recipe_final/main.dart';
 import 'package:food_recipe_final/src/features/onboarding/pages/page_1.dart';
 import 'package:food_recipe_final/src/features/onboarding/pages/page_2.dart';
 import 'package:food_recipe_final/src/features/onboarding/pages/page_3.dart';
-import 'package:food_recipe_final/src/providers/auth_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // ignore: must_be_immutable
@@ -23,7 +21,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   bool onLastPage = false;
   @override
   Widget build(BuildContext context) {
-    final userState = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: Stack(

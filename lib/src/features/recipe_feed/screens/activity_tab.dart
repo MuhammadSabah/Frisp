@@ -19,7 +19,6 @@ class _ActivityTabState extends State<ActivityTab>
   Stream<QuerySnapshot<Map<String, dynamic>>>? streamResult;
   @override
   void initState() {
-    print(widget.user!.following);
     super.initState();
     // streamResult =
   }
@@ -68,13 +67,7 @@ class _ActivityTabState extends State<ActivityTab>
                 );
               } else {
                 if (snapshot.data!.docs.isEmpty) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      //TODO: if the user does not follow anyone.
-                    ],
-                  );
+                  return const SizedBox();
                 }
                 return ListView.builder(
                   shrinkWrap: true,

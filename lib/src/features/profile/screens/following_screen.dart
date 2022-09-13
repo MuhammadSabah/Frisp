@@ -39,7 +39,6 @@ class FollowingScreen extends StatelessWidget {
                   .where('id', whereIn: user.following)
                   .snapshots(),
               builder: (context, snapshot) {
-                print(user.following);
                 return ListView.builder(
                   itemCount: user.following.length,
                   itemBuilder: (context, index) {

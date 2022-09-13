@@ -42,7 +42,6 @@ class _SignupFormState extends State<SignupForm> {
   Widget build(BuildContext context) {
     final settingsManager =
         Provider.of<SettingsProvider>(context, listen: false);
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Stack(
       children: [
         SafeArea(
