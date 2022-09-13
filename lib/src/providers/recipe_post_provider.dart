@@ -10,19 +10,6 @@ import 'package:uuid/uuid.dart';
 
 class RecipePostProvider extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  // int _recipePostLength = 0;
-  // int get getRecipePostLength => _recipePostLength;
-  // void updateRecipePostInfo(String? userId) async {
-  //   QuerySnapshot<Map<String, dynamic>> recipePostSnapshots =
-  //       await FirebaseFirestore.instance
-  //           .collection('posts')
-  //           .where('uid', isEqualTo: userId)
-  //           .get();
-  //   if (recipePostSnapshots.docs.isNotEmpty) {
-  //     _recipePostLength = recipePostSnapshots.docs.length;
-  //   }
-  //   notifyListeners();
-  // }
 
   Future<String?> uploadRecipePost({
     required String uid,

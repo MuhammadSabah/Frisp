@@ -21,6 +21,7 @@ class UserImageProvider with ChangeNotifier {
     }
   }
 
+  // Uploading an image to firebase storage then returning the download URL.
   Future<String> uploadAnImageToStorage({
     required String fileName,
     required Uint8List file,
@@ -39,14 +40,6 @@ class UserImageProvider with ChangeNotifier {
     notifyListeners();
     return downloadUrl;
   }
-
-  // Future updateUserProfilePhoto(String? photoUrl) async {
-  //   await _firestore.collection('users').doc(_userAuth.currentUser!.uid).update(
-  //     {
-  //       'photoUrl': "$photoUrl",
-  //     },
-  //   );
-  // }
 
   Future<String> getUserProfileImage() async {
     String photoUrl = '';

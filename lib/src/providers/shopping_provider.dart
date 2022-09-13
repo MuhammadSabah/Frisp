@@ -9,9 +9,10 @@ class ShoppingProvider extends ChangeNotifier {
       Hive.box<ShoppingItem>('shoppingItems');
   Box<ShoppingItem> getShoppingItems() => _shoppingItems;
 
-  //
+  // Acts like a Stream, used with Hive.
   ValueListenable<Box<ShoppingItem>> listenToShoppingItems() =>
       _shoppingItems.listenable();
+
   // Fields:
   int _selectedIndex = -1;
   bool _createNewItem = false;
@@ -23,7 +24,6 @@ class ShoppingProvider extends ChangeNotifier {
   }
 
   // Getters:
-
   int get selectedIndex => _selectedIndex;
 
   ShoppingItem? get selectedShoppingItem =>
@@ -78,7 +78,7 @@ class ShoppingProvider extends ChangeNotifier {
   }
 
   // Sorting methods:
-  // 1)
+  // 1) Quantity
   void sortByQuantityAscending() {
     var items = _shoppingItems.values.toList();
     items.sort((a, b) {
@@ -105,7 +105,7 @@ class ShoppingProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // 2)
+  // 2) Date
   void sortByDateAscending() {
     var items = _shoppingItems.values.toList();
     items.sort((a, b) {
@@ -130,7 +130,7 @@ class ShoppingProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // 3)
+  // 3) Importance
   void sortByImportanceAscending() {
     var items = _shoppingItems.values.toList();
     items.sort((a, b) {

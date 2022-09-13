@@ -4,11 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:food_recipe_final/src/models/message.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 
-class MessageProvider extends ChangeNotifier {
+class receiver extends ChangeNotifier {
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   static final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> createUserContactsCollection({
+  Future<void> createUserChatCollection({
     required UserModel receiverUser,
     required UserModel currentUser,
   }) async {
@@ -65,6 +65,7 @@ class MessageProvider extends ChangeNotifier {
     }
   }
 
+  // When the message is send, it will be saved in both the current user collection and the receiver user collection.
   void sendMessage(
       Message message, String oppositeUserId, String currentUserId) async {
     //

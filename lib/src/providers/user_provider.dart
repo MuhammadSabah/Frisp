@@ -16,6 +16,7 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Getting the user from firestore and creating a model for it if exists.
   Future<UserModel?> getUserFromDocument() async {
     UserModel? userModel;
     final currentUser = _auth.currentUser;

@@ -20,6 +20,7 @@ class BookmarkProvider extends BookmarkInterface {
     return _recipeStream!;
   }
 
+  // Data modification methods:
   @override
   Future<void> insertRecipe(RecipeModel recipe) async {
     if (!_currentRecipes.contains(recipe)) {
@@ -34,6 +35,7 @@ class BookmarkProvider extends BookmarkInterface {
     return Future.value();
   }
 
+  //
   @override
   Future init() {
     return Future.value();

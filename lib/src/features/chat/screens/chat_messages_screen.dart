@@ -34,7 +34,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
   @override
   Widget build(BuildContext context) {
     final messageProvider =
-        Provider.of<MessageProvider>(context, listen: false);
+        Provider.of<receiver>(context, listen: false);
     final settingsManager =
         Provider.of<SettingsProvider>(context, listen: false);
     return Scaffold(
