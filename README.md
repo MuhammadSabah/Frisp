@@ -311,6 +311,7 @@ Comments Screen            |   Chats Screen            |   Chat Messages Screen 
 | [websafe_svg](https://pub.dev/packages/websafe_svg)  | 2.1.2+2  |
 | [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)  | 2.2.8  |
 | [dropdown_button2](https://pub.dev/packages/dropdown_button2)  | 1.7.2  |
+| [flutter_localizations](https://pub.dev/packages/flutter_localizations)  | <last-version>  |
 
 
 ## Created & Maintained By
