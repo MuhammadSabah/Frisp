@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="food_app_icon" src="https://user-images.githubusercontent.com/75329130/180598065-99a17935-740b-430f-a9b3-d642c6c060bc.png" width=180px"/><br/>
+  <img alt="food_app_icon" src="https://user-images.githubusercontent.com/75329130/180598065-99a17935-740b-430f-a9b3-d642c6c060bc.png" width=160px"/><br/>
   Frisp
 </h1>
 
