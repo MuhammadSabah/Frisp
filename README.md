@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="food_app_icon" src="https://user-images.githubusercontent.com/75329130/180598065-99a17935-740b-430f-a9b3-d642c6c060bc.png" width="200px"/><br/>
+  <img alt="food_app_icon" src="https://user-images.githubusercontent.com/75329130/180598065-99a17935-740b-430f-a9b3-d642c6c060bc.png" width=180px"/><br/>
   Frisp
 </h1>
 
@@ -9,7 +9,7 @@ For this project my goal is to learn about organizing code, folder structure, us
 
 
 <h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://dart.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-icon.svg" alt="dart" width="20" height="20"/> </a> 
+<p align="left"> <a href="https://dart.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/dartlang/dartlang-icon.svg" alt="dart" width="40" height="40"/> </a> 
     <a href="https://flutter.dev" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg" alt="flutter" width="40" height="40"/> </a> 
   <a href="https://firebase.google.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a>
   <a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/visualstudio_code/visualstudio_code-icon.svg" alt="VS code" width="40" height="40"/> </a> 
