@@ -4,7 +4,7 @@
 </h1>
                                                                                                                                                    
 <p align="center">
-  <a href="#🚀-features">Features</a> 
+  <a href="#features">Features</a> 
   <a href="#Features">Features</a> 
 <!--   <a href="#features">Features</a>  -->
   <a href="#Roadmap">Roadmap</a> 
@@ -45,7 +45,7 @@ run ``flutter pub get``
 
 run app on an emulator ``flutter run``
 
-## 🚀 Features :
+## Features :
 ```
 • Exploring different types of recipes and categories.
 
