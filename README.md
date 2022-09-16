@@ -8,7 +8,7 @@
 * [Prerequisites](#prerequisites)
 * [Features](#-features-)
 * [Roadmap](#-roadmap-)
-* [Screenshots](#-screenshots-(dark-mode)-)
+* [Screenshots](#screenshots-(dark-mode))
 * [Directory Structure](#-directory-structure-) 
 * [Dependencies](#dependencies)
                                                                                                                                                    
