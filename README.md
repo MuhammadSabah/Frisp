@@ -3,12 +3,12 @@
   Frisp
 </h1>
                                                                                                                                                    
-<p align="center">
-  <a href="#features">Features</a> 
-  <a href="#Features">Features</a> 
-<!--   <a href="#features">Features</a>  -->
-  <a href="#Roadmap">Roadmap</a> 
-</p>
+## Table of Content 
+
+* [Prerequisites](#prerequisites)
+* [Features](#features)
+* [Roadmap](#roadmap)
+
                                                                                                                                                    
 ### A small social media application for food recipes.
 
@@ -45,7 +45,7 @@ run ``flutter pub get``
 
 run app on an emulator ``flutter run``
 
-## Features :
+## 🚀 Features :
 ```
 • Exploring different types of recipes and categories.
 
