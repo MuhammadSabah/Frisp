@@ -4,14 +4,14 @@
 </h1>
                                                                                                                                                    
 ## Table of Content 
-<div>                                                                                                                                              
+                                                                                                                                     
 * [Prerequisites](#prerequisites)
 * [Features](#-features-)
 * [Roadmap](#-roadmap-)
 * [Screenshots](#screenshots)
 * [Directory Structure](#directory-structure) 
 * [Dependencies](#dependencies)
-</div>
+
                                                                                                                                                    
 ### A small social media application for food recipes.
 
