@@ -7,7 +7,9 @@
 
 * [Prerequisites](#prerequisites)
 * [Features](#-features-)
-* [Roadmap](#roadmap)
+* [Roadmap](#-roadmap-)
+* [Screenshots](#-screenshots-)
+* [Directory Structure](#-directory-structure-)                                                                                                                                                                                                                                                                                                      
 
                                                                                                                                                    
 ### A small social media application for food recipes.
