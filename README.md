@@ -6,7 +6,7 @@
 ## Table of Content 
 
 * [Prerequisites](#prerequisites)
-* [Features](#🚀-features)
+* [Features](#features)
 * [Roadmap](#roadmap)
 
                                                                                                                                                    
@@ -45,7 +45,7 @@ run ``flutter pub get``
 
 run app on an emulator ``flutter run``
 
-🚀 ## Features :
+## <span>🚀</span> Features :
 ```
 • Exploring different types of recipes and categories.
 
