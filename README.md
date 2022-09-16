@@ -2,7 +2,7 @@
   <img alt="food_app_icon" src="https://user-images.githubusercontent.com/75329130/180598065-99a17935-740b-430f-a9b3-d642c6c060bc.png" width=160px"/><br/>
   Frisp
 </h1>
-- ![#f03c15](https://via.placeholder.com/15/f03c15/f03c15.png) `#f03c15`                                                                                                                  
+                                                                                                                
 ## Table of Content 
                                                                                                                                      
 * [Prerequisites](#prerequisites)
