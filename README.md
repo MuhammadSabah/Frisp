@@ -8,7 +8,7 @@
 * [Prerequisites](#prerequisites)
 * [Features](#-features-)
 * [Roadmap](#-roadmap-)
-* [Screenshots](#screenshots-)
+* [Screenshots](#screenshots)
 * [Directory Structure](#directory-structure) 
 * [Dependencies](#dependencies)
                                                                                                                                                    
@@ -96,7 +96,7 @@ run app on an emulator ``flutter run``
 - [x] Design and code Edit Profile Screen.
 - [x] Search for specific user functionality.
 
-## Screenshots (Dark mode)
+## Screenshots
 
 Onboarding 1               |   Onboarding 2            |   Onboarding 3            |   Welcome Screen
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
