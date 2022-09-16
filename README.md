@@ -5,7 +5,7 @@
                                                                                                                                                    
 ## Table of Content 
                                                                                                                                      
-* [Prerequisites](#prerequisites) `#F94701`
+* [Prerequisites](#prerequisites) in orange
 * [Features](#-features-)
 * [Roadmap](#-roadmap-)
 * [Screenshots](#screenshots)
