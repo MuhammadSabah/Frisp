@@ -45,7 +45,7 @@ run ``flutter pub get``
 
 run app on an emulator ``flutter run``
 
-<span>🚀</span> ,## Features :
+## Features :
 ```
 • Exploring different types of recipes and categories.
 
