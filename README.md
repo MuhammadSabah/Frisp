@@ -9,7 +9,7 @@
 * [Features](#-features-)
 * [Roadmap](#-roadmap-)
 * [Screenshots](#screenshots-)
-* [Directory Structure](#-directory-structure-) 
+* [Directory Structure](#directory-structure) 
 * [Dependencies](#dependencies)
                                                                                                                                                    
 ### A small social media application for food recipes.
@@ -126,7 +126,7 @@ Comments Screen            |   Chats Screen            |   Chat Messages Screen 
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/75329130/189483169-a9590e2b-6fb2-4f44-9358-af006da0ac1c.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482838-aca24468-fc3c-4d52-81ab-1f4e75b71e79.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189482840-4bceda54-8aad-4184-a81a-f5126f7224d4.png?raw=true)|![](https://user-images.githubusercontent.com/75329130/189483172-1ef4c04e-3918-4f0c-8714-8189d42b2f65.png?raw=true)
 
-## Directory Structure (Provider)
+## Directory Structure
 ```
 📂lib
 ├── main.dart
