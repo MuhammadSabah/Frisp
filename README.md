@@ -4,7 +4,7 @@
 </h1>
 
 <p align="center">
-  <a href="#🚀Features">Features</a> 
+  <a href="#🚀-features">Features</a> 
   <a href="#Roadmap">Roadmap</a> 
 </p>
 
