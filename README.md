@@ -9,8 +9,8 @@
 * [Features](#-features-)
 * [Roadmap](#-roadmap-)
 * [Screenshots](#-screenshots-)
-* [Directory Structure](#-directory-structure-)                                                                                                                                                                                                                                                                                                      
-
+* [Directory Structure](#-directory-structure-) 
+* [Dependencies](#dependencies)
                                                                                                                                                    
 ### A small social media application for food recipes.
 
