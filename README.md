@@ -6,7 +6,7 @@
 ## Table of Content 
 
 * [Prerequisites](#prerequisites)
-* [Features](#features)
+* [Features](#🚀-features)
 * [Roadmap](#roadmap)
 
                                                                                                                                                    
