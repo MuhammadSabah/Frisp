@@ -89,7 +89,7 @@ run app on an emulator ``flutter run``
 - [ ] Make the app responsive for other mobile devices.
 - [x] Reply to comments feature.
 - [x] Add dark theme and light theme.
-- [x] Use Navigation 2.0
+- [ ] Use Navigation 2.0
 - [x] Code the shopping screen.
 - [x] Code the shopping item and shopping list screens.
 - [x] Add Shimmer loading.
