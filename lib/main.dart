@@ -72,9 +72,9 @@ class _MyAppState extends State<MyApp> {
         Provider<BookmarkInterface>(
           create: (context) => BookmarkProvider(),
         ),
-        ChangeNotifierProvider<receiver>(
+        ChangeNotifierProvider<MessageProvider>(
           lazy: false,
-          create: (context) => receiver(),
+          create: (context) => MessageProvider(),
         ),
         ChangeNotifierProvider<UserProvider>(
           lazy: false,
