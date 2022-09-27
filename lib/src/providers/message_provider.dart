@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:food_recipe_final/src/models/message.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 
-class receiver extends ChangeNotifier {
+class MessageProvider extends ChangeNotifier {
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   static final FirebaseAuth _auth = FirebaseAuth.instance;
 
