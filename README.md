@@ -12,7 +12,7 @@
 * [Directory Structure](#directory-structure) 
 * [Dependencies](#dependencies)
 
-## WeCode bootcamp final project.                                                                                                                                                   
+## WeCode Bootcamp final project.                                                                                                                                                   
 ### A small social networking application for food recipes.
 
 For this project my goal is to learn about organizing code, folder structure, using backend, Firebase services, having a good UI/UX Design, data persistent, deep linking, responsiveness and implementing functionalities for a complex app. 
