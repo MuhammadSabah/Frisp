@@ -3,7 +3,7 @@
   Frisp
 </h1>
                                                                                                                 
-## Table of Content 
+## Table of Contents
                                                                                                                                      
 * [Prerequisites](#prerequisites)
 * [Features](#-features-)
