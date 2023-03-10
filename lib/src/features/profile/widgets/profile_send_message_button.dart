@@ -18,7 +18,7 @@ class ProfileSendMessageButton extends StatelessWidget {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     final UserModel? currentUser = userProvider.getUser;
     final messageProvider =
-        Provider.of<receiver>(context, listen: false);
+        Provider.of<MessageProvider>(context, listen: false);
     return IconButton(
       onPressed: () async {
         Navigator.pushNamed(
