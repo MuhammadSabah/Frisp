@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_recipe_final/core/constants.dart';
@@ -52,7 +53,9 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
 
     try {
       //
-      String? result = await RecipePostProvider().uploadRecipePost(
+      String? result = await RecipePostProvider(
+        FirebaseFirestore.instance,
+      ).uploadRecipePost(
         uid: uid,
         userName: userName,
         userEmail: userEmail,
@@ -214,7 +217,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
             title: Text(
               'Create',
               style:
-                  Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
+                  Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
             ),
             leading: IconButton(
               splashRadius: 20,
@@ -318,7 +321,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                                       'Upload a recipe photo',
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headline2!
+                                          .displayMedium!
                                           .copyWith(
                                             fontWeight: FontWeight.normal,
                                             fontSize: 18,

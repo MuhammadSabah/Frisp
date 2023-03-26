@@ -25,7 +25,7 @@ class ServingsAndReadyInSection extends StatelessWidget {
                 children: [
                   Text(
                     'Servings  ',
-                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           fontSize: 14,
                           color: settingsManager.darkMode
                               ? Colors.grey
@@ -34,7 +34,7 @@ class ServingsAndReadyInSection extends StatelessWidget {
                   ),
                   Text(
                     '$servings pp',
-                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
@@ -45,7 +45,7 @@ class ServingsAndReadyInSection extends StatelessWidget {
                 children: [
                   Text(
                     'Ready In  ',
-                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           fontSize: 14,
                           color: settingsManager.darkMode
                               ? Colors.grey
@@ -54,7 +54,7 @@ class ServingsAndReadyInSection extends StatelessWidget {
                   ),
                   Text(
                     '${readyInMinutes}m',
-                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),

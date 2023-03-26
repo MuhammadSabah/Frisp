@@ -9,7 +9,8 @@ class AuthBottomRichText extends StatelessWidget {
     required this.onTap,
     required this.detailText,
     required this.clickableText,
-    required this.lightColor, required this.darkColor,
+    required this.lightColor,
+    required this.darkColor,
   }) : super(key: key);
   final Function()? onTap;
   final String detailText;
@@ -28,14 +29,15 @@ class AuthBottomRichText extends StatelessWidget {
             children: [
               TextSpan(
                 text: detailText,
-                style: Theme.of(context).textTheme.headline4!.copyWith(
+                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       color: settingsManager.darkMode ? darkColor : lightColor,
                       fontSize: 14,
                     ),
+                recognizer: TapGestureRecognizer()..onTap = onTap,
               ),
               TextSpan(
                 text: clickableText,
-                style: Theme.of(context).textTheme.headline4!.copyWith(
+                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),

@@ -5,8 +5,10 @@ import 'package:food_recipe_final/src/models/message.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 
 class MessageProvider extends ChangeNotifier {
-  static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  static final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore;
+  final FirebaseAuth _auth;
+
+  MessageProvider(this._firestore, this._auth);
 
   Future<void> createUserChatCollection({
     required UserModel receiverUser,

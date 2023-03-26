@@ -76,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     extendBody: false,
                     resizeToAvoidBottomInset: false,
                     body: IndexedStack(
+                      key: const Key('home-screen'),
                       index: manager.selectedTab,
                       children: pages,
                     ),

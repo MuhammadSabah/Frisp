@@ -20,7 +20,7 @@ class SettingsLogoutButton extends StatelessWidget {
                       'Log out',
                       style: Theme.of(context)
                           .textTheme
-                          .headline3!
+                          .displaySmall!
                           .copyWith(color: kGreyColorShade),
                     ),
                     Icon(

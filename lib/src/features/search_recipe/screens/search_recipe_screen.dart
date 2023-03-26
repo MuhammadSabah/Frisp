@@ -96,7 +96,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                         child: TabBar(
                           controller: _tabController,
                           labelStyle:
-                              Theme.of(context).textTheme.headline3!.copyWith(
+                              Theme.of(context).textTheme.displaySmall!.copyWith(
                                     fontSize: 14,
                                   ),
                           tabs: const [
@@ -179,7 +179,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                             child: TextField(
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline3!
+                                  .displaySmall!
                                   .copyWith(
                                     fontWeight: FontWeight.w600,
                                     color: Colors.black,

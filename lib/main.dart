@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -56,10 +59,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _appStateManager = AuthProvider();
-  final _shoppingManager = ShoppingProvider();
-  final _userProvider = UserProvider();
-
   @override
   void initState() {
     super.initState();
@@ -74,26 +73,40 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider<MessageProvider>(
           lazy: false,
-          create: (context) => MessageProvider(),
+          create: (context) => MessageProvider(
+            FirebaseFirestore.instance,
+            FirebaseAuth.instance,
+          ),
         ),
         ChangeNotifierProvider<UserProvider>(
           lazy: false,
-          create: (context) => _userProvider,
+          create: (context) => UserProvider(
+            FirebaseFirestore.instance,
+            FirebaseAuth.instance,
+          ),
         ),
         ChangeNotifierProvider<UserImageProvider>(
-          create: (context) => UserImageProvider(),
+          create: (context) => UserImageProvider(
+            FirebaseAuth.instance,
+            FirebaseStorage.instance,
+          ),
         ),
         ChangeNotifierProvider<RecipePostProvider>(
           lazy: false,
-          create: (context) => RecipePostProvider(),
+          create: (context) => RecipePostProvider(
+            FirebaseFirestore.instance,
+          ),
         ),
         ChangeNotifierProvider(
           lazy: false,
-          create: (context) => _shoppingManager,
+          create: (context) => ShoppingProvider(),
         ),
         ChangeNotifierProvider(
           lazy: false,
-          create: (context) => _appStateManager,
+          create: (context) => AuthProvider(
+            FirebaseAuth.instance,
+            FirebaseFirestore.instance,
+          ),
         ),
         ChangeNotifierProvider(
           lazy: false,

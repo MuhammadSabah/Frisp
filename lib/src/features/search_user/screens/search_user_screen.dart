@@ -51,7 +51,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
           title: Text(
             'Search User',
             style:
-                Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
+                Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
           ),
         ),
         body: Flex(
@@ -78,7 +78,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                             textAlign: TextAlign.start,
                             textAlignVertical: TextAlignVertical.center,
                             style:
-                                Theme.of(context).textTheme.headline3!.copyWith(
+                                Theme.of(context).textTheme.displaySmall!.copyWith(
                                       fontWeight: FontWeight.w600,
                                     ),
                             controller: _searchUserController,
@@ -98,7 +98,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                               hintText: 'Search...',
                               hintStyle: Theme.of(context)
                                   .textTheme
-                                  .headline4!
+                                  .headlineMedium!
                                   .copyWith(
                                     fontSize: 15,
                                     color: Colors.grey.shade600,

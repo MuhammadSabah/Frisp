@@ -67,7 +67,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                             : 'Change Password.',
                         style: Theme.of(context)
                             .textTheme
-                            .headline1!
+                            .displayLarge!
                             .copyWith(fontSize: 32),
                       ),
                       const SizedBox(height: 26),
@@ -77,7 +77,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           text:
                               'Please enter your registered email address. An email notification with a password reset link will then be sent to you.',
                           style:
-                              Theme.of(context).textTheme.headline4!.copyWith(
+                              Theme.of(context).textTheme.headlineMedium!.copyWith(
                                     color: settingsManager.darkMode
                                         ? Colors.white54
                                         : Colors.black,
@@ -103,7 +103,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           textAlign: TextAlign.start,
                           textAlignVertical: TextAlignVertical.center,
                           style:
-                              Theme.of(context).textTheme.headline3!.copyWith(
+                              Theme.of(context).textTheme.displaySmall!.copyWith(
                                     fontWeight: FontWeight.w600,
                                   ),
                           cursorColor: settingsManager.darkMode
@@ -124,7 +124,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                             contentPadding: const EdgeInsets.all(18),
                             hintText: 'Your Email',
                             hintStyle:
-                                Theme.of(context).textTheme.headline4!.copyWith(
+                                Theme.of(context).textTheme.headlineMedium!.copyWith(
                                       fontSize: 15,
                                       color: Colors.grey.shade600,
                                       fontWeight: FontWeight.bold,
@@ -203,7 +203,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                     'Send Email',
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headline2!
+                                        .displayMedium!
                                         .copyWith(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 16,

@@ -24,7 +24,7 @@ class Page1 extends StatelessWidget {
           child: Text(
             'All Your Favorite Recipes In One Place',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline1!.copyWith(
+            style: Theme.of(context).textTheme.displayLarge!.copyWith(
                   fontSize: 26,
                   height: 1.4,
                 ),
@@ -36,7 +36,7 @@ class Page1 extends StatelessWidget {
           child: Text(
             'Save time on planning by having your favorite recipes within reach.',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline3!.copyWith(
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   height: 1.4,
                   color: Colors.grey,
                 ),

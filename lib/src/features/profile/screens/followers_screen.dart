@@ -28,7 +28,7 @@ class FollowersScreen extends StatelessWidget {
         bottomOpacity: 0.0,
         title: Text(
           'Followers',
-          style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
+          style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
         ),
       ),
       body: user.followers.isEmpty
@@ -97,7 +97,7 @@ class FollowersScreen extends StatelessWidget {
                           title: Text(
                             followedUser.userName,
                             style:
-                                Theme.of(context).textTheme.bodyText2!.copyWith(
+                                Theme.of(context).textTheme.bodyMedium!.copyWith(
                                       fontSize: 14,
                                     ),
                           ),
@@ -105,7 +105,7 @@ class FollowersScreen extends StatelessWidget {
                             followedUser.email,
                             style: Theme.of(context)
                                 .textTheme
-                                .headline4!
+                                .headlineMedium!
                                 .copyWith(
                                     color: settingsManager.darkMode
                                         ? Colors.grey.shade300
@@ -170,7 +170,7 @@ class FollowersScreen extends StatelessWidget {
                         title: Text(
                           followedUser.userName,
                           style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontSize: 14,
                                   ),
                         ),
@@ -178,7 +178,7 @@ class FollowersScreen extends StatelessWidget {
                           followedUser.email,
                           style: Theme.of(context)
                               .textTheme
-                              .headline4!
+                              .headlineMedium!
                               .copyWith(
                                   color: settingsManager.darkMode
                                       ? Colors.grey.shade300

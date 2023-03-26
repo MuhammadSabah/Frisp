@@ -6,42 +6,42 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   // Text Theme for Light theme mode
   static TextTheme lightTextTheme = TextTheme(
-    bodyText1: GoogleFonts.poppins(
+    bodyLarge: GoogleFonts.poppins(
       fontSize: 20,
       fontWeight: FontWeight.w500,
       color: Colors.black,
     ),
-    bodyText2: GoogleFonts.poppins(
+    bodyMedium: GoogleFonts.poppins(
       fontSize: 16,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
-    headline1: GoogleFonts.poppins(
+    displayLarge: GoogleFonts.poppins(
       fontSize: 22,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
-    headline2: GoogleFonts.poppins(
+    displayMedium: GoogleFonts.poppins(
       fontSize: 20,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
-    headline3: GoogleFonts.poppins(
+    displaySmall: GoogleFonts.poppins(
       fontSize: 15,
       fontWeight: FontWeight.w500,
       color: Colors.black,
     ),
-    headline4: GoogleFonts.poppins(
+    headlineMedium: GoogleFonts.poppins(
       fontSize: 12,
       fontWeight: FontWeight.w400,
       color: Colors.black,
     ),
-    headline5: GoogleFonts.poppins(
+    headlineSmall: GoogleFonts.poppins(
       fontSize: 10,
       fontWeight: FontWeight.w400,
       color: Colors.black,
     ),
-    headline6: GoogleFonts.poppins(
+    titleLarge: GoogleFonts.poppins(
       fontSize: 8,
       fontWeight: FontWeight.w600,
       color: Colors.black,
@@ -50,42 +50,42 @@ class AppTheme {
 
   // Text Theme for Dark theme mode
   static TextTheme darkTextTheme = TextTheme(
-    bodyText1: GoogleFonts.poppins(
+    bodyLarge: GoogleFonts.poppins(
       fontSize: 20,
       fontWeight: FontWeight.w500,
       color: Colors.white,
     ),
-    bodyText2: GoogleFonts.poppins(
+    bodyMedium: GoogleFonts.poppins(
       fontSize: 16,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
-    headline1: GoogleFonts.poppins(
+    displayLarge: GoogleFonts.poppins(
       fontSize: 22,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
-    headline2: GoogleFonts.poppins(
+    displayMedium: GoogleFonts.poppins(
       fontSize: 20,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
-    headline3: GoogleFonts.poppins(
+    displaySmall: GoogleFonts.poppins(
       fontSize: 15,
       fontWeight: FontWeight.w500,
       color: Colors.white,
     ),
-    headline4: GoogleFonts.poppins(
+    headlineMedium: GoogleFonts.poppins(
       fontSize: 12,
       fontWeight: FontWeight.w400,
       color: Colors.white,
     ),
-    headline5: GoogleFonts.poppins(
+    headlineSmall: GoogleFonts.poppins(
       fontSize: 10,
       fontWeight: FontWeight.w400,
       color: Colors.white,
     ),
-    headline6: GoogleFonts.poppins(
+    titleLarge: GoogleFonts.poppins(
       fontSize: 8,
       fontWeight: FontWeight.w600,
       color: Colors.white,

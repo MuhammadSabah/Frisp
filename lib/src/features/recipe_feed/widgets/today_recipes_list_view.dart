@@ -57,13 +57,13 @@ class _TodayRecipesListViewState extends State<TodayRecipesListView> {
               children: [
                 Text(
                   "Today Recipes",
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Text(
                     "View All",
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.grey,
                           fontSize: 13,
                         ),
@@ -159,7 +159,7 @@ class _TodayRecipesListViewState extends State<TodayRecipesListView> {
                                                         likes[index].toString(),
                                                         style: Theme.of(context)
                                                             .textTheme
-                                                            .bodyText1!
+                                                            .bodyLarge!
                                                             .copyWith(
                                                               fontSize: 14,
                                                               color:
@@ -180,7 +180,7 @@ class _TodayRecipesListViewState extends State<TodayRecipesListView> {
                                                         '${minutes[index]}mins',
                                                         style: Theme.of(context)
                                                             .textTheme
-                                                            .bodyText1!
+                                                            .bodyLarge!
                                                             .copyWith(
                                                               fontSize: 14,
                                                               color:

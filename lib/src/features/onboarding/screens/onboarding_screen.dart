@@ -33,9 +33,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 });
               },
               children: const [
-                Page1(),
-                Page2(),
-                Page3(),
+                Page1(
+                  key: Key('page1'),
+                ),
+                Page2(
+                  key: Key('page2'),
+                ),
+                Page3(
+                  key: Key('page3'),
+                ),
               ],
             ),
             Positioned(

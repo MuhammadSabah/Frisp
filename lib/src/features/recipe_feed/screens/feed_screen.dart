@@ -63,7 +63,7 @@ class _FeedScreenState extends State<FeedScreen>
                               controller: _tabController,
                               labelStyle: Theme.of(context)
                                   .textTheme
-                                  .headline3!
+                                  .displaySmall!
                                   .copyWith(
                                     fontSize: 16,
                                   ),

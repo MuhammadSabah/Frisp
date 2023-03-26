@@ -40,7 +40,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
               Expanded(
                 child: Text(
                   'By ${widget.sourceName}',
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
                         color: Colors.grey,
                         fontSize: 16,
                       ),
@@ -92,7 +92,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
                               textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline3!
+                                  .displaySmall!
                                   .copyWith(fontSize: 14),
                             ),
                           ),
@@ -109,7 +109,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: Text(
               widget.title,
-              style: Theme.of(context).textTheme.headline1!.copyWith(
+              style: Theme.of(context).textTheme.displayLarge!.copyWith(
                     fontSize: 24,
                   ),
               maxLines: 4,
@@ -124,7 +124,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
               children: [
                 Text(
                   'Dish Types: ',
-                  style: Theme.of(context).textTheme.headline4!.copyWith(
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontSize: 14,
                         color: settingsManager.darkMode
                             ? Colors.grey.shade300
@@ -140,7 +140,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
                     itemBuilder: (context, index) {
                       return Text(
                         widget.dishTypes[index],
-                        style: Theme.of(context).textTheme.headline4!.copyWith(
+                        style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                               fontSize: 14,
                               color: Colors.grey,
                             ),
@@ -163,7 +163,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
               children: [
                 Text(
                   'Diets: ',
-                  style: Theme.of(context).textTheme.headline4!.copyWith(
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                         fontSize: 14,
                         color: settingsManager.darkMode
                             ? Colors.grey.shade300
@@ -179,7 +179,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
                     itemBuilder: (context, index) {
                       return Text(
                         widget.diets[index],
-                        style: Theme.of(context).textTheme.headline4!.copyWith(
+                        style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                               fontSize: 14,
                               color: Colors.grey,
                             ),
@@ -212,7 +212,7 @@ class _DetailsTitleSectionState extends State<DetailsTitleSection> {
                       : Colors.grey.shade100,
                   label: Text(
                     widget.keysList[index].toString(),
-                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           color: kOrangeColor,
                           fontWeight: FontWeight.w600,
                           fontSize: 14,

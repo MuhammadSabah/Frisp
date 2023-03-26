@@ -27,7 +27,7 @@ class ServeAndCookTimeSection extends StatelessWidget {
                 children: [
                   Text(
                     'Servings  ',
-                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           fontSize: 14,
                           color: settingsManager.darkMode
                               ? Colors.grey
@@ -36,7 +36,7 @@ class ServeAndCookTimeSection extends StatelessWidget {
                   ),
                   Text(
                     '$serveAmount pp',
-                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
@@ -47,7 +47,7 @@ class ServeAndCookTimeSection extends StatelessWidget {
                 children: [
                   Text(
                     'Ready In  ',
-                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           fontSize: 14,
                           color: settingsManager.darkMode
                               ? Colors.grey
@@ -56,7 +56,7 @@ class ServeAndCookTimeSection extends StatelessWidget {
                   ),
                   Text(
                     cookTime,
-                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                    style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),

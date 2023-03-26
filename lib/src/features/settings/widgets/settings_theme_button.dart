@@ -22,7 +22,7 @@ class SettingsThemeButton extends StatelessWidget {
           children: [
             Text(
               'Theme',
-              style: Theme.of(context).textTheme.headline3!.copyWith(
+              style: Theme.of(context).textTheme.displaySmall!.copyWith(
                     color: kGreyColorShade,
                   ),
             ),

@@ -26,7 +26,7 @@ class PostDetailTitleSection extends StatelessWidget {
               Expanded(
                 child: Text(
                   'By ${recipePost.userName}',
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
                         color: Colors.grey,
                         fontSize: 16,
                       ),
@@ -37,7 +37,7 @@ class PostDetailTitleSection extends StatelessWidget {
                 children: [
                   Text(
                     recipePost.likes.length.toString(),
-                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                    style: Theme.of(context).textTheme.displaySmall!.copyWith(
                           color: settingsManager.darkMode
                               ? Colors.white
                               : Colors.grey,
@@ -59,7 +59,7 @@ class PostDetailTitleSection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 6.0),
             child: Text(
               recipePost.title,
-              style: Theme.of(context).textTheme.headline1!.copyWith(
+              style: Theme.of(context).textTheme.displayLarge!.copyWith(
                     fontSize: 24,
                     height: 1.4,
                   ),
@@ -70,7 +70,7 @@ class PostDetailTitleSection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: Text(
               recipePost.description,
-              style: Theme.of(context).textTheme.headline3!.copyWith(
+              style: Theme.of(context).textTheme.displaySmall!.copyWith(
                     height: 1.6,
                     color: Colors.grey.shade500,
                   ),

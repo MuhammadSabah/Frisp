@@ -100,7 +100,7 @@ class _FeaturedRecipesListViewState extends State<FeaturedRecipesListView> {
                                           'Featured Recipes',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .headline3!
+                                              .displaySmall!
                                               .copyWith(
                                                 fontSize: 13,
                                                 color: kOrangeColor,
@@ -119,7 +119,7 @@ class _FeaturedRecipesListViewState extends State<FeaturedRecipesListView> {
                                           maxLines: 3,
                                           style: Theme.of(context)
                                               .textTheme
-                                              .headline1!
+                                              .displayLarge!
                                               .copyWith(
                                                 fontSize: 32,
                                                 fontWeight: FontWeight.w400,
@@ -194,7 +194,7 @@ class _FeaturedRecipesListViewState extends State<FeaturedRecipesListView> {
                                         'Featured Recipes',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headline3!
+                                            .displaySmall!
                                             .copyWith(
                                               fontSize: 13,
                                               color: kOrangeColor,
@@ -211,7 +211,7 @@ class _FeaturedRecipesListViewState extends State<FeaturedRecipesListView> {
                                           maxLines: 3,
                                           style: Theme.of(context)
                                               .textTheme
-                                              .headline1!
+                                              .displayLarge!
                                               .copyWith(
                                                 fontSize: 32,
                                                 fontWeight: FontWeight.w400,

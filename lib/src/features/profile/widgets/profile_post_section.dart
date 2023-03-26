@@ -161,7 +161,7 @@ class _ProfilePostSectionState extends State<ProfilePostSection> {
                                                       .toString(),
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .bodyText1!
+                                                      .bodyLarge!
                                                       .copyWith(
                                                         fontSize: 14,
                                                       ),
@@ -184,7 +184,7 @@ class _ProfilePostSectionState extends State<ProfilePostSection> {
                               textAlign: TextAlign.start,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.headline3,
+                              style: Theme.of(context).textTheme.displaySmall,
                             ),
                           )
                         ],

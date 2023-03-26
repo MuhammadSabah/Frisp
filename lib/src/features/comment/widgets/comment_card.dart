@@ -151,7 +151,7 @@ class _CommentCardState extends State<CommentCard> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontSize: 14,
                                   ),
                         ),
@@ -160,7 +160,7 @@ class _CommentCardState extends State<CommentCard> {
                         daysBetween(widget.comment.dateCommented),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 10,
                               color: settingsManager.darkMode
                                   ? Colors.grey
@@ -183,7 +183,7 @@ class _CommentCardState extends State<CommentCard> {
                                 softWrap: true,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
                                       fontSize: 14,
                                       color: settingsManager.darkMode
@@ -202,7 +202,7 @@ class _CommentCardState extends State<CommentCard> {
                   const SizedBox(height: 20),
                   RichText(
                     text: TextSpan(
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: 13,
                             color: settingsManager.darkMode
                                 ? Colors.grey
@@ -256,7 +256,7 @@ class _CommentCardState extends State<CommentCard> {
                                   textAlignVertical: TextAlignVertical.center,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .headline3!
+                                      .displaySmall!
                                       .copyWith(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 13,
@@ -300,7 +300,7 @@ class _CommentCardState extends State<CommentCard> {
                                     hintText: 'Reply',
                                     hintStyle: Theme.of(context)
                                         .textTheme
-                                        .headline4!
+                                        .headlineMedium!
                                         .copyWith(
                                           fontSize: 13,
                                           color: settingsManager.darkMode

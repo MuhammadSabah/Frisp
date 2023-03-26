@@ -20,7 +20,7 @@ class Page2 extends StatelessWidget {
           child: Text(
             'Grocery List For When You Shop',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline1!.copyWith(
+            style: Theme.of(context).textTheme.displayLarge!.copyWith(
                   fontSize: 26,
                   height: 1.4,
                 ),
@@ -32,7 +32,7 @@ class Page2 extends StatelessWidget {
           child: Text(
             'Take the grocery list from you cart to your nearest grocery store and buy the ingredients.',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline3!.copyWith(
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   height: 1.4,
                   color: Colors.grey,
                 ),

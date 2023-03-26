@@ -57,7 +57,7 @@ class _SignupFormState extends State<SignupForm> {
                       'Sign up',
                       style: Theme.of(context)
                           .textTheme
-                          .headline1!
+                          .displayLarge!
                           .copyWith(fontSize: 34),
                     ),
                     const SizedBox(height: 50),
@@ -69,6 +69,7 @@ class _SignupFormState extends State<SignupForm> {
                         Radius.circular(10),
                       )),
                       child: TextFormField(
+                        key: const Key("username-field"),
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
                             return 'Username Required';
@@ -83,9 +84,10 @@ class _SignupFormState extends State<SignupForm> {
                         },
                         textAlign: TextAlign.start,
                         textAlignVertical: TextAlignVertical.center,
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.displaySmall!.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
                         controller: widget.userNameController,
                         cursorColor: kOrangeColor,
                         autofocus: false,
@@ -102,12 +104,14 @@ class _SignupFormState extends State<SignupForm> {
                           isCollapsed: true,
                           contentPadding: const EdgeInsets.all(18),
                           hintText: '@Username',
-                          hintStyle:
-                              Theme.of(context).textTheme.headline4!.copyWith(
-                                    fontSize: 15,
-                                    color: Colors.grey.shade600,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          hintStyle: Theme.of(context)
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(
+                                fontSize: 15,
+                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.bold,
+                              ),
                           focusedErrorBorder: kFocusedErrorBorder,
                           errorBorder: kErrorBorder,
                           enabledBorder: kEnabledBorder,
@@ -124,6 +128,7 @@ class _SignupFormState extends State<SignupForm> {
                         Radius.circular(10),
                       )),
                       child: TextFormField(
+                        key: const Key("email-field"),
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
                             return 'Email Required';
@@ -132,9 +137,10 @@ class _SignupFormState extends State<SignupForm> {
                         },
                         textAlign: TextAlign.start,
                         textAlignVertical: TextAlignVertical.center,
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.displaySmall!.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
                         controller: widget.emailController,
                         cursorColor: kOrangeColor,
                         autofocus: false,
@@ -151,12 +157,14 @@ class _SignupFormState extends State<SignupForm> {
                           isCollapsed: true,
                           contentPadding: const EdgeInsets.all(18),
                           hintText: 'Your Email',
-                          hintStyle:
-                              Theme.of(context).textTheme.headline4!.copyWith(
-                                    fontSize: 15,
-                                    color: Colors.grey.shade600,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          hintStyle: Theme.of(context)
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(
+                                fontSize: 15,
+                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.bold,
+                              ),
                           focusedErrorBorder: kFocusedErrorBorder,
                           errorBorder: kErrorBorder,
                           enabledBorder: kEnabledBorder,
@@ -173,6 +181,7 @@ class _SignupFormState extends State<SignupForm> {
                         Radius.circular(10),
                       )),
                       child: TextFormField(
+                        key: const Key("password-field"),
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
                             return 'Password Required';
@@ -181,9 +190,10 @@ class _SignupFormState extends State<SignupForm> {
                         },
                         textAlign: TextAlign.start,
                         textAlignVertical: TextAlignVertical.center,
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.displaySmall!.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
                         controller: widget.passwordController,
                         cursorColor: kOrangeColor,
                         autofocus: false,
@@ -231,12 +241,14 @@ class _SignupFormState extends State<SignupForm> {
                           ),
                           contentPadding: const EdgeInsets.all(18),
                           hintText: 'Password',
-                          hintStyle:
-                              Theme.of(context).textTheme.headline4!.copyWith(
-                                    fontSize: 15,
-                                    color: Colors.grey.shade600,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          hintStyle: Theme.of(context)
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(
+                                fontSize: 15,
+                                color: Colors.grey.shade600,
+                                fontWeight: FontWeight.bold,
+                              ),
                           focusedErrorBorder: kFocusedErrorBorder,
                           errorBorder: kErrorBorder,
                           enabledBorder: kEnabledBorder,
@@ -253,17 +265,20 @@ class _SignupFormState extends State<SignupForm> {
                         text: TextSpan(
                           text:
                               'By signing up you agree to our Terms of Use and Privacy Policy',
-                          style:
-                              Theme.of(context).textTheme.headline4!.copyWith(
-                                    color: Colors.white54,
-                                    fontSize: 14,
-                                    height: 1.6,
-                                  ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(
+                                color: Colors.white54,
+                                fontSize: 14,
+                                height: 1.6,
+                              ),
                         ),
                       ),
                     ),
                     const SizedBox(height: 40),
                     AuthConfirmButton(
+                      key: const Key("sign-up-button"),
                       title: 'Sign up',
                       callBack: () async {
                         final navigator = Navigator.of(context);
@@ -285,7 +300,7 @@ class _SignupFormState extends State<SignupForm> {
                             userPassword: widget.passwordController.text,
                           );
                           if (output == null) {
-                            FirebaseAuth.instance.signOut();
+                            // FirebaseAuth.instance.signOut();
                             navigator.pushNamed(AppPages.loginPath);
                           }
                           if (mounted) {
@@ -310,6 +325,7 @@ class _SignupFormState extends State<SignupForm> {
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 8),
                     AuthBottomRichText(
+                     
                       detailText: 'Already have account? ',
                       darkColor: Colors.white54,
                       clickableText: 'Log in',

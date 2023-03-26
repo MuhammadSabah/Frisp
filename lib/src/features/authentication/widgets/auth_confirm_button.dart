@@ -32,7 +32,7 @@ class AuthConfirmButton extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.headline2!.copyWith(
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
                         color: Colors.white,

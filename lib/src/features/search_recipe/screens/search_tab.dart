@@ -51,7 +51,7 @@ class _SearchTabState extends State<SearchTab>
                   const SizedBox(height: 25),
                   Text(
                     "Search for your favorite recipe!",
-                    style: Theme.of(context).textTheme.headline3!.copyWith(
+                    style: Theme.of(context).textTheme.displaySmall!.copyWith(
                           fontWeight: FontWeight.normal,
                         ),
                   ),
@@ -98,7 +98,7 @@ class _SearchTabState extends State<SearchTab>
             child: Text(
               snapshot.error.toString(),
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline3!.copyWith(
+              style: Theme.of(context).textTheme.displaySmall!.copyWith(
                     fontWeight: FontWeight.normal,
                   ),
             ),
@@ -107,7 +107,7 @@ class _SearchTabState extends State<SearchTab>
           return Center(
               child: Text(
             "Recipe is not available, try another one.",
-            style: Theme.of(context).textTheme.headline3!.copyWith(
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   fontWeight: FontWeight.normal,
                 ),
           ));
@@ -115,7 +115,7 @@ class _SearchTabState extends State<SearchTab>
           return Center(
               child: Text(
             "Data is not available!",
-            style: Theme.of(context).textTheme.headline3!.copyWith(
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   fontWeight: FontWeight.normal,
                 ),
           ));

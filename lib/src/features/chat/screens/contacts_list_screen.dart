@@ -49,7 +49,7 @@ class ContactsListScreen extends StatelessWidget {
         bottomOpacity: 0.0,
         title: Text(
           'Chats',
-          style: Theme.of(context).textTheme.headline2!.copyWith(
+          style: Theme.of(context).textTheme.displayMedium!.copyWith(
                 fontSize: 18,
               ),
         ),
@@ -117,7 +117,7 @@ class ContactsListScreen extends StatelessWidget {
                           title: Text(
                             contactUser.userName,
                             style:
-                                Theme.of(context).textTheme.bodyText2!.copyWith(
+                                Theme.of(context).textTheme.bodyMedium!.copyWith(
                                       fontSize: 15,
                                     ),
                           ),
@@ -129,7 +129,7 @@ class ContactsListScreen extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline3!
+                                  .displaySmall!
                                   .copyWith(
                                     fontSize: 13,
                                   ),

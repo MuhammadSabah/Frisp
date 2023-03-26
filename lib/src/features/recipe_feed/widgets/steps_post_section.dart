@@ -20,7 +20,7 @@ class StepsPostSection extends StatelessWidget {
         children: [
           Text(
             "Steps",
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 20),
           MediaQuery.removePadding(
@@ -63,7 +63,7 @@ class StepsPostSection extends StatelessWidget {
                     Expanded(
                       child: Text(
                         "${steps[index]}",
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
                               height: 1.6,
                               fontSize: 15,
                             ),

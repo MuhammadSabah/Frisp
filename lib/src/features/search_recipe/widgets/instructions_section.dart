@@ -21,7 +21,7 @@ class InstructionsSection extends StatelessWidget {
         children: [
           Text(
             "Instructions",
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 20),
           MediaQuery.removePadding(
@@ -64,7 +64,7 @@ class InstructionsSection extends StatelessWidget {
                     Expanded(
                       child: Text(
                         "${instructions![0].steps![index].step}",
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
                               height: 1.6,
                               fontSize: 15,
                             ),

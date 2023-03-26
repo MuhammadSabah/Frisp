@@ -192,7 +192,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         bottomOpacity: 0.0,
         title: Text(
           'Account',
-          style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
+          style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
         ),
         actions: [
           IconButton(
@@ -283,7 +283,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 'Username',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .headline3!
+                                    .displaySmall!
                                     .copyWith(fontSize: 16),
                               ),
                               const SizedBox(height: 10),
@@ -292,7 +292,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 textAlignVertical: TextAlignVertical.center,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .headline3!
+                                    .displaySmall!
                                     .copyWith(
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -314,7 +314,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   hintText: '',
                                   hintStyle: Theme.of(context)
                                       .textTheme
-                                      .headline4!
+                                      .headlineMedium!
                                       .copyWith(
                                         fontSize: 15,
                                         color: Colors.grey.shade600,
@@ -335,7 +335,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             children: [
                               Text(
                                 'About',
-                                style: Theme.of(context).textTheme.headline3!
+                                style: Theme.of(context).textTheme.displaySmall!
                                   ..copyWith(fontSize: 16),
                               ),
                               const SizedBox(height: 10),
@@ -344,7 +344,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 textAlignVertical: TextAlignVertical.center,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .headline3!
+                                    .displaySmall!
                                     .copyWith(
                                       fontWeight: FontWeight.w600,
                                       height: 1.6,
@@ -368,7 +368,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   hintText: '',
                                   hintStyle: Theme.of(context)
                                       .textTheme
-                                      .headline4!
+                                      .headlineMedium!
                                       .copyWith(
                                         fontSize: 15,
                                         color: Colors.grey.shade600,

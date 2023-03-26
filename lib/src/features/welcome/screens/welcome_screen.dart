@@ -54,13 +54,13 @@ class WelcomeScreen extends StatelessWidget {
                         children: [
                           TextSpan(
                             text: 'Fris',
-                            style: Theme.of(context).textTheme.headline1,
+                            style: Theme.of(context).textTheme.displayLarge,
                           ),
                           TextSpan(
                             text: 'p',
                             style: Theme.of(context)
                                 .textTheme
-                                .headline1!
+                                .displayLarge!
                                 .copyWith(color: Colors.orange.shade700),
                           )
                         ],
@@ -78,7 +78,7 @@ class WelcomeScreen extends StatelessWidget {
                   child: Text(
                     'Cook with Confidence',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline1!.copyWith(
+                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
                           fontSize: 38,
                         ),
                   ),
@@ -96,6 +96,7 @@ class WelcomeScreen extends StatelessWidget {
                       color: Colors.white,
                       elevation: 4,
                       child: InkWell(
+                        key: const Key('SignupWithEmailButton'),
                         onTap: () {
                           Navigator.pushNamed(context, AppPages.signupPath);
                         },
@@ -120,7 +121,7 @@ class WelcomeScreen extends StatelessWidget {
                                 'Sign up with email'.toUpperCase(),
                                 style: Theme.of(context)
                                     .textTheme
-                                    .headline2!
+                                    .displayMedium!
                                     .copyWith(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 17,
@@ -140,6 +141,7 @@ class WelcomeScreen extends StatelessWidget {
                 left: 0,
                 bottom: 75,
                 child: AuthBottomRichText(
+                  key: const Key('LoginWithAccountButton'),
                   detailText: 'Already have account? ',
                   darkColor: Colors.white,
                   lightColor: Colors.white,
@@ -162,10 +164,12 @@ class WelcomeScreen extends StatelessWidget {
                         TextSpan(
                           text:
                               'By using Frisp, you agree to our Terms of Use and Privacy Policy',
-                          style:
-                              Theme.of(context).textTheme.headline4!.copyWith(
-                                    fontSize: 14,
-                                  ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(
+                                fontSize: 14,
+                              ),
                         ),
                       ],
                     ),

@@ -40,7 +40,7 @@ class MyMessageBubble extends StatelessWidget {
                       message,
                       style: Theme.of(context)
                           .textTheme
-                          .headline3!
+                          .displaySmall!
                           .copyWith(fontSize: 14, height: 1.6),
                     ),
                   ),

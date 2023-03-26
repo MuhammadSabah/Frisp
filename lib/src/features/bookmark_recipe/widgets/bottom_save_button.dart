@@ -34,7 +34,7 @@ class _BottomSaveButtonState extends State<BottomSaveButton> {
               children: [
                 Text(
                   'Save',
-                  style: Theme.of(context).textTheme.headline2!.copyWith(
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
                         color: Colors.white,

@@ -36,7 +36,7 @@ class SettingsScreen extends StatelessWidget {
         bottomOpacity: 0.0,
         title: Text(
           'Settings',
-          style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
+          style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
         ),
         actions: [
           IconButton(
@@ -98,7 +98,7 @@ class SettingsScreen extends StatelessWidget {
                       'Language',
                       style: Theme.of(context)
                           .textTheme
-                          .headline3!
+                          .displaySmall!
                           .copyWith(color: kGreyColorShade),
                     ),
                     Padding(
@@ -107,7 +107,7 @@ class SettingsScreen extends StatelessWidget {
                         'English',
                         style: Theme.of(context)
                             .textTheme
-                            .headline3!
+                            .displaySmall!
                             .copyWith(color: Colors.grey.shade600),
                       ),
                     ),
@@ -130,7 +130,7 @@ class SettingsScreen extends StatelessWidget {
                       'Get Help',
                       style: Theme.of(context)
                           .textTheme
-                          .headline3!
+                          .displaySmall!
                           .copyWith(color: kGreyColorShade),
                     ),
                     Icon(
@@ -157,7 +157,7 @@ class SettingsScreen extends StatelessWidget {
                       'Report Problem',
                       style: Theme.of(context)
                           .textTheme
-                          .headline3!
+                          .displaySmall!
                           .copyWith(color: kGreyColorShade),
                     ),
                     Icon(
@@ -184,7 +184,7 @@ class SettingsScreen extends StatelessWidget {
                       'Terms of Use',
                       style: Theme.of(context)
                           .textTheme
-                          .headline3!
+                          .displaySmall!
                           .copyWith(color: kGreyColorShade),
                     ),
                     Icon(

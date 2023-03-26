@@ -31,7 +31,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         ),
         label: Text(
           "Add Item",
-          style: Theme.of(context).textTheme.bodyText2!.copyWith(
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontSize: 14,
                 color: Colors.white,
               ),
@@ -70,7 +70,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                 shoppingProvider.getSortValue == ''
                     ? 'Sort by'
                     : shoppingProvider.getSortValue,
-                style: Theme.of(context).textTheme.headline3!.copyWith(
+                style: Theme.of(context).textTheme.displaySmall!.copyWith(
                       fontSize: 13,
                     ),
               ),
@@ -125,7 +125,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         ],
         title: Text(
           "Shopping List",
-          style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
+          style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
         ),
       ),
       body: _buildShoppingScreen(),

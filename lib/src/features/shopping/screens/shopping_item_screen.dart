@@ -96,7 +96,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             title: Text(
               'Shopping Item',
               style:
-                  Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
+                  Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
             ),
             actions: [
               IconButton(
@@ -198,7 +198,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
       children: [
         Text(
           'Item Name',
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         TextFormField(
           validator: (String? value) {
@@ -210,7 +210,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             }
             return null;
           },
-          style: Theme.of(context).textTheme.headline3,
+          style: Theme.of(context).textTheme.displaySmall,
           autofocus: false,
           controller: _nameController,
           cursorColor: settingsManager.darkMode ? Colors.white : Colors.black,
@@ -222,7 +222,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             counterText: ' ',
             contentPadding: const EdgeInsets.only(left: 8),
             hintText: 'E.g. 1kg of Apples, A bag of Bananas, 500g of salt',
-            hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
+            hintStyle: Theme.of(context).textTheme.headlineMedium!.copyWith(
                   color: settingsManager.darkMode
                       ? Colors.white70
                       : Colors.grey.shade800,
@@ -250,7 +250,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
       children: [
         Text(
           'Importance',
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         Wrap(
           spacing: 10.0,
@@ -266,7 +266,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                 'low',
                 style: Theme.of(context)
                     .textTheme
-                    .headline3!
+                    .displaySmall!
                     .copyWith(fontSize: 14),
               ),
               onSelected: (selected) {
@@ -284,7 +284,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                 'medium',
                 style: Theme.of(context)
                     .textTheme
-                    .headline3!
+                    .displaySmall!
                     .copyWith(fontSize: 14),
               ),
               onSelected: (selected) {
@@ -302,7 +302,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                 'high',
                 style: Theme.of(context)
                     .textTheme
-                    .headline3!
+                    .displaySmall!
                     .copyWith(fontSize: 14),
               ),
               onSelected: (selected) {
@@ -326,7 +326,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
           children: [
             Text(
               'Date',
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
             TextButton(
               child: Icon(
@@ -388,7 +388,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
           children: [
             Text(
               'Time of Day',
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
             TextButton(
               child: Icon(
@@ -452,7 +452,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             const SizedBox(width: 8),
             Text(
               'Color',
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),
@@ -507,7 +507,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
       children: [
         Text(
           'Quantity',
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         Padding(
           padding: const EdgeInsets.only(right: 12),
@@ -521,7 +521,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
                 return null;
               },
               keyboardType: TextInputType.number,
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(context).textTheme.displaySmall,
               autofocus: false,
               autocorrect: false,
               textInputAction: TextInputAction.done,

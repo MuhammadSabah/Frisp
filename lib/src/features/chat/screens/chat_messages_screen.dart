@@ -55,7 +55,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
         bottomOpacity: 0.0,
         title: Text(
           widget.user.userName,
-          style: Theme.of(context).textTheme.headline2!.copyWith(
+          style: Theme.of(context).textTheme.displayMedium!.copyWith(
                 fontSize: 18,
               ),
         ),
@@ -88,7 +88,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
             child: TextField(
               textAlign: TextAlign.start,
               textAlignVertical: TextAlignVertical.center,
-              style: Theme.of(context).textTheme.headline3!.copyWith(
+              style: Theme.of(context).textTheme.displaySmall!.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
               controller: _sendMessageController,
@@ -141,7 +141,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
                 isCollapsed: true,
                 contentPadding: const EdgeInsets.all(18).copyWith(right: 0),
                 hintText: 'Message...',
-                hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
+                hintStyle: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       fontSize: 15,
                       color: settingsManager.darkMode
                           ? Colors.grey.shade600

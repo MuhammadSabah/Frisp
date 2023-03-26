@@ -64,7 +64,7 @@ class ShoppingTile extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline2!
+                                  .displayMedium!
                                   .copyWith(
                                     height: 1.4,
                                     fontSize: 17,
@@ -86,7 +86,7 @@ class ShoppingTile extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 16.0),
                       child: Text(
                         item.quantity.toString(),
-                        style: Theme.of(context).textTheme.headline2!.copyWith(
+                        style: Theme.of(context).textTheme.displayMedium!.copyWith(
                               fontSize: 16,
                             ),
                       ),
@@ -106,7 +106,7 @@ class ShoppingTile extends StatelessWidget {
     final dateString = dateFormatter.format(item.date);
     return Text(
       dateString,
-      style: Theme.of(context).textTheme.headline4,
+      style: Theme.of(context).textTheme.headlineMedium,
     );
   }
 
@@ -114,14 +114,14 @@ class ShoppingTile extends StatelessWidget {
     if (item.importance == ImportanceEnum.low.type) {
       return Text(
         'Low',
-        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
               fontSize: 13,
             ),
       );
     } else if (item.importance == ImportanceEnum.medium.type) {
       return Text(
         'Medium',
-        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
             fontWeight: FontWeight.bold,
             color: Colors.yellow.shade400,
             fontSize: 13),
@@ -130,7 +130,7 @@ class ShoppingTile extends StatelessWidget {
     if (item.importance == ImportanceEnum.high.type) {
       return Text(
         'High',
-        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.bold,
               color: Colors.red.shade400,
               fontSize: 13,
@@ -139,7 +139,7 @@ class ShoppingTile extends StatelessWidget {
     } else {
       return Text(
         '',
-        style: Theme.of(context).textTheme.bodyText2,
+        style: Theme.of(context).textTheme.bodyMedium,
       );
     }
   }

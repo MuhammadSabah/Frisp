@@ -62,7 +62,7 @@ class _TitleAndDescriptionFormSectionState
               },
               textAlign: TextAlign.start,
               textAlignVertical: TextAlignVertical.center,
-              style: Theme.of(context).textTheme.headline3!.copyWith(
+              style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   fontWeight: FontWeight.w600, fontSize: 20, height: 1.6),
               controller: widget.titleController,
               maxLines: 2,
@@ -78,7 +78,7 @@ class _TitleAndDescriptionFormSectionState
                 isCollapsed: true,
                 contentPadding: const EdgeInsets.all(18),
                 hintText: "Title: Mother's vegetable soup",
-                hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
+                hintStyle: Theme.of(context).textTheme.headlineMedium!.copyWith(
                     fontSize: 20,
                     color: Colors.grey.shade600,
                     fontWeight: FontWeight.w600,
@@ -99,7 +99,7 @@ class _TitleAndDescriptionFormSectionState
               },
               textAlign: TextAlign.start,
               textAlignVertical: TextAlignVertical.center,
-              style: Theme.of(context).textTheme.headline3!.copyWith(
+              style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   fontWeight: FontWeight.w400, fontSize: 18, height: 1.6),
               controller: widget.descriptionController,
               maxLines: 6,
@@ -116,7 +116,7 @@ class _TitleAndDescriptionFormSectionState
                 contentPadding: const EdgeInsets.all(18),
                 hintText:
                     "Description: What's the origin of your recipe? What inspired it? what makes it special?",
-                hintStyle: Theme.of(context).textTheme.headline4!.copyWith(
+                hintStyle: Theme.of(context).textTheme.headlineMedium!.copyWith(
                     fontSize: 18,
                     color: Colors.grey.shade600,
                     fontWeight: FontWeight.w400,
@@ -139,7 +139,7 @@ class _TitleAndDescriptionFormSectionState
                     children: [
                       Text(
                         'Serves',
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 12),
@@ -236,7 +236,7 @@ class _TitleAndDescriptionFormSectionState
                     children: [
                       Text(
                         'Cook time',
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 12),
@@ -252,7 +252,7 @@ class _TitleAndDescriptionFormSectionState
                             keyboardType: TextInputType.visiblePassword,
                             style: Theme.of(context)
                                 .textTheme
-                                .headline3!
+                                .displaySmall!
                                 .copyWith(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 17,
@@ -264,7 +264,7 @@ class _TitleAndDescriptionFormSectionState
                             decoration: InputDecoration(
                               hintStyle: Theme.of(context)
                                   .textTheme
-                                  .headline4!
+                                  .headlineMedium!
                                   .copyWith(
                                       fontSize: 18,
                                       color: Colors.grey.shade600,

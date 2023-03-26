@@ -15,7 +15,7 @@ class IngredientsPostSection extends StatelessWidget {
         children: [
           Text(
             "Ingredients",
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 20),
           MediaQuery.removePadding(
@@ -60,7 +60,7 @@ class IngredientsPostSection extends StatelessWidget {
                         '${ingredients[index]}',
                         style: Theme.of(context)
                             .textTheme
-                            .headline3!
+                            .displaySmall!
                             .copyWith(fontSize: 15, height: 1.6),
                       ),
                     ),

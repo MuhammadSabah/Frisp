@@ -83,7 +83,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
             title: Text(
               'Comments',
               style:
-                  Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
+                  Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
             ),
             centerTitle: true,
           ),
@@ -121,7 +121,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                                   textAlignVertical: TextAlignVertical.center,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .headline3!
+                                      .displaySmall!
                                       .copyWith(
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -163,7 +163,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                                     hintText: 'Comment',
                                     hintStyle: Theme.of(context)
                                         .textTheme
-                                        .headline4!
+                                        .headlineMedium!
                                         .copyWith(
                                           fontSize: 15,
                                           color: settingsManager.darkMode

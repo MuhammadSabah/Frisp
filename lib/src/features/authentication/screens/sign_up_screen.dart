@@ -42,6 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           automaticallyImplyLeading: false,
         ),
         body: SignupForm(
+          key: const Key('signup-form'),
           formKey: _formKey,
           userNameController: _userNameController,
           emailController: _emailController,

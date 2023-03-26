@@ -4,7 +4,7 @@ import 'package:food_recipe_final/src/models/data_class_models/recipe_model.dart
 
 class BookmarkProvider extends BookmarkInterface {
   final List<RecipeModel> _currentRecipes = [];
-
+  List<RecipeModel> getCurrentRecipes() => _currentRecipes;
   // Private Streams:
   Stream<List<RecipeModel>>? _recipeStream;
 

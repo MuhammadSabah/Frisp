@@ -143,7 +143,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style:
-                                        Theme.of(context).textTheme.bodyText2,
+                                        Theme.of(context).textTheme.bodyMedium,
                                   ),
                                 ),
                               ],
@@ -156,7 +156,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                   overflow: TextOverflow.ellipsis,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .headline3!
+                                      .displaySmall!
                                       .copyWith(
                                         fontWeight: FontWeight.w400,
                                         color: settingsManager.darkMode
@@ -229,7 +229,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                       widget.post.description,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 5,
-                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
                             height: 1.5,
                           ),
                     ),
@@ -342,7 +342,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                                           style:
                                                               Theme.of(context)
                                                                   .textTheme
-                                                                  .headline2!
+                                                                  .displayMedium!
                                                                   .copyWith(),
                                                         ),
                                                       ),

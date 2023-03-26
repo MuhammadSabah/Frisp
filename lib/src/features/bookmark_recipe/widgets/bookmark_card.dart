@@ -105,7 +105,7 @@ class _BookmarkCardState extends State<BookmarkCard> {
                       Expanded(
                         child: Text(
                           widget.recipe.ingredients![index].name.toString(),
-                          style: Theme.of(context).textTheme.headline3,
+                          style: Theme.of(context).textTheme.displaySmall,
                           maxLines: 4,
                         ),
                       ),

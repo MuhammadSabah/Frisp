@@ -84,13 +84,13 @@ class UserSearchResultList extends StatelessWidget {
                     ),
                     title: Text(
                       user.userName,
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: 14,
                           ),
                     ),
                     subtitle: Text(
                       user.email,
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           color: settingsManager.darkMode
                               ? Colors.grey.shade300
                               : Colors.grey.shade700),
@@ -154,13 +154,13 @@ class UserSearchResultList extends StatelessWidget {
                     ),
                     title: Text(
                       user.userName,
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: 14,
                           ),
                     ),
                     subtitle: Text(
                       user.email,
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           color: settingsManager.darkMode
                               ? Colors.grey.shade300
                               : Colors.grey.shade700),

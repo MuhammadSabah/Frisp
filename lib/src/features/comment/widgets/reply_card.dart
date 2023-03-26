@@ -112,7 +112,7 @@ class ReplyCard extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontSize: 13,
                                   ),
                         ),
@@ -121,7 +121,7 @@ class ReplyCard extends StatelessWidget {
                         daysBetween(reply.dateCommented),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 10,
                               color: settingsManager.darkMode
                                   ? Colors.grey
@@ -144,7 +144,7 @@ class ReplyCard extends StatelessWidget {
                                 softWrap: true,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
                                       fontSize: 13,
                                       color: settingsManager.darkMode
@@ -163,7 +163,7 @@ class ReplyCard extends StatelessWidget {
                   const SizedBox(height: 10),
                   RichText(
                     text: TextSpan(
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: 13,
                             color: settingsManager.darkMode
                                 ? Colors.grey

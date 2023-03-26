@@ -62,7 +62,7 @@ class _AddFieldsSectionState extends State<AddFieldsSection> {
                     child: Text(
                       widget.sectionText,
                       maxLines: 1,
-                      style: Theme.of(context).textTheme.headline2,
+                      style: Theme.of(context).textTheme.displayMedium,
                     ),
                   ),
                 ),
@@ -116,7 +116,7 @@ class _AddFieldsSectionState extends State<AddFieldsSection> {
                             textAlign: TextAlign.start,
                             textAlignVertical: TextAlignVertical.center,
                             style:
-                                Theme.of(context).textTheme.headline3!.copyWith(
+                                Theme.of(context).textTheme.displaySmall!.copyWith(
                                       fontWeight: FontWeight.w600,
                                       height: 1.4,
                                     ),
@@ -139,7 +139,7 @@ class _AddFieldsSectionState extends State<AddFieldsSection> {
                               hintText: widget.hintText,
                               hintStyle: Theme.of(context)
                                   .textTheme
-                                  .headline4!
+                                  .headlineMedium!
                                   .copyWith(
                                     fontSize: 15,
                                     color: Colors.grey.shade600,

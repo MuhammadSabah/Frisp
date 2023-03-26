@@ -30,13 +30,13 @@ class AddRecipePostScreen extends StatelessWidget {
             Text(
               'Create your food recipe and share it with the community',
               style:
-                  Theme.of(context).textTheme.headline1!.copyWith(height: 1.4),
+                  Theme.of(context).textTheme.displayLarge!.copyWith(height: 1.4),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 14),
             Text(
               'Help people to find new ideas and develope their cooking skills.',
-              style: Theme.of(context).textTheme.headline3!.copyWith(
+              style: Theme.of(context).textTheme.displaySmall!.copyWith(
                     height: 1.4,
                     color: settingsProvider.darkMode
                         ? Colors.grey.shade300
@@ -69,7 +69,7 @@ class AddRecipePostScreen extends StatelessWidget {
                         Text(
                           'Create Recipe +',
                           style:
-                              Theme.of(context).textTheme.headline2!.copyWith(
+                              Theme.of(context).textTheme.displayMedium!.copyWith(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
                                     color: settingsProvider.darkMode

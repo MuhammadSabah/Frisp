@@ -89,7 +89,7 @@ class _RecipeCardState extends State<RecipeCard> {
                                           .toStringAsFixed(1),
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headline4!
+                                          .headlineMedium!
                                           .copyWith(
                                             color: Colors.black,
                                           ),
@@ -134,7 +134,7 @@ class _RecipeCardState extends State<RecipeCard> {
                                   'Unknown source',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .headline4!
+                                      .headlineMedium!
                                       .copyWith(
                                         color: Colors.grey.shade600,
                                         fontSize: 13,
@@ -145,7 +145,7 @@ class _RecipeCardState extends State<RecipeCard> {
                                   'By ${widget.recipe.sourceName}',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .headline4!
+                                      .headlineMedium!
                                       .copyWith(
                                         color: Colors.grey.shade600,
                                         fontSize: 13,

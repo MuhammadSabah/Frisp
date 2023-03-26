@@ -3,9 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_recipe_final/src/models/user_model.dart';
 
+// test case for getUserFromDocument returns user model when user logged in 
+
 class UserProvider extends ChangeNotifier {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firestore;
+  final FirebaseAuth _auth;
+
+  UserProvider(this._firestore, this._auth);
 
   UserModel? _user;
   UserModel? get getUser => _user;

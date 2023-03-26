@@ -13,8 +13,9 @@ class AppTab {
 }
 
 class AuthProvider extends ChangeNotifier {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FirebaseAuth _userAuth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore;
+  final FirebaseAuth _userAuth;
+  AuthProvider(this._userAuth, this._firestore);
 
   int _selectedTab = AppTab.discover;
   UserModel? user;
@@ -25,20 +26,9 @@ class AuthProvider extends ChangeNotifier {
     required userName,
     required userEmail,
     required userPassword,
-    // required String photoUrl,
   }) async {
-    // Convert a String into Uint8List:
-    // List<int> list = photoUrl.codeUnits;
-    // Uint8List bytes = Uint8List.fromList(list);
-    // String photoInUint8List = String.fromCharCodes(bytes);
-    //
     String errorResult = 'Error occurred';
     try {
-      // String? photoUrlFromStorage;
-      // if (photoUrl != null) {
-      //   photoUrlFromStorage = await UserImageProvider().uploadAnImageToStorage(
-      //       fileName: 'profilePics', file: bytes, isPost: false);
-      // }
       UserCredential userCred = await _userAuth.createUserWithEmailAndPassword(
           email: userEmail, password: userPassword);
       user = UserModel(
@@ -55,11 +45,9 @@ class AuthProvider extends ChangeNotifier {
           .collection('users')
           .doc(userCred.user!.uid)
           .set(user!.toJson());
-      //
       notifyListeners();
 
       return null;
-      //
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         errorResult = 'The password provided is too weak.';
@@ -87,11 +75,8 @@ class AuthProvider extends ChangeNotifier {
         password: userPassword,
       );
 
-      //
-
       notifyListeners();
       return null;
-      //
     } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password') {
         errorResult = 'Password is incorrect.';
@@ -115,7 +100,6 @@ class AuthProvider extends ChangeNotifier {
   Future<void> logOutUser() async {
     await _userAuth.signOut();
     _selectedTab = 0;
-    // onboardingBox?.put(1, false);
     notifyListeners();
   }
 

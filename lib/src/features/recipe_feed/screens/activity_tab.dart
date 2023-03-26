@@ -17,11 +17,6 @@ class ActivityTab extends StatefulWidget {
 class _ActivityTabState extends State<ActivityTab>
     with AutomaticKeepAliveClientMixin {
   Stream<QuerySnapshot<Map<String, dynamic>>>? streamResult;
-  @override
-  void initState() {
-    super.initState();
-    // streamResult =
-  }
 
   Future<void> refreshTab() async {
     await Future.delayed(const Duration(milliseconds: 2500), () {

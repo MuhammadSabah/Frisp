@@ -41,7 +41,7 @@ class SenderMessageBubble extends StatelessWidget {
                     ),
                     child: Text(
                       message,
-                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
                             fontSize: 14,
                             height: 1.6,
                             color: settingsProvider.darkMode

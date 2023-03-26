@@ -1,5 +1,7 @@
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_recipe_final/src/models/comment_model.dart';
 import 'package:food_recipe_final/src/models/recipe_post_model.dart';
@@ -9,7 +11,8 @@ import 'package:food_recipe_final/src/providers/user_image_provider.dart';
 import 'package:uuid/uuid.dart';
 
 class RecipePostProvider extends ChangeNotifier {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firestore;
+  RecipePostProvider(this._firestore);
 
   Future<String?> uploadRecipePost({
     required String uid,
@@ -25,7 +28,10 @@ class RecipePostProvider extends ChangeNotifier {
     required List steps,
   }) async {
     try {
-      String fileImageUrl = await UserImageProvider().uploadAnImageToStorage(
+      String fileImageUrl = await UserImageProvider(
+        FirebaseAuth.instance,
+        FirebaseStorage.instance,
+      ).uploadAnImageToStorage(
         fileName: 'posts',
         file: imageFile,
         isPost: true,

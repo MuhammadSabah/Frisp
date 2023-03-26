@@ -100,7 +100,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                             widget.user.userName,
                             textAlign: TextAlign.center,
                             maxLines: 2,
-                            style: Theme.of(context).textTheme.headline2,
+                            style: Theme.of(context).textTheme.displayMedium,
                           ),
                         ),
                         Expanded(
@@ -117,7 +117,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                     overflow: TextOverflow.ellipsis,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyText2!
+                                        .bodyMedium!
                                         .copyWith(
                                           color: settingsManager.darkMode
                                               ? Colors.grey
@@ -153,7 +153,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                         'Edit Profile',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headline3!
+                                            .displaySmall!
                                             .copyWith(
                                                 color: settingsManager.darkMode
                                                     ? kGreyColor
@@ -204,7 +204,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                                   "Follow",
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .headline3!
+                                                      .displaySmall!
                                                       .copyWith(
                                                           color: kGreyColor,
                                                           fontWeight:
@@ -251,7 +251,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                                   "Unfollow",
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .headline3!
+                                                      .displaySmall!
                                                       .copyWith(
                                                           color: Colors.white,
                                                           fontWeight:
@@ -273,7 +273,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                     'Recipes',
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyText2!
+                                        .bodyMedium!
                                         .copyWith(
                                             color: settingsManager.darkMode
                                                 ? Colors.grey
@@ -320,7 +320,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                         'Followers',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText2!
+                                            .bodyMedium!
                                             .copyWith(
                                                 color: settingsManager.darkMode
                                                     ? Colors.grey
@@ -349,7 +349,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                                         'Following',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyText2!
+                                            .bodyMedium!
                                             .copyWith(
                                                 color: settingsManager.darkMode
                                                     ? Colors.grey

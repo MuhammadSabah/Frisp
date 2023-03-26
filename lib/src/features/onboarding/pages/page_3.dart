@@ -20,7 +20,7 @@ class Page3 extends StatelessWidget {
           child: Text(
             'Collaborate & Share With Others',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline1!.copyWith(
+            style: Theme.of(context).textTheme.displayLarge!.copyWith(
                   fontSize: 26,
                   height: 1.4,
                 ),
@@ -32,7 +32,7 @@ class Page3 extends StatelessWidget {
           child: Text(
             'Share your favorite recipes with the community and help each other to develope your cooking skills.',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline3!.copyWith(
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   height: 1.4,
                   color: Colors.grey,
                 ),

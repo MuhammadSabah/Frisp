@@ -17,7 +17,7 @@ class NutritionsSection extends StatelessWidget {
           children: [
             Text(
               "Nutritions",
-              style: Theme.of(context).textTheme.headline2,
+              style: Theme.of(context).textTheme.displayMedium,
             ),
             const SizedBox(height: 20),
             MediaQuery.removePadding(
@@ -36,13 +36,13 @@ class NutritionsSection extends StatelessWidget {
                     children: [
                       Text(
                         "${nutritionsList[index].name}: ",
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
                               fontSize: 15,
                             ),
                       ),
                       Text(
                         "${nutritionsList[index].amount?.toStringAsFixed(1)}${nutritionsList[index].unit}",
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
                               fontSize: 15,
                             ),
                       ),

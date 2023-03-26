@@ -52,6 +52,7 @@ class _LogInScreenState extends State<LogInScreen> {
           ),
         ),
         body: LoginForm(
+          key: const ValueKey('loginForm'),
           formKey: _formKey,
           emailController: _emailController,
           passwordController: _passwordController,

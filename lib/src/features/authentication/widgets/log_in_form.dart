@@ -53,7 +53,7 @@ class _LoginFormState extends State<LoginForm> {
                       'Log in',
                       style: Theme.of(context)
                           .textTheme
-                          .headline1!
+                          .displayLarge!
                           .copyWith(fontSize: 34),
                     ),
                     const SizedBox(height: 50),
@@ -73,7 +73,7 @@ class _LoginFormState extends State<LoginForm> {
                         controller: widget.emailController,
                         textAlign: TextAlign.start,
                         textAlignVertical: TextAlignVertical.center,
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
                               fontWeight: FontWeight.w600,
                             ),
                         // controller: _nameController,
@@ -94,7 +94,7 @@ class _LoginFormState extends State<LoginForm> {
                           contentPadding: const EdgeInsets.all(18),
                           hintText: 'Your Email',
                           hintStyle:
-                              Theme.of(context).textTheme.headline4!.copyWith(
+                              Theme.of(context).textTheme.headlineMedium!.copyWith(
                                     fontSize: 15,
                                     color: Colors.grey.shade600,
                                     fontWeight: FontWeight.bold,
@@ -124,7 +124,7 @@ class _LoginFormState extends State<LoginForm> {
                         controller: widget.passwordController,
                         textAlign: TextAlign.start,
                         textAlignVertical: TextAlignVertical.center,
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                        style: Theme.of(context).textTheme.displaySmall!.copyWith(
                               fontWeight: FontWeight.w600,
                             ),
                         // controller: _nameController,
@@ -173,7 +173,7 @@ class _LoginFormState extends State<LoginForm> {
                           contentPadding: const EdgeInsets.all(18),
                           hintText: 'Your Password',
                           hintStyle:
-                              Theme.of(context).textTheme.headline4!.copyWith(
+                              Theme.of(context).textTheme.headlineMedium!.copyWith(
                                     fontSize: 15,
                                     color: Colors.grey.shade600,
                                     fontWeight: FontWeight.bold,
@@ -193,7 +193,7 @@ class _LoginFormState extends State<LoginForm> {
                         text: TextSpan(
                           text: 'Forget Password?',
                           style:
-                              Theme.of(context).textTheme.headline4!.copyWith(
+                              Theme.of(context).textTheme.headlineMedium!.copyWith(
                                     color: Colors.white54,
                                     fontSize: 14,
                                   ),
@@ -208,6 +208,7 @@ class _LoginFormState extends State<LoginForm> {
                     ),
                     const SizedBox(height: 40),
                     AuthConfirmButton(
+                      key: const Key('loginButton'),
                       title: 'Log in',
                       callBack: () async {
                         final navigator = Navigator.of(context);
