@@ -73,6 +73,7 @@ class _ActivityTabState extends State<ActivityTab>
                     RecipePostModel post = RecipePostModel.fromSnapshot(
                         snapshot.data!.docs[index]);
                     return RecipePostCard(
+                      key: const ValueKey("RecipePostCard"),
                       user: userProvider,
                       post: post,
                     );

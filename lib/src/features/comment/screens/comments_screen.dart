@@ -57,6 +57,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
           useMaterial3: false,
         ),
         child: Scaffold(
+          key: const Key('commentsScreen'),
           appBar: AppBar(
             leading: IconButton(
               splashRadius: 20,
@@ -82,8 +83,10 @@ class _CommentsScreenState extends State<CommentsScreen> {
             ],
             title: Text(
               'Comments',
-              style:
-                  Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
+              style: Theme.of(context)
+                  .textTheme
+                  .displayMedium!
+                  .copyWith(fontSize: 18),
             ),
             centerTitle: true,
           ),
@@ -111,6 +114,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                             children: [
                               Expanded(
                                 child: TextFormField(
+                                  key: const Key('commentField'),
                                   validator: (String? value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Field is empty';
@@ -132,6 +136,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                                   keyboardType: TextInputType.text,
                                   decoration: InputDecoration(
                                     suffixIcon: IconButton(
+                                      key: const Key('sendCommentButton'),
                                       splashRadius: 20,
                                       onPressed: () async {
                                         final validForm =

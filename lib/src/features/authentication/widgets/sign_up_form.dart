@@ -300,7 +300,7 @@ class _SignupFormState extends State<SignupForm> {
                             userPassword: widget.passwordController.text,
                           );
                           if (output == null) {
-                            // FirebaseAuth.instance.signOut();
+                            FirebaseAuth.instance.signOut();
                             navigator.pushNamed(AppPages.loginPath);
                           }
                           if (mounted) {
@@ -325,7 +325,6 @@ class _SignupFormState extends State<SignupForm> {
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 8),
                     AuthBottomRichText(
-                     
                       detailText: 'Already have account? ',
                       darkColor: Colors.white54,
                       clickableText: 'Log in',

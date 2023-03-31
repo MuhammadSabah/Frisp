@@ -422,6 +422,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                                   ? false
                                   : widget.post.likes.contains(user.id),
                               child: IconButton(
+                                key: const Key('likeButton'),
                                 splashRadius: 20,
                                 onPressed: () async {
                                   await postProvider.likeOrUnlikePost(
@@ -449,6 +450,7 @@ class _RecipePostCardState extends State<RecipePostCard> {
                               ),
                             ),
                             IconButton(
+                              key: const Key('commentButton'),
                               splashRadius: 20,
                               onPressed: () {
                                 Navigator.pushNamed(

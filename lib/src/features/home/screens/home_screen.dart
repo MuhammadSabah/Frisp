@@ -73,10 +73,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     return false;
                   },
                   child: Scaffold(
+                    key: const Key('home-screen'),
                     extendBody: false,
                     resizeToAvoidBottomInset: false,
                     body: IndexedStack(
-                      key: const Key('home-screen'),
                       index: manager.selectedTab,
                       children: pages,
                     ),

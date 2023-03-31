@@ -143,33 +143,33 @@ void main() async {
     await tester.pumpAndSettle();
   }
 
-  Future<void> navigateToOnboardingThenLoginScreen(WidgetTester tester) async {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    await tester.pumpWidget(createApp());
-    await tester.pumpAndSettle();
+  // Future<void> navigateToOnboardingThenLoginScreen(WidgetTester tester) async {
+  //   await Firebase.initializeApp(
+  //     options: DefaultFirebaseOptions.currentPlatform,
+  //   );
+  //   await tester.pumpWidget(createApp());
+  //   await tester.pumpAndSettle();
 
-    expect(find.byKey(const Key('page1')), findsOneWidget);
+  //   expect(find.byKey(const Key('page1')), findsOneWidget);
 
-    await tester.tap(find.text('Next'));
-    await tester.pumpAndSettle();
-    expect(find.byKey(const Key('page2')), findsOneWidget);
+  //   await tester.tap(find.text('Next'));
+  //   await tester.pumpAndSettle();
+  //   expect(find.byKey(const Key('page2')), findsOneWidget);
 
-    await tester.tap(find.text('Next'));
-    await tester.pumpAndSettle();
-    expect(find.byKey(const Key('page3')), findsOneWidget);
+  //   await tester.tap(find.text('Next'));
+  //   await tester.pumpAndSettle();
+  //   expect(find.byKey(const Key('page3')), findsOneWidget);
 
-    await tester.tap(find.text('Done'));
-    await tester.pumpAndSettle();
-    expect(find.byKey(const Key('LoginWithAccountButton')), findsOneWidget);
+  //   await tester.tap(find.text('Done'));
+  //   await tester.pumpAndSettle();
+  //   expect(find.byKey(const Key('LoginWithAccountButton')), findsOneWidget);
 
-    await tester.tap(find.byKey(const Key('LoginWithAccountButton')));
-    await tester.pumpAndSettle();
-    expect(find.byKey(const Key('loginForm')), findsOneWidget);
+  //   await tester.tap(find.byKey(const Key('LoginWithAccountButton')));
+  //   await tester.pumpAndSettle();
+  //   expect(find.byKey(const Key('loginForm')), findsOneWidget);
 
-    await tester.pumpAndSettle();
-  }
+  //   await tester.pumpAndSettle();
+  // }
 
   testWidgets(
       'MyApp should build and the Onboarding screen should navigate to the next tab on tapping the "Next" button until the Welcome Screen and then tap on the "signup with email" button and proceed to the Signup Screen',
@@ -178,7 +178,18 @@ void main() async {
   });
 
   testWidgets('Successful signup', (WidgetTester tester) async {
-    await navigateToOnboardingThenSignupScreen(tester);
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    await tester.pumpWidget(createApp());
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('SignupWithEmailButton')), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('SignupWithEmailButton')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('signup-form')), findsOneWidget);
+
+    await tester.pumpAndSettle();
     final signUpForm = find.byType(SignupForm);
 
     final signUpFormWidget = tester.widget(signUpForm) as SignupForm;
@@ -208,14 +219,20 @@ void main() async {
 
     expect(find.byKey(const Key('loginButton')), findsOneWidget);
     await tester.pumpAndSettle();
-
-    expect(FirebaseAuth.instance.currentUser, isNotNull);
-    await tester.pumpAndSettle();
   });
   testWidgets(
       'Failed sign up because of email is incorrect and the password in less than 6 characters',
       (WidgetTester tester) async {
-    await navigateToOnboardingThenSignupScreen(tester);
+    await tester.pumpWidget(createApp());
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('SignupWithEmailButton')), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('SignupWithEmailButton')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('signup-form')), findsOneWidget);
+
+    await tester.pumpAndSettle();
+    ;
     final signUpForm = find.byType(SignupForm);
     final signUpFormWidget = tester.widget(signUpForm) as SignupForm;
     final userNameController = signUpFormWidget.userNameController;
@@ -245,38 +262,23 @@ void main() async {
     expect(FirebaseAuth.instance.currentUser, isNull);
     await tester.pumpAndSettle();
   });
-  //!: Login tests
-  testWidgets(
-      'MyApp should build and the Onboarding screen should navigate to the next tab on tapping the "Next" button until the Welcome Screen and then tap on the "login with email" button and proceed to the Login Screen',
-      (WidgetTester tester) async {
-    await navigateToOnboardingThenLoginScreen(tester);
-  });
-  testWidgets('Successful login', (WidgetTester tester) async {
-    await navigateToOnboardingThenLoginScreen(tester);
-    final logInForm = find.byType(LoginForm);
-
-    final logInFormWidget = tester.widget(logInForm) as LoginForm;
-    final emailController = logInFormWidget.emailController;
-    final passwordController = logInFormWidget.passwordController;
-
-    await tester.enterText(
-        find.byWidgetPredicate((widget) =>
-            widget is TextFormField && widget.controller == emailController),
-        "test@example.com");
-    await tester.enterText(
-        find.byWidgetPredicate((widget) =>
-            widget is TextFormField && widget.controller == passwordController),
-        'test_password');
-
-    await tester.tap(find.byKey(const Key("loginButton")));
-    await tester.pump(const Duration(seconds: 2));
-
-    expect(FirebaseAuth.instance.currentUser, isNotNull);
-    await tester.pumpAndSettle();
-  });
+  // //!: Login tests
+  // testWidgets(
+  //     'MyApp should build and the Onboarding screen should navigate to the next tab on tapping the "Next" button until the Welcome Screen and then tap on the "login with email" button and proceed to the Login Screen',
+  //     (WidgetTester tester) async {
+  //   await navigateToOnboardingThenLoginScreen(tester);
+  // });
   testWidgets('Failed login because of email is not registered',
       (WidgetTester tester) async {
-    await navigateToOnboardingThenLoginScreen(tester);
+    await tester.pumpWidget(createApp());
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('LoginWithAccountButton')), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('LoginWithAccountButton')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('loginForm')), findsOneWidget);
+
+    await tester.pumpAndSettle();
     final logInForm = find.byType(LoginForm);
 
     final logInFormWidget = tester.widget(logInForm) as LoginForm;
@@ -299,4 +301,67 @@ void main() async {
     expect(find.text('Error'), findsOneWidget);
     await tester.pumpAndSettle();
   });
+  testWidgets('Successful login', (WidgetTester tester) async {
+    await tester.pumpWidget(createApp());
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('LoginWithAccountButton')), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('LoginWithAccountButton')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('loginForm')), findsOneWidget);
+
+    await tester.pumpAndSettle();
+    final logInForm = find.byType(LoginForm);
+
+    final logInFormWidget = tester.widget(logInForm) as LoginForm;
+    final emailController = logInFormWidget.emailController;
+    final passwordController = logInFormWidget.passwordController;
+
+    await tester.enterText(
+        find.byWidgetPredicate((widget) =>
+            widget is TextFormField && widget.controller == emailController),
+        "test@example.com");
+    await tester.enterText(
+        find.byWidgetPredicate((widget) =>
+            widget is TextFormField && widget.controller == passwordController),
+        'test_password');
+
+    await tester.tap(find.byKey(const Key("loginButton")));
+    await tester.pumpAndSettle();
+    await tester.pump(const Duration(seconds: 2));
+
+    expect(find.byKey(const Key('home-screen')), findsOneWidget);
+    await tester.pumpAndSettle();
+  });
+
+  // testWidgets('Like a post and comment ', (tester) async {
+  //   await Firebase.initializeApp(
+  //     options: DefaultFirebaseOptions.currentPlatform,
+  //   );
+  //   await tester.pumpWidget(createApp());
+  //   await tester.pumpAndSettle();
+  //   await tester.pump(const Duration(seconds: 2));
+
+  //   // await tester.tap(find.byKey(const Key('likeButton')).first);
+  //   // await tester.pumpAndSettle();
+
+  //   // await tester.tap(find.byKey(const Key('commentButton')).first);
+  //   // await tester.pumpAndSettle();
+
+  //   // expect(find.byKey(const Key('commentsScreen')), findsOneWidget);
+  //   // await tester.pumpAndSettle();
+
+  //   final textFieldFinder = find.byKey(const Key('commentField')).first;
+  //   await tester.enterText(textFieldFinder, 'Hello, world!');
+  //   await tester.pumpAndSettle();
+
+  //   await tester.tap(find.byKey(const Key('sendCommentButton')).first);
+  //   await tester.pumpAndSettle();
+  //   await tester.pump(const Duration(seconds: 2));
+
+  //   expect(find.text('Hello, world!'), findsWidgets);
+  //   await tester.pumpAndSettle();
+  // });
+
+  
 }
