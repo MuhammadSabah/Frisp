@@ -52,6 +52,7 @@ dependencies:
   cloud_firestore: ^4.4.4
   firebase_storage: ^11.0.15
   firebase_auth: ^4.2.10
+  firebase_test_lab:
   image_picker: ^0.8.5+3
   dartz: ^0.10.1
   get: ^4.6.5
