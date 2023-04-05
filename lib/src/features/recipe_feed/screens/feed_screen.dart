@@ -87,6 +87,7 @@ class _FeedScreenState extends State<FeedScreen>
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               IconButton(
+                                key: const Key('searchUserIconButton'),
                                 splashRadius: 20,
                                 onPressed: () {
                                   Navigator.pushNamed(
@@ -104,6 +105,7 @@ class _FeedScreenState extends State<FeedScreen>
                               ),
                               const SizedBox(width: 10),
                               GestureDetector(
+                                key: const Key('profileIconButton'),
                                 onTap: () {
                                   appProvider.gotToTab(4);
                                 },

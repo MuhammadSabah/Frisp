@@ -39,6 +39,7 @@ class DetailsSliverAppBar extends StatelessWidget {
         ),
       ),
       leading: GestureDetector(
+        key: const Key('backButton'),
         onTap: () {
           Navigator.pop(context);
         },

@@ -20,6 +20,7 @@ class ProfileSendMessageButton extends StatelessWidget {
     final messageProvider =
         Provider.of<MessageProvider>(context, listen: false);
     return IconButton(
+      key: const Key('profileSendMessageButton'),
       onPressed: () async {
         Navigator.pushNamed(
           context,

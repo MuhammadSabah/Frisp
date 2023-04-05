@@ -77,6 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               displacement: 50,
               onRefresh: _refresh,
               child: Scaffold(
+                key: const Key('ProfileScreen'),
                 body: SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
                   child: SafeArea(
@@ -146,10 +147,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         left: 0,
                                         right: 0,
                                         child: ProfileInfoContainer(
+                                          
                                           user: user,
                                           userId: widget.userId,
                                           onEdit: () async {
-                                            // final result =
                                             await Navigator.of(context).push(
                                               MaterialPageRoute(
                                                 builder: (context) =>

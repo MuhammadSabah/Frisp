@@ -238,6 +238,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                   child: Material(
                     elevation: 4,
                     child: InkWell(
+                      key: const Key('publishButton'),
                       onTap: () {
                         //!: publish post.
                         final isValidForm = _formKey.currentState!.validate();
@@ -288,6 +289,7 @@ class _CreateRecipePostScreenState extends State<CreateRecipePostScreen> {
                   children: [
                     Material(
                       child: InkWell(
+                        key: const Key('uploadImage'),
                         highlightColor: Colors.grey.shade400,
                         onTap: () {
                           _selectAnImageDialog(context);

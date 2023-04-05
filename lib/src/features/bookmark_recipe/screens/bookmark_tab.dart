@@ -27,6 +27,7 @@ class _BookmarkTabState extends State<BookmarkTab>
           separatorBuilder: (_, index) => const SizedBox(height: 32),
           itemBuilder: (context, index) {
             return BookmarkCard(
+              key: const Key("bookmark_card"),
               recipe: recipes[index],
               deleteCallback: () {
                 deleteRecipe(bookmark, recipes[index]);

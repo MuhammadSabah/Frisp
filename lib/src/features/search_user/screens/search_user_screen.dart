@@ -50,8 +50,10 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
           centerTitle: true,
           title: Text(
             'Search User',
-            style:
-                Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
+            style: Theme.of(context)
+                .textTheme
+                .displayMedium!
+                .copyWith(fontSize: 18),
           ),
         ),
         body: Flex(
@@ -69,6 +71,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                       children: [
                         Expanded(
                           child: TextField(
+                            key: const Key('searchUserTextField'),
                             onChanged: (String value) {
                               setState(() {
                                 searchName = value;
@@ -77,10 +80,12 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                             },
                             textAlign: TextAlign.start,
                             textAlignVertical: TextAlignVertical.center,
-                            style:
-                                Theme.of(context).textTheme.displaySmall!.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall!
+                                .copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
                             controller: _searchUserController,
                             cursorColor: settingsManager.darkMode
                                 ? Colors.white
@@ -114,6 +119,7 @@ class _SearchUserScreenState extends State<SearchUserScreen> {
                         ),
                         const SizedBox(width: 8),
                         GestureDetector(
+                          key: const Key('searchUserButton'),
                           onTap: () {
                             if (searchName.isNotEmpty) {
                               updateSearchResult();

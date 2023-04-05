@@ -28,6 +28,7 @@ class SettingsScreen extends StatelessWidget {
         settingsManager.darkMode ? Colors.white : Colors.black;
 
     return Scaffold(
+      key: const Key('settingsScreen'),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: SettingsBackButton(darkState: settingsManager),
@@ -36,7 +37,8 @@ class SettingsScreen extends StatelessWidget {
         bottomOpacity: 0.0,
         title: Text(
           'Settings',
-          style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
+          style:
+              Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
         ),
         actions: [
           IconButton(
@@ -54,6 +56,7 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           children: [
             SettingsThemeButton(
+              key: const Key('darkModeSwitch'),
               onTap: () {
                 if (settingsManager.darkMode == true) {
                   settingsManager.setDarkMode(false);

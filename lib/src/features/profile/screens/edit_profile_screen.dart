@@ -174,6 +174,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     final settingsManager =
         Provider.of<SettingsProvider>(context, listen: false);
     return Scaffold(
+      key: const Key('editProfileScreen'),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
@@ -192,7 +193,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         bottomOpacity: 0.0,
         title: Text(
           'Account',
-          style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
+          style:
+              Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 18),
         ),
         actions: [
           IconButton(
@@ -288,6 +290,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                               const SizedBox(height: 10),
                               TextField(
+                                key: const Key('usernameTextField'),
                                 textAlign: TextAlign.start,
                                 textAlignVertical: TextAlignVertical.center,
                                 style: Theme.of(context)
@@ -340,6 +343,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                               const SizedBox(height: 10),
                               TextField(
+                                key: const Key('bioTextField'),
                                 textAlign: TextAlign.start,
                                 textAlignVertical: TextAlignVertical.center,
                                 style: Theme.of(context)
@@ -386,6 +390,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           Container(
                             margin: const EdgeInsets.only(top: 24),
                             child: BottomSaveButton(
+                              key: const Key('saveButton'),
                               callBack: () async {
                                 await updateProfileInfo(context).then((value) {
                                   if (mounted) {

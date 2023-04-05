@@ -44,6 +44,7 @@ class UserSearchResultList extends StatelessWidget {
               }
               if (user.userName.isEmpty) {
                 return InkWell(
+                  key: const Key('userSearchResultList'),
                   onTap: () {
                     Navigator.pushNamed(
                       context,
@@ -90,10 +91,13 @@ class UserSearchResultList extends StatelessWidget {
                     ),
                     subtitle: Text(
                       user.email,
-                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                          color: settingsManager.darkMode
-                              ? Colors.grey.shade300
-                              : Colors.grey.shade700),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium!
+                          .copyWith(
+                              color: settingsManager.darkMode
+                                  ? Colors.grey.shade300
+                                  : Colors.grey.shade700),
                     ),
                     trailing: Padding(
                       padding: const EdgeInsets.only(right: 8.0),
@@ -114,6 +118,7 @@ class UserSearchResultList extends StatelessWidget {
                   .toLowerCase()
                   .startsWith(searchName.toLowerCase())) {
                 return InkWell(
+                  key: const Key('userSearchResultList'),
                   onTap: () {
                     Navigator.pushNamed(
                       context,
@@ -160,10 +165,13 @@ class UserSearchResultList extends StatelessWidget {
                     ),
                     subtitle: Text(
                       user.email,
-                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                          color: settingsManager.darkMode
-                              ? Colors.grey.shade300
-                              : Colors.grey.shade700),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium!
+                          .copyWith(
+                              color: settingsManager.darkMode
+                                  ? Colors.grey.shade300
+                                  : Colors.grey.shade700),
                     ),
                     trailing: Padding(
                       padding: const EdgeInsets.only(right: 8.0),

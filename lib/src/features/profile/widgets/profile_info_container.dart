@@ -136,6 +136,7 @@ class _ProfileInfoContainerState extends State<ProfileInfoContainer> {
                             ? Padding(
                                 padding: const EdgeInsets.only(top: 2.0),
                                 child: GestureDetector(
+                                  key: const Key('editProfileButton'),
                                   onTap: widget.onEdit,
                                   child: Container(
                                     width: 130,

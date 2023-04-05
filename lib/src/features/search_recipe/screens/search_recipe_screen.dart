@@ -101,7 +101,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                                   ),
                           tabs: const [
                             Tab(text: "Search"),
-                            Tab(text: "Bookmarks"),
+                            Tab(key: Key("bookmark tab"),text: "Bookmarks"),
                           ],
                           indicatorPadding:
                               const EdgeInsets.symmetric(horizontal: 8),
@@ -177,6 +177,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
                         children: [
                           Expanded(
                             child: TextField(
+                              key: const Key('searchTextField'),
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall!
@@ -251,6 +252,7 @@ class _SearchRecipeScreenState extends State<SearchRecipeScreen>
             child: Material(
               color: kOrangeColorTint,
               child: InkWell(
+                key: const Key('searchButton'),
                 onTap: () {
                   FocusManager.instance.primaryFocus?.unfocus();
                   startSearch(_searchController.text);

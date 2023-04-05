@@ -38,6 +38,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
     final settingsManager =
         Provider.of<SettingsProvider>(context, listen: false);
     return Scaffold(
+      key:  const Key('chatMessagesScreen'),
       appBar: AppBar(
         leading: IconButton(
           splashRadius: 20,
@@ -86,6 +87,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: TextField(
+              key:    const Key('chatMessagesScreen_textField'),
               textAlign: TextAlign.start,
               textAlignVertical: TextAlignVertical.center,
               style: Theme.of(context).textTheme.displaySmall!.copyWith(
@@ -110,6 +112,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
                   ),
                 ),
                 suffixIcon: IconButton(
+                  key:   const Key('chatMessagesScreen_sendButton'),
                   splashRadius: 20,
                   onPressed: () async {
                     // !: Send message.

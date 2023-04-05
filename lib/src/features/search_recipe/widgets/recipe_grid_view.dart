@@ -47,6 +47,7 @@ class _RecipeGridViewState extends State<RecipeGridView> {
         child: Material(
           elevation: 4,
           child: GestureDetector(
+            key: const Key('recipeCard'),
             onTap: () {
               final detailRecipe = RecipeModel(
                 id: recipe.id,

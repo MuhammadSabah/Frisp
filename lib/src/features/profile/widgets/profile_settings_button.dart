@@ -9,6 +9,7 @@ class ProfileSettingsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
+      key: const Key('profileSettingsButton'),
       onPressed: () {
          Navigator.pushNamed(
           context,

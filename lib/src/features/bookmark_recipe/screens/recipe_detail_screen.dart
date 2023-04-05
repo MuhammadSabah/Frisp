@@ -61,6 +61,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
     return Theme(
       data: Theme.of(context).copyWith(useMaterial3: false),
       child: Scaffold(
+        key: const Key('RecipeDetailScreen'),
         resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
@@ -131,6 +132,7 @@ class _RecipeDetailScreenState extends State<RecipeDetailScreen> {
               left: 18,
               right: 18,
               child: BottomSaveButton(
+                key: const Key('saveRecipeButton'),
                 callBack: () {
                   bookmark.insertRecipe(widget.recipe);
                   FocusManager.instance.primaryFocus?.unfocus();

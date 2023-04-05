@@ -84,6 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                         child: BottomNavigationBar(
+                          key: const Key('bottomNavigationBar'),
                           showSelectedLabels: false,
                           showUnselectedLabels: false,
                           onTap: (index) {
@@ -100,6 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               label: '',
                             ),
                             BottomNavigationBarItem(
+                              tooltip: 'Search Recipe',
                               icon: FaIcon(
                                 FontAwesomeIcons.magnifyingGlass,
                               ),
@@ -112,12 +114,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               label: '',
                             ),
                             BottomNavigationBarItem(
+                              tooltip: 'Shopping List',
                               icon: FaIcon(
                                 FontAwesomeIcons.clipboardList,
                               ),
                               label: '',
                             ),
                             BottomNavigationBarItem(
+                              tooltip: 'Profile',
                               icon: FaIcon(
                                 FontAwesomeIcons.solidUser,
                               ),
