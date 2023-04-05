@@ -24,12 +24,15 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
     final shoppingProvider =
         Provider.of<ShoppingProvider>(context, listen: true);
     return Scaffold(
+      key: const Key('shoppingScreen'),
       resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton.extended(
+        key: const Key('addShoppingItemButton'),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
         label: Text(
+          
           "Add Item",
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontSize: 14,

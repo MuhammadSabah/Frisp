@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,17 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:food_recipe_final/core/app_pages.dart';
 import 'package:food_recipe_final/core/app_theme.dart';
-import 'package:food_recipe_final/core/constants.dart';
 import 'package:food_recipe_final/firebase_options.dart';
 import 'package:food_recipe_final/localization/localization.dart';
 import 'package:food_recipe_final/main.dart';
-import 'package:food_recipe_final/src/features/authentication/screens/sign_up_screen.dart';
 import 'package:food_recipe_final/src/features/authentication/widgets/log_in_form.dart';
 import 'package:food_recipe_final/src/features/authentication/widgets/sign_up_form.dart';
 import 'package:food_recipe_final/src/features/bookmark_recipe/repository/bookmark_interface.dart';
-import 'package:food_recipe_final/src/features/onboarding/screens/onboarding_screen.dart';
 import 'package:food_recipe_final/src/features/splash/screens/splash_screen.dart';
-import 'package:food_recipe_final/src/features/welcome/screens/welcome_screen.dart';
 import 'package:food_recipe_final/src/models/shopping_item.dart';
 import 'package:food_recipe_final/src/navigation/route_generator.dart';
 import 'package:food_recipe_final/src/providers/auth_provider.dart';
@@ -36,9 +30,9 @@ import 'package:provider/provider.dart';
 
 void main() async {
   final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  // if (binding is LiveTestWidgetsFlutterBinding) {
-  //   binding.framePolicy = LiveTestWidgetsFlutterBindingFramePolicy.fullyLive;
-  // }
+  if (binding is LiveTestWidgetsFlutterBinding) {
+    binding.framePolicy = LiveTestWidgetsFlutterBindingFramePolicy.fullyLive;
+  }
 
   setUpAll(() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -475,6 +469,37 @@ void main() async {
     await tester.pumpAndSettle();
 
     expect(find.byKey(const Key("bookmark_card")), findsWidgets);
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('Add a shopping item to the shopping list', (tester) async {
+    await tester.pumpWidget(createApp());
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('bottomNavigationBar')), findsOneWidget);
+    await tester.tap(find.byTooltip('Shopping List'));
+    await tester.pumpAndSettle();
+    await tester.pump(const Duration(seconds: 2));
+
+    await tester.tap(find.byKey(const Key('addShoppingItemButton')));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('shoppingItemScreen')), findsOneWidget);
+    await tester.pumpAndSettle();
+
+    final nameFieldFinder = find.byKey(const Key('nameTextField'));
+    await tester.enterText(nameFieldFinder, '1kg of rice');
+    await tester.pumpAndSettle();
+
+    final quantityFieldFinder = find.byKey(const Key('quantityField'));
+    await tester.enterText(quantityFieldFinder, '20');
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key('shoppingItemScreen_saveButton')));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('shoppingScreen')), findsOneWidget);
+    expect(find.text('1kg of rice'), findsWidgets);
     await tester.pumpAndSettle();
   });
 }

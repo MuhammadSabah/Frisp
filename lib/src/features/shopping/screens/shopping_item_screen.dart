@@ -76,6 +76,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
+          key: const Key('shoppingItemScreen'),
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             iconTheme: const IconThemeData(
@@ -100,8 +101,10 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
             ),
             actions: [
               IconButton(
+                key: const Key('shoppingItemScreen_saveButton'),
                 splashRadius: 20,
                 icon: Icon(
+                  
                   Icons.check,
                   color: settingsManager.darkMode ? Colors.white : Colors.black,
                 ),
@@ -201,6 +204,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         TextFormField(
+          key: const Key('nameTextField'),
           validator: (String? value) {
             if (value!.isEmpty) {
               return 'Enter a name';
@@ -514,6 +518,7 @@ class _ShoppingItemScreenState extends State<ShoppingItemScreen> {
           child: SizedBox(
             width: 85,
             child: TextFormField(
+              key: const Key('quantityField'),
               validator: (String? value) {
                 if (value!.length >= 5) {
                   return 'Too much';
